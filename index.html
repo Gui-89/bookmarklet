@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLM Analisador Shopee — Funciona em Qualquer Navegador</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --shopee:#ee4d2d;
+  --green:#00c67a;
+  --blue:#4d8bff;
+  --bg:#05060d;
+  --card:#0a0c18;
+}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;}
+
+/* BG */
+.bg{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 10% 10%,rgba(238,77,45,.1),transparent),
+             radial-gradient(ellipse 50% 40% at 90% 80%,rgba(0,198,122,.06),transparent);}
+
+.wrapper{max-width:900px;margin:auto;padding:0 20px;position:relative;z-index:1;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:50px;flex-wrap:wrap;gap:10px;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;}
+.nav-links{display:flex;gap:16px;flex-wrap:wrap;}
+.nav-links a{font-size:13px;opacity:.6;text-decoration:none;color:#fff;transition:.2s;}
+.nav-links a:hover{opacity:1;color:var(--shopee);}
+
+/* HERO */
+.hero{text-align:center;padding:10px 0 60px;}
+.hero-badge{display:inline-block;margin-bottom:20px;padding:6px 16px;border-radius:20px;
+  font-size:12px;font-weight:600;background:rgba(0,198,122,.15);color:var(--green);
+  border:1px solid rgba(0,198,122,.3);}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.1;margin-bottom:16px;}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--shopee),#ff8a65);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:15px;opacity:.55;max-width:520px;margin:0 auto 40px;line-height:1.7;}
+
+/* TABS */
+.tabs{display:flex;gap:0;margin-bottom:30px;background:rgba(255,255,255,.04);
+  border-radius:12px;padding:4px;border:1px solid rgba(255,255,255,.06);}
+.tab{flex:1;padding:10px 16px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;
+  text-align:center;transition:.2s;color:#777;border:none;background:none;}
+.tab.active{background:var(--shopee);color:#fff;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* CARD */
+.card{background:var(--card);border-radius:20px;padding:28px;margin-bottom:20px;
+  border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(135deg,rgba(238,77,45,.04) 0%,transparent 50%);}
+
+/* SEÇÃO */
+.sec-label{font-size:11px;opacity:.4;text-transform:uppercase;letter-spacing:1px;
+  font-weight:700;margin-bottom:16px;}
+
+/* BOOKMARKLET AREA */
+.bm-install{
+  background:linear-gradient(135deg,rgba(0,198,122,.08),rgba(77,139,255,.05));
+  border:1px solid rgba(0,198,122,.2);border-radius:16px;
+  padding:24px;margin-bottom:20px;text-align:center;
+}
+.bm-install h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+.bm-install p{font-size:13px;opacity:.6;margin-bottom:20px;line-height:1.6;}
+
+.bm-drag-area{
+  display:inline-block;
+  padding:14px 28px;border-radius:12px;
+  background:linear-gradient(90deg,var(--shopee),#f05d40);
+  color:#fff;font-size:15px;font-weight:700;
+  cursor:grab;border:3px dashed rgba(255,255,255,.4);
+  transition:.3s;user-select:none;
+  text-decoration:none;
+  box-shadow:0 8px 30px rgba(238,77,45,.3);
+}
+.bm-drag-area:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(238,77,45,.4);}
+.bm-drag-area:active{cursor:grabbing;}
+
+.bm-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:24px;}
+.bm-step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;}
+.bm-step-num{width:28px;height:28px;border-radius:50%;background:var(--shopee);color:#fff;
+  font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.bm-step h4{font-size:13px;font-weight:600;margin-bottom:5px;}
+.bm-step p{font-size:11px;opacity:.55;line-height:1.5;}
+
+/* ALERTA MOBILE */
+.mobile-alert{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
+  border-radius:10px;padding:12px 16px;font-size:12px;color:#fcd34d;
+  margin-bottom:16px;line-height:1.5;display:none;}
+@media(max-width:600px){.mobile-alert{display:block;}}
+
+/* COMPARADOR MANUAL */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px;}
+.prod-card{background:#07090f;border-radius:14px;border:1px solid rgba(255,255,255,.06);
+  padding:16px;position:relative;transition:.2s;}
+.prod-card:hover{border-color:rgba(238,77,45,.2);}
+.prod-form{display:flex;flex-direction:column;gap:8px;}
+.prod-form input,.prod-form select{
+  padding:8px 10px;border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;background:#0b0f22;color:#fff;font-size:12px;outline:none;
+  font-family:'Poppins',sans-serif;transition:.2s;}
+.prod-form input:focus,.prod-form select:focus{border-color:rgba(238,77,45,.4);}
+.prod-form label{font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:.4px;}
+.btn-add{padding:8px 16px;border:none;border-radius:8px;cursor:pointer;
+  background:linear-gradient(90deg,var(--shopee),#f05d40);color:#fff;
+  font-size:12px;font-weight:700;transition:.2s;font-family:'Poppins',sans-serif;width:100%;}
+.btn-add:hover{opacity:.88;}
+.btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:#aaa;
+  font-size:11px;padding:6px 12px;border-radius:7px;cursor:pointer;
+  font-family:'Poppins',sans-serif;transition:.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:#fff;}
+.add-card-btn{
+  border:1px dashed rgba(238,77,45,.3);background:rgba(238,77,45,.04);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  min-height:140px;cursor:pointer;font-size:13px;color:var(--shopee);
+  opacity:.7;transition:.2s;font-family:'Poppins',sans-serif;}
+.add-card-btn:hover{opacity:1;background:rgba(238,77,45,.08);}
+
+/* RESULTADO COMPARATIVO */
+.result-card{background:#07090f;border-radius:14px;padding:16px;
+  border:1px solid rgba(255,255,255,.06);transition:.2s;position:relative;}
+.result-card.best{border-color:rgba(0,198,122,.4);box-shadow:0 0 20px rgba(0,198,122,.1);}
+.rc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.rc-score{font-size:22px;font-weight:900;}
+.rc-score.ex{color:var(--green);}
+.rc-score.gd{color:var(--blue);}
+.rc-score.md{color:#f5a623;}
+.rc-score.lw{color:#e03e3e;}
+.rc-label{font-size:11px;font-weight:600;opacity:.6;}
+.bom-tag{background:var(--green);color:#000;font-size:9px;font-weight:800;
+  padding:2px 7px;border-radius:3px;}
+.rc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.rc-m{background:rgba(255,255,255,.04);border-radius:6px;padding:6px 8px;}
+.rc-m span{font-size:9px;opacity:.45;display:block;margin-bottom:1px;}
+.rc-m b{font-size:13px;font-weight:700;color:#fff;}
+.rc-m b.gn{color:var(--green)!important;}
+.rc-m b.go{color:#f5a623!important;}
+.rc-m b.gr{color:#ee4d2d!important;}
+.rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.rc-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.rc-tag.blue{background:rgba(77,139,255,.15);color:#7eb3ff;}
+.rc-tag.green{background:rgba(0,198,122,.15);color:var(--green);}
+.rc-tag.orange{background:rgba(245,166,35,.15);color:#f5a623;}
+.rc-bar{margin-top:6px;}
+.rc-bar-track{background:rgba(255,255,255,.08);border-radius:3px;height:5px;overflow:hidden;}
+.rc-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;}
+.ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),#34d399);}
+.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#818cf8);}
+.md .rc-bar-fill{background:#f5a623;}
+.lw .rc-bar-fill{background:#e03e3e;}
+.rank-badge{position:absolute;top:-8px;left:12px;font-size:18px;}
+.oport-tag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;margin-top:8px;}
+.oport-alta{background:rgba(0,198,122,.15);color:var(--green);border:1px solid rgba(0,198,122,.3);}
+.oport-media{background:rgba(245,166,35,.15);color:#f5a623;border:1px solid rgba(245,166,35,.3);}
+
+/* MELHORIAS */
+.melhoria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.melhoria-card{background:#07090f;border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.06);}
+.melhoria-card .icon{font-size:28px;margin-bottom:10px;}
+.melhoria-card h3{font-size:14px;font-weight:700;margin-bottom:6px;}
+.melhoria-card p{font-size:12px;opacity:.55;line-height:1.6;}
+.melhoria-card .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;
+  font-weight:700;margin-bottom:8px;}
+.badge-facil{background:rgba(0,198,122,.15);color:var(--green);}
+.badge-medio{background:rgba(245,166,35,.15);color:#f5a623;}
+.badge-avancado{background:rgba(238,77,45,.15);color:var(--shopee);}
+
+/* COMPARAÇÃO TABELA */
+.comp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px;}
+.comp-table th{padding:8px 10px;text-align:center;font-size:10px;opacity:.4;
+  text-transform:uppercase;background:rgba(0,0,0,.3);font-weight:400;}
+.comp-table th:first-child{text-align:left;}
+.comp-table td{padding:8px 10px;border-top:1px solid rgba(255,255,255,.04);text-align:center;}
+.comp-table td:first-child{text-align:left;opacity:.6;font-size:11px;}
+.best-cell{color:var(--green)!important;font-weight:700!important;}
+.worst-cell{color:#e03e3e!important;}
+
+/* FOOTER */
+footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.05);
+  font-size:12px;opacity:.3;margin-top:40px;}
+
+@media(max-width:600px){
+  .bm-steps{grid-template-columns:1fr;}
+  .comp-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrapper">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand"><span>🛍️</span> GLM Studio</div>
+    <div class="nav-links">
+      <a href="index.html">📱 Calculadora</a>
+      <a href="#bookmarklet">🔖 Bookmarklet</a>
+      <a href="#comparador">⚖️ Comparador</a>
+      <a href="#melhorias">💡 Melhorias</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">✅ Funciona em qualquer navegador · Sem instalar nada</div>
+    <h1>GLM Analisador Shopee<br>em <em>qualquer lugar</em></h1>
+    <p>Bookmarklet que roda no Chrome, Firefox, Safari, Edge e no celular — e comparador manual integrado à sua Calculadora.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('bookmarklet',this)">🔖 Bookmarklet</button>
+    <button class="tab" onclick="setTab('comparador',this)">⚖️ Comparador</button>
+    <button class="tab" onclick="setTab('melhorias',this)">💡 Melhorias</button>
+  </div>
+
+  <!-- ════════ TAB BOOKMARKLET ════════ -->
+  <div id="tab-bookmarklet" class="tab-content active" id="bookmarklet">
+
+    <div class="mobile-alert">
+      📱 No celular: adicione esta página aos favoritos primeiro, depois edite o endereço do favorito e cole o código do bookmarklet no lugar da URL.
+    </div>
+
+    <div class="bm-install">
+      <h3>🔖 Arraste para sua Barra de Favoritos</h3>
+      <p>Este botão contém o analisador completo. Arraste para a barra de favoritos do navegador.
+         Depois, ao abrir qualquer busca na Shopee, clique no favorito para ativar.</p>
+
+      <!-- BOTÃO DO BOOKMARKLET — href preenchido pelo JS -->
+      <a id="bm-link" class="bm-drag-area" href="#" onclick="return false;">
+        🛍️ GLM Analisador Shopee
+      </a>
+
+      <div class="bm-steps">
+        <div class="bm-step">
+          <div class="bm-step-num">1</div>
+          <h4>Mostre a barra de favoritos</h4>
+          <p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Barra de Favoritos</p>
+        </div>
+        <div class="bm-step">
+          <div class="bm-step-num">2</div>
+          <h4>Arraste o botão laranja</h4>
+          <p>Segure e arraste o botão "🛍️ GLM Analisador Shopee" para a barra de favoritos do seu navegador.</p>
+        </div>
+        <div class="bm-step">
+          <div class="bm-step-num">3</div>
+          <h4>Abra a Shopee</h4>
+          <p>Acesse shopee.com.br, pesquise qualquer produto e clique no favorito salvo.</p>
+        </div>
+        <div class="bm-step">
+          <div class="bm-step-num">4</div>
+          <h4>Analyze! ✅</h4>
+          <p>O painel GLM abre sobre a Shopee com badges, scores e filtros. Clique novamente para fechar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diferenças: Extensão vs Bookmarklet -->
+    <div class="card">
+      <div class="sec-label">📊 Extensão Chrome vs Bookmarklet</div>
+      <div style="overflow-x:auto">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Recurso</th>
+              <th>Extensão Chrome</th>
+              <th>Bookmarklet</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Chrome</td><td class="best-cell">✅ Automático</td><td class="best-cell">✅ Manual</td></tr>
+            <tr><td>Firefox</td><td>❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Safari (Mac/iPhone)</td><td>❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Edge / Opera</td><td>✅</td><td class="best-cell">✅</td></tr>
+            <tr><td>Celular Android</td><td>❌</td><td class="best-cell">✅ Chrome mobile</td></tr>
+            <tr><td>iPhone / iPad</td><td>❌</td><td class="best-cell">✅ Safari</td></tr>
+            <tr><td>Ativa automaticamente</td><td class="best-cell">✅</td><td>Manual (1 clique)</td></tr>
+            <tr><td>Dados da API Shopee</td><td class="best-cell">✅ Intercepta fetch</td><td>DOM (fallback)</td></tr>
+            <tr><td>Instalação</td><td>4 passos</td><td class="best-cell">Arrastar e soltar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ TAB COMPARADOR ════════ -->
+  <div id="tab-comparador" class="tab-content" id="comparador">
+    <div class="card">
+      <div class="sec-label">⚖️ Comparador Manual de Produtos</div>
+      <p style="font-size:13px;opacity:.55;margin-bottom:20px;line-height:1.6;">
+        Pesquise produtos na Shopee, copie os dados e compare lado a lado aqui.
+        Ideal para análise aprofundada antes de decidir o que vender.
+      </p>
+
+      <div class="comp-grid" id="prodGrid">
+        <!-- Cards de produto serão adicionados aqui -->
+        <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">
+          ➕ Adicionar Produto
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+        <button class="btn-add" style="flex:1;max-width:200px;" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
+        <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar Tudo</button>
+        <button class="btn-ghost" onclick="exportarCSV()">📊 Exportar CSV</button>
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    <div id="resultados" style="display:none;">
+      <div class="card">
+        <div class="sec-label">🏆 Análise Comparativa</div>
+        <div class="comp-grid" id="resultGrid"></div>
+        <div style="overflow-x:auto;margin-top:20px;">
+          <table class="comp-table" id="resultTable"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ TAB MELHORIAS ════════ -->
+  <div id="tab-melhorias" class="tab-content" id="melhorias">
+    <div class="card">
+      <div class="sec-label">💡 Sugestões de Melhoria para o GLM Analisador</div>
+      <p style="font-size:13px;opacity:.5;margin-bottom:24px;line-height:1.6;">
+        Funcionalidades que podem elevar significativamente sua capacidade de encontrar produtos para vender:
+      </p>
+      <div class="melhoria-grid">
+
+        <div class="melhoria-card">
+          <div class="badge badge-facil">✅ Fácil</div>
+          <div class="icon">📊</div>
+          <h3>Histórico de Buscas</h3>
+          <p>Salvar automaticamente os produtos analisados com data, para acompanhar se um produto está crescendo ou caindo em vendas ao longo do tempo.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-facil">✅ Fácil</div>
+          <div class="icon">🔔</div>
+          <h3>Alerta de Preço</h3>
+          <p>Definir um preço-alvo para um produto e receber notificação (via popup) quando o preço cair abaixo do valor definido.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">📈</div>
+          <h3>Gráfico de Tendência</h3>
+          <p>Comparar o score e vendas de produtos ao longo de diferentes sessões para identificar produtos em ascensão antes da concorrência perceber.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">🎯</div>
+          <h3>Filtro por Margem de Lucro</h3>
+          <p>Integrar com sua Calculadora: inserir seu custo de produção e filtrar apenas produtos onde a margem de lucro seria viável para você.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">🗺️</div>
+          <h3>Mapa de Oportunidades</h3>
+          <p>Identificar subcategorias com alta demanda e baixa oferta de vendedores bem avaliados — seu ponto de entrada ideal no mercado.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">🤖</div>
+          <h3>Score com IA</h3>
+          <p>Usar a API do Claude para analisar as fotos, título e descrição dos produtos e sugerir melhorias para o seu próprio anúncio baseado nos mais vendidos.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">📦</div>
+          <h3>Integração com Estoque</h3>
+          <p>Cruzar produtos analisados na Shopee com seu catálogo na Calculadora GLM, mostrando quais produtos você já fabrica e qual é sua margem real.</p>
+        </div>
+
+        <div class="melhoria-card">
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">🔄</div>
+          <h3>Análise Automática Agendada</h3>
+          <p>Executar análises em horários programados e enviar resumo diário por WhatsApp/email com os produtos mais quentes do dia na sua categoria.</p>
+        </div>
+
+      </div>
+
+      <div style="margin-top:24px;padding:16px;background:rgba(0,198,122,.06);border:1px solid rgba(0,198,122,.2);border-radius:12px;">
+        <p style="font-size:13px;color:#86efac;line-height:1.6;">
+          💬 <b>Qual melhoria você quer implementar primeiro?</b> Me diga e eu crio o código na hora!
+          As marcadas como "Fácil" posso implementar diretamente na extensão atual sem grandes mudanças.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer>GLM Studio · Calculadora + Analisador Shopee · Feito para impressores 3D 🖨️</footer>
+</div>
+
+<script>
+/* ════════ TABS ════════ */
+function setTab(id, btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ════════ BOOKMARKLET — carrega e injeta o href ════════ */
+/* O bookmarklet é carregado do arquivo .js inline abaixo */
+(function(){
+  /* Bookmarklet minificado embutido diretamente */
+  const code = `BOOKMARKLET_CODE_PLACEHOLDER`;
+  const link = document.getElementById('bm-link');
+  if(link && code && code !== 'BOOKMARKLET_CODE_PLACEHOLDER') {
+    link.href = code;
+    link.onclick = null;
+  }
+})();
+
+/* ════════ COMPARADOR ════════ */
+let produtos = [];
+let cardCount = 0;
+
+function adicionarCard(){
+  if(cardCount >= 5){ alert('Máximo 5 produtos!'); return; }
+  cardCount++;
+  const id = 'p'+Date.now();
+  const div = document.createElement('div');
+  div.className = 'prod-card';
+  div.id = id;
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <div style="font-size:11px;font-weight:600;opacity:.5;">Produto ${cardCount}</div>
+      <button onclick="removerCard('${id}')" style="background:none;border:none;color:#ff5f5f;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div class="prod-form">
+      <div><label>Nome do Produto *</label>
+        <input type="text" placeholder="Ex: Luminária 3D LED Touch..." id="${id}-nome"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="${id}-preco"></div>
+        <div><label>Preço original</label><input type="number" placeholder="69.90" id="${id}-orig"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Vendas/30d</label><input type="number" placeholder="843" id="${id}-v30"></div>
+        <div><label>Vendas total</label><input type="number" placeholder="12000" id="${id}-vtot"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="${id}-nota"></div>
+        <div><label>Avaliações</label><input type="number" placeholder="234" id="${id}-aval"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Frete</label>
+          <select id="${id}-frete">
+            <option value="1">✅ Grátis</option>
+            <option value="0">❌ Pago</option>
+          </select></div>
+        <div><label>Idade (dias)</label><input type="number" placeholder="90" id="${id}-dias"></div>
+      </div>
+      <div><label>Nível do Vendedor</label>
+        <select id="${id}-nivel">
+          <option value="">Normal</option>
+          <option value="Mall">Shopee Mall</option>
+          <option value="Pref">Preferido</option>
+        </select></div>
+    </div>`;
+  const btnAdd = document.getElementById('btnAdd');
+  document.getElementById('prodGrid').insertBefore(div, btnAdd);
+}
+
+function removerCard(id){
+  document.getElementById(id)?.remove();
+  cardCount--;
+}
+
+function limparTudo(){
+  document.querySelectorAll('.prod-card').forEach(c=>c.remove());
+  cardCount=0;
+  produtos=[];
+  document.getElementById('resultados').style.display='none';
+}
+
+function g(id){ return document.getElementById(id); }
+function gv(id){ return g(id)?.value?.trim() || ''; }
+function gn(id){ return parseFloat(gv(id)) || 0; }
+
+function calcScore(d){
+  let s=0;
+  const v=d.v30,vt=d.vtot,r=d.nota,dc=d.desc;
+  s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
+  s+=vt>=5000?15:vt>=2000?12:vt>=500?8:vt>=100?4:vt>0?2:0;
+  s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
+  if(d.frete)s+=15;
+  s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
+  if(d.dias>=0&&d.dias<=90)s+=5;else if(d.dias<=180)s+=3;
+  if(d.nivel==='Mall')s+=5;else if(d.nivel.includes('Pref'))s+=3;
+  return Math.min(100,s);
+}
+
+function calcOport(d){
+  let pts=0;
+  if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
+  if(d.aval<50)pts+=2;if(d.aval<20)pts+=1;
+  if(d.dias>=0&&d.dias<=180)pts+=2;
+  if(d.nota>=4.5)pts+=1;if(d.preco<=80)pts+=1;if(d.frete)pts+=1;
+  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'oport-alta'};
+  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'oport-media'};
+  return null;
+}
+
+function scCls(s){return s>=70?'ex':s>=50?'gd':s>=30?'md':'lw';}
+function scTxt(s){return s>=70?'🔥 Excelente':s>=50?'👍 Bom':s>=30?'⚠️ Médio':'📉 Fraco';}
+function fN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(n||0);}
+function fR(n){return 'R$\u00A0'+n.toLocaleString('pt-BR',{minimumFractionDigits:2});}
+
+function analisarTodos(){
+  const cards=[...document.querySelectorAll('.prod-card')];
+  if(!cards.length){alert('Adicione pelo menos 1 produto!');return;}
+
+  produtos = cards.map(card=>{
+    const id=card.id;
+    const preco=gn(id+'-preco'), orig=gn(id+'-orig');
+    const desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
+    const d={
+      nome: gv(id+'-nome')||'Produto',
+      preco, orig, desc,
+      v30:  gn(id+'-v30'),
+      vtot: gn(id+'-vtot'),
+      nota: gn(id+'-nota'),
+      aval: gn(id+'-aval'),
+      frete:gv(id+'-frete')==='1',
+      dias: gn(id+'-dias')||(-1),
+      nivel:gv(id+'-nivel'),
+    };
+    d.score=calcScore(d);
+    d.oport=calcOport(d);
+    return d;
+  }).filter(d=>d.nome||d.preco);
+
+  if(!produtos.length){alert('Preencha ao menos o nome e preço de um produto.');return;}
+
+  renderResultados();
+  setTab('comparador', document.querySelectorAll('.tab')[1]);
+  document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
+}
+
+function renderResultados(){
+  const todos=[...produtos].sort((a,b)=>b.score-a.score);
+  const maxScore=todos[0]?.score||0;
+  const grid=document.getElementById('resultGrid');
+  const table=document.getElementById('resultTable');
+  document.getElementById('resultados').style.display='block';
+
+  /* Cards */
+  grid.innerHTML=todos.map((d,i)=>{
+    const cls=scCls(d.score);
+    const isBest=d.score===maxScore&&todos.length>1;
+    const tags=[];
+    if(d.frete)tags.push(`<span class="rc-tag blue">✅ Frete Grátis</span>`);
+    if(d.nivel)tags.push(`<span class="rc-tag orange">${d.nivel}</span>`);
+    if(d.oport)tags.push(`<span class="rc-tag green">${d.oport.emoji} Oport. ${d.oport.nivel}</span>`);
+    return `
+      <div class="result-card ${isBest?'best':''} ${cls}">
+        <div class="rank-badge">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]||''}</div>
+        <div class="rc-header">
+          <div>
+            <div class="rc-score ${cls}">${d.score}</div>
+            <div class="rc-label">${scTxt(d.score)}</div>
+          </div>
+          ${d.score>=60?'<span class="bom-tag">BOM</span>':''}
+        </div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:10px;opacity:.9;">${d.nome.slice(0,35)}${d.nome.length>35?'…':''}</div>
+        <div class="rc-metrics">
+          <div class="rc-m"><span>Preço</span><b>${d.preco>0?fR(d.preco):'N/D'}</b></div>
+          <div class="rc-m"><span>Desconto</span><b class="gr">${d.desc>0?'-'+d.desc+'%':'—'}</b></div>
+          <div class="rc-m"><span>Vendas/30d</span><b class="gn">${d.v30>0?fN(d.v30):'N/D'}</b></div>
+          <div class="rc-m"><span>Total</span><b class="gn">${d.vtot>0?fN(d.vtot):'N/D'}</b></div>
+          <div class="rc-m"><span>Nota</span><b class="go">${d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D'}</b></div>
+          <div class="rc-m"><span>Avaliações</span><b>${d.aval>0?fN(d.aval):'N/D'}</b></div>
+        </div>
+        ${tags.length?`<div class="rc-tags">${tags.join('')}</div>`:''}
+        ${d.oport?`<div class="${d.oport.cls} oport-tag">${d.oport.emoji} Oportunidade ${d.oport.nivel}</div>`:''}
+        <div class="rc-bar">
+          <div style="display:flex;justify-content:space-between;font-size:10px;opacity:.5;margin-bottom:3px;">
+            <span>Potencial de Venda</span><span>${d.score}/100</span>
+          </div>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${d.score}%"></div></div>
+        </div>
+      </div>`;
+  }).join('');
+
+  /* Tabela comparativa */
+  const rows=[
+    {l:'Score',k:'score',fmt:v=>v+'/100',dir:'max'},
+    {l:'Preço',k:'preco',fmt:v=>v>0?fR(v):'N/D',dir:'min'},
+    {l:'Desconto',k:'desc',fmt:v=>v+'%',dir:'max'},
+    {l:'Vendas 30d',k:'v30',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
+    {l:'Vendas Total',k:'vtot',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
+    {l:'Nota',k:'nota',fmt:v=>v>0?v.toFixed(1)+'⭐':'N/D',dir:'max'},
+    {l:'Frete',k:'frete',fmt:v=>v?'✅':'❌'},
+  ];
+  let h=`<thead><tr><th>Métrica</th>`;
+  todos.forEach((_,i)=>h+=`<th>Prod. ${i+1}</th>`);
+  h+=`</tr></thead>`;
+  let b=`<tbody>`;
+  rows.forEach(row=>{
+    const vals=todos.map(p=>typeof p[row.k]==='number'?p[row.k]:null).filter(v=>v!==null);
+    const best=row.dir==='max'?Math.max(...vals):row.dir==='min'?Math.min(...vals):null;
+    const worst=row.dir==='max'?Math.min(...vals):row.dir==='min'?Math.max(...vals):null;
+    b+=`<tr><td>${row.l}</td>`;
+    todos.forEach(p=>{
+      const val=p[row.k];
+      const nv=typeof val==='number'?val:null;
+      const cls=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
+      b+=`<td class="${cls}">${row.fmt(val)}</td>`;
+    });
+    b+=`</tr>`;
+  });
+  b+=`</tbody>`;
+  table.innerHTML=h+b;
+}
+
+function exportarCSV(){
+  if(!produtos.length){alert('Analise os produtos primeiro!');return;}
+  const lines=["Nome,Preço,Desconto%,Vendas30d,VendasTotal,Nota,Avaliações,FreteGrátis,Idade,Nível,Score"];
+  produtos.forEach(p=>{
+    lines.push(`"${p.nome}",${p.preco},${p.desc},${p.v30},${p.vtot},${p.nota},${p.aval},${p.frete?'Sim':'Não'},${p.dias},${p.nivel},${p.score}`);
+  });
+  const blob=new Blob(['\uFEFF'+lines.join('\n')],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='comparativo_shopee.csv';a.click();
+}
+
+/* ── Adiciona primeiro card automaticamente ── */
+adicionarCard();
+adicionarCard();
+</script>
+</body>
+</html>
