@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLM Analisador Shopee</title>
+<title>GLM Analisador Shopee — Funciona em Qualquer Navegador</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -15,16 +15,23 @@
   --card:#0a0c18;
 }
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;}
+
+/* BG */
 .bg{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 60% 40% at 10% 10%,rgba(238,77,45,.1),transparent),
              radial-gradient(ellipse 50% 40% at 90% 80%,rgba(0,198,122,.06),transparent);}
+
 .wrapper{max-width:900px;margin:auto;padding:0 20px;position:relative;z-index:1;}
+
+/* NAV */
 nav{display:flex;justify-content:space-between;align-items:center;
   padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:50px;flex-wrap:wrap;gap:10px;}
 .nav-brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;}
 .nav-links{display:flex;gap:16px;flex-wrap:wrap;}
 .nav-links a{font-size:13px;opacity:.6;text-decoration:none;color:#fff;transition:.2s;}
 .nav-links a:hover{opacity:1;color:var(--shopee);}
+
+/* HERO */
 .hero{text-align:center;padding:10px 0 60px;}
 .hero-badge{display:inline-block;margin-bottom:20px;padding:6px 16px;border-radius:20px;
   font-size:12px;font-weight:600;background:rgba(0,198,122,.15);color:var(--green);
@@ -33,6 +40,8 @@ nav{display:flex;justify-content:space-between;align-items:center;
 .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--shopee),#ff8a65);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero p{font-size:15px;opacity:.55;max-width:520px;margin:0 auto 40px;line-height:1.7;}
+
+/* TABS */
 .tabs{display:flex;gap:0;margin-bottom:30px;background:rgba(255,255,255,.04);
   border-radius:12px;padding:4px;border:1px solid rgba(255,255,255,.06);}
 .tab{flex:1;padding:10px 16px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;
@@ -40,12 +49,18 @@ nav{display:flex;justify-content:space-between;align-items:center;
 .tab.active{background:var(--shopee);color:#fff;}
 .tab-content{display:none;}
 .tab-content.active{display:block;}
+
+/* CARD */
 .card{background:var(--card);border-radius:20px;padding:28px;margin-bottom:20px;
   border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
 .card::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(135deg,rgba(238,77,45,.04) 0%,transparent 50%);}
+
+/* SEÇÃO */
 .sec-label{font-size:11px;opacity:.4;text-transform:uppercase;letter-spacing:1px;
   font-weight:700;margin-bottom:16px;}
+
+/* BOOKMARKLET AREA */
 .bm-install{
   background:linear-gradient(135deg,rgba(0,198,122,.08),rgba(77,139,255,.05));
   border:1px solid rgba(0,198,122,.2);border-radius:16px;
@@ -53,6 +68,7 @@ nav{display:flex;justify-content:space-between;align-items:center;
 }
 .bm-install h3{font-size:18px;font-weight:700;margin-bottom:8px;}
 .bm-install p{font-size:13px;opacity:.6;margin-bottom:20px;line-height:1.6;}
+
 .bm-drag-area{
   display:inline-block;
   padding:14px 28px;border-radius:12px;
@@ -65,16 +81,21 @@ nav{display:flex;justify-content:space-between;align-items:center;
 }
 .bm-drag-area:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(238,77,45,.4);}
 .bm-drag-area:active{cursor:grabbing;}
+
 .bm-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:24px;}
 .bm-step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;}
 .bm-step-num{width:28px;height:28px;border-radius:50%;background:var(--shopee);color:#fff;
   font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
 .bm-step h4{font-size:13px;font-weight:600;margin-bottom:5px;}
 .bm-step p{font-size:11px;opacity:.55;line-height:1.5;}
+
+/* ALERTA MOBILE */
 .mobile-alert{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
   border-radius:10px;padding:12px 16px;font-size:12px;color:#fcd34d;
   margin-bottom:16px;line-height:1.5;display:none;}
 @media(max-width:600px){.mobile-alert{display:block;}}
+
+/* COMPARADOR MANUAL */
 .comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px;}
 .prod-card{background:#07090f;border-radius:14px;border:1px solid rgba(255,255,255,.06);
   padding:16px;position:relative;transition:.2s;}
@@ -100,6 +121,8 @@ nav{display:flex;justify-content:space-between;align-items:center;
   min-height:140px;cursor:pointer;font-size:13px;color:var(--shopee);
   opacity:.7;transition:.2s;font-family:'Poppins',sans-serif;}
 .add-card-btn:hover{opacity:1;background:rgba(238,77,45,.08);}
+
+/* RESULTADO COMPARATIVO */
 .result-card{background:#07090f;border-radius:14px;padding:16px;
   border:1px solid rgba(255,255,255,.06);transition:.2s;position:relative;}
 .result-card.best{border-color:rgba(0,198,122,.4);box-shadow:0 0 20px rgba(0,198,122,.1);}
@@ -135,6 +158,8 @@ nav{display:flex;justify-content:space-between;align-items:center;
 .oport-tag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;margin-top:8px;}
 .oport-alta{background:rgba(0,198,122,.15);color:var(--green);border:1px solid rgba(0,198,122,.3);}
 .oport-media{background:rgba(245,166,35,.15);color:#f5a623;border:1px solid rgba(245,166,35,.3);}
+
+/* MELHORIAS */
 .melhoria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
 .melhoria-card{background:#07090f;border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.06);}
 .melhoria-card .icon{font-size:28px;margin-bottom:10px;}
@@ -145,6 +170,8 @@ nav{display:flex;justify-content:space-between;align-items:center;
 .badge-facil{background:rgba(0,198,122,.15);color:var(--green);}
 .badge-medio{background:rgba(245,166,35,.15);color:#f5a623;}
 .badge-avancado{background:rgba(238,77,45,.15);color:var(--shopee);}
+
+/* COMPARAÇÃO TABELA */
 .comp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px;}
 .comp-table th{padding:8px 10px;text-align:center;font-size:10px;opacity:.4;
   text-transform:uppercase;background:rgba(0,0,0,.3);font-weight:400;}
@@ -153,8 +180,11 @@ nav{display:flex;justify-content:space-between;align-items:center;
 .comp-table td:first-child{text-align:left;opacity:.6;font-size:11px;}
 .best-cell{color:var(--green)!important;font-weight:700!important;}
 .worst-cell{color:#e03e3e!important;}
+
+/* FOOTER */
 footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.05);
   font-size:12px;opacity:.3;margin-top:40px;}
+
 @media(max-width:600px){
   .bm-steps{grid-template-columns:1fr;}
   .comp-grid{grid-template-columns:1fr;}
@@ -165,53 +195,58 @@ footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.0
 <div class="bg"></div>
 <div class="wrapper">
 
+  <!-- NAV -->
   <nav>
-    <div class="nav-brand"><span>&#128717;</span> GLM Studio</div>
+    <div class="nav-brand"><span>🛍️</span> GLM Studio</div>
     <div class="nav-links">
-      <a href="#bookmarklet">&#128214; Bookmarklet</a>
-      <a href="#comparador">&#9878;&#65039; Comparador</a>
-      <a href="#melhorias">&#128161; Melhorias</a>
+      <a href="index.html">📱 Calculadora</a>
+      <a href="#bookmarklet">🔖 Bookmarklet</a>
+      <a href="#comparador">⚖️ Comparador</a>
+      <a href="#melhorias">💡 Melhorias</a>
     </div>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">&#9989; Funciona em qualquer navegador &middot; Sem instalar nada</div>
+    <div class="hero-badge">✅ Funciona em qualquer navegador · Sem instalar nada</div>
     <h1>GLM Analisador Shopee<br>em <em>qualquer lugar</em></h1>
-    <p>Bookmarklet que roda no Chrome, Firefox, Safari, Edge e no celular &mdash; e comparador manual integrado.</p>
+    <p>Bookmarklet que roda no Chrome, Firefox, Safari, Edge e no celular — e comparador manual integrado à sua Calculadora.</p>
   </div>
 
+  <!-- TABS -->
   <div class="tabs">
-    <button class="tab active" onclick="setTab('bookmarklet',this)">&#128214; Bookmarklet</button>
-    <button class="tab" onclick="setTab('comparador',this)">&#9878;&#65039; Comparador</button>
-    <button class="tab" onclick="setTab('melhorias',this)">&#128161; Melhorias</button>
+    <button class="tab active" onclick="setTab('bookmarklet',this)">🔖 Bookmarklet</button>
+    <button class="tab" onclick="setTab('comparador',this)">⚖️ Comparador</button>
+    <button class="tab" onclick="setTab('melhorias',this)">💡 Melhorias</button>
   </div>
 
-  <!-- TAB BOOKMARKLET -->
-  <div id="tab-bookmarklet" class="tab-content active">
+  <!-- ════════ TAB BOOKMARKLET ════════ -->
+  <div id="tab-bookmarklet" class="tab-content active" id="bookmarklet">
 
     <div class="mobile-alert">
-      &#128241; No celular: adicione esta p&aacute;gina aos favoritos primeiro, depois edite o endere&ccedil;o do favorito e cole o c&oacute;digo do bookmarklet no lugar da URL.
+      📱 No celular: adicione esta página aos favoritos primeiro, depois edite o endereço do favorito e cole o código do bookmarklet no lugar da URL.
     </div>
 
     <div class="bm-install">
-      <h3>&#128214; Arraste para sua Barra de Favoritos</h3>
-      <p>Este bot&atilde;o cont&eacute;m o analisador completo. Arraste para a barra de favoritos do navegador.
+      <h3>🔖 Arraste para sua Barra de Favoritos</h3>
+      <p>Este botão contém o analisador completo. Arraste para a barra de favoritos do navegador.
          Depois, ao abrir qualquer busca na Shopee, clique no favorito para ativar.</p>
 
-      <a id="bm-link" class="bm-drag-area" draggable="true">
-        &#128717; GLM Analisador Shopee
+      <!-- BOTÃO DO BOOKMARKLET — href preenchido pelo JS -->
+      <a id="bm-link" class="bm-drag-area" href="#" onclick="return false;">
+        🛍️ GLM Analisador Shopee
       </a>
 
       <div class="bm-steps">
         <div class="bm-step">
           <div class="bm-step-num">1</div>
           <h4>Mostre a barra de favoritos</h4>
-          <p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver &rarr; Barra de Favoritos</p>
+          <p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Barra de Favoritos</p>
         </div>
         <div class="bm-step">
           <div class="bm-step-num">2</div>
-          <h4>Arraste o bot&atilde;o laranja</h4>
-          <p>Segure e arraste o bot&atilde;o para a barra de favoritos do seu navegador.</p>
+          <h4>Arraste o botão laranja</h4>
+          <p>Segure e arraste o botão "🛍️ GLM Analisador Shopee" para a barra de favoritos do seu navegador.</p>
         </div>
         <div class="bm-step">
           <div class="bm-step-num">3</div>
@@ -220,59 +255,67 @@ footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.0
         </div>
         <div class="bm-step">
           <div class="bm-step-num">4</div>
-          <h4>Analise! &#9989;</h4>
+          <h4>Analyze! ✅</h4>
           <p>O painel GLM abre sobre a Shopee com badges, scores e filtros. Clique novamente para fechar.</p>
         </div>
       </div>
     </div>
 
+    <!-- Diferenças: Extensão vs Bookmarklet -->
     <div class="card">
-      <div class="sec-label">&#128202; Extens&atilde;o Chrome vs Bookmarklet</div>
+      <div class="sec-label">📊 Extensão Chrome vs Bookmarklet</div>
       <div style="overflow-x:auto">
         <table class="comp-table">
           <thead>
             <tr>
               <th>Recurso</th>
-              <th>Extens&atilde;o Chrome</th>
+              <th>Extensão Chrome</th>
               <th>Bookmarklet</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Chrome</td><td class="best-cell">&#9989; Autom&aacute;tico</td><td class="best-cell">&#9989; Manual</td></tr>
-            <tr><td>Firefox</td><td>&#10060;</td><td class="best-cell">&#9989;</td></tr>
-            <tr><td>Safari (Mac/iPhone)</td><td>&#10060;</td><td class="best-cell">&#9989;</td></tr>
-            <tr><td>Edge / Opera</td><td>&#9989;</td><td class="best-cell">&#9989;</td></tr>
-            <tr><td>Celular Android</td><td>&#10060;</td><td class="best-cell">&#9989; Chrome mobile</td></tr>
-            <tr><td>iPhone / iPad</td><td>&#10060;</td><td class="best-cell">&#9989; Safari</td></tr>
-            <tr><td>Ativa automaticamente</td><td class="best-cell">&#9989;</td><td>Manual (1 clique)</td></tr>
-            <tr><td>Instala&ccedil;&atilde;o</td><td>4 passos</td><td class="best-cell">Arrastar e soltar</td></tr>
+            <tr><td>Chrome</td><td class="best-cell">✅ Automático</td><td class="best-cell">✅ Manual</td></tr>
+            <tr><td>Firefox</td><td>❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Safari (Mac/iPhone)</td><td>❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Edge / Opera</td><td>✅</td><td class="best-cell">✅</td></tr>
+            <tr><td>Celular Android</td><td>❌</td><td class="best-cell">✅ Chrome mobile</td></tr>
+            <tr><td>iPhone / iPad</td><td>❌</td><td class="best-cell">✅ Safari</td></tr>
+            <tr><td>Ativa automaticamente</td><td class="best-cell">✅</td><td>Manual (1 clique)</td></tr>
+            <tr><td>Dados da API Shopee</td><td class="best-cell">✅ Intercepta fetch</td><td>DOM (fallback)</td></tr>
+            <tr><td>Instalação</td><td>4 passos</td><td class="best-cell">Arrastar e soltar</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- TAB COMPARADOR -->
-  <div id="tab-comparador" class="tab-content">
+  <!-- ════════ TAB COMPARADOR ════════ -->
+  <div id="tab-comparador" class="tab-content" id="comparador">
     <div class="card">
-      <div class="sec-label">&#9878;&#65039; Comparador Manual de Produtos</div>
+      <div class="sec-label">⚖️ Comparador Manual de Produtos</div>
       <p style="font-size:13px;opacity:.55;margin-bottom:20px;line-height:1.6;">
         Pesquise produtos na Shopee, copie os dados e compare lado a lado aqui.
+        Ideal para análise aprofundada antes de decidir o que vender.
       </p>
+
       <div class="comp-grid" id="prodGrid">
+        <!-- Cards de produto serão adicionados aqui -->
         <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">
-          &#10133; Adicionar Produto
+          ➕ Adicionar Produto
         </div>
       </div>
+
       <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-        <button class="btn-add" style="flex:1;max-width:200px;" onclick="analisarTodos()">&#9878;&#65039; Comparar Produtos</button>
-        <button class="btn-ghost" onclick="limparTudo()">&#128465;&#65039; Limpar Tudo</button>
-        <button class="btn-ghost" onclick="exportarCSV()">&#128202; Exportar CSV</button>
+        <button class="btn-add" style="flex:1;max-width:200px;" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
+        <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar Tudo</button>
+        <button class="btn-ghost" onclick="exportarCSV()">📊 Exportar CSV</button>
       </div>
     </div>
+
+    <!-- Resultados -->
     <div id="resultados" style="display:none;">
       <div class="card">
-        <div class="sec-label">&#127942; An&aacute;lise Comparativa</div>
+        <div class="sec-label">🏆 Análise Comparativa</div>
         <div class="comp-grid" id="resultGrid"></div>
         <div style="overflow-x:auto;margin-top:20px;">
           <table class="comp-table" id="resultTable"></table>
@@ -281,275 +324,319 @@ footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.0
     </div>
   </div>
 
-  <!-- TAB MELHORIAS -->
-  <div id="tab-melhorias" class="tab-content">
+  <!-- ════════ TAB MELHORIAS ════════ -->
+  <div id="tab-melhorias" class="tab-content" id="melhorias">
     <div class="card">
-      <div class="sec-label">&#128161; Sugest&otilde;es de Melhoria</div>
+      <div class="sec-label">💡 Sugestões de Melhoria para o GLM Analisador</div>
       <p style="font-size:13px;opacity:.5;margin-bottom:24px;line-height:1.6;">
         Funcionalidades que podem elevar significativamente sua capacidade de encontrar produtos para vender:
       </p>
       <div class="melhoria-grid">
+
         <div class="melhoria-card">
-          <div class="badge badge-facil">&#9989; F&aacute;cil</div>
-          <div class="icon">&#128202;</div>
-          <h3>Hist&oacute;rico de Buscas</h3>
-          <p>Salvar automaticamente os produtos analisados com data, para acompanhar crescimento ou queda em vendas ao longo do tempo.</p>
+          <div class="badge badge-facil">✅ Fácil</div>
+          <div class="icon">📊</div>
+          <h3>Histórico de Buscas</h3>
+          <p>Salvar automaticamente os produtos analisados com data, para acompanhar se um produto está crescendo ou caindo em vendas ao longo do tempo.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-facil">&#9989; F&aacute;cil</div>
-          <div class="icon">&#128276;</div>
-          <h3>Alerta de Pre&ccedil;o</h3>
-          <p>Definir um pre&ccedil;o-alvo e receber notifica&ccedil;&atilde;o quando o pre&ccedil;o cair abaixo do valor definido.</p>
+          <div class="badge badge-facil">✅ Fácil</div>
+          <div class="icon">🔔</div>
+          <h3>Alerta de Preço</h3>
+          <p>Definir um preço-alvo para um produto e receber notificação (via popup) quando o preço cair abaixo do valor definido.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-medio">&#9889; M&eacute;dio</div>
-          <div class="icon">&#128200;</div>
-          <h3>Gr&aacute;fico de Tend&ecirc;ncia</h3>
-          <p>Comparar score e vendas ao longo de diferentes sess&otilde;es para identificar produtos em ascens&atilde;o antes da concorr&ecirc;ncia.</p>
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">📈</div>
+          <h3>Gráfico de Tendência</h3>
+          <p>Comparar o score e vendas de produtos ao longo de diferentes sessões para identificar produtos em ascensão antes da concorrência perceber.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-medio">&#9889; M&eacute;dio</div>
-          <div class="icon">&#127919;</div>
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">🎯</div>
           <h3>Filtro por Margem de Lucro</h3>
-          <p>Inserir seu custo de produ&ccedil;&atilde;o e filtrar apenas produtos onde a margem de lucro seria vi&aacute;vel.</p>
+          <p>Integrar com sua Calculadora: inserir seu custo de produção e filtrar apenas produtos onde a margem de lucro seria viável para você.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-medio">&#9889; M&eacute;dio</div>
-          <div class="icon">&#128506;&#65039;</div>
+          <div class="badge badge-medio">⚡ Médio</div>
+          <div class="icon">🗺️</div>
           <h3>Mapa de Oportunidades</h3>
-          <p>Identificar subcategorias com alta demanda e baixa oferta de vendedores bem avaliados.</p>
+          <p>Identificar subcategorias com alta demanda e baixa oferta de vendedores bem avaliados — seu ponto de entrada ideal no mercado.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-avancado">&#128640; Avan&ccedil;ado</div>
-          <div class="icon">&#129302;</div>
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">🤖</div>
           <h3>Score com IA</h3>
-          <p>Usar IA para analisar fotos, t&iacute;tulo e descri&ccedil;&atilde;o dos produtos e sugerir melhorias para o seu an&uacute;ncio.</p>
+          <p>Usar a API do Claude para analisar as fotos, título e descrição dos produtos e sugerir melhorias para o seu próprio anúncio baseado nos mais vendidos.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-avancado">&#128640; Avan&ccedil;ado</div>
-          <div class="icon">&#128230;</div>
-          <h3>Integra&ccedil;&atilde;o com Estoque</h3>
-          <p>Cruzar produtos analisados na Shopee com seu cat&aacute;logo, mostrando quais voc&ecirc; j&aacute; fabrica e qual &eacute; sua margem real.</p>
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">📦</div>
+          <h3>Integração com Estoque</h3>
+          <p>Cruzar produtos analisados na Shopee com seu catálogo na Calculadora GLM, mostrando quais produtos você já fabrica e qual é sua margem real.</p>
         </div>
+
         <div class="melhoria-card">
-          <div class="badge badge-avancado">&#128640; Avan&ccedil;ado</div>
-          <div class="icon">&#128260;</div>
-          <h3>An&aacute;lise Autom&aacute;tica Agendada</h3>
-          <p>Executar an&aacute;lises em hor&aacute;rios programados e enviar resumo di&aacute;rio com os produtos mais quentes.</p>
+          <div class="badge badge-avancado">🚀 Avançado</div>
+          <div class="icon">🔄</div>
+          <h3>Análise Automática Agendada</h3>
+          <p>Executar análises em horários programados e enviar resumo diário por WhatsApp/email com os produtos mais quentes do dia na sua categoria.</p>
         </div>
+
       </div>
+
       <div style="margin-top:24px;padding:16px;background:rgba(0,198,122,.06);border:1px solid rgba(0,198,122,.2);border-radius:12px;">
         <p style="font-size:13px;color:#86efac;line-height:1.6;">
-          &#128172; <b>Qual melhoria voc&ecirc; quer implementar primeiro?</b> Me diga e eu crio o c&oacute;digo na hora!
+          💬 <b>Qual melhoria você quer implementar primeiro?</b> Me diga e eu crio o código na hora!
+          As marcadas como "Fácil" posso implementar diretamente na extensão atual sem grandes mudanças.
         </p>
       </div>
     </div>
   </div>
 
-  <footer>GLM Studio &middot; Calculadora + Analisador Shopee &middot; Feito para impressores 3D &#128424;&#65039;</footer>
+  <footer>GLM Studio · Calculadora + Analisador Shopee · Feito para impressores 3D 🖨️</footer>
 </div>
 
 <script>
-/* TABS */
+/* ════════ TABS ════════ */
 function setTab(id, btn){
-  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
 
-/* BOOKMARKLET HREF */
+/* ════════ BOOKMARKLET — carrega e injeta o href ════════ */
+/* O bookmarklet é carregado do arquivo .js inline abaixo */
 (function(){
-  var lnk = document.getElementById('bm-link');
+  var lnk=document.getElementById('bm-link');
   if(lnk){
-    lnk.href = 'javascript:%28function%28%29%7B%20%27use%20strict%27%3Bvar%20GLMID%3D%27glm-shopee-pro%27%3Bif%28document.getElementById%28GLMID%29%29%7B%20document.getElementById%28GLMID%29.remove%28%29%3Bvar%20css%3Ddocument.getElementById%28GLMID%2B%27-css%27%29%3Bif%28css%29css.remove%28%29%3Bdocument.querySelectorAll%28%27.glm-sp-badge%27%29.forEach%28function%28b%29%7Bb.remove%28%29%3B%7D%29%3Breturn%3B%7Dvar%20s%3Ddocument.createElement%28%27style%27%29%3Bs.id%3DGLMID%2B%27-css%27%3Bs.textContent%3D%27%23glm-sp%7Bposition%3Afixed%3Btop%3A58px%3Bright%3A8px%3Bwidth%3A268px%3Bmax-height%3A90vh%3Bbackground%3A%230a0b12%3Bborder%3A1px%20solid%20rgba%28238%2C77%2C45%2C.45%29%3Bborder-radius%3A14px%3Bbox-shadow%3A0%2020px%2070px%20rgba%280%2C0%2C0%2C.9%29%3Bz-index%3A2147483647%3Bfont-family%3A-apple-system%2C%22Segoe%20UI%22%2Csans-serif%3Bcolor%3A%23fff%3Boverflow%3Ahidden%3B%7D%27%20%2B%27%23glm-sp%20.ph%7Bdisplay%3Aflex%3Balign-items%3Acenter%3Bjustify-content%3Aspace-between%3Bpadding%3A10px%2012px%3Bbackground%3Alinear-gradient%2890deg%2Crgba%28238%2C77%2C45%2C.22%29%2Crgba%2877%2C139%2C255%2C.07%29%29%3Bborder-bottom%3A1px%20solid%20rgba%28255%2C255%2C255%2C.07%29%3Bcursor%3Amove%3Buser-select%3Anone%3B%7D%27%20%2B%27%23glm-sp%20.pht%7Bdisplay%3Aflex%3Balign-items%3Acenter%3Bgap%3A7px%3Bfont-size%3A13px%3Bfont-weight%3A700%3B%7D%27%20%2B%27%23glm-sp%20.hb%7Bbackground%3Anone%3Bborder%3A1px%20solid%20rgba%28255%2C255%2C255%2C.15%29%3Bcolor%3A%23999%3Bborder-radius%3A5px%3Bwidth%3A22px%3Bheight%3A22px%3Bcursor%3Apointer%3Bfont-size%3A11px%3Bdisplay%3Aflex%3Balign-items%3Acenter%3Bjustify-content%3Acenter%3B%7D%27%20%2B%27%23glm-sp%20.bd%7Bmax-height%3A83vh%3Boverflow-y%3Aauto%3Bscrollbar-width%3Athin%3Bscrollbar-color%3Argba%28238%2C77%2C45%2C.3%29%20transparent%3B%7D%27%20%2B%27%23glm-sp%20.sc_%7Bpadding%3A10px%2012px%3Bborder-bottom%3A1px%20solid%20rgba%28255%2C255%2C255%2C.05%29%3B%7D%27%20%2B%27%23glm-sp%20.sl_%7Bfont-size%3A9px%3Bopacity%3A.38%3Btext-transform%3Auppercase%3Bletter-spacing%3A1px%3Bfont-weight%3A700%3Bmargin-bottom%3A8px%3B%7D%27%20%2B%27%23glm-sp%20.g2%7Bdisplay%3Agrid%3Bgrid-template-columns%3A1fr%201fr%3Bgap%3A6px%3B%7D%27%20%2B%27%23glm-sp%20.bx%7Bbackground%3Argba%28255%2C255%2C255%2C.04%29%3Bborder-radius%3A8px%3Bpadding%3A7px%208px%3Btext-align%3Acenter%3B%7D%27%20%2B%27%23glm-sp%20.bx%20b%7Bdisplay%3Ablock%3Bfont-size%3A17px%3Bfont-weight%3A800%3Bcolor%3A%23fff%3Bline-height%3A1.2%3B%7D%27%20%2B%27%23glm-sp%20.bx%20span%7Bfont-size%3A9px%3Bopacity%3A.4%3B%7D%27%20%2B%27%23glm-sp%20.vr%7Bdisplay%3Aflex%3Bjustify-content%3Aspace-between%3Balign-items%3Acenter%3Bbackground%3Argba%28255%2C255%2C255%2C.04%29%3Bborder-radius%3A7px%3Bpadding%3A7px%2010px%3Bmargin-bottom%3A5px%3B%7D%27%20%2B%27%23glm-sp%20.vr%20span%7Bfont-size%3A11px%3Bopacity%3A.5%3B%7D%27%20%2B%27%23glm-sp%20.vr%20b%7Bfont-size%3A15px%3Bfont-weight%3A700%3B%7D%27%20%2B%27%23glm-sp%20.tr%7Bdisplay%3Aflex%3Balign-items%3Acenter%3Bgap%3A7px%3Bpadding%3A5px%200%3Bborder-bottom%3A1px%20solid%20rgba%28255%2C255%2C255%2C.04%29%3B%7D%27%20%2B%27%23glm-sp%20.tr%3Alast-child%7Bborder-bottom%3Anone%3B%7D%27%20%2B%27%23glm-sp%20.ti%7Bflex%3A1%3Bmin-width%3A0%3B%7D%27%20%2B%27%23glm-sp%20.tn%7Bfont-size%3A10px%3Bfont-weight%3A600%3Bwhite-space%3Anowrap%3Boverflow%3Ahidden%3Btext-overflow%3Aellipsis%3B%7D%27%20%2B%27%23glm-sp%20.tm%7Bfont-size%3A9px%3Bopacity%3A.4%3Bmargin-top%3A1px%3B%7D%27%20%2B%27%23glm-sp%20.ci%7Bwidth%3A28px%3Bheight%3A28px%3Bborder-radius%3A50%25%3Bdisplay%3Aflex%3Balign-items%3Acenter%3Bjustify-content%3Acenter%3Bfont-size%3A10px%3Bfont-weight%3A800%3Bflex-shrink%3A0%3Bborder%3A1.5px%20solid%3B%7D%27%20%2B%27%23glm-sp%20.ci.ex%7Bborder-color%3A%2300c67a%3Bcolor%3A%2300c67a%3Bbackground%3Argba%280%2C198%2C122%2C.1%29%3B%7D%27%20%2B%27%23glm-sp%20.ci.gd%7Bborder-color%3A%234d8bff%3Bcolor%3A%234d8bff%3Bbackground%3Argba%2877%2C139%2C255%2C.1%29%3B%7D%27%20%2B%27%23glm-sp%20.ci.md%7Bborder-color%3A%23f5a623%3Bcolor%3A%23f5a623%3Bbackground%3Argba%28245%2C166%2C35%2C.1%29%3B%7D%27%20%2B%27%23glm-sp%20.ci.lw%7Bborder-color%3A%23e03e3e%3Bcolor%3A%23e03e3e%3Bbackground%3Argba%28224%2C62%2C62%2C.1%29%3B%7D%27%20%2B%27%23glm-sp%20.dc%7Bdisplay%3Aflex%3Bgap%3A8px%3Bmargin-bottom%3A7px%3Bpadding%3A7px%3Bbackground%3Argba%28255%2C255%2C255%2C.03%29%3Bborder-radius%3A7px%3Balign-items%3Aflex-start%3B%7D%27%20%2B%27%23glm-sp%20.dc%20span%7Bfont-size%3A14px%3Bflex-shrink%3A0%3B%7D%27%20%2B%27%23glm-sp%20.dc%20p%7Bfont-size%3A11px%3Bcolor%3A%23ccc%3Bline-height%3A1.5%3Bmargin%3A0%3B%7D%27%20%2B%27%23glm-sp%20.dc%20b%7Bcolor%3A%23fff%3B%7D%27%20%2B%27%23glm-sp%20.ab%7Bwidth%3A100%25%3Bpadding%3A11px%3Bborder%3Anone%3Bborder-radius%3A9px%3Bcursor%3Apointer%3Bfont-size%3A13px%3Bfont-weight%3A700%3Bbackground%3Alinear-gradient%2890deg%2C%23ee4d2d%2C%23f05d40%29%3Bcolor%3A%23fff%3Bmargin-bottom%3A7px%3B%7D%27%20%2B%27%23glm-sp%20.rb%7Bwidth%3A100%25%3Bpadding%3A8px%3Bborder%3A1px%20solid%20rgba%2877%2C139%2C255%2C.3%29%3Bborder-radius%3A9px%3Bcursor%3Apointer%3Bfont-size%3A12px%3Bfont-weight%3A600%3Bbackground%3Argba%2877%2C139%2C255%2C.08%29%3Bcolor%3A%237eb3ff%3B%7D%27%20%2B%27%23glm-sp%20.pr%7Bbackground%3Argba%280%2C198%2C122%2C.08%29%3Bborder%3A1px%20solid%20rgba%280%2C198%2C122%2C.25%29%3Bborder-radius%3A9px%3Bpadding%3A12px%3Btext-align%3Acenter%3Bmargin-bottom%3A9px%3B%7D%27%20%2B%27%23glm-sp%20.pr%20b%7Bdisplay%3Ablock%3Bfont-size%3A26px%3Bfont-weight%3A900%3Bcolor%3A%2300c67a%3Bline-height%3A1.2%3B%7D%27%20%2B%27%23glm-sp%20.pr%20span%7Bfont-size%3A12px%3Bcolor%3A%2386efac%3Bopacity%3A.8%3B%7D%27%20%2B%27%23glm-sp%20.sel%7Bwidth%3A100%25%3Bpadding%3A7px%209px%3Bbackground%3Argba%28255%2C255%2C255%2C.05%29%3Bborder%3A1px%20solid%20rgba%28255%2C255%2C255%2C.1%29%3Bborder-radius%3A7px%3Bcolor%3A%23fff%3Bfont-size%3A12px%3Boutline%3Anone%3Bcursor%3Apointer%3B%7D%27%20%2B%27%23glm-sp%20.sel%20option%7Bbackground%3A%230a0b12%3B%7D%27%20%2B%27%23glm-sp%20.gn%7Bcolor%3A%2300c67a%21important%3B%7D%27%20%2B%27%23glm-sp%20.go%7Bcolor%3A%23f5a623%21important%3B%7D%27%20%2B%27.glm-sp-badge%7Bdisplay%3Ablock%21important%3Bwidth%3A100%25%21important%3Bfont-family%3A-apple-system%2Csans-serif%21important%3Bmargin%3A3px%200%21important%3B%7D%27%20%2B%27.glm-sp-row%7Bdisplay%3Aflex%21important%3Balign-items%3Acenter%21important%3Bgap%3A4px%21important%3Bpadding%3A4px%207px%21important%3Bborder-radius%3A5px%21important%3Bborder-left%3A3px%20solid%21important%3Bbackground%3Argba%286%2C7%2C14%2C.97%29%21important%3Bmin-height%3A26px%21important%3Boverflow%3Ahidden%21important%3B%7D%27%20%2B%27.glm-sp-row.ex%7Bborder-color%3A%2300c67a%21important%3B%7D%27%20%2B%27.glm-sp-row.gd%7Bborder-color%3A%234d8bff%21important%3B%7D%27%20%2B%27.glm-sp-row.md%7Bborder-color%3A%23f5a623%21important%3B%7D%27%20%2B%27.glm-sp-row.lw%7Bborder-color%3A%23e03e3e%21important%3B%7D%27%20%2B%27.glm-sp-num%7Bfont-size%3A15px%21important%3Bfont-weight%3A900%21important%3Bflex-shrink%3A0%21important%3Bmin-width%3A22px%21important%3Btext-align%3Acenter%21important%3B%7D%27%20%2B%27.glm-sp-num.ex%7Bcolor%3A%2300c67a%21important%3B%7D.glm-sp-num.gd%7Bcolor%3A%234d8bff%21important%3B%7D.glm-sp-num.md%7Bcolor%3A%23f5a623%21important%3B%7D.glm-sp-num.lw%7Bcolor%3A%23e03e3e%21important%3B%7D%27%20%2B%27.glm-sp-lbl%7Bfont-size%3A9px%21important%3Bcolor%3Argba%28255%2C255%2C255%2C.5%29%21important%3Bflex-shrink%3A0%21important%3B%7D%27%20%2B%27.glm-sp-its%7Bdisplay%3Aflex%21important%3Bgap%3A5px%21important%3Bflex%3A1%21important%3Balign-items%3Acenter%21important%3B%7D%27%20%2B%27.glm-sp-it%7Bdisplay%3Aflex%21important%3Bflex-direction%3Acolumn%21important%3Balign-items%3Acenter%21important%3B%7D%27%20%2B%27.glm-sp-il%7Bfont-size%3A7px%21important%3Bcolor%3Argba%28255%2C255%2C255%2C.3%29%21important%3B%7D%27%20%2B%27.glm-sp-iv%7Bfont-size%3A10px%21important%3Bfont-weight%3A700%21important%3Bcolor%3A%23fff%21important%3Bwhite-space%3Anowrap%21important%3B%7D%27%20%2B%27.glm-sp-iv.gn%7Bcolor%3A%2300c67a%21important%3B%7D.glm-sp-iv.go%7Bcolor%3A%23f5a623%21important%3B%7D.glm-sp-iv.gr%7Bcolor%3A%23ee4d2d%21important%3B%7D%27%20%2B%27.glm-sp-tags%7Bdisplay%3Aflex%21important%3Bgap%3A3px%21important%3Bmargin-left%3Aauto%21important%3Bflex-shrink%3A0%21important%3B%7D%27%20%2B%27.glm-sp-bom%7Bbackground%3A%2300c67a%21important%3Bcolor%3A%23000%21important%3Bfont-size%3A7px%21important%3Bfont-weight%3A900%21important%3Bpadding%3A1px%204px%21important%3Bborder-radius%3A2px%21important%3B%7D%27%20%2B%27.glm-sp-fr%7Bbackground%3Argba%2877%2C139%2C255%2C.22%29%21important%3Bcolor%3A%237eb3ff%21important%3Bfont-size%3A7px%21important%3Bfont-weight%3A700%21important%3Bpadding%3A1px%204px%21important%3Bborder-radius%3A2px%21important%3B%7D%27%20%2B%27.glm-sp-op%7Bfont-size%3A7px%21important%3Bfont-weight%3A700%21important%3Bpadding%3A1px%204px%21important%3Bborder-radius%3A2px%21important%3B%7D%27%20%2B%27.glm-sp-op.oa%7Bbackground%3Argba%280%2C198%2C122%2C.22%29%21important%3Bcolor%3A%2300c67a%21important%3B%7D%27%20%2B%27.glm-sp-op.om%7Bbackground%3Argba%28245%2C166%2C35%2C.22%29%21important%3Bcolor%3A%23f5a623%21important%3B%7D%27%3Bdocument.head.appendChild%28s%29%3Bvar%20DB%3D%7B%7D%3Bfunction%20scCls%28n%29%7Breturn%20n%3E%3D70%3F%27ex%27%3An%3E%3D50%3F%27gd%27%3An%3E%3D30%3F%27md%27%3A%27lw%27%3B%7D%20function%20scTxt%28n%29%7Breturn%20n%3E%3D70%3F%27Excelente%27%3An%3E%3D50%3F%27Bom%27%3An%3E%3D30%3F%27Medio%27%3A%27Fraco%27%3B%7D%20function%20fN%28n%29%7Bif%28%21n%29return%270%27%3Breturn%20n%3E%3D1e6%3F%28n%2F1e6%29.toFixed%281%29%2B%27M%27%3An%3E%3D1000%3F%28n%2F1000%29.toFixed%281%29.replace%28%27.0%27%2C%27%27%29%2B%27k%27%3AString%28n%29%3B%7D%20function%20fR%28n%29%7Breturn%27R%24%20%27%2BNumber%28n%7C%7C0%29.toLocaleString%28%27pt-BR%27%2C%7BminimumFractionDigits%3A2%7D%29%3B%7D%20function%20gi%28id%29%7Breturn%20document.getElementById%28id%29%3B%7D%20function%20encontrarCards%28%29%7B%20var%20visitados%3D%5B%5D%3Bvar%20cards%3D%5B%5D%3Bvar%20walker%3Ddocument.createTreeWalker%28document.body%2CNodeFilter.SHOW_TEXT%2C%7BacceptNode%3Afunction%28n%29%7Breturn%20%2FR%5C%24%5Cs%2A%5Cd%2F.test%28n.textContent%29%3FNodeFilter.FILTER_ACCEPT%3ANodeFilter.FILTER_SKIP%3B%7D%7D%2Cfalse%29%3Bvar%20node%3Bwhile%28%28node%3Dwalker.nextNode%28%29%29%29%7B%20var%20el%3Dnode.parentElement%3Bfor%28var%20i%3D0%3Bi%3C8%3Bi%2B%2B%29%7B%20if%28%21el%7C%7Cel%3D%3D%3Ddocument.body%29break%3Bvar%20w%3Del.offsetWidth%2Ch%3Del.offsetHeight%3Bif%28w%3E%3D130%26%26w%3C%3D420%26%26h%3E%3D220%26%26h%3C%3D750%26%26el.querySelector%28%27img%27%29%29%7B%20if%28visitados.indexOf%28el%29%3D%3D%3D-1%29%7B%20visitados.push%28el%29%3Bvar%20isChild%3Dcards.some%28function%28c%29%7Breturn%20c%21%3D%3Del%26%26c.contains%28el%29%3B%7D%29%3Bvar%20isParent%3Dcards.some%28function%28c%29%7Breturn%20el%21%3D%3Dc%26%26el.contains%28c%29%3B%7D%29%3Bif%28isParent%29%7Bbreak%3B%7D%20if%28%21isChild%29%7Bcards.push%28el%29%3B%7D%7Dbreak%3B%7Del%3Del.parentElement%3B%7D%7D%20return%20cards.filter%28function%28c%29%7Breturn%21cards.some%28function%28other%29%7Breturn%20other%21%3D%3Dc%26%26c.contains%28other%29%3B%7D%29%3B%7D%29%3B%7Dfunction%20extrair%28card%29%7B%20var%20txt%3D%28card.innerText%7C%7Ccard.textContent%7C%7C%27%27%29.replace%28%2F%5Cs%2B%2Fg%2C%27%20%27%29%3Bvar%20re%3D%2FR%5C%24%5Cs%2A%28%5B%5Cd.%5D%2B%2C%5Cd%7B2%7D%29%2Fg%2Cm%2Cprecos%3D%5B%5D%3Bwhile%28%28m%3Dre.exec%28txt%29%29%21%3D%3Dnull%29%7Bvar%20v%3DparseFloat%28m%5B1%5D.replace%28%2F%5C.%2Fg%2C%27%27%29.replace%28%27%2C%27%2C%27.%27%29%29%3Bif%28v%3E0%26%26v%3C200000%29precos.push%28v%29%3B%7D%20var%20preco%3Dprecos.length%3FMath.min.apply%28null%2Cprecos%29%3A0%3Bvar%20orig%3Dprecos.length%3E1%3FMath.max.apply%28null%2Cprecos%29%3A0%3Bvar%20desc%3Dorig%3Epreco%26%26preco%3E0%3FMath.round%28%281-preco%2Forig%29%2A100%29%3A0%3Bvar%20dm%3Dtxt.match%28%2F-%5Cs%2A%28%5Cd%7B1%2C2%7D%29%5Cs%2A%25%2F%29%7C%7Ctxt.match%28%2F%28%5Cd%7B1%2C2%7D%29%5Cs%2A%25%5Cs%2Aoff%2Fi%29%3Bif%28dm%29%7Bvar%20dv%3DparseInt%28dm%5B1%5D%29%3Bif%28dv%3E0%26%26dv%3C100%29desc%3Ddv%3B%7D%20var%20vendas%3D0%3Bvar%20vm%3Dtxt.match%28%2F%28%5Cd%2B%28%3F%3A%5B.%2C%5D%5Cd%2B%29%3F%29%5Cs%2Amil%5C%2B%3F%5Cs%2Avendidos%3F%2Fi%29%3Bvar%20vk%3Dtxt.match%28%2F%28%5Cd%2B%28%3F%3A%5B.%2C%5D%5Cd%2B%29%3F%29%5Cs%2A%5BkK%5D%5C%2B%3F%5Cs%2A%28%3F%3Avendas%3F%7Cvendidos%3F%29%2Fi%29%3Bvar%20vn%3Dtxt.match%28%2F%28%5Cd%7B1%2C6%7D%29%5C%2B%3F%5Cs%2A%28%3F%3Avendas%3F%7Cvendidos%3F%29%2Fi%29%3Bif%28vm%29vendas%3DMath.round%28parseFloat%28vm%5B1%5D.replace%28%27%2C%27%2C%27.%27%29%29%2A1000%29%3Belse%20if%28vk%29vendas%3DMath.round%28parseFloat%28vk%5B1%5D.replace%28%27%2C%27%2C%27.%27%29%29%2A1000%29%3Belse%20if%28vn%29%7Bvar%20vv%3DparseInt%28vn%5B1%5D%29%3Bif%28vv%3C999999%29vendas%3Dvv%3B%7D%20var%20rm%3Dtxt.match%28%2F%5B%5E%5Cw%5D%28%5B4-5%5D%5C.%5Cd%29%5B%5E%5Cw%5D%2F%29%7C%7Ctxt.match%28%2F%5B%E2%98%85%E2%AD%90%5D%5Cs%2A%28%5Cd%2B%5C.%5Cd%29%2F%29%3Bvar%20rating%3Drm%3FparseFloat%28rm%5B1%5D%29%3A0%3Bvar%20freeShip%3D%2Ffrete%5Cs%2Agr%5Bae%5Dti%5Bsz%5D%7Cfreeship%2Fi.test%28txt%29%3Bvar%20nivel%3D%2Fshopee%5Cs%2Amall%2Fi.test%28txt%29%3F%27Mall%27%3A%2Fpreferido%2Fi.test%28txt%29%3F%27Pref%27%3A%27%27%3Bvar%20titulo%3D%27%27%3Bvar%20imgs%3Dcard.querySelectorAll%28%27img%5Balt%5D%27%29%3Bfor%28var%20ii%3D0%3Bii%3Cimgs.length%3Bii%2B%2B%29%7Bif%28imgs%5Bii%5D.alt%26%26imgs%5Bii%5D.alt.length%3E5%29%7Btitulo%3Dimgs%5Bii%5D.alt%3Bbreak%3B%7D%7D%20if%28%21titulo%29%7B%20var%20spans%3Dcard.querySelectorAll%28%27span%2Cdiv%2Ca%27%29%3Bvar%20best%3D0%3Bfor%28var%20jj%3D0%3Bjj%3Cspans.length%3Bjj%2B%2B%29%7B%20var%20t2%3D%28spans%5Bjj%5D.children.length%3D%3D%3D0%26%26spans%5Bjj%5D.textContent%7C%7C%27%27%29.trim%28%29%3Bif%28t2.length%3Ebest%26%26t2.length%3C200%26%26%21%2FR%5C%24%2F.test%28t2%29%26%26%21%2F%5Cd%2B%25%2F.test%28t2%29%29%7Bbest%3Dt2.length%3Btitulo%3Dt2%3B%7D%7D%7D%20return%7Bpreco%3Apreco%2Corig%3Aorig%2Cdesc%3Adesc%2Cv30%3Avendas%2Cvtot%3Avendas%2Crating%3Arating%2CnumAval%3A0%2CfreeShip%3AfreeShip%2Cnivel%3Anivel%2Cdias%3A-1%2Ctitulo%3Atitulo%7D%3B%7Dfunction%20calcScore%28d%29%7B%20var%20s%3D0%2Cv%3Dd.v30%2Cvt%3Dd.vtot%2Cr%3Dd.rating%2Cdc%3Dd.desc%3Bs%2B%3Dv%3E%3D500%3F30%3Av%3E%3D200%3F24%3Av%3E%3D100%3F18%3Av%3E%3D50%3F12%3Av%3E%3D10%3F6%3Av%3E0%3F3%3A0%3Bs%2B%3Dvt%3E%3D5000%3F15%3Avt%3E%3D2000%3F12%3Avt%3E%3D500%3F8%3Avt%3E%3D100%3F4%3Avt%3E0%3F2%3A0%3Bs%2B%3Dr%3E%3D4.8%3F20%3Ar%3E%3D4.5%3F15%3Ar%3E%3D4.0%3F10%3Ar%3E%3D3.5%3F5%3Ar%3E0%3F2%3A0%3Bif%28d.freeShip%29s%2B%3D15%3Bs%2B%3Ddc%3E%3D60%3F10%3Adc%3E%3D40%3F8%3Adc%3E%3D20%3F5%3Adc%3E%3D10%3F2%3A0%3Bif%28d.nivel%3D%3D%3D%27Mall%27%29s%2B%3D5%3Belse%20if%28d.nivel.indexOf%28%27Pref%27%29%3E-1%29s%2B%3D3%3Breturn%20Math.min%28100%2Cs%29%3B%7Dfunction%20calcOport%28d%29%7B%20var%20pts%3D0%3Bif%28d.v30%3E%3D50%29pts%2B%3D2%3Bif%28d.v30%3E%3D200%29pts%2B%3D2%3Bif%28d.numAval%3C50%29pts%2B%3D2%3Bif%28d.numAval%3C20%29pts%2B%3D1%3Bif%28d.freeShip%29pts%2B%3D1%3Bif%28d.preco%3C%3D80%29pts%2B%3D1%3Bif%28d.rating%3E%3D4.5%29pts%2B%3D1%3Bif%28pts%3E%3D8%29return%7Bnivel%3A%27ALTA%27%2Cemoji%3A%27%21%27%2Ccls%3A%27oa%27%7D%3Bif%28pts%3E%3D5%29return%7Bnivel%3A%27MEDIA%27%2Cemoji%3A%27%2B%27%2Ccls%3A%27om%27%7D%3Breturn%20null%3B%7Dfunction%20encontrarInsercao%28card%29%7B%20var%20walker2%3Ddocument.createTreeWalker%28card%2CNodeFilter.SHOW_TEXT%2C%7BacceptNode%3Afunction%28n%29%7Breturn%20%2FR%5C%24%5Cs%2A%5Cd%2F.test%28n.textContent%29%3FNodeFilter.FILTER_ACCEPT%3ANodeFilter.FILTER_SKIP%3B%7D%7D%2Cfalse%29%3Bvar%20n2%3Dwalker2.nextNode%28%29%3Bif%28%21n2%29return%20null%3Bvar%20el%3Dn2.parentElement%3Bfor%28var%20k%3D0%3Bk%3C6%3Bk%2B%2B%29%7B%20if%28%21el%7C%7Cel%3D%3D%3Dcard%29break%3Bif%28el.offsetWidth%3Ecard.offsetWidth%2A0.35%26%26%21el.querySelector%28%27img%27%29%26%26el.previousElementSibling%29return%20el%3Bel%3Del.parentElement%3B%7Dreturn%20card.querySelector%28%27%5Bclass%2A%3D%22price%22%5D%2C%5Bclass%2A%3D%22Price%22%5D%2C%5Bclass%2A%3D%22preco%22%5D%27%29%7C%7Cnull%3B%7Dfunction%20injetarBadge%28card%2Cd%29%7B%20card.querySelectorAll%28%27.glm-sp-badge%27%29.forEach%28function%28b%29%7Bb.remove%28%29%3B%7D%29%3Bvar%20cls%3DscCls%28d.score%29%2Cop%3Dd.oport%3Bvar%20its%3D%27%27%3Bif%28d.v30%3E0%29its%2B%3D%27%3Cspan%20class%3D%22glm-sp-it%22%3E%3Cspan%20class%3D%22glm-sp-il%22%3E30d%3C%2Fspan%3E%3Cb%20class%3D%22glm-sp-iv%20gn%22%3E%27%2BfN%28d.v30%29%2B%27%3C%2Fb%3E%3C%2Fspan%3E%27%3Belse%20if%28d.vtot%3E0%29its%2B%3D%27%3Cspan%20class%3D%22glm-sp-it%22%3E%3Cspan%20class%3D%22glm-sp-il%22%3ETotal%3C%2Fspan%3E%3Cb%20class%3D%22glm-sp-iv%20gn%22%3E%27%2BfN%28d.vtot%29%2B%27%3C%2Fb%3E%3C%2Fspan%3E%27%3Bif%28d.rating%3E0%29its%2B%3D%27%3Cspan%20class%3D%22glm-sp-it%22%3E%3Cspan%20class%3D%22glm-sp-il%22%3ENota%3C%2Fspan%3E%3Cb%20class%3D%22glm-sp-iv%20go%22%3E%27%2Bd.rating.toFixed%281%29%2B%27%3C%2Fb%3E%3C%2Fspan%3E%27%3Bif%28d.desc%3E0%29its%2B%3D%27%3Cspan%20class%3D%22glm-sp-it%22%3E%3Cspan%20class%3D%22glm-sp-il%22%3EOff%3C%2Fspan%3E%3Cb%20class%3D%22glm-sp-iv%20gr%22%3E-%27%2Bd.desc%2B%27%25%3C%2Fb%3E%3C%2Fspan%3E%27%3Bvar%20tgs%3D%27%27%3Bif%28d.score%3E%3D60%29tgs%2B%3D%27%3Cspan%20class%3D%22glm-sp-bom%22%3EBOM%3C%2Fspan%3E%27%3Bif%28d.freeShip%29tgs%2B%3D%27%3Cspan%20class%3D%22glm-sp-fr%22%3EFr%3C%2Fspan%3E%27%3Bif%28op%29tgs%2B%3D%27%3Cspan%20class%3D%22glm-sp-op%20%27%2Bop.cls%2B%27%22%3E%27%2Bop.emoji%2Bop.nivel%2B%27%3C%2Fspan%3E%27%3Bvar%20div%3Ddocument.createElement%28%27div%27%29%3Bdiv.className%3D%27glm-sp-badge%27%3Bdiv.innerHTML%3D%27%3Cdiv%20class%3D%22glm-sp-row%20%27%2Bcls%2B%27%22%3E%3Cspan%20class%3D%22glm-sp-num%20%27%2Bcls%2B%27%22%3E%27%2Bd.score%2B%27%3C%2Fspan%3E%3Cspan%20class%3D%22glm-sp-lbl%22%3E%27%2BscTxt%28d.score%29%2B%27%3C%2Fspan%3E%3Cspan%20class%3D%22glm-sp-its%22%3E%27%2Bits%2B%27%3C%2Fspan%3E%3Cspan%20class%3D%22glm-sp-tags%22%3E%27%2Btgs%2B%27%3C%2Fspan%3E%3C%2Fdiv%3E%27%3Bvar%20alvo%3DencontrarInsercao%28card%29%3Bif%28alvo%26%26alvo.parentElement%29%7Balvo.parentElement.insertBefore%28div%2Calvo%29%3B%7D%20else%7Bvar%20ch%3Dcard.children%3Bif%28ch.length%3E0%29card.insertBefore%28div%2Cch%5Bch.length-1%5D%29%3Belse%20card.appendChild%28div%29%3B%7D%20var%20fixEls%3D%5Bcard%5D.concat%28Array.prototype.slice.call%28card.querySelectorAll%28%27%2A%27%29%29%29%3BfixEls.forEach%28function%28e%29%7Btry%7Bvar%20cs%3Dwindow.getComputedStyle%28e%29%3Bif%28cs.overflow%3D%3D%3D%27hidden%27%26%26e%21%3D%3Dcard%29e.style.overflow%3D%27visible%27%3Bif%28cs.height%26%26cs.height%21%3D%3D%27auto%27%26%26parseInt%28cs.height%29%3E0%26%26e.tagName%21%3D%3D%27IMG%27%29e.style.minHeight%3Dcs.height%3B%7Dcatch%28err%29%7B%7D%7D%29%3Bcard.style.height%3D%27auto%27%3B%7Dfunction%20analisar%28%29%7B%20var%20cards%3DencontrarCards%28%29%3Bcards.forEach%28function%28card%29%7B%20if%28card.querySelector%28%27.glm-sp-badge%27%29%29return%3Bvar%20d%3Dextrair%28card%29%3Bif%28%21d.preco%26%26%21d.v30%26%26%21d.rating%29return%3Bd.score%3DcalcScore%28d%29%3Bd.oport%3DcalcOport%28d%29%3Bvar%20uid%3D%27g%27%2BMath.random%28%29.toString%2836%29.slice%282%2C10%29%3Bcard._glmUid%3Duid%3BDB%5Buid%5D%3Dd%3BinjetarBadge%28card%2Cd%29%3B%7D%29%3Bvar%20total%3DObject.keys%28DB%29.length%3Bif%28gi%28%27glm-cnt%27%29%29gi%28%27glm-cnt%27%29.textContent%3Dtotal%3BatualizarPainel%28%29%3Breturn%20total%3B%7Dfunction%20atualizarPainel%28%29%7B%20var%20todos%3DObject.keys%28DB%29.map%28function%28k%29%7Breturn%20DB%5Bk%5D%3B%7D%29%3Bif%28%21todos.length%29return%3Bvar%20precos%3Dtodos.map%28function%28d%29%7Breturn%20d.preco%3B%7D%29.filter%28Boolean%29%3Bvar%20pm%3Dprecos.length%3Fprecos.reduce%28function%28a%2Cb%29%7Breturn%20a%2Bb%3B%7D%29%2Fprecos.length%3A0%3Bfunction%20set%28id%2Cv%29%7Bvar%20e%3Dgi%28id%29%3Bif%28e%29e.textContent%3Dv%3B%7D%20set%28%27sp-tot%27%2Ctodos.length%29%3Bset%28%27sp-ot%27%2Ctodos.filter%28function%28d%29%7Breturn%20d.score%3E%3D70%3B%7D%29.length%29%3Bset%28%27sp-bn%27%2Ctodos.filter%28function%28d%29%7Breturn%20d.score%3E%3D50%26%26d.score%3C70%3B%7D%29.length%29%3Bset%28%27sp-pm%27%2Cpm%3E0%3FfR%28pm%29%3A%27--%27%29%3Bset%28%27sp-vt%27%2CfN%28todos.reduce%28function%28a%2Cd%29%7Breturn%20a%2B%28d.vtot%7C%7C0%29%3B%7D%2C0%29%29%29%3Bset%28%27sp-v3%27%2CfN%28todos.reduce%28function%28a%2Cd%29%7Breturn%20a%2B%28d.v30%7C%7C0%29%3B%7D%2C0%29%29%29%3Bset%28%27sp-dc%27%2Ctodos.filter%28function%28d%29%7Breturn%20d.desc%3E0%3B%7D%29.length%29%3Bset%28%27sp-fr%27%2Ctodos.filter%28function%28d%29%7Breturn%20d.freeShip%3B%7D%29.length%29%3Bvar%20rs%3Dtodos.filter%28function%28d%29%7Breturn%20d.rating%3E0%3B%7D%29%3Bset%28%27sp-rt%27%2Crs.length%3F%28rs.reduce%28function%28a%2Cd%29%7Breturn%20a%2Bd.rating%3B%7D%2C0%29%2Frs.length%29.toFixed%281%29%3A%27--%27%29%3Bvar%20top%3D%5B%5D.concat%28todos%29.sort%28function%28a%2Cb%29%7Breturn%20b.score-a.score%3B%7D%29.slice%280%2C3%29%3Bvar%20te%3Dgi%28%27sp-top%27%29%3Bif%28te%29te.innerHTML%3Dtop.map%28function%28d%2Ci%29%7Bvar%20medals%3D%5B%271%27%2C%272%27%2C%273%27%5D%3Breturn%27%3Cdiv%20class%3D%22tr%22%3E%3Cspan%3E%27%2Bmedals%5Bi%5D%2B%27%3C%2Fspan%3E%3Cdiv%20class%3D%22ti%22%3E%3Cdiv%20class%3D%22tn%22%3E%27%2B%28d.titulo%7C%7C%27Produto%27%29.slice%280%2C28%29%2B%27%3C%2Fdiv%3E%3Cdiv%20class%3D%22tm%22%3E%27%2BfR%28d.preco%29%2B%28d.v30%3E0%3F%27%20%C2%B7%20%27%2BfN%28d.v30%29%2B%27%2F30d%27%3A%27%27%29%2B%27%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22ci%20%27%2BscCls%28d.score%29%2B%27%22%3E%27%2Bd.score%2B%27%3C%2Fdiv%3E%3C%2Fdiv%3E%27%3B%7D%29.join%28%27%27%29%7C%7C%27%3Cdiv%20style%3D%22font-size%3A11px%3Bopacity%3A.3%3Btext-align%3Acenter%3Bpadding%3A10px%3B%22%3E--%3C%2Fdiv%3E%27%3Bvar%20de%3Dgi%28%27sp-dica%27%29%3Bif%28de%29%7B%20var%20avg30%3Dtodos.reduce%28function%28a%2Cd%29%7Breturn%20a%2B%28d.v30%7C%7C0%29%3B%7D%2C0%29%2F%28todos.length%7C%7C1%29%3Bvar%20comFr%3Dtodos.filter%28function%28d%29%7Breturn%20d.freeShip%3B%7D%29.length%3Bvar%20dicas%3D%5B%5D%3Bif%28avg30%3E30%29dicas.push%28%7Be%3A%27F%27%2Ct%3A%27Media%20de%20%3Cb%3E%27%2BfN%28Math.round%28avg30%29%29%2B%27%3C%2Fb%3E%20vendas%2F30d.%20Mercado%20aquecido%21%27%7D%29%3Bif%28comFr%3Etodos.length%2A0.4%29dicas.push%28%7Be%3A%27V%27%2Ct%3A%27%3Cb%3E%27%2BMath.round%28comFr%2Ftodos.length%2A100%29%2B%27%25%3C%2Fb%3E%20tem%20frete%20gratis%20-%20essencial%20para%20competir.%27%7D%29%3Bif%28pm%26%26pm%3C60%29dicas.push%28%7Be%3A%27%24%27%2Ct%3A%27Ticket%20medio%20baixo%20%28%3Cb%3E%27%2BfR%28pm%29%2B%27%3C%2Fb%3E%29.%20Volume%20e%20a%20estrategia.%27%7D%29%3Belse%20if%28pm%29dicas.push%28%7Be%3A%27D%27%2Ct%3A%27Ticket%20medio%20%3Cb%3E%27%2BfR%28pm%29%2B%27%3C%2Fb%3E.%20Fotos%20de%20qualidade%20sao%20diferenciais.%27%7D%29%3Bde.innerHTML%3Ddicas.slice%280%2C2%29.map%28function%28d%29%7Breturn%27%3Cdiv%20class%3D%22dc%22%3E%3Cspan%3E%27%2Bd.e%2B%27%3C%2Fspan%3E%3Cp%3E%27%2Bd.t%2B%27%3C%2Fp%3E%3C%2Fdiv%3E%27%3B%7D%29.join%28%27%27%29%7C%7C%27%3Cdiv%20style%3D%22font-size%3A11px%3Bopacity%3A.3%3Btext-align%3Acenter%3Bpadding%3A10px%3B%22%3EAnalisando...%3C%2Fdiv%3E%27%3B%7D%7D%20var%20panel%3Ddocument.createElement%28%27div%27%29%3Bpanel.id%3D%27glm-sp%27%3Bpanel.innerHTML%3D%27%3Cdiv%20class%3D%22ph%22%20id%3D%22sp-drag%22%3E%3Cdiv%20class%3D%22pht%22%3E%3Cspan%3ES%3C%2Fspan%3E%3Cb%3EGLM%20Analisador%20Pro%3C%2Fb%3E%3C%2Fdiv%3E%3Cdiv%20style%3D%22display%3Aflex%3Bgap%3A5px%22%3E%3Cbutton%20class%3D%22hb%22%20id%3D%22sp-min%22%3E-%3C%2Fbutton%3E%3Cbutton%20class%3D%22hb%22%20id%3D%22sp-cls%22%3EX%3C%2Fbutton%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bd%22%20id%3D%22sp-body%22%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22pr%22%3E%3Cb%20id%3D%22glm-cnt%22%3E0%3C%2Fb%3E%3Cspan%3Eprodutos%20analisados%3C%2Fspan%3E%3C%2Fdiv%3E%3Cbutton%20class%3D%22ab%22%20id%3D%22sp-btn%22%3EAnalisar%20Produtos%3C%2Fbutton%3E%3Cbutton%20class%3D%22rb%22%20id%3D%22sp-re%22%3ERe-analisar%3C%2Fbutton%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3ERESUMO%3C%2Fdiv%3E%3Cdiv%20class%3D%22g2%22%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-tot%22%3E--%3C%2Fb%3E%3Cspan%3EAnalisados%3C%2Fspan%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-ot%22%20class%3D%22gn%22%3E--%3C%2Fb%3E%3Cspan%3EOtimos%2070%2B%3C%2Fspan%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-bn%22%20class%3D%22go%22%3E--%3C%2Fb%3E%3Cspan%3EBons%2050%2B%3C%2Fspan%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-pm%22%3E--%3C%2Fb%3E%3Cspan%3EPreco%20medio%3C%2Fspan%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3EVENDAS%3C%2Fdiv%3E%3Cdiv%20class%3D%22vr%22%3E%3Cspan%3ETotal%20unidades%3C%2Fspan%3E%3Cb%20id%3D%22sp-vt%22%3E--%3C%2Fb%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22vr%22%3E%3Cspan%3EUltimos%2030%20dias%3C%2Fspan%3E%3Cb%20id%3D%22sp-v3%22%20class%3D%22gn%22%3E--%3C%2Fb%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3EOUTRAS%20INFO%3C%2Fdiv%3E%3Cdiv%20class%3D%22g2%22%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-dc%22%3E--%3C%2Fb%3E%3Cspan%3ECom%20desconto%3C%2Fspan%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bx%22%3E%3Cb%20id%3D%22sp-fr%22%3E--%3C%2Fb%3E%3Cspan%3EFrete%20gratis%3C%2Fspan%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22bx%22%20style%3D%22grid-column%3A1%2F3%22%3E%3Cb%20id%3D%22sp-rt%22%3E--%3C%2Fb%3E%3Cspan%3ENota%20media%3C%2Fspan%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3EORDENAR%3C%2Fdiv%3E%3Cselect%20class%3D%22sel%22%20id%3D%22sp-ord%22%3E%3Coption%20value%3D%22n%22%3EPadrao%3C%2Foption%3E%3Coption%20value%3D%22s%22%3EScore%20GLM%3C%2Foption%3E%3Coption%20value%3D%22v%22%3EMais%20Vendidos%3C%2Foption%3E%3Coption%20value%3D%22pa%22%3EMenor%20Preco%3C%2Foption%3E%3Coption%20value%3D%22pd%22%3EMaior%20Preco%3C%2Foption%3E%3Coption%20value%3D%22dc%22%3EMaior%20Desconto%3C%2Foption%3E%3C%2Fselect%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3ETOP%20DESTA%20BUSCA%3C%2Fdiv%3E%3Cdiv%20id%3D%22sp-top%22%3E%3Cdiv%20style%3D%22font-size%3A11px%3Bopacity%3A.3%3Btext-align%3Acenter%3Bpadding%3A10px%3B%22%3EClique%20em%20Analisar%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3Cdiv%20class%3D%22sc_%22%3E%3Cdiv%20class%3D%22sl_%22%3EDICAS%3C%2Fdiv%3E%3Cdiv%20id%3D%22sp-dica%22%3E%3Cdiv%20style%3D%22font-size%3A11px%3Bopacity%3A.3%3Btext-align%3Acenter%3Bpadding%3A10px%3B%22%3EAnalisando...%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%3C%2Fdiv%3E%27%3Bdocument.body.appendChild%28panel%29%3Bgi%28%27sp-min%27%29.onclick%3Dfunction%28%29%7Bvar%20b%3Dgi%28%27sp-body%27%29%3Bb.style.display%3Db.style.display%3D%3D%3D%27none%27%3F%27%27%3A%27none%27%3B%7D%3Bgi%28%27sp-cls%27%29.onclick%3Dfunction%28%29%7Bpanel.remove%28%29%3Bs.remove%28%29%3Bdocument.querySelectorAll%28%27.glm-sp-badge%27%29.forEach%28function%28b%29%7Bb.remove%28%29%3B%7D%29%3B%7D%3Bgi%28%27sp-btn%27%29.onclick%3Dfunction%28%29%7Banalisar%28%29%3B%7D%3Bgi%28%27sp-re%27%29.onclick%3Dfunction%28%29%7BDB%3D%7B%7D%3Bdocument.querySelectorAll%28%27.glm-sp-badge%27%29.forEach%28function%28b%29%7Bb.remove%28%29%3B%7D%29%3BsetTimeout%28analisar%2C200%29%3B%7D%3Bgi%28%27sp-ord%27%29.onchange%3Dfunction%28%29%7B%20var%20t%3Dthis.value%3Bvar%20cards%3DencontrarCards%28%29%3Bif%28%21cards.length%29return%3Bvar%20par%3Dcards%5B0%5D.parentElement%3Bif%28%21par%29return%3Bcards.sort%28function%28a%2Cb%29%7Bvar%20da%3D%28a._glmUid%26%26DB%5Ba._glmUid%5D%29%7C%7C%7B%7D%3Bvar%20db%3D%28b._glmUid%26%26DB%5Bb._glmUid%5D%29%7C%7C%7B%7D%3Bif%28t%3D%3D%3D%27s%27%29return%28db.score%7C%7C0%29-%28da.score%7C%7C0%29%3Bif%28t%3D%3D%3D%27v%27%29return%28db.v30%7C%7C0%29-%28da.v30%7C%7C0%29%3Bif%28t%3D%3D%3D%27pa%27%29return%28da.preco%7C%7C9999%29-%28db.preco%7C%7C9999%29%3Bif%28t%3D%3D%3D%27pd%27%29return%28db.preco%7C%7C0%29-%28da.preco%7C%7C0%29%3Bif%28t%3D%3D%3D%27dc%27%29return%28db.desc%7C%7C0%29-%28da.desc%7C%7C0%29%3Breturn%200%3B%7D%29%3Bcards.forEach%28function%28c%29%7Bpar.appendChild%28c%29%3B%7D%29%3B%7D%3Bvar%20dh%3Dgi%28%27sp-drag%27%29%2Csx2%2Csy2%2Csl2%2Cst2%3Bdh.addEventListener%28%27mousedown%27%2Cfunction%28ev%29%7B%20sx2%3Dev.clientX%3Bsy2%3Dev.clientY%3Bsl2%3Dpanel.offsetLeft%3Bst2%3Dpanel.offsetTop%3Bfunction%20mv%28ev2%29%7Bpanel.style.left%3D%28sl2%2Bev2.clientX-sx2%29%2B%27px%27%3Bpanel.style.top%3D%28st2%2Bev2.clientY-sy2%29%2B%27px%27%3Bpanel.style.right%3D%27auto%27%3B%7D%20function%20up%28%29%7Bdocument.removeEventListener%28%27mousemove%27%2Cmv%29%3Bdocument.removeEventListener%28%27mouseup%27%2Cup%29%3B%7D%20document.addEventListener%28%27mousemove%27%2Cmv%29%3Bdocument.addEventListener%28%27mouseup%27%2Cup%29%3B%7D%29%3BsetTimeout%28analisar%2C600%29%3BsetTimeout%28analisar%2C2200%29%3B%7D%29%28%29%3B';
+    lnk.href='javascript:(function(){ \'use strict\';var GLMID=\'glm-shopee-pro\'; if(document.getElementById(GLMID)){ document.getElementById(GLMID).remove();var css=document.getElementById(GLMID+\'-css\');if(css)css.remove();document.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});return;} var s=document.createElement(\'style\');s.id=GLMID+\'-css\';s.textContent=[ \'#\'+GLMID+\'{position:fixed;top:58px;right:8px;width:268px;max-height:90vh;\', \'background:#0a0b12;border:1px solid rgba(238,77,45,.45);border-radius:14px;\', \'box-shadow:0 20px 70px rgba(0,0,0,.9);z-index:2147483647;\', \'font-family:-apple-system,"Segoe UI",sans-serif;color:#fff;overflow:hidden;}\', \'#\'+GLMID+\' .ph{display:flex;align-items:center;justify-content:space-between;\', \'padding:10px 12px;background:linear-gradient(90deg,rgba(238,77,45,.22),rgba(77,139,255,.07));\', \'border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}\', \'#\'+GLMID+\' .pht{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;}\', \'#\'+GLMID+\' .hb{background:none;border:1px solid rgba(255,255,255,.15);color:#999;\', \'border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:11px;\', \'display:flex;align-items:center;justify-content:center;}\', \'#\'+GLMID+\' .bd{max-height:83vh;overflow-y:auto;scrollbar-width:thin;\', \'scrollbar-color:rgba(238,77,45,.3) transparent;}\', \'#\'+GLMID+\' .sc_{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05);}\', \'#\'+GLMID+\' .sl_{font-size:9px;opacity:.38;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px;}\', \'#\'+GLMID+\' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}\', \'#\'+GLMID+\' .bx{background:rgba(255,255,255,.04);border-radius:8px;padding:7px 8px;text-align:center;}\', \'#\'+GLMID+\' .bx b{display:block;font-size:17px;font-weight:800;color:#fff;line-height:1.2;}\', \'#\'+GLMID+\' .bx span{font-size:9px;opacity:.4;}\', \'#\'+GLMID+\' .vr{display:flex;justify-content:space-between;align-items:center;\', \'background:rgba(255,255,255,.04);border-radius:7px;padding:7px 10px;margin-bottom:5px;}\', \'#\'+GLMID+\' .vr span{font-size:11px;opacity:.5;}\', \'#\'+GLMID+\' .vr b{font-size:15px;font-weight:700;}\', \'#\'+GLMID+\' .tr{display:flex;align-items:center;gap:7px;padding:5px 0;\', \'border-bottom:1px solid rgba(255,255,255,.04);}\', \'#\'+GLMID+\' .tr:last-child{border-bottom:none;}\', \'#\'+GLMID+\' .ti{flex:1;min-width:0;}\', \'#\'+GLMID+\' .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}\', \'#\'+GLMID+\' .tm{font-size:9px;opacity:.4;margin-top:1px;}\', \'#\'+GLMID+\' .ci{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;\', \'justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;border:1.5px solid;}\', \'#\'+GLMID+\' .ci.ex{border-color:#00c67a;color:#00c67a;background:rgba(0,198,122,.1);}\', \'#\'+GLMID+\' .ci.gd{border-color:#4d8bff;color:#4d8bff;background:rgba(77,139,255,.1);}\', \'#\'+GLMID+\' .ci.md{border-color:#f5a623;color:#f5a623;background:rgba(245,166,35,.1);}\', \'#\'+GLMID+\' .ci.lw{border-color:#e03e3e;color:#e03e3e;background:rgba(224,62,62,.1);}\', \'#\'+GLMID+\' .dc{display:flex;gap:8px;margin-bottom:7px;padding:7px;\', \'background:rgba(255,255,255,.03);border-radius:7px;align-items:flex-start;}\', \'#\'+GLMID+\' .dc span{font-size:14px;flex-shrink:0;}\', \'#\'+GLMID+\' .dc p{font-size:11px;color:#ccc;line-height:1.5;margin:0;}\', \'#\'+GLMID+\' .dc b{color:#fff;}\', \'#\'+GLMID+\' .ab{width:100%;padding:11px;border:none;border-radius:9px;cursor:pointer;\', \'font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f05d40);color:#fff;margin-bottom:7px;}\', \'#\'+GLMID+\' .rb{width:100%;padding:8px;border:1px solid rgba(77,139,255,.3);border-radius:9px;\', \'cursor:pointer;font-size:12px;font-weight:600;background:rgba(77,139,255,.08);color:#7eb3ff;}\', \'#\'+GLMID+\' .pr{background:rgba(0,198,122,.08);border:1px solid rgba(0,198,122,.25);\', \'border-radius:9px;padding:12px;text-align:center;margin-bottom:9px;}\', \'#\'+GLMID+\' .pr b{display:block;font-size:26px;font-weight:900;color:#00c67a;line-height:1.2;}\', \'#\'+GLMID+\' .pr span{font-size:12px;color:#86efac;opacity:.8;}\', \'#\'+GLMID+\' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);\', \'border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#fff;font-size:12px;\', \'outline:none;cursor:pointer;margin-bottom:0;}\', \'#\'+GLMID+\' .sel option{background:#0a0b12;}\', \'#\'+GLMID+\' .gn{color:#00c67a!important;}\', \'#\'+GLMID+\' .go{color:#f5a623!important;}\', \'#\'+GLMID+\' .mt{font-size:11px;opacity:.28;text-align:center;padding:10px;}\',  \'.glm-sp-badge{display:block!important;width:100%!important;\', \'font-family:-apple-system,sans-serif!important;margin:3px 0!important;}\', \'.glm-sp-row{display:flex!important;align-items:center!important;gap:4px!important;\', \'padding:4px 7px!important;border-radius:5px!important;border-left:3px solid!important;\', \'background:rgba(6,7,14,.97)!important;min-height:26px!important;overflow:hidden!important;}\', \'.glm-sp-row.ex{border-color:#00c67a!important;}\', \'.glm-sp-row.gd{border-color:#4d8bff!important;}\', \'.glm-sp-row.md{border-color:#f5a623!important;}\', \'.glm-sp-row.lw{border-color:#e03e3e!important;}\', \'.glm-sp-num{font-size:15px!important;font-weight:900!important;flex-shrink:0!important;min-width:22px!important;text-align:center!important;}\', \'.glm-sp-num.ex{color:#00c67a!important;} .glm-sp-num.gd{color:#4d8bff!important;}\', \'.glm-sp-num.md{color:#f5a623!important;} .glm-sp-num.lw{color:#e03e3e!important;}\', \'.glm-sp-lbl{font-size:9px!important;color:rgba(255,255,255,.5)!important;flex-shrink:0!important;}\', \'.glm-sp-its{display:flex!important;gap:5px!important;flex:1!important;align-items:center!important;}\', \'.glm-sp-it{display:flex!important;flex-direction:column!important;align-items:center!important;}\', \'.glm-sp-il{font-size:7px!important;color:rgba(255,255,255,.3)!important;}\', \'.glm-sp-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}\', \'.glm-sp-iv.gn{color:#00c67a!important;} .glm-sp-iv.go{color:#f5a623!important;} .glm-sp-iv.gr{color:#ee4d2d!important;}\', \'.glm-sp-tags{display:flex!important;gap:3px!important;margin-left:auto!important;flex-shrink:0!important;}\', \'.glm-sp-bom{background:#00c67a!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-fr{background:rgba(77,139,255,.22)!important;color:#7eb3ff!important;font-size:7px!important;font-weight:700!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-op{font-size:7px!important;font-weight:700!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-op.oa{background:rgba(0,198,122,.22)!important;color:#00c67a!important;}\', \'.glm-sp-op.om{background:rgba(245,166,35,.22)!important;color:#f5a623!important;}\' ].join(\'\');document.head.appendChild(s); var DB={};function scCls(n){return n>=70?\'ex\':n>=50?\'gd\':n>=30?\'md\':\'lw\';} function scTxt(n){return n>=70?\'Excelente\':n>=50?\'Bom\':n>=30?\'Médio\':\'Fraco\';} function fN(n){if(!n)return\'0\';return n>=1e6?(n/1e6).toFixed(1)+\'M\':n>=1000?(n/1000).toFixed(1).replace(\'.0\',\'\')+\'k\':String(n);} function fR(n){return\'R$\\u00A0\'+Number(n||0).toLocaleString(\'pt-BR\',{minimumFractionDigits:2});} function $i(id){return document.getElementById(id);}   function encontrarCards(){ var visitados=[];var cards=[]; var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{ acceptNode:function(n){ return /R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}},false);var node;while((node=walker.nextNode())){ var el=node.parentElement; for(var i=0;i<8;i++){ if(!el||el===document.body)break;var w=el.offsetWidth,h=el.offsetHeight; if(w>=130&&w<=420&&h>=220&&h<=750&&el.querySelector(\'img\')){  if(visitados.indexOf(el)===-1){ visitados.push(el); var isChild=cards.some(function(c){return c!==el&&c.contains(el);});var isParent=cards.some(function(c){return el!==c&&el.contains(c);});if(isParent){  break;}if(!isChild){cards.push(el);}}break;}el=el.parentElement;}}  return cards.filter(function(c){ return!cards.some(function(other){return other!==c&&c.contains(other);});});} function extrair(card){ var txt=(card.innerText||card.textContent||\'\').replace(/\\s+/g,\' \'); var re=/R\\$\\s*([\\d.]+,\\d{2})/g,m,precos=[];while((m=re.exec(txt))!==null){ var v=parseFloat(m[1].replace(/\\./g,\'\').replace(\',\',\'.\'));if(v>0&&v<200000)precos.push(v);}var preco=precos.length?Math.min.apply(null,precos):0;var orig=precos.length>1?Math.max.apply(null,precos):0;var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0; var dm=txt.match(/-\\s*(\\d{1,2})\\s*%/)||txt.match(/(\\d{1,2})\\s*%\\s*off/i);if(dm){var dv=parseInt(dm[1]);if(dv>0&&dv<100)desc=dv;}  var vendas=0;var vm=txt.match(/(\\d+(?:[.,]\\d+)?)\\s*mil\\+?\\s*vendidos?/i);var vk=txt.match(/(\\d+(?:[.,]\\d+)?)\\s*[kK]\\+?\\s*(?:vendas?|vendidos?)/i);var vn=txt.match(/(\\d{1,6})\\+?\\s*(?:vendas?|vendidos?)/i);if(vm)vendas=Math.round(parseFloat(vm[1].replace(\',\',\'.\'))*1000);else if(vk)vendas=Math.round(parseFloat(vk[1].replace(\',\',\'.\'))*1000);else if(vn){var vv=parseInt(vn[1]);if(vv<999999)vendas=vv;}  var rm=txt.match(/[★⭐]\\s*(\\d+\\.\\d)/)||txt.match(/\\b([4-5]\\.\\d)\\b/);var rating=rm?parseFloat(rm[1]):0; var freeShip=/frete\\s*gr[áa]ti[sz]|freeship/i.test(txt); var nivel=/shopee\\s*mall/i.test(txt)?\'Mall\':/preferido/i.test(txt)?\'Pref\':\'\'; var titulo=\'\';var imgs=card.querySelectorAll(\'img[alt]\');for(var ii=0;ii<imgs.length;ii++){if(imgs[ii].alt&&imgs[ii].alt.length>5){titulo=imgs[ii].alt;break;}} if(!titulo){  var spans=card.querySelectorAll(\'span,div,a\');var best=0;for(var jj=0;jj<spans.length;jj++){ var t2=(spans[jj].children.length===0&&spans[jj].textContent||\'\').trim();if(t2.length>best&&t2.length<200&&!/R\\$/.test(t2)&&!/\\d+%/.test(t2)){ best=t2.length;titulo=t2;}}}return{preco:preco,orig:orig,desc:desc,v30:vendas,vtot:vendas, rating:rating,numAval:0,freeShip:freeShip,nivel:nivel,dias:-1,titulo:titulo};} function calcScore(d){ var s=0,v=d.v30,vt=d.vtot,r=d.rating,dc=d.desc;s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;s+=vt>=5000?15:vt>=2000?12:vt>=500?8:vt>=100?4:vt>0?2:0;s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;if(d.freeShip)s+=15;s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;if(d.nivel===\'Mall\')s+=5;else if(d.nivel.indexOf(\'Pref\')>-1)s+=3;return Math.min(100,s);}function calcOport(d){ var pts=0;if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;if(d.numAval<50)pts+=2;if(d.numAval<20)pts+=1;if(d.freeShip)pts+=1;if(d.preco<=80)pts+=1;if(d.rating>=4.5)pts+=1;if(pts>=8)return{nivel:\'ALTA\',emoji:\'🚀\',cls:\'oa\'};if(pts>=5)return{nivel:\'MÉDIA\',emoji:\'📈\',cls:\'om\'};return null;} function encontrarInsercao(card){  var walker2=document.createTreeWalker(card,NodeFilter.SHOW_TEXT,{ acceptNode:function(n){return /R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;} },false);var n2=walker2.nextNode();if(!n2)return null;var el=n2.parentElement; for(var k=0;k<6;k++){ if(!el||el===card)break;if(el.offsetWidth>card.offsetWidth*0.35&&!el.querySelector(\'img\')&&el.previousElementSibling)return el;el=el.parentElement;} return card.querySelector(\'[class*="price"],[class*="Price"],[class*="preco"]\')||null;} function injetarBadge(card,d){ card.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});var cls=scCls(d.score),op=d.oport;var its=\'\';if(d.v30>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">30d</span><b class="glm-sp-iv gn">\'+fN(d.v30)+\'</b></span>\';else if(d.vtot>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">Total</span><b class="glm-sp-iv gn">\'+fN(d.vtot)+\'</b></span>\';if(d.rating>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">⭐</span><b class="glm-sp-iv go">\'+d.rating.toFixed(1)+\'</b></span>\';if(d.desc>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">Off</span><b class="glm-sp-iv gr">-\'+d.desc+\'%</b></span>\';var tgs=\'\';if(d.score>=60)tgs+=\'<span class="glm-sp-bom">BOM</span>\';if(d.freeShip)tgs+=\'<span class="glm-sp-fr">✓Fr</span>\';if(op)tgs+=\'<span class="glm-sp-op \'+op.cls+\'">\'+op.emoji+op.nivel+\'</span>\';var div=document.createElement(\'div\');div.className=\'glm-sp-badge\';div.innerHTML=\'<div class="glm-sp-row \'+cls+\'"><span class="glm-sp-num \'+cls+\'">\'+d.score+\'</span>\' +\'<span class="glm-sp-lbl">\'+scTxt(d.score)+\'</span>\' +\'<span class="glm-sp-its">\'+its+\'</span>\' +\'<span class="glm-sp-tags">\'+tgs+\'</span></div>\';var alvo=encontrarInsercao(card);if(alvo&&alvo.parentElement){ alvo.parentElement.insertBefore(div,alvo);}else{  var ch=card.children;if(ch.length>0)card.insertBefore(div,ch[ch.length-1]);else card.appendChild(div);} var fixEls=[card].concat(Array.prototype.slice.call(card.querySelectorAll(\'*\')));fixEls.forEach(function(e){ try{ var cs=window.getComputedStyle(e);if(cs.overflow===\'hidden\'&&e!==card)e.style.overflow=\'visible\';if(cs.height&&cs.height!==\'auto\'&&parseInt(cs.height)>0&&e.tagName!==\'IMG\')e.style.minHeight=cs.height;}catch(err){} });card.style.height=\'auto\';} function analisar(){ var cards=encontrarCards();var novos=0;cards.forEach(function(card){ if(card.querySelector(\'.glm-sp-badge\'))return;var d=extrair(card);if(!d.preco&&!d.v30&&!d.rating)return;d.score=calcScore(d);d.oport=calcOport(d);var uid=\'g\'+Math.random().toString(36).slice(2,10);card._glmUid=uid;DB[uid]=d;injetarBadge(card,d);novos++;});var total=Object.keys(DB).length;if($i(\'glm-cnt\'))$i(\'glm-cnt\').textContent=total;atualizarPainel();return total;} function atualizarPainel(){ var todos=Object.keys(DB).map(function(k){return DB[k];});if(!todos.length)return;var precos=todos.map(function(d){return d.preco;}).filter(Boolean);var pm=precos.length?precos.reduce(function(a,b){return a+b;})/precos.length:0;function set(id,v){var e=$i(id);if(e)e.textContent=v;} set(\'sp-tot\',todos.length);set(\'sp-ot\',todos.filter(function(d){return d.score>=70;}).length);set(\'sp-bn\',todos.filter(function(d){return d.score>=50&&d.score<70;}).length);set(\'sp-pm\',pm>0?fR(pm):\'—\');set(\'sp-vt\',fN(todos.reduce(function(a,d){return a+(d.vtot||0);},0)));set(\'sp-v3\',fN(todos.reduce(function(a,d){return a+(d.v30||0);},0)));set(\'sp-dc\',todos.filter(function(d){return d.desc>0;}).length);set(\'sp-fr\',todos.filter(function(d){return d.freeShip;}).length);var rs=todos.filter(function(d){return d.rating>0;});set(\'sp-rt\',rs.length?(rs.reduce(function(a,d){return a+d.rating;},0)/rs.length).toFixed(1):\'—\'); var top=[].concat(todos).sort(function(a,b){return b.score-a.score;}).slice(0,3);var te=$i(\'sp-top\');if(te)te.innerHTML=top.map(function(d,i){ var medals=[\'🥇\',\'🥈\',\'🥉\'];return\'<div class="tr"><span>\'+medals[i]+\'</span><div class="ti">\' +\'<div class="tn">\'+(d.titulo||\'Produto\').slice(0,28)+\'…</div>\' +\'<div class="tm">\'+fR(d.preco)+(d.v30>0?\' · \'+fN(d.v30)+\'/30d\':\'\')+\'</div>\' +\'</div><div class="ci \'+scCls(d.score)+\'">\'+d.score+\'</div></div>\';}).join(\'\')||\'<div class="mt">—</div>\'; var de=$i(\'sp-dica\');if(de){ var avg30=todos.reduce(function(a,d){return a+(d.v30||0);},0)/(todos.length||1);var comFr=todos.filter(function(d){return d.freeShip;}).length;var avgPr=pm;var dicas=[];if(avg30>30)dicas.push({e:\'🔥\',t:\'Média de <b>\'+fN(Math.round(avg30))+\'</b> vendas/30d. Mercado aquecido!\'});if(comFr>todos.length*0.4)dicas.push({e:\'✅\',t:\'<b>\'+Math.round(comFr/todos.length*100)+\'%</b> têm frete grátis — essencial para competir.\'});if(avgPr&&avgPr<60)dicas.push({e:\'💰\',t:\'Ticket médio baixo (<b>\'+fR(avgPr)+\'</b>). Volume é a estratégia.\'});else if(avgPr)dicas.push({e:\'💎\',t:\'Ticket médio <b>\'+fR(avgPr)+\'</b>. Fotos e vídeo de qualidade são diferenciais.\'});de.innerHTML=dicas.slice(0,2).map(function(d){ return\'<div class="dc"><span>\'+d.e+\'</span><p>\'+d.t+\'</p></div>\';}).join(\'\')||\'<div class="mt">Analisando...</div>\';}}  var panel=document.createElement(\'div\');panel.id=GLMID;panel.innerHTML= \'<div class="ph" id="sp-drag"><div class="pht"><span>🛍️</span><b>GLM Analisador Pro</b></div>\' +\'<div style="display:flex;gap:5px">\' +\'<button class="hb" id="sp-min">—</button>\' +\'<button class="hb" onclick="(function(){document.getElementById(\\\'\'+GLMID+\'\\\').remove();document.getElementById(\\\'\'+GLMID+\'-css\\\').remove();document.querySelectorAll(\\\'.glm-sp-badge\\\').forEach(function(b){b.remove();});})()">✕</button>\' +\'</div></div>\' +\'<div class="bd" id="sp-body">\' +\'<div class="sc_">\' +\'<div class="pr"><b id="glm-cnt">0</b><span>produtos analisados</span></div>\' +\'<button class="ab" id="sp-btn">🔍 Analisar Produtos</button>\' +\'<button class="rb" id="sp-re">🔄 Re-analisar (limpar e refazer)</button>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">📊 RESUMO</div><div class="g2">\' +\'<div class="bx"><b id="sp-tot">—</b><span>Analisados</span></div>\' +\'<div class="bx"><b id="sp-ot" class="gn">—</b><span>Ótimos (70+)</span></div>\' +\'<div class="bx"><b id="sp-bn" class="go">—</b><span>Bons (50+)</span></div>\' +\'<div class="bx"><b id="sp-pm">—</b><span>Preço médio</span></div>\' +\'</div></div>\' +\'<div class="sc_"><div class="sl_">🛒 VENDAS</div>\' +\'<div class="vr"><span>Total unidades</span><b id="sp-vt">—</b></div>\' +\'<div class="vr"><span>📅 Últimos 30 dias</span><b id="sp-v3" class="gn">—</b></div>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">ℹ️ OUTRAS INFORMAÇÕES</div><div class="g2">\' +\'<div class="bx"><b id="sp-dc">—</b><span>Com desconto</span></div>\' +\'<div class="bx"><b id="sp-fr">—</b><span>Frete grátis</span></div>\' +\'<div class="bx" style="grid-column:1/3"><b id="sp-rt">—</b><span>⭐ Nota média</span></div>\' +\'</div></div>\' +\'<div class="sc_"><div class="sl_">🔽 ORDENAR</div>\' +\'<select class="sel" id="sp-ord">\' +\'<option value="n">Padrão (Shopee)</option>\' +\'<option value="s">⭐ Score GLM</option>\' +\'<option value="v">🔥 Mais Vendidos (30d)</option>\' +\'<option value="pa">💰 Menor Preço</option>\' +\'<option value="pd">💎 Maior Preço</option>\' +\'<option value="dc">🏷️ Maior Desconto</option>\' +\'</select>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">🏆 TOP DESTA BUSCA</div>\' +\'<div id="sp-top"><div class="mt">Clique em Analisar</div></div>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">💡 DICAS</div>\' +\'<div id="sp-dica"><div class="mt">Analisando...</div></div>\' +\'</div>\' +\'</div>\';document.body.appendChild(panel); $i(\'sp-min\').onclick=function(){ var b=$i(\'sp-body\');b.style.display=b.style.display===\'none\'?\'\':\'none\';};$i(\'sp-btn\').onclick=function(){analisar();};$i(\'sp-re\').onclick=function(){ DB={};document.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});setTimeout(analisar,200);};$i(\'sp-ord\').onchange=function(){ var t=this.value;var cards=encontrarCards();if(!cards.length)return;var par=cards[0].parentElement;if(!par)return;cards.sort(function(a,b){ var da=(a._glmUid&&DB[a._glmUid])||{};var db=(b._glmUid&&DB[b._glmUid])||{};if(t===\'s\')return(db.score||0)-(da.score||0);if(t===\'v\')return(db.v30||0)-(da.v30||0);if(t===\'pa\')return(da.preco||9999)-(db.preco||9999);if(t===\'pd\')return(db.preco||0)-(da.preco||0);if(t===\'dc\')return(db.desc||0)-(da.desc||0);return 0;});cards.forEach(function(c){par.appendChild(c);});}; var dh=$i(\'sp-drag\'),sx2,sy2,sl2,st2;dh.addEventListener(\'mousedown\',function(ev){ sx2=ev.clientX;sy2=ev.clientY;sl2=panel.offsetLeft;st2=panel.offsetTop;function mv(ev2){panel.style.left=(sl2+ev2.clientX-sx2)+\'px\';panel.style.top=(st2+ev2.clientY-sy2)+\'px\';panel.style.right=\'auto\';} function up(){document.removeEventListener(\'mousemove\',mv);document.removeEventListener(\'mouseup\',up);} document.addEventListener(\'mousemove\',mv);document.addEventListener(\'mouseup\',up);}); setTimeout(analisar,600);setTimeout(analisar,2200);})();';
+    lnk.onclick=null;
     lnk.setAttribute('draggable','true');
   }
 })();
 
-/* COMPARADOR */
-var produtos = [];
-var cardCount = 0;
+/* ════════ COMPARADOR ════════ */
+let produtos = [];
+let cardCount = 0;
 
 function adicionarCard(){
-  if(cardCount >= 5){ alert('Maximo 5 produtos!'); return; }
+  if(cardCount >= 5){ alert('Máximo 5 produtos!'); return; }
   cardCount++;
-  var id = 'p' + Date.now();
-  var div = document.createElement('div');
+  const id = 'p'+Date.now();
+  const div = document.createElement('div');
   div.className = 'prod-card';
   div.id = id;
-  div.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
-    +'<div style="font-size:11px;font-weight:600;opacity:.5;">Produto '+cardCount+'</div>'
-    +'<button onclick="removerCard(''+id+'')" style="background:none;border:none;color:#ff5f5f;cursor:pointer;font-size:14px;">&#10005;</button>'
-    +'</div>'
-    +'<div class="prod-form">'
-    +'<div><label>Nome do Produto *</label><input type="text" placeholder="Ex: Luminaria 3D LED Touch..." id="'+id+'-nome"></div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
-      +'<div><label>Preco (R$)</label><input type="number" placeholder="39.90" id="'+id+'-preco"></div>'
-      +'<div><label>Preco original</label><input type="number" placeholder="69.90" id="'+id+'-orig"></div>'
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
-      +'<div><label>Vendas/30d</label><input type="number" placeholder="843" id="'+id+'-v30"></div>'
-      +'<div><label>Vendas total</label><input type="number" placeholder="12000" id="'+id+'-vtot"></div>'
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
-      +'<div><label>Nota (1-5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="'+id+'-nota"></div>'
-      +'<div><label>Avaliacoes</label><input type="number" placeholder="234" id="'+id+'-aval"></div>'
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
-      +'<div><label>Frete</label><select id="'+id+'-frete"><option value="1">Gratis</option><option value="0">Pago</option></select></div>'
-      +'<div><label>Idade (dias)</label><input type="number" placeholder="90" id="'+id+'-dias"></div>'
-    +'</div>'
-    +'<div><label>Nivel do Vendedor</label><select id="'+id+'-nivel"><option value="">Normal</option><option value="Mall">Shopee Mall</option><option value="Pref">Preferido</option></select></div>'
-    +'</div>';
-  var btnAdd = document.getElementById('btnAdd');
+  div.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <div style="font-size:11px;font-weight:600;opacity:.5;">Produto ${cardCount}</div>
+      <button onclick="removerCard('${id}')" style="background:none;border:none;color:#ff5f5f;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div class="prod-form">
+      <div><label>Nome do Produto *</label>
+        <input type="text" placeholder="Ex: Luminária 3D LED Touch..." id="${id}-nome"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="${id}-preco"></div>
+        <div><label>Preço original</label><input type="number" placeholder="69.90" id="${id}-orig"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Vendas/30d</label><input type="number" placeholder="843" id="${id}-v30"></div>
+        <div><label>Vendas total</label><input type="number" placeholder="12000" id="${id}-vtot"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="${id}-nota"></div>
+        <div><label>Avaliações</label><input type="number" placeholder="234" id="${id}-aval"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <div><label>Frete</label>
+          <select id="${id}-frete">
+            <option value="1">✅ Grátis</option>
+            <option value="0">❌ Pago</option>
+          </select></div>
+        <div><label>Idade (dias)</label><input type="number" placeholder="90" id="${id}-dias"></div>
+      </div>
+      <div><label>Nível do Vendedor</label>
+        <select id="${id}-nivel">
+          <option value="">Normal</option>
+          <option value="Mall">Shopee Mall</option>
+          <option value="Pref">Preferido</option>
+        </select></div>
+    </div>`;
+  const btnAdd = document.getElementById('btnAdd');
   document.getElementById('prodGrid').insertBefore(div, btnAdd);
 }
 
 function removerCard(id){
-  var el = document.getElementById(id);
-  if(el) el.remove();
+  document.getElementById(id)?.remove();
   cardCount--;
 }
 
 function limparTudo(){
-  document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});
-  cardCount=0; produtos=[];
+  document.querySelectorAll('.prod-card').forEach(c=>c.remove());
+  cardCount=0;
+  produtos=[];
   document.getElementById('resultados').style.display='none';
 }
 
-function gv(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
-function gn(id){ return parseFloat(gv(id))||0; }
+function g(id){ return document.getElementById(id); }
+function gv(id){ return g(id)?.value?.trim() || ''; }
+function gn(id){ return parseFloat(gv(id)) || 0; }
 
 function calcScore(d){
-  var s=0,v=d.v30,vt=d.vtot,r=d.nota,dc=d.desc;
+  let s=0;
+  const v=d.v30,vt=d.vtot,r=d.nota,dc=d.desc;
   s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
   s+=vt>=5000?15:vt>=2000?12:vt>=500?8:vt>=100?4:vt>0?2:0;
   s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
   if(d.frete)s+=15;
   s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
   if(d.dias>=0&&d.dias<=90)s+=5;else if(d.dias<=180)s+=3;
-  if(d.nivel==='Mall')s+=5;else if(d.nivel.indexOf('Pref')>-1)s+=3;
+  if(d.nivel==='Mall')s+=5;else if(d.nivel.includes('Pref'))s+=3;
   return Math.min(100,s);
 }
 
 function calcOport(d){
-  var pts=0;
+  let pts=0;
   if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
   if(d.aval<50)pts+=2;if(d.aval<20)pts+=1;
   if(d.dias>=0&&d.dias<=180)pts+=2;
   if(d.nota>=4.5)pts+=1;if(d.preco<=80)pts+=1;if(d.frete)pts+=1;
-  if(pts>=8)return{nivel:'ALTA',emoji:'&#128640;',cls:'oport-alta'};
-  if(pts>=5)return{nivel:'MEDIA',emoji:'&#128200;',cls:'oport-media'};
+  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'oport-alta'};
+  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'oport-media'};
   return null;
 }
 
 function scCls(s){return s>=70?'ex':s>=50?'gd':s>=30?'md':'lw';}
-function scTxt(s){return s>=70?'&#128293; Excelente':s>=50?'&#128077; Bom':s>=30?'&#9888;&#65039; Medio':'&#128197; Fraco';}
+function scTxt(s){return s>=70?'🔥 Excelente':s>=50?'👍 Bom':s>=30?'⚠️ Médio':'📉 Fraco';}
 function fN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(n||0);}
-function fR(n){return 'R$ '+Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function fR(n){return 'R$\u00A0'+n.toLocaleString('pt-BR',{minimumFractionDigits:2});}
 
 function analisarTodos(){
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.prod-card'));
+  const cards=[...document.querySelectorAll('.prod-card')];
   if(!cards.length){alert('Adicione pelo menos 1 produto!');return;}
-  produtos = cards.map(function(card){
-    var id=card.id;
-    var preco=gn(id+'-preco'),orig=gn(id+'-orig');
-    var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
-    var d={
-      nome:gv(id+'-nome')||'Produto',
-      preco:preco,orig:orig,desc:desc,
-      v30:gn(id+'-v30'),vtot:gn(id+'-vtot'),
-      nota:gn(id+'-nota'),aval:gn(id+'-aval'),
+
+  produtos = cards.map(card=>{
+    const id=card.id;
+    const preco=gn(id+'-preco'), orig=gn(id+'-orig');
+    const desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
+    const d={
+      nome: gv(id+'-nome')||'Produto',
+      preco, orig, desc,
+      v30:  gn(id+'-v30'),
+      vtot: gn(id+'-vtot'),
+      nota: gn(id+'-nota'),
+      aval: gn(id+'-aval'),
       frete:gv(id+'-frete')==='1',
-      dias:gn(id+'-dias')||(-1),
-      nivel:gv(id+'-nivel')
+      dias: gn(id+'-dias')||(-1),
+      nivel:gv(id+'-nivel'),
     };
-    d.score=calcScore(d);d.oport=calcOport(d);
+    d.score=calcScore(d);
+    d.oport=calcOport(d);
     return d;
-  }).filter(function(d){return d.nome||d.preco;});
-  if(!produtos.length){alert('Preencha ao menos o nome e preco de um produto.');return;}
+  }).filter(d=>d.nome||d.preco);
+
+  if(!produtos.length){alert('Preencha ao menos o nome e preço de um produto.');return;}
+
   renderResultados();
+  setTab('comparador', document.querySelectorAll('.tab')[1]);
   document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
 }
 
 function renderResultados(){
-  var todos = [].concat(produtos).sort(function(a,b){return b.score-a.score;});
-  var maxScore = todos[0]?todos[0].score:0;
-  var grid = document.getElementById('resultGrid');
-  var table = document.getElementById('resultTable');
+  const todos=[...produtos].sort((a,b)=>b.score-a.score);
+  const maxScore=todos[0]?.score||0;
+  const grid=document.getElementById('resultGrid');
+  const table=document.getElementById('resultTable');
   document.getElementById('resultados').style.display='block';
-  grid.innerHTML = todos.map(function(d,i){
-    var cls=scCls(d.score);
-    var isBest=d.score===maxScore&&todos.length>1;
-    var tags='';
-    if(d.frete)tags+='<span class="rc-tag blue">&#9989; Frete Gratis</span>';
-    if(d.nivel)tags+='<span class="rc-tag orange">'+d.nivel+'</span>';
-    if(d.oport)tags+='<span class="rc-tag green">'+d.oport.emoji+' Oport. '+d.oport.nivel+'</span>';
-    var medals=['&#127945;','&#127946;','&#127947;','4','5'];
-    return '<div class="result-card '+(isBest?'best':'')+' '+cls+'">'
-      +'<div class="rank-badge">'+(medals[i]||'')+'</div>'
-      +'<div class="rc-header"><div>'
-        +'<div class="rc-score '+cls+'">'+d.score+'</div>'
-        +'<div class="rc-label">'+scTxt(d.score)+'</div>'
-      +'</div>'+(d.score>=60?'<span class="bom-tag">BOM</span>':'')+'</div>'
-      +'<div style="font-size:12px;font-weight:600;margin-bottom:10px;opacity:.9;">'+d.nome.slice(0,35)+(d.nome.length>35?'...':'')+'</div>'
-      +'<div class="rc-metrics">'
-        +'<div class="rc-m"><span>Preco</span><b>'+(d.preco>0?fR(d.preco):'N/D')+'</b></div>'
-        +'<div class="rc-m"><span>Desconto</span><b class="gr">'+(d.desc>0?'-'+d.desc+'%':'--')+'</b></div>'
-        +'<div class="rc-m"><span>Vendas/30d</span><b class="gn">'+(d.v30>0?fN(d.v30):'N/D')+'</b></div>'
-        +'<div class="rc-m"><span>Total</span><b class="gn">'+(d.vtot>0?fN(d.vtot):'N/D')+'</b></div>'
-        +'<div class="rc-m"><span>Nota</span><b class="go">'+(d.nota>0?d.nota.toFixed(1)+' &#11088;':'N/D')+'</b></div>'
-        +'<div class="rc-m"><span>Avaliacoes</span><b>'+(d.aval>0?fN(d.aval):'N/D')+'</b></div>'
-      +'</div>'
-      +(tags?'<div class="rc-tags">'+tags+'</div>':'')
-      +(d.oport?'<div class="'+d.oport.cls+' oport-tag">'+d.oport.emoji+' Oportunidade '+d.oport.nivel+'</div>':'')
-      +'<div class="rc-bar"><div style="display:flex;justify-content:space-between;font-size:10px;opacity:.5;margin-bottom:3px;"><span>Potencial de Venda</span><span>'+d.score+'/100</span></div>'
-      +'<div class="rc-bar-track"><div class="rc-bar-fill" style="width:'+d.score+'%"></div></div></div>'
-      +'</div>';
+
+  /* Cards */
+  grid.innerHTML=todos.map((d,i)=>{
+    const cls=scCls(d.score);
+    const isBest=d.score===maxScore&&todos.length>1;
+    const tags=[];
+    if(d.frete)tags.push(`<span class="rc-tag blue">✅ Frete Grátis</span>`);
+    if(d.nivel)tags.push(`<span class="rc-tag orange">${d.nivel}</span>`);
+    if(d.oport)tags.push(`<span class="rc-tag green">${d.oport.emoji} Oport. ${d.oport.nivel}</span>`);
+    return `
+      <div class="result-card ${isBest?'best':''} ${cls}">
+        <div class="rank-badge">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]||''}</div>
+        <div class="rc-header">
+          <div>
+            <div class="rc-score ${cls}">${d.score}</div>
+            <div class="rc-label">${scTxt(d.score)}</div>
+          </div>
+          ${d.score>=60?'<span class="bom-tag">BOM</span>':''}
+        </div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:10px;opacity:.9;">${d.nome.slice(0,35)}${d.nome.length>35?'…':''}</div>
+        <div class="rc-metrics">
+          <div class="rc-m"><span>Preço</span><b>${d.preco>0?fR(d.preco):'N/D'}</b></div>
+          <div class="rc-m"><span>Desconto</span><b class="gr">${d.desc>0?'-'+d.desc+'%':'—'}</b></div>
+          <div class="rc-m"><span>Vendas/30d</span><b class="gn">${d.v30>0?fN(d.v30):'N/D'}</b></div>
+          <div class="rc-m"><span>Total</span><b class="gn">${d.vtot>0?fN(d.vtot):'N/D'}</b></div>
+          <div class="rc-m"><span>Nota</span><b class="go">${d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D'}</b></div>
+          <div class="rc-m"><span>Avaliações</span><b>${d.aval>0?fN(d.aval):'N/D'}</b></div>
+        </div>
+        ${tags.length?`<div class="rc-tags">${tags.join('')}</div>`:''}
+        ${d.oport?`<div class="${d.oport.cls} oport-tag">${d.oport.emoji} Oportunidade ${d.oport.nivel}</div>`:''}
+        <div class="rc-bar">
+          <div style="display:flex;justify-content:space-between;font-size:10px;opacity:.5;margin-bottom:3px;">
+            <span>Potencial de Venda</span><span>${d.score}/100</span>
+          </div>
+          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${d.score}%"></div></div>
+        </div>
+      </div>`;
   }).join('');
-  var rows=[
-    {l:'Score',k:'score',fmt:function(v){return v+'/100';},dir:'max'},
-    {l:'Preco',k:'preco',fmt:function(v){return v>0?fR(v):'N/D';},dir:'min'},
-    {l:'Desconto',k:'desc',fmt:function(v){return v+'%';},dir:'max'},
-    {l:'Vendas 30d',k:'v30',fmt:function(v){return v>0?fN(v):'N/D';},dir:'max'},
-    {l:'Vendas Total',k:'vtot',fmt:function(v){return v>0?fN(v):'N/D';},dir:'max'},
-    {l:'Nota',k:'nota',fmt:function(v){return v>0?v.toFixed(1)+'&#11088;':'N/D';},dir:'max'},
-    {l:'Frete',k:'frete',fmt:function(v){return v?'&#9989;':'&#10060;';}}
+
+  /* Tabela comparativa */
+  const rows=[
+    {l:'Score',k:'score',fmt:v=>v+'/100',dir:'max'},
+    {l:'Preço',k:'preco',fmt:v=>v>0?fR(v):'N/D',dir:'min'},
+    {l:'Desconto',k:'desc',fmt:v=>v+'%',dir:'max'},
+    {l:'Vendas 30d',k:'v30',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
+    {l:'Vendas Total',k:'vtot',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
+    {l:'Nota',k:'nota',fmt:v=>v>0?v.toFixed(1)+'⭐':'N/D',dir:'max'},
+    {l:'Frete',k:'frete',fmt:v=>v?'✅':'❌'},
   ];
-  var h='<thead><tr><th>Metrica</th>';
-  todos.forEach(function(_,i){h+='<th>Prod. '+(i+1)+'</th>';});
-  h+='</tr></thead>';
-  var b='<tbody>';
-  rows.forEach(function(row){
-    var vals=todos.map(function(p){return typeof p[row.k]==='number'?p[row.k]:null;}).filter(function(v){return v!==null;});
-    var best=row.dir==='max'?Math.max.apply(null,vals):row.dir==='min'?Math.min.apply(null,vals):null;
-    var worst=row.dir==='max'?Math.min.apply(null,vals):row.dir==='min'?Math.max.apply(null,vals):null;
-    b+='<tr><td>'+row.l+'</td>';
-    todos.forEach(function(p){
-      var val=p[row.k];
-      var nv=typeof val==='number'?val:null;
-      var cls=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
-      b+='<td class="'+cls+'">'+row.fmt(val)+'</td>';
+  let h=`<thead><tr><th>Métrica</th>`;
+  todos.forEach((_,i)=>h+=`<th>Prod. ${i+1}</th>`);
+  h+=`</tr></thead>`;
+  let b=`<tbody>`;
+  rows.forEach(row=>{
+    const vals=todos.map(p=>typeof p[row.k]==='number'?p[row.k]:null).filter(v=>v!==null);
+    const best=row.dir==='max'?Math.max(...vals):row.dir==='min'?Math.min(...vals):null;
+    const worst=row.dir==='max'?Math.min(...vals):row.dir==='min'?Math.max(...vals):null;
+    b+=`<tr><td>${row.l}</td>`;
+    todos.forEach(p=>{
+      const val=p[row.k];
+      const nv=typeof val==='number'?val:null;
+      const cls=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
+      b+=`<td class="${cls}">${row.fmt(val)}</td>`;
     });
-    b+='</tr>';
+    b+=`</tr>`;
   });
-  b+='</tbody>';
+  b+=`</tbody>`;
   table.innerHTML=h+b;
 }
 
 function exportarCSV(){
   if(!produtos.length){alert('Analise os produtos primeiro!');return;}
-  var lines=["Nome,Preco,Desconto%,Vendas30d,VendasTotal,Nota,Avaliacoes,FreteGratis,Idade,Nivel,Score"];
-  produtos.forEach(function(p){
-    lines.push('"'+p.nome+'",'+p.preco+','+p.desc+','+p.v30+','+p.vtot+','+p.nota+','+p.aval+','+(p.frete?'Sim':'Nao')+','+p.dias+','+p.nivel+','+p.score);
+  const lines=["Nome,Preço,Desconto%,Vendas30d,VendasTotal,Nota,Avaliações,FreteGrátis,Idade,Nível,Score"];
+  produtos.forEach(p=>{
+    lines.push(`"${p.nome}",${p.preco},${p.desc},${p.v30},${p.vtot},${p.nota},${p.aval},${p.frete?'Sim':'Não'},${p.dias},${p.nivel},${p.score}`);
   });
-  var blob=new Blob(['﻿'+lines.join('
-')],{type:'text/csv;charset=utf-8;'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  const blob=new Blob(['\uFEFF'+lines.join('\n')],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='comparativo_shopee.csv';a.click();
 }
 
+/* ── Adiciona primeiro card automaticamente ── */
 adicionarCard();
 adicionarCard();
 </script>
