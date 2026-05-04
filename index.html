@@ -8,90 +8,48 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --shopee:#ee4d2d;
-  --green:#00e676;
-  --green2:#1de9b6;
-  --gold:#ffd600;
-  --red:#ff5252;
-  --blue:#448aff;
-  --bg:#0d0f0e;
-  --card:#141916;
-  --card2:#111310;
-  --border:rgba(255,255,255,.07);
+  --shopee:#ee4d2d;--green:#00e676;--green2:#1de9b6;--gold:#ffd600;
+  --red:#ff5252;--blue:#448aff;--bg:#0d0f0e;--card:#141916;--card2:#111310;--border:rgba(255,255,255,.07);
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;min-height:100vh;}
 .bg-fx{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 50% 35% at 15% 0%,rgba(0,230,118,.06),transparent),
-    radial-gradient(ellipse 40% 30% at 85% 100%,rgba(238,77,45,.05),transparent);}
+  background:radial-gradient(ellipse 50% 35% at 15% 0%,rgba(0,230,118,.06),transparent),
+             radial-gradient(ellipse 40% 30% at 85% 100%,rgba(238,77,45,.05),transparent);}
 .wrapper{max-width:960px;margin:auto;padding:0 24px;position:relative;z-index:1;}
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;
-  border-bottom:1px solid var(--border);margin-bottom:48px;flex-wrap:wrap;gap:12px;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:48px;flex-wrap:wrap;gap:12px;}
 .nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-logo{width:32px;height:32px;border-radius:8px;
-  background:linear-gradient(135deg,var(--shopee),#ff8a65);
-  display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--shopee),#ff8a65);display:flex;align-items:center;justify-content:center;font-size:16px;}
 .nav-brand-txt{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
 .nav-brand-txt span{color:var(--shopee);}
 .nav-links{display:flex;gap:4px;}
-.nav-links a{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;
-  padding:6px 12px;border-radius:8px;transition:.2s;font-weight:500;}
+.nav-links a{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;padding:6px 12px;border-radius:8px;transition:.2s;font-weight:500;}
 .nav-links a:hover{background:rgba(255,255,255,.06);color:#fff;}
 .hero{text-align:center;padding:8px 0 52px;}
-.hero-pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:22px;
-  padding:5px 14px 5px 10px;border-radius:30px;
-  background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);
-  font-size:11px;font-weight:600;color:var(--green);letter-spacing:.3px;}
-.hero-pill span{width:6px;height:6px;border-radius:50%;background:var(--green);
-  box-shadow:0 0 8px var(--green);}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,5.5vw,52px);font-weight:800;
-  line-height:1.05;margin-bottom:18px;letter-spacing:-1px;}
-.hero h1 .hl{background:linear-gradient(90deg,var(--shopee) 0%,#ff8a65 50%,var(--gold) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{font-size:14px;color:rgba(255,255,255,.45);max-width:480px;
-  margin:0 auto 40px;line-height:1.7;}
-.tabs{display:flex;gap:3px;background:rgba(255,255,255,.04);
-  border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:28px;}
-.tab{flex:1;padding:9px 12px;border-radius:9px;cursor:pointer;
-  font-size:12px;font-weight:600;text-align:center;transition:.2s;
-  color:rgba(255,255,255,.4);border:none;background:none;font-family:'DM Sans',sans-serif;}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:22px;padding:5px 14px 5px 10px;border-radius:30px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);font-size:11px;font-weight:600;color:var(--green);letter-spacing:.3px;}
+.hero-pill span{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,5.5vw,52px);font-weight:800;line-height:1.05;margin-bottom:18px;letter-spacing:-1px;}
+.hero h1 .hl{background:linear-gradient(90deg,var(--shopee) 0%,#ff8a65 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:14px;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto 40px;line-height:1.7;}
+.tabs{display:flex;gap:3px;background:rgba(255,255,255,.04);border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:28px;}
+.tab{flex:1;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;transition:.2s;color:rgba(255,255,255,.4);border:none;background:none;font-family:'DM Sans',sans-serif;}
 .tab.active{background:rgba(238,77,45,.15);color:var(--shopee);border:1px solid rgba(238,77,45,.25);}
-.tab-content{display:none;}
-.tab-content.active{display:block;}
-.bm-hero{
-  background:linear-gradient(135deg,rgba(0,230,118,.07) 0%,rgba(238,77,45,.05) 100%);
-  border:1px solid rgba(0,230,118,.18);border-radius:20px;
-  padding:32px;text-align:center;margin-bottom:20px;}
+.tab-content{display:none;}.tab-content.active{display:block;}
+.bm-hero{background:linear-gradient(135deg,rgba(0,230,118,.07) 0%,rgba(238,77,45,.05) 100%);border:1px solid rgba(0,230,118,.18);border-radius:20px;padding:32px;text-align:center;margin-bottom:20px;}
 .bm-hero h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;}
 .bm-hero p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:26px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;}
-.bm-btn{
-  display:inline-block;padding:15px 36px;
-  background:linear-gradient(90deg,var(--shopee),#f06744);
-  color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;
-  border-radius:14px;text-decoration:none;
-  border:2.5px dashed rgba(255,255,255,.35);
-  box-shadow:0 10px 40px rgba(238,77,45,.35);
-  cursor:grab;user-select:none;transition:.25s;}
+.bm-btn{display:inline-block;padding:15px 36px;background:linear-gradient(90deg,var(--shopee),#f06744);color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;border-radius:14px;text-decoration:none;border:2.5px dashed rgba(255,255,255,.35);box-shadow:0 10px 40px rgba(238,77,45,.35);cursor:grab;user-select:none;transition:.25s;}
 .bm-btn:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(238,77,45,.45);}
 .bm-btn:active{cursor:grabbing;}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:26px;}
-.step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;
-  border:1px solid var(--border);}
-.step-n{width:26px;height:26px;border-radius:50%;background:var(--shopee);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;margin-bottom:10px;}
+.step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;border:1px solid var(--border);}
+.step-n{width:26px;height:26px;border-radius:50%;background:var(--shopee);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:10px;}
 .step h4{font-size:12px;font-weight:600;margin-bottom:5px;}
 .step p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.55;}
-.card{background:var(--card);border-radius:18px;padding:24px;
-  border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
-.sec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);
-  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;}
+.card{background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
+.sec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;}
 .cmp-table{width:100%;border-collapse:collapse;font-size:12px;}
-.cmp-table th{padding:8px 10px;text-align:center;font-size:10px;
-  color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;
-  background:rgba(0,0,0,.25);}
+.cmp-table th{padding:8px 10px;text-align:center;font-size:10px;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;background:rgba(0,0,0,.25);}
 .cmp-table th:first-child{text-align:left;}
 .cmp-table td{padding:8px 10px;border-top:1px solid var(--border);text-align:center;}
 .cmp-table td:first-child{text-align:left;color:rgba(255,255,255,.5);font-size:11px;}
@@ -102,66 +60,42 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0
 .prod-card:hover{border-color:rgba(238,77,45,.2);}
 .prod-form{display:flex;flex-direction:column;gap:8px;}
 .prod-form label{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.4px;}
-.prod-form input,.prod-form select{
-  padding:8px 10px;border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;background:#0b0d10;color:#fff;font-size:12px;
-  outline:none;font-family:'DM Sans',sans-serif;transition:.2s;}
+.prod-form input,.prod-form select{padding:8px 10px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:#0b0d10;color:#fff;font-size:12px;outline:none;font-family:'DM Sans',sans-serif;transition:.2s;}
 .prod-form input:focus,.prod-form select:focus{border-color:rgba(238,77,45,.4);}
-.add-card-btn{border:1.5px dashed rgba(238,77,45,.3);background:rgba(238,77,45,.04);
-  border-radius:14px;display:flex;align-items:center;justify-content:center;
-  min-height:130px;cursor:pointer;font-size:13px;color:var(--shopee);
-  opacity:.7;transition:.2s;}
+.add-card-btn{border:1.5px dashed rgba(238,77,45,.3);background:rgba(238,77,45,.04);border-radius:14px;display:flex;align-items:center;justify-content:center;min-height:130px;cursor:pointer;font-size:13px;color:var(--shopee);opacity:.7;transition:.2s;}
 .add-card-btn:hover{opacity:1;background:rgba(238,77,45,.08);}
-.btn-primary{padding:10px 20px;border:none;border-radius:9px;cursor:pointer;
-  background:linear-gradient(90deg,var(--shopee),#f06744);color:#fff;
-  font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;}
+.btn-primary{padding:10px 20px;border:none;border-radius:9px;cursor:pointer;background:linear-gradient(90deg,var(--shopee),#f06744);color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;}
 .btn-primary:hover{opacity:.88;}
-.btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);
-  font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;transition:.2s;}
+.btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;}
 .btn-ghost:hover{border-color:rgba(255,255,255,.25);color:#fff;}
 .rc{background:var(--card2);border-radius:14px;padding:16px;border:1px solid var(--border);transition:.2s;}
 .rc.best{border-color:rgba(0,230,118,.35);box-shadow:0 0 24px rgba(0,230,118,.08);}
 .rc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .rc-score{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;}
-.rc-score.ex{color:var(--green);} .rc-score.gd{color:var(--blue);}
-.rc-score.md{color:var(--gold);} .rc-score.lw{color:var(--red);}
+.rc-score.ex{color:var(--green);}.rc-score.gd{color:var(--blue);}.rc-score.md{color:var(--gold);}.rc-score.lw{color:var(--red);}
 .rc-lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
-.bom-chip{background:var(--green);color:#000;font-size:9px;font-weight:800;
-  padding:3px 7px;border-radius:4px;letter-spacing:.3px;}
-.rc-name{font-size:12px;font-weight:600;margin-bottom:10px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bom-chip{background:var(--green);color:#000;font-size:9px;font-weight:800;padding:3px 7px;border-radius:4px;letter-spacing:.3px;}
+.rc-name{font-size:12px;font-weight:600;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
 .rc-m{background:rgba(255,255,255,.04);border-radius:7px;padding:6px 8px;}
 .rc-m span{font-size:9px;color:rgba(255,255,255,.35);display:block;margin-bottom:1px;}
 .rc-m b{font-size:13px;font-weight:700;}
-.rc-m b.gn{color:var(--green);} .rc-m b.go{color:var(--gold);} .rc-m b.gr{color:var(--red);}
+.rc-m b.gn{color:var(--green);}.rc-m b.go{color:var(--gold);}.rc-m b.gr{color:var(--red);}
 .rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
 .rc-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
-.tag-blue{background:rgba(68,138,255,.15);color:#82b1ff;}
-.tag-green{background:rgba(0,230,118,.15);color:var(--green);}
-.tag-gold{background:rgba(255,214,0,.15);color:var(--gold);}
+.tag-blue{background:rgba(68,138,255,.15);color:#82b1ff;}.tag-green{background:rgba(0,230,118,.15);color:var(--green);}.tag-gold{background:rgba(255,214,0,.15);color:var(--gold);}
 .rc-bar-track{background:rgba(255,255,255,.07);border-radius:3px;height:4px;overflow:hidden;margin-top:8px;}
 .rc-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;}
-.ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),var(--green2));}
-.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#82b1ff);}
-.md .rc-bar-fill{background:var(--gold);}
-.lw .rc-bar-fill{background:var(--red);}
+.ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),var(--green2));}.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#82b1ff);}.md .rc-bar-fill{background:var(--gold);}.lw .rc-bar-fill{background:var(--red);}
 .mel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
 .mel-card{background:var(--card2);border-radius:14px;padding:18px;border:1px solid var(--border);}
 .mel-icon{font-size:26px;margin-bottom:10px;}
 .mel-card h3{font-size:13px;font-weight:700;margin-bottom:5px;}
 .mel-card p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;margin-bottom:8px;}
-.badge-f{background:rgba(0,230,118,.15);color:var(--green);}
-.badge-m{background:rgba(255,214,0,.15);color:var(--gold);}
-.badge-a{background:rgba(238,77,45,.15);color:var(--shopee);}
-footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
-  font-size:11px;color:rgba(255,255,255,.2);margin-top:40px;}
-@media(max-width:600px){
-  .steps{grid-template-columns:1fr;}
-  .prod-grid{grid-template-columns:1fr;}
-}
+.badge-f{background:rgba(0,230,118,.15);color:var(--green);}.badge-m{background:rgba(255,214,0,.15);color:var(--gold);}.badge-a{background:rgba(238,77,45,.15);color:var(--shopee);}
+footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-size:11px;color:rgba(255,255,255,.2);margin-top:40px;}
+@media(max-width:600px){.steps,.prod-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -192,7 +126,6 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
     <button class="tab" onclick="setTab('melhorias',this)">💡 Melhorias</button>
   </div>
 
-  <!-- BOOKMARKLET TAB -->
   <div id="tab-bookmarklet" class="tab-content active">
     <div class="bm-hero">
       <h2>🔖 Arraste para sua Barra de Favoritos</h2>
@@ -200,12 +133,11 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
       <a id="bm-link" class="bm-btn" href="#" onclick="return false;" draggable="true">🛍️ GLM Analisador Shopee</a>
       <div class="steps">
         <div class="step"><div class="step-n">1</div><h4>Mostre a barra</h4><p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Favoritos</p></div>
-        <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste "🛍️ GLM Analisador Shopee" para a barra de favoritos.</p></div>
+        <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste o botão para a barra de favoritos do navegador.</p></div>
         <div class="step"><div class="step-n">3</div><h4>Abra a Shopee</h4><p>Acesse shopee.com.br e pesquise qualquer produto.</p></div>
         <div class="step"><div class="step-n">4</div><h4>Clique e analise!</h4><p>O painel GLM abre com concorrência, vendas, datas e badges BOM nos cards.</p></div>
       </div>
     </div>
-
     <div class="card">
       <div class="sec-lbl">📊 Extensão Chrome vs Bookmarklet</div>
       <div style="overflow-x:auto">
@@ -225,13 +157,10 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
     </div>
   </div>
 
-  <!-- COMPARADOR TAB -->
   <div id="tab-comparador" class="tab-content">
     <div class="card">
       <div class="sec-lbl">⚖️ Comparador Manual de Produtos</div>
-      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:4px;">
-        Cole os dados de produtos da Shopee e compare lado a lado.
-      </p>
+      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:4px;">Cole os dados de produtos da Shopee e compare lado a lado.</p>
       <div class="prod-grid" id="prodGrid">
         <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">➕ Adicionar Produto</div>
       </div>
@@ -250,7 +179,6 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
     </div>
   </div>
 
-  <!-- MELHORIAS TAB -->
   <div id="tab-melhorias" class="tab-content">
     <div class="card">
       <div class="sec-lbl">💡 Sugestões de Melhoria</div>
@@ -272,735 +200,793 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
 </div>
 
 <script>
-/* ═══ TABS ═══ */
-function setTab(id,btn){
-  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
-  document.getElementById('tab-'+id).classList.add('active');
+/* ═══ PAGE TABS ═══ */
+function setTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ═══════════════════════════════════════════════════════
-   BOOKMARKLET — código completo injetado no href
-   ═══════════════════════════════════════════════════════ */
-(function(){
-  var lnk = document.getElementById('bm-link');
-  if(!lnk) return;
+/* ════════════════════════════════════════════════════════════════
+   BOOKMARKLET — escrito como função real (sem string-dentro-string)
+   O .toString() captura o código-fonte exato, sem escaping issues
+   ════════════════════════════════════════════════════════════════ */
+function glmBookmarklet() {
+  /* jshint ignore:start */
+  'use strict';
+  var ID = 'glm-sp5';
 
-  // O código do bookmarklet é construído aqui como string pura (sem template literals internos)
-  // para evitar qualquer conflito de encoding
-  var BM = [
-    '(function(){',
-    '"use strict";',
-    'var ID="glm-sp4";',
-    // Toggle se já aberto
-    'if(document.getElementById(ID)){',
-    '  document.getElementById(ID).remove();',
-    '  var oc=document.getElementById(ID+"-css");if(oc)oc.remove();',
-    '  document.querySelectorAll(".glm4-badge").forEach(function(b){b.remove();});',
-    '  return;',
-    '}',
+  // === TOGGLE se já aberto ===
+  if (document.getElementById(ID)) {
+    document.getElementById(ID).remove();
+    var oc = document.getElementById(ID + '-css');
+    if (oc) oc.remove();
+    var badges = document.querySelectorAll('.glm5-badge');
+    for (var bi = 0; bi < badges.length; bi++) badges[bi].remove();
+    return;
+  }
 
-    // ═══ CSS ═══
-    'var stel=document.createElement("style");',
-    'stel.id=ID+"-css";',
-    'var C=[];',
-    'C.push("#"+ID+"{position:fixed;top:58px;right:10px;width:285px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}");',
-    'C.push("#"+ID+" .hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.1),rgba(238,77,45,.06));border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}");',
-    'C.push("#"+ID+" .hd-l{display:flex;align-items:center;gap:8px;}");',
-    'C.push("#"+ID+" .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);display:flex;align-items:center;justify-content:center;font-size:13px;}");',
-    'C.push("#"+ID+" .hd-t{font-size:13px;font-weight:700;}");',
-    'C.push("#"+ID+" .hd-v{font-size:9px;color:rgba(255,255,255,.28);}");',
-    'C.push("#"+ID+" .hd-r{display:flex;gap:5px;}");',
-    'C.push("#"+ID+" .hb{background:none;border:1px solid rgba(255,255,255,.12);color:#888;border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:12px;line-height:1;padding:0;}");',
-    'C.push("#"+ID+" .bd{max-height:calc(92vh - 52px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,230,118,.2) transparent;}");',
-    'C.push("#"+ID+" .dica{background:rgba(0,230,118,.07);border-bottom:1px solid rgba(0,230,118,.12);padding:9px 12px;display:flex;gap:8px;align-items:flex-start;}");',
-    'C.push("#"+ID+" .dica p{font-size:10px;color:#86efac;line-height:1.5;}");',
-    'C.push("#"+ID+" .dica b{color:#fff;}");',
-    'C.push("#"+ID+" .ver-bar{text-align:center;padding:5px;font-size:10px;color:rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.05);}");',
-    'C.push("#"+ID+" .sec{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);}");',
-    'C.push("#"+ID+" .sl{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;}");',
-    'C.push("#"+ID+" .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}");',
-    'C.push("#"+ID+" .chips.one{grid-template-columns:1fr;}");',
-    'C.push("#"+ID+" .chip{border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:.18s;border:1.5px solid transparent;}");',
-    'C.push("#"+ID+" .chip.on{border-color:rgba(255,255,255,.5)!important;transform:scale(.95);}");',
-    'C.push("#"+ID+" .chip b{display:block;font-size:20px;font-weight:900;line-height:1.15;}");',
-    'C.push("#"+ID+" .chip span{font-size:8px;font-weight:600;letter-spacing:.3px;}");',
-    'C.push("#"+ID+" .cg{background:rgba(0,230,118,.13);color:#00e676;}");',
-    'C.push("#"+ID+" .cy{background:rgba(255,214,0,.13);color:#ffd600;}");',
-    'C.push("#"+ID+" .cr{background:rgba(255,82,82,.13);color:#ff5252;}");',
-    'C.push("#"+ID+" .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}");',
-    'C.push("#"+ID+" .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}");',
-    'C.push("#"+ID+" .bst b{display:block;font-size:20px;font-weight:800;line-height:1.15;}");',
-    'C.push("#"+ID+" .bst span{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;}");',
-    'C.push("#"+ID+" .gn{color:#00e676!important;}#"+ID+" .go{color:#ffd600!important;}#"+ID+" .gr{color:#ff5252!important;}");',
-    'C.push("#"+ID+" .trow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}");',
-    'C.push("#"+ID+" .trow:last-child{border-bottom:none;}");',
-    'C.push("#"+ID+" .trow .ti{flex:1;min-width:0;}");',
-    'C.push("#"+ID+" .trow .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}");',
-    'C.push("#"+ID+" .trow .tm{font-size:9px;color:rgba(255,255,255,.32);}");',
-    'C.push("#"+ID+" .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;border:1.5px solid;}");',
-    'C.push("#"+ID+" .ci.ex{border-color:#00e676;color:#00e676;background:rgba(0,230,118,.1);}");',
-    'C.push("#"+ID+" .ci.gd{border-color:#448aff;color:#448aff;background:rgba(68,138,255,.1);}");',
-    'C.push("#"+ID+" .ci.md{border-color:#ffd600;color:#ffd600;background:rgba(255,214,0,.1);}");',
-    'C.push("#"+ID+" .ci.lw{border-color:#ff5252;color:#ff5252;background:rgba(255,82,82,.1);}");',
-    'C.push("#"+ID+" .btn-a{width:100%;padding:11px;border:none;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f06744);color:#fff;margin-bottom:6px;font-family:inherit;}");',
-    'C.push("#"+ID+" .btn-r{width:100%;padding:8px;border:1px solid rgba(68,138,255,.3);border-radius:10px;cursor:pointer;font-size:11px;font-weight:600;background:rgba(68,138,255,.08);color:#82b1ff;margin-bottom:5px;font-family:inherit;}");',
-    'C.push("#"+ID+" .btn-c{width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;font-size:12px;font-weight:700;background:#00e676;color:#000;font-family:inherit;}");',
-    'C.push("#"+ID+" .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:11px;outline:none;cursor:pointer;}");',
-    'C.push("#"+ID+" .sel option{background:#0f1410;}");',
-    'C.push("#"+ID+" .mt{font-size:10px;color:rgba(255,255,255,.22);text-align:center;padding:10px;}");',
-    'C.push("#"+ID+" .cnt{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}");',
-    'C.push("#"+ID+" .cnt b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}");',
-    'C.push("#"+ID+" .cnt span{font-size:11px;color:#86efac;}");',
-    // Badge CSS
-    'C.push(".glm4-badge{display:block!important;width:100%!important;margin:3px 0!important;font-family:-apple-system,sans-serif!important;}");',
-    'C.push(".glm4-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:6px!important;overflow:hidden!important;}");',
-    'C.push(".glm4-row.ex{border-color:#00e676!important;}.glm4-row.gd{border-color:#448aff!important;}.glm4-row.md{border-color:#ffd600!important;}.glm4-row.lw{border-color:#ff5252!important;}");',
-    'C.push(".glm4-sc{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:4px 7px!important;min-width:36px!important;background:rgba(255,255,255,.03)!important;border-right:1px solid rgba(255,255,255,.05)!important;}");',
-    'C.push(".glm4-sc b{font-size:15px!important;font-weight:900!important;line-height:1!important;}");',
-    'C.push(".glm4-sc b.ex{color:#00e676!important;}.glm4-sc b.gd{color:#448aff!important;}.glm4-sc b.md{color:#ffd600!important;}.glm4-sc b.lw{color:#ff5252!important;}");',
-    'C.push(".glm4-sc s{font-size:7px!important;color:rgba(255,255,255,.28)!important;font-style:normal!important;}");',
-    'C.push(".glm4-inf{flex:1!important;padding:4px 6px!important;display:flex!important;flex-direction:column!important;gap:2px!important;}");',
-    'C.push(".glm4-L{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}");',
-    'C.push(".glm4-it{display:flex!important;flex-direction:column!important;align-items:center!important;line-height:1.1!important;}");',
-    'C.push(".glm4-il{font-size:7px!important;color:rgba(255,255,255,.28)!important;}");',
-    'C.push(".glm4-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}");',
-    'C.push(".glm4-iv.gn{color:#00e676!important;}.glm4-iv.go{color:#ffd600!important;}.glm4-iv.gr{color:#ff5252!important;}");',
-    'C.push(".glm4-tags{display:flex!important;gap:3px!important;align-items:center!important;flex-shrink:0!important;padding:3px 5px!important;flex-wrap:wrap!important;}");',
-    'C.push(".glm4-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;letter-spacing:.3px!important;}");',
-    'C.push(".glm4-fr{background:rgba(68,138,255,.22)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}");',
-    'C.push(".glm4-op{font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}");',
-    'C.push(".glm4-op.oa{background:rgba(0,230,118,.2)!important;color:#00e676!important;}.glm4-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}");',
-    'C.push(".glm4-d{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.45)!important;}");',
-    'C.push(".glm4-d.nv{background:rgba(0,230,118,.15)!important;color:#00e676!important;}");',
-    'C.push(".glm4-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}");',
-    'stel.textContent=C.join("");',
-    'document.head.appendChild(stel);',
+  // === CSS ===
+  var style = document.createElement('style');
+  style.id = ID + '-css';
+  style.textContent =
+    '#' + ID + '{position:fixed;top:58px;right:10px;width:282px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}' +
+    '#' + ID + ' .hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.1),rgba(238,77,45,.06));border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}' +
+    '#' + ID + ' .hd-l{display:flex;align-items:center;gap:8px;}' +
+    '#' + ID + ' .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);display:flex;align-items:center;justify-content:center;font-size:13px;}' +
+    '#' + ID + ' .hd-t{font-size:13px;font-weight:700;}' +
+    '#' + ID + ' .hd-v{font-size:9px;color:rgba(255,255,255,.28);}' +
+    '#' + ID + ' .hd-r{display:flex;gap:5px;}' +
+    '#' + ID + ' .hb{background:none;border:1px solid rgba(255,255,255,.12);color:#888;border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:12px;line-height:1;padding:0;}' +
+    '#' + ID + ' .bd{max-height:calc(92vh - 52px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,230,118,.2) transparent;}' +
+    '#' + ID + ' .bd::-webkit-scrollbar{width:3px;}' +
+    '#' + ID + ' .bd::-webkit-scrollbar-thumb{background:rgba(0,230,118,.2);border-radius:3px;}' +
+    '#' + ID + ' .tip{background:rgba(0,230,118,.07);border-bottom:1px solid rgba(0,230,118,.12);padding:9px 12px;display:flex;gap:8px;align-items:flex-start;}' +
+    '#' + ID + ' .tip p{font-size:10px;color:#86efac;line-height:1.5;}' +
+    '#' + ID + ' .tip b{color:#fff;}' +
+    '#' + ID + ' .vbar{text-align:center;padding:5px;font-size:10px;color:rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.05);}' +
+    '#' + ID + ' .sec{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);}' +
+    '#' + ID + ' .sl{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;}' +
+    '#' + ID + ' .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}' +
+    '#' + ID + ' .chips.one{grid-template-columns:1fr;}' +
+    '#' + ID + ' .chip{border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:.18s;border:1.5px solid transparent;}' +
+    '#' + ID + ' .chip:hover{filter:brightness(1.15);}' +
+    '#' + ID + ' .chip.on{border-color:rgba(255,255,255,.5)!important;transform:scale(.95);}' +
+    '#' + ID + ' .chip b{display:block;font-size:20px;font-weight:900;line-height:1.15;}' +
+    '#' + ID + ' .chip span{font-size:8px;font-weight:600;letter-spacing:.3px;}' +
+    '#' + ID + ' .cg{background:rgba(0,230,118,.13);color:#00e676;}' +
+    '#' + ID + ' .cy{background:rgba(255,214,0,.13);color:#ffd600;}' +
+    '#' + ID + ' .cr{background:rgba(255,82,82,.13);color:#ff5252;}' +
+    '#' + ID + ' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}' +
+    '#' + ID + ' .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}' +
+    '#' + ID + ' .bst b{display:block;font-size:20px;font-weight:800;line-height:1.15;}' +
+    '#' + ID + ' .bst span{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;}' +
+    '#' + ID + ' .gn{color:#00e676!important;}' +
+    '#' + ID + ' .go{color:#ffd600!important;}' +
+    '#' + ID + ' .gr{color:#ff5252!important;}' +
+    '#' + ID + ' .trow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}' +
+    '#' + ID + ' .trow:last-child{border-bottom:none;}' +
+    '#' + ID + ' .trow .ti{flex:1;min-width:0;}' +
+    '#' + ID + ' .trow .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
+    '#' + ID + ' .trow .tm{font-size:9px;color:rgba(255,255,255,.32);}' +
+    '#' + ID + ' .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;border:1.5px solid;}' +
+    '#' + ID + ' .ci.ex{border-color:#00e676;color:#00e676;background:rgba(0,230,118,.1);}' +
+    '#' + ID + ' .ci.gd{border-color:#448aff;color:#448aff;background:rgba(68,138,255,.1);}' +
+    '#' + ID + ' .ci.md{border-color:#ffd600;color:#ffd600;background:rgba(255,214,0,.1);}' +
+    '#' + ID + ' .ci.lw{border-color:#ff5252;color:#ff5252;background:rgba(255,82,82,.1);}' +
+    '#' + ID + ' .btn-a{width:100%;padding:11px;border:none;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f06744);color:#fff;margin-bottom:6px;font-family:inherit;}' +
+    '#' + ID + ' .btn-r{width:100%;padding:8px;border:1px solid rgba(68,138,255,.3);border-radius:10px;cursor:pointer;font-size:11px;font-weight:600;background:rgba(68,138,255,.08);color:#82b1ff;margin-bottom:5px;font-family:inherit;}' +
+    '#' + ID + ' .btn-c{width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;font-size:12px;font-weight:700;background:#00e676;color:#000;font-family:inherit;}' +
+    '#' + ID + ' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:11px;outline:none;cursor:pointer;}' +
+    '#' + ID + ' .sel option{background:#0f1410;}' +
+    '#' + ID + ' .mt{font-size:10px;color:rgba(255,255,255,.22);text-align:center;padding:10px;}' +
+    '#' + ID + ' .cnt-box{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}' +
+    '#' + ID + ' .cnt-box b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}' +
+    '#' + ID + ' .cnt-box span{font-size:11px;color:#86efac;}' +
+    /* BADGE NOS CARDS */
+    '.glm5-badge{display:block!important;width:100%!important;margin:3px 0!important;font-family:-apple-system,sans-serif!important;}' +
+    '.glm5-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:6px!important;overflow:hidden!important;}' +
+    '.glm5-row.ex{border-color:#00e676!important;}.glm5-row.gd{border-color:#448aff!important;}.glm5-row.md{border-color:#ffd600!important;}.glm5-row.lw{border-color:#ff5252!important;}' +
+    '.glm5-sc{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:4px 7px!important;min-width:36px!important;background:rgba(255,255,255,.03)!important;border-right:1px solid rgba(255,255,255,.05)!important;}' +
+    '.glm5-sc b{font-size:15px!important;font-weight:900!important;line-height:1!important;}' +
+    '.glm5-sc b.ex{color:#00e676!important;}.glm5-sc b.gd{color:#448aff!important;}.glm5-sc b.md{color:#ffd600!important;}.glm5-sc b.lw{color:#ff5252!important;}' +
+    '.glm5-sc s{font-size:7px!important;color:rgba(255,255,255,.28)!important;font-style:normal!important;}' +
+    '.glm5-inf{flex:1!important;padding:4px 6px!important;display:flex!important;flex-direction:column!important;gap:2px!important;}' +
+    '.glm5-L{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}' +
+    '.glm5-it{display:flex!important;flex-direction:column!important;align-items:center!important;line-height:1.1!important;}' +
+    '.glm5-il{font-size:7px!important;color:rgba(255,255,255,.28)!important;}' +
+    '.glm5-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}' +
+    '.glm5-iv.gn{color:#00e676!important;}.glm5-iv.go{color:#ffd600!important;}.glm5-iv.gr{color:#ff5252!important;}' +
+    '.glm5-tags{display:flex!important;gap:3px!important;align-items:center!important;flex-shrink:0!important;padding:3px 5px!important;flex-wrap:wrap!important;}' +
+    '.glm5-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;letter-spacing:.3px!important;}' +
+    '.glm5-fr{background:rgba(68,138,255,.22)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}' +
+    '.glm5-op{font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}' +
+    '.glm5-op.oa{background:rgba(0,230,118,.2)!important;color:#00e676!important;}.glm5-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}' +
+    '.glm5-d{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.45)!important;}' +
+    '.glm5-d.nv{background:rgba(0,230,118,.15)!important;color:#00e676!important;}' +
+    '.glm5-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}';
+  document.head.appendChild(style);
 
-    // ═══ ESTADO ═══
-    'var DB={},FILT=null;',
+  // === ESTADO ===
+  var DB = {}, FILT = null;
 
-    // ═══ HELPERS ═══
-    'function scC(n){return n>=70?"ex":n>=50?"gd":n>=30?"md":"lw";}',
-    'function scT(n){return n>=70?"Excelente":n>=50?"Bom":n>=30?"Medio":"Fraco";}',
-    'function fN(n){if(!n||n===0)return"0";n=Math.round(n);return n>=1000000?(n/1000000).toFixed(1)+"M":n>=1000?(n/1000).toFixed(1).replace(".0","")+"k":String(n);}',
-    'function fR(n){return"R$\u00A0"+Number(n||0).toLocaleString("pt-BR",{minimumFractionDigits:2});}',
-    'function $i(id){return document.getElementById(id);}',
-    'function sv(id,v){var e=$i(id);if(e)e.textContent=v;}',
+  // === HELPERS ===
+  function scC(n) { return n >= 70 ? 'ex' : n >= 50 ? 'gd' : n >= 30 ? 'md' : 'lw'; }
+  function scT(n) { return n >= 70 ? 'Excelente' : n >= 50 ? 'Bom' : n >= 30 ? 'Medio' : 'Fraco'; }
+  function fN(n) {
+    if (!n || n === 0) return '0';
+    n = Math.round(n);
+    return n >= 1000000 ? (n / 1000000).toFixed(1) + 'M' : n >= 1000 ? (n / 1000).toFixed(1).replace('.0', '') + 'k' : String(n);
+  }
+  function fR(n) { return 'R$\u00A0' + Number(n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 }); }
+  function $i(id) { return document.getElementById(id); }
+  function sv(id, v) { var e = $i(id); if (e) e.textContent = v; }
+  function toArr(nl) { return Array.prototype.slice.call(nl); }
 
-    // ═══ DETECTAR CARDS (estratégia robusta) ═══
-    'function findCards(){',
-    '  var result=[];',
+  // === DETECTAR CARDS (4 estratégias) ===
+  function findCards() {
+    var result, i, filt;
 
-    // Estratégia 1: atributo nativo Shopee
-    '  var sqe=document.querySelectorAll("[data-sqe=item]");',
-    '  if(sqe.length>=2){',
-    '    result=Array.prototype.slice.call(sqe);',
-    '    return result.filter(function(c){return!result.some(function(o){return o!==c&&c.contains(o);});});',
-    '  }',
+    // 1. Atributo nativo Shopee
+    var sqe = document.querySelectorAll('[data-sqe="item"]');
+    if (sqe.length >= 2) {
+      result = toArr(sqe);
+      return result.filter(function(c) { return !result.some(function(o) { return o !== c && c.contains(o); }); });
+    }
 
-    // Estratégia 2: seletores de classe Shopee conhecidos
-    '  var patterns=["li[class*=col-xs-2-4]","li[class*=col-xs-3]","[class*=shopee-search-item]","[class*=search-item-result__item]","li[class*=col-]"];',
-    '  for(var pi=0;pi<patterns.length;pi++){',
-    '    var cands=document.querySelectorAll(patterns[pi]);',
-    '    var filt=Array.prototype.slice.call(cands).filter(function(el){',
-    '      return el.querySelector("img")&&/R\u0024/.test(el.innerText||el.textContent||"");',
-    '    });',
-    '    if(filt.length>=2){',
-    '      result=filt;',
-    '      return result.filter(function(c){return!result.some(function(o){return o!==c&&c.contains(o);});});',
-    '    }',
-    '  }',
+    // 2. Classes conhecidas da Shopee
+    var patterns = [
+      'li[class*="col-xs-2-4"]',
+      'li[class*="col-xs-3"]',
+      '[class*="shopee-search-item-result__item"]',
+      '[class*="search-item-result__item"]',
+      'li[class*="col-"]'
+    ];
+    for (i = 0; i < patterns.length; i++) {
+      filt = toArr(document.querySelectorAll(patterns[i])).filter(function(el) {
+        return el.querySelector('img') && /R\$/.test(el.innerText || el.textContent || '');
+      });
+      if (filt.length >= 2) {
+        return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
+      }
+    }
 
-    // Estratégia 3: encontra todos os elementos com preço e img, agrupa por pai comum
-    '  var seen=[],cards=[];',
-    '  var allEls=document.querySelectorAll("*");',
-    '  for(var i=0;i<allEls.length;i++){',
-    '    var el=allEls[i];',
-    '    if(el.children.length>0)continue;',
-    '    var txt=(el.textContent||"").trim();',
-    '    if(!/^R\u0024\s*\d/.test(txt)&&!/^\d[\d.]*,\d{2}$/.test(txt))continue;',
-    '    var cur=el.parentElement;',
-    '    for(var up=0;up<14;up++){',
-    '      if(!cur||cur===document.body||cur===document.documentElement)break;',
-    '      var hasImg=!!cur.querySelector("img");',
-    '      var w=cur.offsetWidth,h=cur.offsetHeight;',
-    // Shopee cards: largura 100-600, altura 150+
-    '      if(hasImg&&w>=100&&w<=700&&h>=150){',
-    '        var par=cur.parentElement;',
-    '        if(par){',
-    '          var sibs=Array.prototype.slice.call(par.children).filter(function(s){',
-    '            return s!==cur&&s.querySelector&&s.querySelector("img")&&/R\u0024/.test(s.innerText||s.textContent||"");',
-    '          });',
-    '          if(sibs.length>=1&&seen.indexOf(cur)===-1){',
-    '            seen.push(cur);cards.push(cur);break;',
-    '          }',
-    '        }',
-    '      }',
-    '      cur=cur.parentElement;',
-    '    }',
-    '  }',
+    // 3. Detecção por preço + estrutura grid
+    var seen = [], cards = [];
+    var allEls = document.querySelectorAll('*');
+    for (i = 0; i < allEls.length; i++) {
+      var el = allEls[i];
+      if (el.children.length > 0) continue;
+      var txt = (el.textContent || '').trim();
+      if (!/^R\$\s*\d/.test(txt)) continue;
+      var cur = el.parentElement;
+      for (var up = 0; up < 14; up++) {
+        if (!cur || cur === document.body || cur === document.documentElement) break;
+        var hasImg = !!cur.querySelector('img');
+        var w = cur.offsetWidth, h = cur.offsetHeight;
+        if (hasImg && w >= 100 && w <= 700 && h >= 140) {
+          var par = cur.parentElement;
+          if (par) {
+            var sibs = toArr(par.children).filter(function(s) {
+              return s !== cur && s.querySelector && s.querySelector('img') && /R\$/.test(s.innerText || s.textContent || '');
+            });
+            if (sibs.length >= 1 && seen.indexOf(cur) === -1) {
+              seen.push(cur);
+              cards.push(cur);
+              break;
+            }
+          }
+        }
+        cur = cur.parentElement;
+      }
+    }
+    result = cards.filter(function(c) { return !cards.some(function(o) { return o !== c && c.contains(o); }); });
+    if (result.length >= 2) return result;
 
-    // Remove containers que contêm outros cards
-    '  result=cards.filter(function(c){',
-    '    return!cards.some(function(o){return o!==c&&c.contains(o);});',
-    '  });',
+    // 4. Fallback: li/article com img e preço
+    filt = toArr(document.querySelectorAll('li,article')).filter(function(li) {
+      return li.offsetWidth >= 100 && li.offsetWidth <= 700 &&
+             li.offsetHeight >= 140 &&
+             li.querySelector('img') &&
+             /R\$/.test(li.innerText || li.textContent || '');
+    });
+    return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
+  }
 
-    // Estratégia 4: fallback por li com img e preço
-    '  if(result.length===0){',
-    '    var lis=document.querySelectorAll("li,article");',
-    '    result=Array.prototype.slice.call(lis).filter(function(li){',
-    '      return li.offsetWidth>=100&&li.offsetWidth<=700&&',
-    '             li.offsetHeight>=150&&',
-    '             li.querySelector("img")&&',
-    '             /R\u0024/.test(li.innerText||li.textContent||"");',
-    '    });',
-    '  }',
-
-    '  return result;',
-    '}',
-
-    // ═══ EXTRAÇÃO ═══
-    'function extrair(card){',
-    '  var txt=(card.innerText||card.textContent||"").replace(/\\s+/g," ");',
+  // === EXTRAIR DADOS ===
+  function extrair(card) {
+    var txt = (card.innerText || card.textContent || '').replace(/\s+/g, ' ');
 
     // Preços
-    '  var reP=/R\u0024\\s*([\\d.]+,[\\d]{2})/g,m,precos=[];',
-    '  while((m=reP.exec(txt))!==null){',
-    '    var v=parseFloat(m[1].replace(/\\./g,"").replace(",","."));',
-    '    if(v>0&&v<500000)precos.push(v);',
-    '  }',
-    '  var preco=precos.length?Math.min.apply(null,precos):0;',
-    '  var orig=precos.length>1?Math.max.apply(null,precos):0;',
-    '  var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;',
-    '  var dm=txt.match(/-(\\d{1,2})\\s*%/)||txt.match(/(\\d{1,2})\\s*%\\s*(?:off|desconto)/i);',
-    '  if(dm){var dv=parseInt(dm[1]);if(dv>0&&dv<100)desc=dv;}',
+    var reP = /R\$\s*([\d.]+,\d{2})/g, m, precos = [];
+    while ((m = reP.exec(txt)) !== null) {
+      var v = parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
+      if (v > 0 && v < 500000) precos.push(v);
+    }
+    var preco = precos.length ? Math.min.apply(null, precos) : 0;
+    var orig = precos.length > 1 ? Math.max.apply(null, precos) : 0;
+    var desc = orig > preco && preco > 0 ? Math.round((1 - preco / orig) * 100) : 0;
+    var dm = txt.match(/-(\d{1,2})\s*%/) || txt.match(/(\d{1,2})\s*%\s*(?:off|desconto)/i);
+    if (dm) { var dv = parseInt(dm[1]); if (dv > 0 && dv < 100) desc = dv; }
 
-    // Vendas — múltiplos padrões
-    '  var vendas=0;',
-    '  var vpats=[',
-    '    /(\\d+(?:[.,]\\d+)?)\\s*mil\\+?\\s*(?:vendas?|vendidos?|sold)/i,',
-    '    /(\\d+(?:[.,]\\d+)?)\\s*[kK]\\+?\\s*(?:vendas?|vendidos?|sold)/i,',
-    '    /(\\d{1,7})\\+?\\s*(?:vendas?|vendidos?|sold)/i,',
-    '    /vendidos?\\s*(\\d{1,7})/i,',
-    '    /(\\d{1,7})\\s*(?:pessoas?|buyers?)\\s*compraram/i',
-    '  ];',
-    '  for(var vi=0;vi<vpats.length;vi++){',
-    '    var vm=txt.match(vpats[vi]);',
-    '    if(vm){',
-    '      var vs=vm[1].replace(",",".");',
-    '      var vnum=parseFloat(vs);',
-    '      if(/mil|[kK]/.test(vm[0]))vnum*=1000;',
-    '      vnum=Math.round(vnum);',
-    '      if(vnum>0&&vnum<99999999){vendas=vnum;break;}',
-    '    }',
-    '  }',
+    // Vendas
+    var vendas = 0;
+    var vpats = [
+      /(\d+(?:[.,]\d+)?)\s*mil\+?\s*(?:vendas?|vendidos?|sold)/i,
+      /(\d+(?:[.,]\d+)?)\s*[kK]\+?\s*(?:vendas?|vendidos?|sold)/i,
+      /(\d{1,7})\+?\s*(?:vendas?|vendidos?|sold)/i,
+      /vendidos?\s*(\d{1,7})/i
+    ];
+    for (var vi = 0; vi < vpats.length; vi++) {
+      var vm = txt.match(vpats[vi]);
+      if (vm) {
+        var vs = vm[1].replace(',', '.');
+        var vnum = parseFloat(vs);
+        if (/mil|[kK]/i.test(vm[0])) vnum *= 1000;
+        vnum = Math.round(vnum);
+        if (vnum > 0 && vnum < 99999999) { vendas = vnum; break; }
+      }
+    }
 
     // Rating
-    '  var rm=txt.match(/[\u2605\u2B50]\\s*(\\d+[.,]\\d)/)||txt.match(/\\b([4-5][.,]\\d)\\b/);',
-    '  var rating=rm?parseFloat(rm[1].replace(",",".")):0;',
+    var rm = txt.match(/[\u2605\u2B50]\s*(\d+[.,]\d)/) || txt.match(/\b([4-5][.,]\d)\b/);
+    var rating = rm ? parseFloat(rm[1].replace(',', '.')) : 0;
 
     // Avaliações
-    '  var am=txt.match(/\\((\\d{1,6})\\)/)||txt.match(/(\\d{1,6})\\s*avalia[\\u00e7c][\\u00f5o]es?/i);',
-    '  var numAval=am?parseInt(am[1]):0;',
+    var am = txt.match(/\((\d{1,6})\)/) || txt.match(/(\d{1,6})\s*avalia[çc][õo]es?/i);
+    var numAval = am ? parseInt(am[1]) : 0;
 
     // Favoritos
-    '  var fvm=txt.match(/(\\d+(?:[.,]\\d+)?)\\s*[kK]?\\s*favorito/i);',
-    '  var favs=0;',
-    '  if(fvm){var fvn=parseFloat(fvm[1].replace(",","."));if(/[kK]/.test(fvm[0]))fvn*=1000;favs=Math.round(fvn);}',
+    var fvm = txt.match(/(\d+(?:[.,]\d+)?)\s*[kK]?\s*favorito/i);
+    var favs = 0;
+    if (fvm) { var fvn = parseFloat(fvm[1].replace(',', '.')); if (/[kK]/i.test(fvm[0])) fvn *= 1000; favs = Math.round(fvn); }
 
     // Frete grátis
-    '  var frete=/frete\\s*gr[a\u00e1]ti[sz]|freeship|envio\\s*gr[a\u00e1]tis/i.test(txt);',
-    '  var imgs=card.querySelectorAll("img");',
-    '  for(var ii=0;ii<imgs.length;ii++){if(/freeship|free.ship/i.test(imgs[ii].src||"")){frete=true;break;}}',
+    var frete = /frete\s*gr[aá]ti[sz]|freeship|envio\s*gr[aá]tis/i.test(txt);
+    var imgs = card.querySelectorAll('img');
+    for (var ii = 0; ii < imgs.length; ii++) { if (/freeship|free.ship/i.test(imgs[ii].src || '')) { frete = true; break; } }
 
-    // Nível
-    '  var nivel="";',
-    '  if(/shopee\\s*mall/i.test(txt))nivel="Mall";',
-    '  else if(/preferido/i.test(txt))nivel="Pref";',
-    '  var isOfic=nivel==="Mall"||/(loja|vendedor)\\s*oficial/i.test(txt);',
-    '  var is5=rating>=4.8;',
+    // Nível / oficial
+    var nivel = '';
+    if (/shopee\s*mall/i.test(txt)) nivel = 'Mall';
+    else if (/preferido/i.test(txt)) nivel = 'Pref';
+    var isOfic = nivel === 'Mall' || /(loja|vendedor)\s*oficial/i.test(txt);
+    var is5 = rating >= 4.8;
 
     // Data de criação
-    '  var diasCriado=-1,dataTxt="";',
-    '  var dRe=/(\\d{2})\\/(\\d{2})\\/(\\d{4})/g,dm3;',
-    '  while((dm3=dRe.exec(txt))!==null){',
-    '    var dd=parseInt(dm3[1]),mo=parseInt(dm3[2]),yy=parseInt(dm3[3]);',
-    '    if(yy>=2018&&yy<=2028&&mo>=1&&mo<=12&&dd>=1&&dd<=31){',
-    '      var dt=new Date(yy,mo-1,dd);',
-    '      var dc=Math.round((Date.now()-dt.getTime())/86400000);',
-    '      if(dc>=0&&dc<3650){diasCriado=dc;dataTxt=dm3[1]+"/"+dm3[2]+"/"+dm3[3];break;}',
-    '    }',
-    '  }',
-    '  if(diasCriado<0){',
-    '    var hm=txt.match(/h[a\u00e1]\\s*(\\d+)\\s*dias?/i);',
-    '    if(hm)diasCriado=parseInt(hm[1]);',
-    '  }',
+    var diasCriado = -1, dataTxt = '';
+    var dRe = /(\d{2})\/(\d{2})\/(\d{4})/g, dm3;
+    while ((dm3 = dRe.exec(txt)) !== null) {
+      var dd = parseInt(dm3[1]), mo = parseInt(dm3[2]), yy = parseInt(dm3[3]);
+      if (yy >= 2018 && yy <= 2030 && mo >= 1 && mo <= 12 && dd >= 1 && dd <= 31) {
+        var dt = new Date(yy, mo - 1, dd);
+        var dc = Math.round((Date.now() - dt.getTime()) / 86400000);
+        if (dc >= 0 && dc < 3650) { diasCriado = dc; dataTxt = dm3[1] + '/' + dm3[2] + '/' + dm3[3]; break; }
+      }
+    }
+    if (diasCriado < 0) { var hm = txt.match(/h[aá]\s*(\d+)\s*dias?/i); if (hm) diasCriado = parseInt(hm[1]); }
 
-    // Título do produto
-    '  var titulo="";',
-    '  for(var ij=0;ij<imgs.length;ij++){if(imgs[ij].alt&&imgs[ij].alt.length>8){titulo=imgs[ij].alt;break;}}',
-    '  if(!titulo){',
-    '    var atits=card.querySelectorAll("[title],[aria-label]");',
-    '    for(var sk=0;sk<atits.length;sk++){var tit=atits[sk].getAttribute("title")||atits[sk].getAttribute("aria-label")||"";if(tit.length>8){titulo=tit;break;}}',
-    '  }',
-    '  if(!titulo){',
-    '    var allE=card.querySelectorAll("*");var bestL=0;',
-    '    for(var ek=0;ek<allE.length;ek++){',
-    '      if(allE[ek].children.length>0)continue;',
-    '      var t3=(allE[ek].textContent||"").trim();',
-    '      if(t3.length>bestL&&t3.length<200&&!/R\u0024/.test(t3)&&!/^\\d+%/.test(t3)&&t3.length>10){bestL=t3.length;titulo=t3;}',
-    '    }',
-    '  }',
+    // Título
+    var titulo = '';
+    for (var ij = 0; ij < imgs.length; ij++) { if (imgs[ij].alt && imgs[ij].alt.length > 8) { titulo = imgs[ij].alt; break; } }
+    if (!titulo) {
+      var atits = card.querySelectorAll('[title],[aria-label]');
+      for (var sk = 0; sk < atits.length; sk++) {
+        var tit = atits[sk].getAttribute('title') || atits[sk].getAttribute('aria-label') || '';
+        if (tit.length > 8) { titulo = tit; break; }
+      }
+    }
+    if (!titulo) {
+      var allE = card.querySelectorAll('*'); var bestL = 0;
+      for (var ek = 0; ek < allE.length; ek++) {
+        if (allE[ek].children.length > 0) continue;
+        var t3 = (allE[ek].textContent || '').trim();
+        if (t3.length > bestL && t3.length < 200 && !/R\$/.test(t3) && !/^\d+%/.test(t3) && t3.length > 10) { bestL = t3.length; titulo = t3; }
+      }
+    }
 
-    '  return{preco:preco,orig:orig,desc:desc,v30:vendas,vtot:vendas,',
-    '    rating:rating,numAval:numAval,favs:favs,frete:frete,nivel:nivel,',
-    '    isOfic:isOfic,is5:is5,diasCriado:diasCriado,dataTxt:dataTxt,titulo:titulo};',
-    '}',
+    return { preco: preco, orig: orig, desc: desc, v30: vendas, vtot: vendas,
+      rating: rating, numAval: numAval, favs: favs, frete: frete, nivel: nivel,
+      isOfic: isOfic, is5: is5, diasCriado: diasCriado, dataTxt: dataTxt, titulo: titulo };
+  }
 
-    // ═══ SCORE ═══
-    'function calcScore(d){',
-    '  var s=0,v=d.v30,r=d.rating,dc=d.desc;',
-    '  s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;',
-    '  s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;',
-    '  s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;',
-    '  if(d.frete)s+=15;',
-    '  s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;',
-    '  if(d.nivel==="Mall")s+=5;else if(d.nivel==="Pref")s+=3;',
-    '  if(d.diasCriado>=0&&d.diasCriado<=90)s+=5;else if(d.diasCriado<=180)s+=3;',
-    '  return Math.min(100,s);',
-    '}',
+  // === SCORE ===
+  function calcScore(d) {
+    var s = 0, v = d.v30, r = d.rating, dc = d.desc;
+    s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
+    s += d.vtot >= 5000 ? 15 : d.vtot >= 2000 ? 12 : d.vtot >= 500 ? 8 : d.vtot >= 100 ? 4 : d.vtot > 0 ? 2 : 0;
+    s += r >= 4.8 ? 20 : r >= 4.5 ? 15 : r >= 4.0 ? 10 : r >= 3.5 ? 5 : r > 0 ? 2 : 0;
+    if (d.frete) s += 15;
+    s += dc >= 60 ? 10 : dc >= 40 ? 8 : dc >= 20 ? 5 : dc >= 10 ? 2 : 0;
+    if (d.nivel === 'Mall') s += 5; else if (d.nivel === 'Pref') s += 3;
+    if (d.diasCriado >= 0 && d.diasCriado <= 90) s += 5; else if (d.diasCriado <= 180) s += 3;
+    return Math.min(100, s);
+  }
 
-    'function calcOport(d){',
-    '  var pts=0;',
-    '  if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;',
-    '  if(d.numAval<50)pts+=2;if(d.numAval<20)pts+=1;',
-    '  if(d.frete)pts+=1;if(d.preco<=80)pts+=1;if(d.rating>=4.5)pts+=1;',
-    '  if(d.diasCriado>=0&&d.diasCriado<=180)pts+=2;',
-    '  if(pts>=8)return{nivel:"ALTA",cls:"oa"};',
-    '  if(pts>=5)return{nivel:"MEDIA",cls:"om"};',
-    '  return null;',
-    '}',
+  function calcOport(d) {
+    var pts = 0;
+    if (d.v30 >= 50) pts += 2; if (d.v30 >= 200) pts += 2;
+    if (d.numAval < 50) pts += 2; if (d.numAval < 20) pts += 1;
+    if (d.frete) pts += 1; if (d.preco <= 80) pts += 1; if (d.rating >= 4.5) pts += 1;
+    if (d.diasCriado >= 0 && d.diasCriado <= 180) pts += 2;
+    if (pts >= 8) return { nivel: 'ALTA', cls: 'oa' };
+    if (pts >= 5) return { nivel: 'MEDIA', cls: 'om' };
+    return null;
+  }
 
-    // ═══ INJETAR BADGE ═══
-    'function findInsert(card){',
-    '  var allE=card.querySelectorAll("*");',
-    '  for(var i=0;i<allE.length;i++){',
-    '    var el=allE[i];',
-    '    if(el.children.length>0)continue;',
-    '    if(!/R\u0024\\s*\\d/.test(el.textContent||""))continue;',
-    '    var cur=el.parentElement;',
-    '    for(var up=0;up<8;up++){',
-    '      if(!cur||cur===card)break;',
-    '      if(cur.previousElementSibling&&cur.offsetWidth>card.offsetWidth*0.2&&!cur.querySelector("img"))return cur;',
-    '      cur=cur.parentElement;',
-    '    }',
-    '  }',
-    '  return card.querySelector("[class*=price],[class*=Price],[class*=preco]")||null;',
-    '}',
+  // === PONTO DE INSERÇÃO DO BADGE ===
+  function findInsert(card) {
+    var allE = card.querySelectorAll('*');
+    for (var i = 0; i < allE.length; i++) {
+      var el = allE[i];
+      if (el.children.length > 0) continue;
+      if (!/R\$\s*\d/.test(el.textContent || '')) continue;
+      var cur = el.parentElement;
+      for (var up = 0; up < 8; up++) {
+        if (!cur || cur === card) break;
+        if (cur.previousElementSibling && cur.offsetWidth > card.offsetWidth * 0.2 && !cur.querySelector('img')) return cur;
+        cur = cur.parentElement;
+      }
+    }
+    return card.querySelector('[class*="price"],[class*="Price"],[class*="preco"]') || null;
+  }
 
-    'function injetarBadge(card,d){',
-    '  card.querySelectorAll(".glm4-badge").forEach(function(b){b.remove();});',
-    '  var c=scC(d.score),op=d.oport;',
-    '  var L1="";',
-    '  if(d.v30>0)L1+=\'<span class="glm4-it"><span class="glm4-il">30d</span><b class="glm4-iv gn">\'+fN(d.v30)+\'</b></span>\';',
-    '  if(d.rating>0)L1+=\'<span class="glm4-it"><span class="glm4-il">Nota</span><b class="glm4-iv go">\'+d.rating.toFixed(1)+\'</b></span>\';',
-    '  if(d.desc>0)L1+=\'<span class="glm4-it"><span class="glm4-il">Off</span><b class="glm4-iv gr">-\'+d.desc+\'%</b></span>\';',
-    '  if(d.preco>0)L1+=\'<span class="glm4-it"><span class="glm4-il">Preco</span><b class="glm4-iv">\'+fR(d.preco)+\'</b></span>\';',
-    '  var L2="";',
-    '  if(d.numAval>0)L2+=\'<span class="glm4-it"><span class="glm4-il">Aval</span><b class="glm4-iv">\'+fN(d.numAval)+\'</b></span>\';',
-    '  if(d.favs>0)L2+=\'<span class="glm4-it"><span class="glm4-il">Fav</span><b class="glm4-iv">\'+fN(d.favs)+\'</b></span>\';',
-    '  var tags="";',
-    '  if(d.score>=60)tags+=\'<span class="glm4-bom">BOM</span>\';',
-    '  if(d.frete)tags+=\'<span class="glm4-fr">Fr.Gr.</span>\';',
-    '  if(op)tags+=\'<span class="glm4-op \'+op.cls+\'">\'+op.nivel+\'</span>\';',
-    '  if(d.diasCriado>=0){',
-    '    var dcl=d.diasCriado<=90?"nv":d.diasCriado>=365?"old":"";',
-    '    tags+=\'<span class="glm4-d \'+dcl+\'">\'+d.diasCriado+\'d</span>\';',
-    '  }',
-    '  var div=document.createElement("div");',
-    '  div.className="glm4-badge";',
-    '  div.innerHTML=',
-    '    \'<div class="glm4-row \'+c+\'">\'+',
-    '      \'<div class="glm4-sc"><b class="\'+c+\'">\'+d.score+\'</b><s>\'+scT(d.score)+\'</s></div>\'+',
-    '      \'<div class="glm4-inf">\'+',
-    '        \'<div class="glm4-L">\'+L1+\'</div>\'+',
-    '        (L2?\'<div class="glm4-L">\'+L2+\'</div>\':"")+',
-    '      \'</div>\'+',
-    '      \'<div class="glm4-tags">\'+tags+\'</div>\'+',
-    '    \'</div>\';',
-    '  var alvo=findInsert(card);',
-    '  if(alvo&&alvo.parentElement){',
-    '    alvo.parentElement.insertBefore(div,alvo);',
-    '  } else {',
-    '    var ch=card.children;',
-    '    if(ch.length>0)card.insertBefore(div,ch[ch.length-1]);',
-    '    else card.appendChild(div);',
-    '  }',
-    '  try{',
-    '    var fixEls=[card].concat(Array.prototype.slice.call(card.querySelectorAll("div,a,li,section")));',
-    '    fixEls.forEach(function(e){',
-    '      try{',
-    '        var cs=window.getComputedStyle(e);',
-    '        if(cs.overflow==="hidden"&&e!==card&&e.tagName!=="IMG")e.style.overflow="visible";',
-    '        if(cs.maxHeight&&cs.maxHeight!=="none"&&parseInt(cs.maxHeight)>0&&parseInt(cs.maxHeight)<800&&e.tagName!=="IMG")e.style.maxHeight="none";',
-    '      }catch(er){}',
-    '    });',
-    '    card.style.height="auto";',
-    '  }catch(er){}',
-    '}',
+  // === INJETAR BADGE NOS CARDS ===
+  function injetarBadge(card, d) {
+    var old = card.querySelectorAll('.glm5-badge');
+    for (var oi = 0; oi < old.length; oi++) old[oi].remove();
+    var c = scC(d.score), op = d.oport;
 
-    // ═══ ANALISAR ═══
-    'function analisar(){',
-    '  var cards=findCards();',
-    '  var novos=0;',
-    '  for(var i=0;i<cards.length;i++){',
-    '    var card=cards[i];',
-    '    if(card.querySelector(".glm4-badge"))continue;',
-    '    var d=extrair(card);',
-    '    if(!d.preco&&!d.v30&&!d.rating)continue;',
-    '    d.score=calcScore(d);',
-    '    d.oport=calcOport(d);',
-    '    var uid="g"+i+"_"+Date.now();',
-    '    card._glmUid=uid;DB[uid]=d;',
-    '    injetarBadge(card,d);',
-    '    novos++;',
-    '  }',
-    '  atualizarPainel();',
-    '  var total=Object.keys(DB).length;',
-    '  sv("glm4-cnt",total);sv("glm4-cnt2",total);',
-    '  return total;',
-    '}',
+    var L1 = '';
+    if (d.v30 > 0) L1 += '<span class="glm5-it"><span class="glm5-il">30d</span><b class="glm5-iv gn">' + fN(d.v30) + '</b></span>';
+    if (d.rating > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Nota</span><b class="glm5-iv go">' + d.rating.toFixed(1) + '</b></span>';
+    if (d.desc > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Off</span><b class="glm5-iv gr">-' + d.desc + '%</b></span>';
+    if (d.preco > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Preco</span><b class="glm5-iv">' + fR(d.preco) + '</b></span>';
 
-    // ═══ PAINEL ═══
-    'function atualizarPainel(){',
-    '  var todos=Object.keys(DB).map(function(k){return DB[k];});',
-    '  if(!todos.length)return;',
-    '  var ofic=todos.filter(function(d){return d.isOfic;}).length;',
-    '  var indicados=todos.filter(function(d){return!!d.nivel;}).length;',
-    '  var cinco=todos.filter(function(d){return d.is5;}).length;',
-    '  sv("g4-of",ofic);sv("g4-in",indicados);sv("g4-5s",cinco);',
-    '  var ate180=todos.filter(function(d){return d.diasCriado>=0&&d.diasCriado<=180;}).length;',
-    '  var ate365=todos.filter(function(d){return d.diasCriado>180&&d.diasCriado<=365;}).length;',
-    '  var mais365=todos.filter(function(d){return d.diasCriado>365;}).length;',
-    '  sv("g4-d180",ate180);sv("g4-d365",ate365);sv("g4-dp",mais365);',
-    '  var bons=todos.filter(function(d){return d.score>=60;}).length;',
-    '  sv("g4-bp",bons);',
-    '  var vt=todos.reduce(function(a,d){return a+(d.vtot||0);},0);',
-    '  var v30=todos.reduce(function(a,d){return a+(d.v30||0);},0);',
-    '  sv("g4-vt",fN(vt));sv("g4-v30",fN(v30));',
-    '  sv("g4-an",todos.length);',
-    '  sv("g4-dc",todos.filter(function(d){return d.desc>0;}).length);',
-    '  var precos=todos.map(function(d){return d.preco;}).filter(Boolean);',
-    '  sv("g4-pmin",precos.length?fR(Math.min.apply(null,precos)):"—");',
-    '  sv("g4-pmax",precos.length?fR(Math.max.apply(null,precos)):"—");',
-    // Top 3
-    '  var top=[].concat(todos).sort(function(a,b){return b.score-a.score;}).slice(0,3);',
-    '  var te=$i("g4-top");',
-    '  if(te)te.innerHTML=top.map(function(d,i){',
-    '    var medals=["🥇","🥈","🥉"];',
-    '    return\'<div class="trow"><span>\'+medals[i]+\'</span><div class="ti">\'+',
-    '      \'<div class="tn">\'+((d.titulo||"Produto").slice(0,26))+"..."+\'</div>\'+',
-    '      \'<div class="tm">\'+fR(d.preco)+(d.v30>0?\' · \'+fN(d.v30)+"/30d":"")+\'</div>\'+',
-    '      \'</div><div class="ci \'+scC(d.score)+\'">\'+d.score+\'</div></div>\';',
-    '  }).join("")||\'<div class="mt">—</div>\';',
-    '}',
+    var L2 = '';
+    if (d.numAval > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Aval</span><b class="glm5-iv">' + fN(d.numAval) + '</b></span>';
+    if (d.favs > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Fav</span><b class="glm5-iv">' + fN(d.favs) + '</b></span>';
 
-    // ═══ FILTRAR ═══
-    'function filtrar(tipo,el){',
-    '  var chips=document.querySelectorAll("#"+ID+" .chip");',
-    '  if(FILT===tipo){',
-    '    FILT=null;',
-    '    findCards().forEach(function(c){c.style.display="";});',
-    '    chips.forEach(function(ch){ch.classList.remove("on");});',
-    '    return;',
-    '  }',
-    '  FILT=tipo;',
-    '  chips.forEach(function(ch){ch.classList.remove("on");});',
-    '  el.classList.add("on");',
-    '  findCards().forEach(function(card){',
-    '    var uid=card._glmUid;',
-    '    if(!uid||!DB[uid]){card.style.display="none";return;}',
-    '    var d=DB[uid];var show=false;',
-    '    if(tipo==="of")show=d.isOfic;',
-    '    else if(tipo==="in")show=!!d.nivel;',
-    '    else if(tipo==="5s")show=d.is5;',
-    '    else if(tipo==="d180")show=d.diasCriado>=0&&d.diasCriado<=180;',
-    '    else if(tipo==="d365")show=d.diasCriado>180&&d.diasCriado<=365;',
-    '    else if(tipo==="dp")show=d.diasCriado>365;',
-    '    else if(tipo==="bom")show=d.score>=60;',
-    '    card.style.display=show?"":"none";',
-    '  });',
-    '}',
+    var tags = '';
+    if (d.score >= 60) tags += '<span class="glm5-bom">BOM</span>';
+    if (d.frete) tags += '<span class="glm5-fr">Fr.Gr.</span>';
+    if (op) tags += '<span class="glm5-op ' + op.cls + '">' + op.nivel + '</span>';
+    if (d.diasCriado >= 0) {
+      var dcl = d.diasCriado <= 90 ? 'nv' : d.diasCriado >= 365 ? 'old' : '';
+      tags += '<span class="glm5-d ' + dcl + '">' + d.diasCriado + 'd</span>';
+    }
 
-    // ═══ PAINEL HTML ═══
-    'var p=document.createElement("div");',
-    'p.id=ID;',
-    'var CLOSE="(function(){document.getElementById(\'"+ID+"\').remove();var c=document.getElementById(\'"+ID+"-css\');if(c)c.remove();document.querySelectorAll(\'.glm4-badge\').forEach(function(b){b.remove();});})()";',
-    'p.innerHTML=',
-    '\'<div class="hd" id="\'+ID+\'-drag">\'+',
-    '  \'<div class="hd-l"><div class="hd-logo">🛍️</div>\'+',
-    '  \'<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM Analisador v4.0</div></div></div>\'+',
-    '  \'<div class="hd-r"><button class="hb" id="\'+ID+\'-min">—</button><button class="hb" onclick="\'+CLOSE+\'">✕</button></div>\'+',
-    '\'</div>\'+',
-    '\'<div class="bd" id="\'+ID+\'-body">\'+',
-    '  \'<div class="dica"><span style="font-size:14px">💡</span>\'+',
-    '  \'<p><b>Dica:</b> Clique nos chips coloridos para filtrar os cards.</p></div>\'+',
-    '  \'<div class="ver-bar">v4.0 · <b style="color:#00e676" id="glm4-cnt">0</b> produtos</div>\'+',
-    '  \'<div class="sec">\'+',
-    '    \'<div class="cnt"><b id="glm4-cnt2">0</b><span>produtos analisados</span></div>\'+',
-    '    \'<button class="btn-a" id="\'+ID+\'-btn">🔍 Analisar Produtos</button>\'+',
-    '    \'<button class="btn-r" id="\'+ID+\'-re">🔄 Re-analisar (limpar e refazer)</button>\'+',
-    '  \'</div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>🏆</span> CONCORRÊNCIA</div>\'+',
-    '  \'<div class="chips">\'+',
-    '    \'<div class="chip cg" onclick="filtrar(\'of\',this)"><b id="g4-of">0</b><span>OFICIAIS</span></div>\'+',
-    '    \'<div class="chip cy" onclick="filtrar(\'in\',this)"><b id="g4-in">0</b><span>INDICADOS</span></div>\'+',
-    '    \'<div class="chip cr" onclick="filtrar(\'5s\',this)"><b id="g4-5s">0</b><span>5 ESTRELAS</span></div>\'+',
-    '  \'</div></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>📅</span> DATA DE CRIAÇÃO</div>\'+',
-    '  \'<div class="chips">\'+',
-    '    \'<div class="chip cg" onclick="filtrar(\'d180\',this)"><b id="g4-d180">0</b><span>ATÉ 180d</span></div>\'+',
-    '    \'<div class="chip cy" onclick="filtrar(\'d365\',this)"><b id="g4-d365">0</b><span>ATÉ 365d</span></div>\'+',
-    '    \'<div class="chip cr" onclick="filtrar(\'dp\',this)"><b id="g4-dp">0</b><span>+365d</span></div>\'+',
-    '  \'</div></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>⭐</span> BONS PRODUTOS</div>\'+',
-    '  \'<div class="chips one"><div class="chip cg" style="padding:10px" onclick="filtrar(\'bom\',this)"><b id="g4-bp">0</b><span>BOM PRODUTO</span></div>\'+',
-    '  \'</div></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>📦</span> VENDAS</div>\'+',
-    '  \'<div class="g2">\'+',
-    '    \'<div class="bst"><b id="g4-vt">—</b><span>TOTAL UNID.</span></div>\'+',
-    '    \'<div class="bst"><b class="gn" id="g4-v30">—</b><span>ÚLTIMOS 30D</span></div>\'+',
-    '  \'</div></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>ℹ️</span> RESUMO</div>\'+',
-    '  \'<div class="g2">\'+',
-    '    \'<div class="bst"><b id="g4-an">—</b><span>ANÚNCIOS</span></div>\'+',
-    '    \'<div class="bst"><b id="g4-dc">—</b><span>DESCONTOS</span></div>\'+',
-    '    \'<div class="bst"><b class="gn" id="g4-pmin">—</b><span>MENOR PREÇO</span></div>\'+',
-    '    \'<div class="bst"><b class="go" id="g4-pmax">—</b><span>MAIOR PREÇO</span></div>\'+',
-    '  \'</div></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>🔽</span> ORDENAR</div>\'+',
-    '  \'<select class="sel" id="\'+ID+\'-ord">\'+',
-    '    \'<option value="n">Padrão (Shopee)</option>\'+',
-    '    \'<option value="s">⭐ Score GLM</option>\'+',
-    '    \'<option value="v">🔥 Mais Vendidos (30d)</option>\'+',
-    '    \'<option value="pa">💰 Menor Preço</option>\'+',
-    '    \'<option value="pd">💎 Maior Preço</option>\'+',
-    '    \'<option value="dc">🏷️ Maior Desconto</option>\'+',
-    '  \'</select></div>\'+',
-    '  \'<div class="sec"><div class="sl"><span>🏆</span> TOP DESTA BUSCA</div>\'+',
-    '  \'<div id="g4-top"><div class="mt">Clique em Analisar</div></div></div>\'+',
-    '  \'<div class="sec" style="padding-bottom:14px">\'+',
-    '  \'<button class="btn-c" onclick="window.open(\'https://gui-89.github.io/calculadoraglm/\',\'_blank\')">Calculadora GLM →</button>\'+',
-    '  \'</div>\'+',
-    '\'</div>\';',
-    'document.body.appendChild(p);',
+    var div = document.createElement('div');
+    div.className = 'glm5-badge';
+    div.innerHTML =
+      '<div class="glm5-row ' + c + '">' +
+        '<div class="glm5-sc"><b class="' + c + '">' + d.score + '</b><s>' + scT(d.score) + '</s></div>' +
+        '<div class="glm5-inf">' +
+          '<div class="glm5-L">' + L1 + '</div>' +
+          (L2 ? '<div class="glm5-L">' + L2 + '</div>' : '') +
+        '</div>' +
+        '<div class="glm5-tags">' + tags + '</div>' +
+      '</div>';
 
-    // ═══ EVENTOS ═══
-    '$i(ID+"-min").onclick=function(){var b=$i(ID+"-body");b.style.display=b.style.display==="none"?"":"none";};',
-    '$i(ID+"-btn").onclick=function(){analisar();};',
-    '$i(ID+"-re").onclick=function(){',
-    '  DB={};FILT=null;',
-    '  document.querySelectorAll(".glm4-badge").forEach(function(b){b.remove();});',
-    '  findCards().forEach(function(c){c.style.display="";});',
-    '  document.querySelectorAll("#"+ID+" .chip").forEach(function(ch){ch.classList.remove("on");});',
-    '  setTimeout(analisar,200);',
-    '};',
-    '$i(ID+"-ord").onchange=function(){',
-    '  var t=this.value;var cards=findCards();',
-    '  if(!cards.length)return;',
-    '  var par=cards[0].parentElement;if(!par)return;',
-    '  cards.sort(function(a,b){',
-    '    var da=(a._glmUid&&DB[a._glmUid])||{};var db=(b._glmUid&&DB[b._glmUid])||{};',
-    '    if(t==="s")return(db.score||0)-(da.score||0);',
-    '    if(t==="v")return(db.v30||0)-(da.v30||0);',
-    '    if(t==="pa")return(da.preco||9999)-(db.preco||9999);',
-    '    if(t==="pd")return(db.preco||0)-(da.preco||0);',
-    '    if(t==="dc")return(db.desc||0)-(da.desc||0);',
-    '    return 0;',
-    '  });',
-    '  cards.forEach(function(c){par.appendChild(c);});',
-    '};',
+    var alvo = findInsert(card);
+    if (alvo && alvo.parentElement) {
+      alvo.parentElement.insertBefore(div, alvo);
+    } else {
+      var ch = card.children;
+      if (ch.length > 0) card.insertBefore(div, ch[ch.length - 1]);
+      else card.appendChild(div);
+    }
 
-    // DRAG
-    'var dh=$i(ID+"-drag"),sx,sy,sl,st;',
-    'dh.addEventListener("mousedown",function(ev){',
-    '  sx=ev.clientX;sy=ev.clientY;sl=p.offsetLeft;st=p.offsetTop;',
-    '  function mv(e2){p.style.left=(sl+e2.clientX-sx)+"px";p.style.top=(st+e2.clientY-sy)+"px";p.style.right="auto";}',
-    '  function up(){document.removeEventListener("mousemove",mv);document.removeEventListener("mouseup",up);}',
-    '  document.addEventListener("mousemove",mv);document.addEventListener("mouseup",up);',
-    '});',
+    // Libera overflow/height que esconde o badge
+    try {
+      var fixEls = [card].concat(toArr(card.querySelectorAll('div,a,li,section')));
+      for (var fi = 0; fi < fixEls.length; fi++) {
+        try {
+          var cs = window.getComputedStyle(fixEls[fi]);
+          if (cs.overflow === 'hidden' && fixEls[fi] !== card && fixEls[fi].tagName !== 'IMG') fixEls[fi].style.overflow = 'visible';
+          if (cs.maxHeight && cs.maxHeight !== 'none' && parseInt(cs.maxHeight) > 0 && parseInt(cs.maxHeight) < 900 && fixEls[fi].tagName !== 'IMG') fixEls[fi].style.maxHeight = 'none';
+        } catch(e) {}
+      }
+      card.style.height = 'auto';
+    } catch(e) {}
+  }
 
-    // Auto analisar
-    'setTimeout(analisar,1000);',
-    'setTimeout(analisar,3000);',
-    '})();'
-  ].join('\n');
+  // === ANALISAR ===
+  function analisar() {
+    var cards = findCards(), novos = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      if (card.querySelector('.glm5-badge')) continue;
+      var d = extrair(card);
+      if (!d.preco && !d.v30 && !d.rating) continue;
+      d.score = calcScore(d);
+      d.oport = calcOport(d);
+      var uid = 'g' + i + '_' + Date.now();
+      card._glmUid = uid;
+      DB[uid] = d;
+      injetarBadge(card, d);
+      novos++;
+    }
+    atualizarPainel();
+    var total = Object.keys(DB).length;
+    sv('glm5-cnt', total); sv('glm5-cnt2', total);
+    return total;
+  }
 
-  lnk.href = 'javascript:' + encodeURIComponent(BM);
-  lnk.onclick = null;
-  lnk.setAttribute('draggable','true');
+  // === ATUALIZAR PAINEL ===
+  function atualizarPainel() {
+    var todos = Object.keys(DB).map(function(k) { return DB[k]; });
+    if (!todos.length) return;
+
+    sv('g5-of', todos.filter(function(d) { return d.isOfic; }).length);
+    sv('g5-in', todos.filter(function(d) { return !!d.nivel; }).length);
+    sv('g5-5s', todos.filter(function(d) { return d.is5; }).length);
+    sv('g5-d180', todos.filter(function(d) { return d.diasCriado >= 0 && d.diasCriado <= 180; }).length);
+    sv('g5-d365', todos.filter(function(d) { return d.diasCriado > 180 && d.diasCriado <= 365; }).length);
+    sv('g5-dp', todos.filter(function(d) { return d.diasCriado > 365; }).length);
+    sv('g5-bp', todos.filter(function(d) { return d.score >= 60; }).length);
+    sv('g5-vt', fN(todos.reduce(function(a, d) { return a + (d.vtot || 0); }, 0)));
+    sv('g5-v30', fN(todos.reduce(function(a, d) { return a + (d.v30 || 0); }, 0)));
+    sv('g5-an', todos.length);
+    sv('g5-dc', todos.filter(function(d) { return d.desc > 0; }).length);
+
+    var precos = todos.map(function(d) { return d.preco; }).filter(Boolean);
+    sv('g5-pmin', precos.length ? fR(Math.min.apply(null, precos)) : '\u2014');
+    sv('g5-pmax', precos.length ? fR(Math.max.apply(null, precos)) : '\u2014');
+
+    var top = todos.slice().sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
+    var te = $i('g5-top');
+    if (te) {
+      var medals = ['\uD83E\uDD47', '\uD83E\uDD48', '\uD83E\uDD49'];
+      te.innerHTML = top.map(function(d, i) {
+        return '<div class="trow"><span>' + medals[i] + '</span><div class="ti">' +
+          '<div class="tn">' + (d.titulo || 'Produto').slice(0, 26) + '...</div>' +
+          '<div class="tm">' + fR(d.preco) + (d.v30 > 0 ? ' \u00B7 ' + fN(d.v30) + '/30d' : '') + '</div>' +
+          '</div><div class="ci ' + scC(d.score) + '">' + d.score + '</div></div>';
+      }).join('') || '<div class="mt">\u2014</div>';
+    }
+  }
+
+  // === FILTRAR ===
+  function filtrar(tipo) {
+    var chips = toArr(document.querySelectorAll('#' + ID + ' .chip'));
+    if (FILT === tipo) {
+      FILT = null;
+      var allCards = findCards();
+      for (var ci = 0; ci < allCards.length; ci++) allCards[ci].style.display = '';
+      for (var chi = 0; chi < chips.length; chi++) chips[chi].classList.remove('on');
+      return;
+    }
+    FILT = tipo;
+    for (var chi2 = 0; chi2 < chips.length; chi2++) chips[chi2].classList.remove('on');
+    var activeChip = document.querySelector('#' + ID + ' [data-f="' + tipo + '"]');
+    if (activeChip) activeChip.classList.add('on');
+
+    var fc = findCards();
+    for (var fi = 0; fi < fc.length; fi++) {
+      var card = fc[fi];
+      var uid = card._glmUid;
+      if (!uid || !DB[uid]) { card.style.display = 'none'; continue; }
+      var d = DB[uid], show = false;
+      if (tipo === 'of') show = d.isOfic;
+      else if (tipo === 'in') show = !!d.nivel;
+      else if (tipo === '5s') show = d.is5;
+      else if (tipo === 'd180') show = d.diasCriado >= 0 && d.diasCriado <= 180;
+      else if (tipo === 'd365') show = d.diasCriado > 180 && d.diasCriado <= 365;
+      else if (tipo === 'dp') show = d.diasCriado > 365;
+      else if (tipo === 'bom') show = d.score >= 60;
+      card.style.display = show ? '' : 'none';
+    }
+  }
+
+  // === PAINEL HTML (sem inline onlick com string args — usa data-f) ===
+  var p = document.createElement('div');
+  p.id = ID;
+  p.innerHTML =
+    '<div class="hd" id="' + ID + '-drag">' +
+      '<div class="hd-l">' +
+        '<div class="hd-logo">\uD83D\uDED2</div>' +
+        '<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v5.0</div></div>' +
+      '</div>' +
+      '<div class="hd-r">' +
+        '<button class="hb" id="' + ID + '-min">\u2014</button>' +
+        '<button class="hb" id="' + ID + '-cls">\u2715</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="bd" id="' + ID + '-body">' +
+      '<div class="tip"><span style="font-size:14px">\uD83D\uDCA1</span>' +
+        '<p><b>Dica:</b> Clique nos chips coloridos para filtrar. Clique de novo para desativar.</p>' +
+      '</div>' +
+      '<div class="vbar">v5.0 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
+      '<div class="sec">' +
+        '<div class="cnt-box"><b id="glm5-cnt2">0</b><span>produtos analisados</span></div>' +
+        '<button class="btn-a" id="' + ID + '-btn">\uD83D\uDD0D Analisar Produtos</button>' +
+        '<button class="btn-r" id="' + ID + '-re">\uD83D\uDD04 Re-analisar (limpar e refazer)</button>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> CONCORR\u00CANCIA</div>' +
+        '<div class="chips">' +
+          '<div class="chip cg" data-f="of"><b id="g5-of">0</b><span>OFICIAIS</span></div>' +
+          '<div class="chip cy" data-f="in"><b id="g5-in">0</b><span>INDICADOS</span></div>' +
+          '<div class="chip cr" data-f="5s"><b id="g5-5s">0</b><span>5 ESTRELAS</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\uD83D\uDCC5</span> DATA DE CRIA\u00C7\u00C3O</div>' +
+        '<div class="chips">' +
+          '<div class="chip cg" data-f="d180"><b id="g5-d180">0</b><span>AT\u00C9 180d</span></div>' +
+          '<div class="chip cy" data-f="d365"><b id="g5-d365">0</b><span>AT\u00C9 365d</span></div>' +
+          '<div class="chip cr" data-f="dp"><b id="g5-dp">0</b><span>+365d</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\u2B50</span> BONS PRODUTOS</div>' +
+        '<div class="chips one">' +
+          '<div class="chip cg" data-f="bom" style="padding:10px"><b id="g5-bp">0</b><span>BOM PRODUTO</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\uD83D\uDCE6</span> VENDAS</div>' +
+        '<div class="g2">' +
+          '<div class="bst"><b id="g5-vt">\u2014</b><span>TOTAL UNID.</span></div>' +
+          '<div class="bst"><b class="gn" id="g5-v30">\u2014</b><span>\u00DALTlMOS 30D</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\u2139\uFE0F</span> RESUMO</div>' +
+        '<div class="g2">' +
+          '<div class="bst"><b id="g5-an">\u2014</b><span>AN\u00DANCIOS</span></div>' +
+          '<div class="bst"><b id="g5-dc">\u2014</b><span>DESCONTOS</span></div>' +
+          '<div class="bst"><b class="gn" id="g5-pmin">\u2014</b><span>MENOR PRE\u00C7O</span></div>' +
+          '<div class="bst"><b class="go" id="g5-pmax">\u2014</b><span>MAIOR PRE\u00C7O</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\uD83D\uDD3D</span> ORDENAR</div>' +
+        '<select class="sel" id="' + ID + '-ord">' +
+          '<option value="n">Padr\u00E3o (Shopee)</option>' +
+          '<option value="s">\u2B50 Score GLM</option>' +
+          '<option value="v">\uD83D\uDD25 Mais Vendidos (30d)</option>' +
+          '<option value="pa">\uD83D\uDCB0 Menor Pre\u00E7o</option>' +
+          '<option value="pd">\uD83D\uDC8E Maior Pre\u00E7o</option>' +
+          '<option value="dc">\uD83C\uDFF7\uFE0F Maior Desconto</option>' +
+        '</select>' +
+      '</div>' +
+      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> TOP DESTA BUSCA</div>' +
+        '<div id="g5-top"><div class="mt">Clique em Analisar</div></div>' +
+      '</div>' +
+      '<div class="sec" style="padding-bottom:14px">' +
+        '<button class="btn-c" id="' + ID + '-calc">Calculadora GLM \u2192</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(p);
+
+  // === EVENT LISTENERS (sem onclick inline com string args) ===
+  $i(ID + '-cls').onclick = function() {
+    p.remove();
+    var c = $i(ID + '-css'); if (c) c.remove();
+    var bs = document.querySelectorAll('.glm5-badge');
+    for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
+  };
+
+  $i(ID + '-min').onclick = function() {
+    var b = $i(ID + '-body');
+    b.style.display = b.style.display === 'none' ? '' : 'none';
+  };
+
+  $i(ID + '-btn').onclick = analisar;
+
+  $i(ID + '-re').onclick = function() {
+    DB = {}; FILT = null;
+    var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
+    var fc = findCards(); for (var ci = 0; ci < fc.length; ci++) fc[ci].style.display = '';
+    var chips = document.querySelectorAll('#' + ID + ' .chip'); for (var chi = 0; chi < chips.length; chi++) chips[chi].classList.remove('on');
+    setTimeout(analisar, 200);
+  };
+
+  $i(ID + '-calc').onclick = function() { window.open('https://gui-89.github.io/calculadoraglm/', '_blank'); };
+
+  // Chips — usa data-f para evitar string args no onclick
+  var chips = toArr(p.querySelectorAll('[data-f]'));
+  for (var ci = 0; ci < chips.length; ci++) {
+    chips[ci].onclick = (function(ch) {
+      return function() { filtrar(ch.getAttribute('data-f')); };
+    })(chips[ci]);
+  }
+
+  // Ordenar
+  $i(ID + '-ord').onchange = function() {
+    var t = this.value, cards = findCards();
+    if (!cards.length) return;
+    var par = cards[0].parentElement; if (!par) return;
+    cards.sort(function(a, b) {
+      var da = (a._glmUid && DB[a._glmUid]) || {};
+      var db = (b._glmUid && DB[b._glmUid]) || {};
+      if (t === 's') return (db.score || 0) - (da.score || 0);
+      if (t === 'v') return (db.v30 || 0) - (da.v30 || 0);
+      if (t === 'pa') return (da.preco || 9999) - (db.preco || 9999);
+      if (t === 'pd') return (db.preco || 0) - (da.preco || 0);
+      if (t === 'dc') return (db.desc || 0) - (da.desc || 0);
+      return 0;
+    });
+    for (var si = 0; si < cards.length; si++) par.appendChild(cards[si]);
+  };
+
+  // Drag
+  var dh = $i(ID + '-drag'), sx, sy, sl, st;
+  dh.addEventListener('mousedown', function(ev) {
+    sx = ev.clientX; sy = ev.clientY; sl = p.offsetLeft; st = p.offsetTop;
+    function mv(e2) { p.style.left = (sl + e2.clientX - sx) + 'px'; p.style.top = (st + e2.clientY - sy) + 'px'; p.style.right = 'auto'; }
+    function up() { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); }
+    document.addEventListener('mousemove', mv);
+    document.addEventListener('mouseup', up);
+  });
+
+  // Auto analisar
+  setTimeout(analisar, 1000);
+  setTimeout(analisar, 3200);
+  /* jshint ignore:end */
+}
+
+// === GERA O BOOKMARKLET VIA .toString() — sem string-inside-string ===
+(function() {
+  var lnk = document.getElementById('bm-link');
+  if (!lnk) return;
+  // toString() captura o código-fonte real da função, evitando escaping manual
+  var code = '(' + glmBookmarklet.toString() + ')()';
+  lnk.href = 'javascript:' + encodeURIComponent(code);
+  lnk.removeAttribute('onclick');
 })();
 
 /* ═══ COMPARADOR ═══ */
-var produtos=[], cardCount=0;
+var produtos = [], cardCount = 0;
 
-function adicionarCard(){
-  if(cardCount>=5){alert('Máximo 5 produtos!');return;}
+function adicionarCard() {
+  if (cardCount >= 5) { alert('Máximo 5 produtos!'); return; }
   cardCount++;
-  var id='p'+Date.now();
-  var div=document.createElement('div');
-  div.className='prod-card';div.id=id;
-  div.innerHTML=
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'+
-      '<div style="font-size:11px;font-weight:600;opacity:.45;">Produto '+cardCount+'</div>'+
-      '<button onclick="removerCard(\''+id+'\')" style="background:none;border:none;color:#ff5252;cursor:pointer;font-size:14px;">✕</button>'+
-    '</div>'+
-    '<div class="prod-form">'+
-      '<div><label>Nome *</label><input type="text" placeholder="Ex: Luminária 3D LED..." id="'+id+'-nome"></div>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
-        '<div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="'+id+'-preco"></div>'+
-        '<div><label>Preço original</label><input type="number" placeholder="69.90" id="'+id+'-orig"></div>'+
-      '</div>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
-        '<div><label>Vendas/30d</label><input type="number" placeholder="843" id="'+id+'-v30"></div>'+
-        '<div><label>Vendas total</label><input type="number" placeholder="12000" id="'+id+'-vtot"></div>'+
-      '</div>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
-        '<div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="'+id+'-nota"></div>'+
-        '<div><label>Avaliações</label><input type="number" placeholder="234" id="'+id+'-aval"></div>'+
-      '</div>'+
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
-        '<div><label>Frete</label><select id="'+id+'-frete"><option value="1">✅ Grátis</option><option value="0">❌ Pago</option></select></div>'+
-        '<div><label>Idade (dias)</label><input type="number" placeholder="90" id="'+id+'-dias"></div>'+
-      '</div>'+
-      '<div><label>Nível</label><select id="'+id+'-nivel"><option value="">Normal</option><option value="Mall">Shopee Mall</option><option value="Pref">Preferido</option></select></div>'+
+  var id = 'p' + Date.now();
+  var div = document.createElement('div');
+  div.className = 'prod-card'; div.id = id;
+  div.innerHTML =
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
+      '<div style="font-size:11px;font-weight:600;opacity:.45;">Produto ' + cardCount + '</div>' +
+      '<button onclick="removerCard(\'' + id + '\')" style="background:none;border:none;color:#ff5252;cursor:pointer;font-size:14px;">✕</button>' +
+    '</div>' +
+    '<div class="prod-form">' +
+      '<div><label>Nome *</label><input type="text" placeholder="Ex: Luminária 3D LED..." id="' + id + '-nome"></div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+        '<div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="' + id + '-preco"></div>' +
+        '<div><label>Preço original</label><input type="number" placeholder="69.90" id="' + id + '-orig"></div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+        '<div><label>Vendas/30d</label><input type="number" placeholder="843" id="' + id + '-v30"></div>' +
+        '<div><label>Vendas total</label><input type="number" placeholder="12000" id="' + id + '-vtot"></div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+        '<div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="' + id + '-nota"></div>' +
+        '<div><label>Avaliações</label><input type="number" placeholder="234" id="' + id + '-aval"></div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
+        '<div><label>Frete</label><select id="' + id + '-frete"><option value="1">✅ Grátis</option><option value="0">❌ Pago</option></select></div>' +
+        '<div><label>Idade (dias)</label><input type="number" placeholder="90" id="' + id + '-dias"></div>' +
+      '</div>' +
+      '<div><label>Nível</label><select id="' + id + '-nivel"><option value="">Normal</option><option value="Mall">Shopee Mall</option><option value="Pref">Preferido</option></select></div>' +
     '</div>';
-  document.getElementById('prodGrid').insertBefore(div,document.getElementById('btnAdd'));
+  document.getElementById('prodGrid').insertBefore(div, document.getElementById('btnAdd'));
 }
 
-function removerCard(id){var el=document.getElementById(id);if(el)el.remove();cardCount--;}
-function limparTudo(){document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});cardCount=0;produtos=[];document.getElementById('resultados').style.display='none';}
-function gv(id){var el=document.getElementById(id);return el?el.value.trim():'';}
-function gn(id){return parseFloat(gv(id))||0;}
+function removerCard(id) { var el = document.getElementById(id); if (el) el.remove(); cardCount--; }
+function limparTudo() { document.querySelectorAll('.prod-card').forEach(function(c) { c.remove(); }); cardCount = 0; produtos = []; document.getElementById('resultados').style.display = 'none'; }
+function gv(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function gn(id) { return parseFloat(gv(id)) || 0; }
 
-function calcScoreComp(d){
-  var s=0,v=d.v30,r=d.nota,dc=d.desc;
-  s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
-  s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;
-  s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
-  if(d.frete)s+=15;
-  s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
-  if(d.dias>=0&&d.dias<=90)s+=5;else if(d.dias<=180)s+=3;
-  if(d.nivel==='Mall')s+=5;else if(d.nivel.indexOf('Pref')>=0)s+=3;
-  return Math.min(100,s);
+function calcScoreComp(d) {
+  var s = 0, v = d.v30, r = d.nota, dc = d.desc;
+  s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
+  s += d.vtot >= 5000 ? 15 : d.vtot >= 2000 ? 12 : d.vtot >= 500 ? 8 : d.vtot >= 100 ? 4 : d.vtot > 0 ? 2 : 0;
+  s += r >= 4.8 ? 20 : r >= 4.5 ? 15 : r >= 4.0 ? 10 : r >= 3.5 ? 5 : r > 0 ? 2 : 0;
+  if (d.frete) s += 15;
+  s += dc >= 60 ? 10 : dc >= 40 ? 8 : dc >= 20 ? 5 : dc >= 10 ? 2 : 0;
+  if (d.dias >= 0 && d.dias <= 90) s += 5; else if (d.dias <= 180) s += 3;
+  if (d.nivel === 'Mall') s += 5; else if (d.nivel.indexOf('Pref') >= 0) s += 3;
+  return Math.min(100, s);
 }
-function calcOportComp(d){
-  var pts=0;
-  if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
-  if(d.aval<50)pts+=2;if(d.aval<20)pts+=1;
-  if(d.dias>=0&&d.dias<=180)pts+=2;
-  if(d.nota>=4.5)pts+=1;if(d.preco<=80)pts+=1;if(d.frete)pts+=1;
-  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'tag-green'};
-  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'tag-gold'};
+function calcOportComp(d) {
+  var pts = 0;
+  if (d.v30 >= 50) pts += 2; if (d.v30 >= 200) pts += 2;
+  if (d.aval < 50) pts += 2; if (d.aval < 20) pts += 1;
+  if (d.dias >= 0 && d.dias <= 180) pts += 2;
+  if (d.nota >= 4.5) pts += 1; if (d.preco <= 80) pts += 1; if (d.frete) pts += 1;
+  if (pts >= 8) return { nivel: 'ALTA', emoji: '🚀', cls: 'tag-green' };
+  if (pts >= 5) return { nivel: 'MÉDIA', emoji: '📈', cls: 'tag-gold' };
   return null;
 }
-function scClsC(s){return s>=70?'ex':s>=50?'gd':s>=30?'md':'lw';}
-function scTxtC(s){return s>=70?'🔥 Excelente':s>=50?'👍 Bom':s>=30?'⚠️ Médio':'📉 Fraco';}
-function fNc(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1).replace('.0','')+'k':String(n||0);}
-function fRc(n){return 'R$\u00A0'+n.toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function scClsC(s) { return s >= 70 ? 'ex' : s >= 50 ? 'gd' : s >= 30 ? 'md' : 'lw'; }
+function scTxtC(s) { return s >= 70 ? '🔥 Excelente' : s >= 50 ? '👍 Bom' : s >= 30 ? '⚠️ Médio' : '📉 Fraco'; }
+function fNc(n) { return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1).replace('.0', '') + 'k' : String(n || 0); }
+function fRc(n) { return 'R$\u00A0' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2 }); }
 
-function analisarTodos(){
-  var cards=Array.prototype.slice.call(document.querySelectorAll('.prod-card'));
-  if(!cards.length){alert('Adicione pelo menos 1 produto!');return;}
-  produtos=cards.map(function(card){
-    var id=card.id;
-    var preco=gn(id+'-preco'),orig=gn(id+'-orig');
-    var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
-    var d={nome:gv(id+'-nome')||'Produto',preco:preco,orig:orig,desc:desc,
-      v30:gn(id+'-v30'),vtot:gn(id+'-vtot'),nota:gn(id+'-nota'),
-      aval:gn(id+'-aval'),frete:gv(id+'-frete')==='1',
-      dias:gn(id+'-dias')||(-1),nivel:gv(id+'-nivel')};
-    d.score=calcScoreComp(d);d.oport=calcOportComp(d);return d;
-  }).filter(function(d){return d.nome||d.preco;});
-  if(!produtos.length){alert('Preencha ao menos nome e preço.');return;}
+function analisarTodos() {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.prod-card'));
+  if (!cards.length) { alert('Adicione pelo menos 1 produto!'); return; }
+  produtos = cards.map(function(card) {
+    var id = card.id, preco = gn(id + '-preco'), orig = gn(id + '-orig');
+    var desc = orig > preco && preco > 0 ? Math.round((1 - preco / orig) * 100) : 0;
+    var d = { nome: gv(id + '-nome') || 'Produto', preco: preco, orig: orig, desc: desc,
+      v30: gn(id + '-v30'), vtot: gn(id + '-vtot'), nota: gn(id + '-nota'),
+      aval: gn(id + '-aval'), frete: gv(id + '-frete') === '1',
+      dias: gn(id + '-dias') || -1, nivel: gv(id + '-nivel') };
+    d.score = calcScoreComp(d); d.oport = calcOportComp(d); return d;
+  }).filter(function(d) { return d.nome || d.preco; });
+  if (!produtos.length) { alert('Preencha ao menos nome e preço.'); return; }
   renderResultados();
-  document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
+  document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
 }
 
-function renderResultados(){
-  var todos=produtos.slice().sort(function(a,b){return b.score-a.score;});
-  var maxScore=todos[0]?todos[0].score:0;
-  var grid=document.getElementById('resultGrid');
-  var table=document.getElementById('resultTable');
-  document.getElementById('resultados').style.display='block';
-  grid.innerHTML=todos.map(function(d,i){
-    var c=scClsC(d.score);var isBest=d.score===maxScore&&todos.length>1;
-    var tags='';
-    if(d.frete)tags+='<span class="rc-tag tag-blue">✅ Frete Grátis</span>';
-    if(d.nivel)tags+='<span class="rc-tag tag-gold">'+d.nivel+'</span>';
-    if(d.oport)tags+='<span class="rc-tag '+d.oport.cls+'">'+d.oport.emoji+' '+d.oport.nivel+'</span>';
-    return '<div class="rc '+(isBest?'best':'')+' '+c+'">'+
-      '<div style="font-size:20px;margin-bottom:6px;">'+(['🥇','🥈','🥉','4️⃣','5️⃣'][i]||'')+'</div>'+
-      '<div class="rc-top"><div><div class="rc-score '+c+'">'+d.score+'</div><div class="rc-lbl">'+scTxtC(d.score)+'</div></div>'+
-      (d.score>=60?'<span class="bom-chip">BOM</span>':'')+
-      '</div>'+
-      '<div class="rc-name">'+d.nome+'</div>'+
-      '<div class="rc-grid">'+
-        '<div class="rc-m"><span>Preço</span><b>'+(d.preco>0?fRc(d.preco):'N/D')+'</b></div>'+
-        '<div class="rc-m"><span>Desconto</span><b class="gr">'+(d.desc>0?'-'+d.desc+'%':'—')+'</b></div>'+
-        '<div class="rc-m"><span>Vendas/30d</span><b class="gn">'+(d.v30>0?fNc(d.v30):'N/D')+'</b></div>'+
-        '<div class="rc-m"><span>Total</span><b class="gn">'+(d.vtot>0?fNc(d.vtot):'N/D')+'</b></div>'+
-        '<div class="rc-m"><span>Nota</span><b class="go">'+(d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D')+'</b></div>'+
-        '<div class="rc-m"><span>Avaliações</span><b>'+(d.aval>0?fNc(d.aval):'N/D')+'</b></div>'+
-      '</div>'+
-      (tags?'<div class="rc-tags">'+tags+'</div>':'')+
-      '<div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:3px;margin-top:6px;">Potencial · '+d.score+'/100</div>'+
-      '<div class="rc-bar-track"><div class="rc-bar-fill" style="width:'+d.score+'%"></div></div>'+
-      '</div>';
+function renderResultados() {
+  var todos = produtos.slice().sort(function(a, b) { return b.score - a.score; });
+  var maxScore = todos[0] ? todos[0].score : 0;
+  document.getElementById('resultados').style.display = 'block';
+  document.getElementById('resultGrid').innerHTML = todos.map(function(d, i) {
+    var c = scClsC(d.score), isBest = d.score === maxScore && todos.length > 1;
+    var tags = '';
+    if (d.frete) tags += '<span class="rc-tag tag-blue">✅ Frete Grátis</span>';
+    if (d.nivel) tags += '<span class="rc-tag tag-gold">' + d.nivel + '</span>';
+    if (d.oport) tags += '<span class="rc-tag ' + d.oport.cls + '">' + d.oport.emoji + ' ' + d.oport.nivel + '</span>';
+    return '<div class="rc ' + (isBest ? 'best' : '') + ' ' + c + '">' +
+      '<div style="font-size:20px;margin-bottom:6px;">' + (['🥇', '🥈', '🥉', '4️⃣', '5️⃣'][i] || '') + '</div>' +
+      '<div class="rc-top"><div><div class="rc-score ' + c + '">' + d.score + '</div><div class="rc-lbl">' + scTxtC(d.score) + '</div></div>' + (d.score >= 60 ? '<span class="bom-chip">BOM</span>' : '') + '</div>' +
+      '<div class="rc-name">' + d.nome + '</div>' +
+      '<div class="rc-grid">' +
+        '<div class="rc-m"><span>Preço</span><b>' + (d.preco > 0 ? fRc(d.preco) : 'N/D') + '</b></div>' +
+        '<div class="rc-m"><span>Desconto</span><b class="gr">' + (d.desc > 0 ? '-' + d.desc + '%' : '—') + '</b></div>' +
+        '<div class="rc-m"><span>Vendas/30d</span><b class="gn">' + (d.v30 > 0 ? fNc(d.v30) : 'N/D') + '</b></div>' +
+        '<div class="rc-m"><span>Total</span><b class="gn">' + (d.vtot > 0 ? fNc(d.vtot) : 'N/D') + '</b></div>' +
+        '<div class="rc-m"><span>Nota</span><b class="go">' + (d.nota > 0 ? d.nota.toFixed(1) + ' ⭐' : 'N/D') + '</b></div>' +
+        '<div class="rc-m"><span>Avaliações</span><b>' + (d.aval > 0 ? fNc(d.aval) : 'N/D') + '</b></div>' +
+      '</div>' +
+      (tags ? '<div class="rc-tags">' + tags + '</div>' : '') +
+      '<div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:3px;margin-top:6px;">Potencial · ' + d.score + '/100</div>' +
+      '<div class="rc-bar-track"><div class="rc-bar-fill" style="width:' + d.score + '%"></div></div>' +
+    '</div>';
   }).join('');
 
-  var rows=[
-    {l:'Score',k:'score',fmt:function(v){return v+'/100';},dir:'max'},
-    {l:'Preço',k:'preco',fmt:function(v){return v>0?fRc(v):'N/D';},dir:'min'},
-    {l:'Desconto',k:'desc',fmt:function(v){return v+'%';},dir:'max'},
-    {l:'Vendas 30d',k:'v30',fmt:function(v){return v>0?fNc(v):'N/D';},dir:'max'},
-    {l:'Total',k:'vtot',fmt:function(v){return v>0?fNc(v):'N/D';},dir:'max'},
-    {l:'Nota',k:'nota',fmt:function(v){return v>0?v.toFixed(1)+' ⭐':'N/D';},dir:'max'},
-    {l:'Frete',k:'frete',fmt:function(v){return v?'✅':'❌';},dir:'none'},
+  var rows = [
+    { l: 'Score', k: 'score', fmt: function(v) { return v + '/100'; }, dir: 'max' },
+    { l: 'Preço', k: 'preco', fmt: function(v) { return v > 0 ? fRc(v) : 'N/D'; }, dir: 'min' },
+    { l: 'Desconto', k: 'desc', fmt: function(v) { return v + '%'; }, dir: 'max' },
+    { l: 'Vendas 30d', k: 'v30', fmt: function(v) { return v > 0 ? fNc(v) : 'N/D'; }, dir: 'max' },
+    { l: 'Total', k: 'vtot', fmt: function(v) { return v > 0 ? fNc(v) : 'N/D'; }, dir: 'max' },
+    { l: 'Nota', k: 'nota', fmt: function(v) { return v > 0 ? v.toFixed(1) + ' ⭐' : 'N/D'; }, dir: 'max' },
+    { l: 'Frete', k: 'frete', fmt: function(v) { return v ? '✅' : '❌'; }, dir: 'none' }
   ];
-  var h='<thead><tr><th>Métrica</th>';
-  todos.forEach(function(_,i){h+='<th>Prod '+(i+1)+'</th>';});
-  h+='</tr></thead>';
-  var b='<tbody>';
-  rows.forEach(function(row){
-    var vals=todos.map(function(p){return typeof p[row.k]==='number'?p[row.k]:null;}).filter(function(v){return v!==null;});
-    var best=row.dir==='max'?Math.max.apply(null,vals):row.dir==='min'?Math.min.apply(null,vals):null;
-    var worst=row.dir==='max'?Math.min.apply(null,vals):row.dir==='min'?Math.max.apply(null,vals):null;
-    b+='<tr><td>'+row.l+'</td>';
-    todos.forEach(function(p){
-      var val=p[row.k];var nv=typeof val==='number'?val:null;
-      var c2=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
-      b+='<td class="'+c2+'">'+row.fmt(val)+'</td>';
+  var h = '<thead><tr><th>Métrica</th>';
+  todos.forEach(function(_, i) { h += '<th>Prod ' + (i + 1) + '</th>'; });
+  h += '</tr></thead>';
+  var b = '<tbody>';
+  rows.forEach(function(row) {
+    var vals = todos.map(function(p) { return typeof p[row.k] === 'number' ? p[row.k] : null; }).filter(function(v) { return v !== null; });
+    var best = row.dir === 'max' ? Math.max.apply(null, vals) : row.dir === 'min' ? Math.min.apply(null, vals) : null;
+    var worst = row.dir === 'max' ? Math.min.apply(null, vals) : row.dir === 'min' ? Math.max.apply(null, vals) : null;
+    b += '<tr><td>' + row.l + '</td>';
+    todos.forEach(function(p) {
+      var val = p[row.k], nv = typeof val === 'number' ? val : null;
+      var cl = nv !== null && best !== null && nv === best ? 'best-cell' : nv !== null && worst !== null && nv === worst && best !== worst ? 'worst-cell' : '';
+      b += '<td class="' + cl + '">' + row.fmt(val) + '</td>';
     });
-    b+='</tr>';
+    b += '</tr>';
   });
-  b+='</tbody>';
-  table.innerHTML=h+b;
+  b += '</tbody>';
+  document.getElementById('resultTable').innerHTML = h + b;
 }
 
-function exportarCSV(){
-  if(!produtos.length){alert('Analise os produtos primeiro!');return;}
-  var lines=['Nome,Preco,Desconto%,Vendas30d,VendasTotal,Nota,Avaliacoes,FreteGratis,Idade,Nivel,Score'];
-  produtos.forEach(function(p){
-    lines.push('"'+p.nome+'",'+p.preco+','+p.desc+','+p.v30+','+p.vtot+','+p.nota+','+p.aval+','+(p.frete?'Sim':'Nao')+','+p.dias+','+p.nivel+','+p.score);
+function exportarCSV() {
+  if (!produtos.length) { alert('Analise os produtos primeiro!'); return; }
+  var lines = ['Nome,Preco,Desconto%,Vendas30d,VendasTotal,Nota,Avaliacoes,FreteGratis,Idade,Nivel,Score'];
+  produtos.forEach(function(p) {
+    lines.push('"' + p.nome + '",' + p.preco + ',' + p.desc + ',' + p.v30 + ',' + p.vtot + ',' + p.nota + ',' + p.aval + ',' + (p.frete ? 'Sim' : 'Nao') + ',' + p.dias + ',' + p.nivel + ',' + p.score);
   });
-  var blob=new Blob(['\uFEFF'+lines.join('\n')],{type:'text/csv;charset=utf-8;'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='comparativo_shopee.csv';a.click();
+  var blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'comparativo_shopee.csv'; a.click();
 }
 
-adicionarCard();adicionarCard();
+adicionarCard(); adicionarCard();
 </script>
 </body>
 </html>
