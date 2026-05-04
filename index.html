@@ -3,399 +3,292 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLM Analisador Shopee — Funciona em Qualquer Navegador</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>GLM Analisador Shopee</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --shopee:#ee4d2d;
-  --green:#00c67a;
-  --blue:#4d8bff;
-  --bg:#05060d;
-  --card:#0a0c18;
+  --green:#00e676;
+  --green2:#1de9b6;
+  --gold:#ffd600;
+  --red:#ff5252;
+  --blue:#448aff;
+  --bg:#0d0f0e;
+  --card:#141916;
+  --card2:#111310;
+  --border:rgba(255,255,255,.07);
 }
-body{font-family:'Poppins',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;min-height:100vh;}
 
-/* BG */
-.bg{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse 60% 40% at 10% 10%,rgba(238,77,45,.1),transparent),
-             radial-gradient(ellipse 50% 40% at 90% 80%,rgba(0,198,122,.06),transparent);}
+.bg-fx{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 50% 35% at 15% 0%,rgba(0,230,118,.06),transparent),
+    radial-gradient(ellipse 40% 30% at 85% 100%,rgba(238,77,45,.05),transparent);}
 
-.wrapper{max-width:900px;margin:auto;padding:0 20px;position:relative;z-index:1;}
+.wrapper{max-width:960px;margin:auto;padding:0 24px;position:relative;z-index:1;}
 
 /* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;
-  padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:50px;flex-wrap:wrap;gap:10px;}
-.nav-brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;}
-.nav-links{display:flex;gap:16px;flex-wrap:wrap;}
-.nav-links a{font-size:13px;opacity:.6;text-decoration:none;color:#fff;transition:.2s;}
-.nav-links a:hover{opacity:1;color:var(--shopee);}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;
+  border-bottom:1px solid var(--border);margin-bottom:48px;flex-wrap:wrap;gap:12px;}
+.nav-brand{display:flex;align-items:center;gap:10px;}
+.nav-logo{width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--shopee),#ff8a65);
+  display:flex;align-items:center;justify-content:center;font-size:16px;}
+.nav-brand-txt{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
+.nav-brand-txt span{color:var(--shopee);}
+.nav-links{display:flex;gap:4px;}
+.nav-links a{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;
+  padding:6px 12px;border-radius:8px;transition:.2s;font-weight:500;}
+.nav-links a:hover{background:rgba(255,255,255,.06);color:#fff;}
 
 /* HERO */
-.hero{text-align:center;padding:10px 0 60px;}
-.hero-badge{display:inline-block;margin-bottom:20px;padding:6px 16px;border-radius:20px;
-  font-size:12px;font-weight:600;background:rgba(0,198,122,.15);color:var(--green);
-  border:1px solid rgba(0,198,122,.3);}
-.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.1;margin-bottom:16px;}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--shopee),#ff8a65);
+.hero{text-align:center;padding:8px 0 52px;}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:22px;
+  padding:5px 14px 5px 10px;border-radius:30px;
+  background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);
+  font-size:11px;font-weight:600;color:var(--green);letter-spacing:.3px;}
+.hero-pill span{width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,5.5vw,52px);font-weight:800;
+  line-height:1.05;margin-bottom:18px;letter-spacing:-1px;}
+.hero h1 .hl{background:linear-gradient(90deg,var(--shopee) 0%,#ff8a65 50%,var(--gold) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{font-size:15px;opacity:.55;max-width:520px;margin:0 auto 40px;line-height:1.7;}
+.hero p{font-size:14px;color:rgba(255,255,255,.45);max-width:480px;
+  margin:0 auto 40px;line-height:1.7;}
 
 /* TABS */
-.tabs{display:flex;gap:0;margin-bottom:30px;background:rgba(255,255,255,.04);
-  border-radius:12px;padding:4px;border:1px solid rgba(255,255,255,.06);}
-.tab{flex:1;padding:10px 16px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;
-  text-align:center;transition:.2s;color:#777;border:none;background:none;}
-.tab.active{background:var(--shopee);color:#fff;}
+.tabs{display:flex;gap:3px;background:rgba(255,255,255,.04);
+  border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:28px;}
+.tab{flex:1;padding:9px 12px;border-radius:9px;cursor:pointer;
+  font-size:12px;font-weight:600;text-align:center;transition:.2s;
+  color:rgba(255,255,255,.4);border:none;background:none;font-family:'DM Sans',sans-serif;}
+.tab.active{background:rgba(238,77,45,.15);color:var(--shopee);border:1px solid rgba(238,77,45,.25);}
 .tab-content{display:none;}
 .tab-content.active{display:block;}
 
-/* CARD */
-.card{background:var(--card);border-radius:20px;padding:28px;margin-bottom:20px;
-  border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
-.card::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(135deg,rgba(238,77,45,.04) 0%,transparent 50%);}
+/* ── BOOKMARKLET SECTION ── */
+.bm-hero{
+  background:linear-gradient(135deg,rgba(0,230,118,.07) 0%,rgba(238,77,45,.05) 100%);
+  border:1px solid rgba(0,230,118,.18);border-radius:20px;
+  padding:32px;text-align:center;margin-bottom:20px;}
+.bm-hero h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;}
+.bm-hero p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:26px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;}
 
-/* SEÇÃO */
-.sec-label{font-size:11px;opacity:.4;text-transform:uppercase;letter-spacing:1px;
-  font-weight:700;margin-bottom:16px;}
+.bm-btn{
+  display:inline-block;padding:15px 36px;
+  background:linear-gradient(90deg,var(--shopee),#f06744);
+  color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;
+  border-radius:14px;text-decoration:none;
+  border:2.5px dashed rgba(255,255,255,.35);
+  box-shadow:0 10px 40px rgba(238,77,45,.35);
+  cursor:grab;user-select:none;transition:.25s;}
+.bm-btn:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(238,77,45,.45);}
+.bm-btn:active{cursor:grabbing;}
 
-/* BOOKMARKLET AREA */
-.bm-install{
-  background:linear-gradient(135deg,rgba(0,198,122,.08),rgba(77,139,255,.05));
-  border:1px solid rgba(0,198,122,.2);border-radius:16px;
-  padding:24px;margin-bottom:20px;text-align:center;
-}
-.bm-install h3{font-size:18px;font-weight:700;margin-bottom:8px;}
-.bm-install p{font-size:13px;opacity:.6;margin-bottom:20px;line-height:1.6;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:26px;}
+.step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;
+  border:1px solid var(--border);}
+.step-n{width:26px;height:26px;border-radius:50%;background:var(--shopee);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;margin-bottom:10px;}
+.step h4{font-size:12px;font-weight:600;margin-bottom:5px;}
+.step p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.55;}
 
-.bm-drag-area{
-  display:inline-block;
-  padding:14px 28px;border-radius:12px;
-  background:linear-gradient(90deg,var(--shopee),#f05d40);
-  color:#fff;font-size:15px;font-weight:700;
-  cursor:grab;border:3px dashed rgba(255,255,255,.4);
-  transition:.3s;user-select:none;
-  text-decoration:none;
-  box-shadow:0 8px 30px rgba(238,77,45,.3);
-}
-.bm-drag-area:hover{transform:scale(1.03);box-shadow:0 12px 40px rgba(238,77,45,.4);}
-.bm-drag-area:active{cursor:grabbing;}
+/* CARD BASE */
+.card{background:var(--card);border-radius:18px;padding:24px;
+  border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
 
-.bm-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:24px;}
-.bm-step{background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:left;}
-.bm-step-num{width:28px;height:28px;border-radius:50%;background:var(--shopee);color:#fff;
-  font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
-.bm-step h4{font-size:13px;font-weight:600;margin-bottom:5px;}
-.bm-step p{font-size:11px;opacity:.55;line-height:1.5;}
+.sec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);
+  text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;}
 
-/* ALERTA MOBILE */
-.mobile-alert{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
-  border-radius:10px;padding:12px 16px;font-size:12px;color:#fcd34d;
-  margin-bottom:16px;line-height:1.5;display:none;}
-@media(max-width:600px){.mobile-alert{display:block;}}
+/* COMPARE TABLE */
+.cmp-table{width:100%;border-collapse:collapse;font-size:12px;}
+.cmp-table th{padding:8px 10px;text-align:center;font-size:10px;
+  color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+  background:rgba(0,0,0,.25);}
+.cmp-table th:first-child{text-align:left;}
+.cmp-table td{padding:8px 10px;border-top:1px solid var(--border);text-align:center;}
+.cmp-table td:first-child{text-align:left;color:rgba(255,255,255,.5);font-size:11px;}
+.best-cell{color:var(--green)!important;font-weight:700!important;}
+.worst-cell{color:#ff5252!important;}
 
 /* COMPARADOR MANUAL */
-.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px;}
-.prod-card{background:#07090f;border-radius:14px;border:1px solid rgba(255,255,255,.06);
-  padding:16px;position:relative;transition:.2s;}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:12px;margin-top:16px;}
+.prod-card{background:var(--card2);border-radius:14px;border:1px solid var(--border);padding:16px;}
 .prod-card:hover{border-color:rgba(238,77,45,.2);}
 .prod-form{display:flex;flex-direction:column;gap:8px;}
+.prod-form label{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.4px;}
 .prod-form input,.prod-form select{
   padding:8px 10px;border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;background:#0b0f22;color:#fff;font-size:12px;outline:none;
-  font-family:'Poppins',sans-serif;transition:.2s;}
+  border-radius:8px;background:#0b0d10;color:#fff;font-size:12px;
+  outline:none;font-family:'DM Sans',sans-serif;transition:.2s;}
 .prod-form input:focus,.prod-form select:focus{border-color:rgba(238,77,45,.4);}
-.prod-form label{font-size:10px;opacity:.5;text-transform:uppercase;letter-spacing:.4px;}
-.btn-add{padding:8px 16px;border:none;border-radius:8px;cursor:pointer;
-  background:linear-gradient(90deg,var(--shopee),#f05d40);color:#fff;
-  font-size:12px;font-weight:700;transition:.2s;font-family:'Poppins',sans-serif;width:100%;}
-.btn-add:hover{opacity:.88;}
-.btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:#aaa;
-  font-size:11px;padding:6px 12px;border-radius:7px;cursor:pointer;
-  font-family:'Poppins',sans-serif;transition:.2s;}
-.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:#fff;}
-.add-card-btn{
-  border:1px dashed rgba(238,77,45,.3);background:rgba(238,77,45,.04);
+.add-card-btn{border:1.5px dashed rgba(238,77,45,.3);background:rgba(238,77,45,.04);
   border-radius:14px;display:flex;align-items:center;justify-content:center;
-  min-height:140px;cursor:pointer;font-size:13px;color:var(--shopee);
-  opacity:.7;transition:.2s;font-family:'Poppins',sans-serif;}
+  min-height:130px;cursor:pointer;font-size:13px;color:var(--shopee);
+  opacity:.7;transition:.2s;}
 .add-card-btn:hover{opacity:1;background:rgba(238,77,45,.08);}
+.btn-primary{padding:10px 20px;border:none;border-radius:9px;cursor:pointer;
+  background:linear-gradient(90deg,var(--shopee),#f06744);color:#fff;
+  font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;}
+.btn-primary:hover{opacity:.88;}
+.btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);
+  font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.25);color:#fff;}
 
-/* RESULTADO COMPARATIVO */
-.result-card{background:#07090f;border-radius:14px;padding:16px;
-  border:1px solid rgba(255,255,255,.06);transition:.2s;position:relative;}
-.result-card.best{border-color:rgba(0,198,122,.4);box-shadow:0 0 20px rgba(0,198,122,.1);}
-.rc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.rc-score{font-size:22px;font-weight:900;}
-.rc-score.ex{color:var(--green);}
-.rc-score.gd{color:var(--blue);}
-.rc-score.md{color:#f5a623;}
-.rc-score.lw{color:#e03e3e;}
-.rc-label{font-size:11px;font-weight:600;opacity:.6;}
-.bom-tag{background:var(--green);color:#000;font-size:9px;font-weight:800;
-  padding:2px 7px;border-radius:3px;}
-.rc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
-.rc-m{background:rgba(255,255,255,.04);border-radius:6px;padding:6px 8px;}
-.rc-m span{font-size:9px;opacity:.45;display:block;margin-bottom:1px;}
-.rc-m b{font-size:13px;font-weight:700;color:#fff;}
-.rc-m b.gn{color:var(--green)!important;}
-.rc-m b.go{color:#f5a623!important;}
-.rc-m b.gr{color:#ee4d2d!important;}
-.rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+/* RESULT CARDS */
+.rc{background:var(--card2);border-radius:14px;padding:16px;border:1px solid var(--border);transition:.2s;}
+.rc.best{border-color:rgba(0,230,118,.35);box-shadow:0 0 24px rgba(0,230,118,.08);}
+.rc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.rc-score{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;}
+.rc-score.ex{color:var(--green);} .rc-score.gd{color:var(--blue);}
+.rc-score.md{color:var(--gold);} .rc-score.lw{color:var(--red);}
+.rc-lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
+.bom-chip{background:var(--green);color:#000;font-size:9px;font-weight:800;
+  padding:3px 7px;border-radius:4px;letter-spacing:.3px;}
+.rc-name{font-size:12px;font-weight:600;margin-bottom:10px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.rc-m{background:rgba(255,255,255,.04);border-radius:7px;padding:6px 8px;}
+.rc-m span{font-size:9px;color:rgba(255,255,255,.35);display:block;margin-bottom:1px;}
+.rc-m b{font-size:13px;font-weight:700;}
+.rc-m b.gn{color:var(--green);} .rc-m b.go{color:var(--gold);} .rc-m b.gr{color:var(--red);}
+.rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
 .rc-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
-.rc-tag.blue{background:rgba(77,139,255,.15);color:#7eb3ff;}
-.rc-tag.green{background:rgba(0,198,122,.15);color:var(--green);}
-.rc-tag.orange{background:rgba(245,166,35,.15);color:#f5a623;}
-.rc-bar{margin-top:6px;}
-.rc-bar-track{background:rgba(255,255,255,.08);border-radius:3px;height:5px;overflow:hidden;}
+.tag-blue{background:rgba(68,138,255,.15);color:#82b1ff;}
+.tag-green{background:rgba(0,230,118,.15);color:var(--green);}
+.tag-gold{background:rgba(255,214,0,.15);color:var(--gold);}
+.rc-bar-track{background:rgba(255,255,255,.07);border-radius:3px;height:4px;overflow:hidden;margin-top:8px;}
 .rc-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;}
-.ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),#34d399);}
-.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#818cf8);}
-.md .rc-bar-fill{background:#f5a623;}
-.lw .rc-bar-fill{background:#e03e3e;}
-.rank-badge{position:absolute;top:-8px;left:12px;font-size:18px;}
-.oport-tag{display:inline-block;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;margin-top:8px;}
-.oport-alta{background:rgba(0,198,122,.15);color:var(--green);border:1px solid rgba(0,198,122,.3);}
-.oport-media{background:rgba(245,166,35,.15);color:#f5a623;border:1px solid rgba(245,166,35,.3);}
+.ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),var(--green2));}
+.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#82b1ff);}
+.md .rc-bar-fill{background:var(--gold);}
+.lw .rc-bar-fill{background:var(--red);}
 
 /* MELHORIAS */
-.melhoria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
-.melhoria-card{background:#07090f;border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.06);}
-.melhoria-card .icon{font-size:28px;margin-bottom:10px;}
-.melhoria-card h3{font-size:14px;font-weight:700;margin-bottom:6px;}
-.melhoria-card p{font-size:12px;opacity:.55;line-height:1.6;}
-.melhoria-card .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;
-  font-weight:700;margin-bottom:8px;}
-.badge-facil{background:rgba(0,198,122,.15);color:var(--green);}
-.badge-medio{background:rgba(245,166,35,.15);color:#f5a623;}
-.badge-avancado{background:rgba(238,77,45,.15);color:var(--shopee);}
+.mel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.mel-card{background:var(--card2);border-radius:14px;padding:18px;border:1px solid var(--border);}
+.mel-icon{font-size:26px;margin-bottom:10px;}
+.mel-card h3{font-size:13px;font-weight:700;margin-bottom:5px;}
+.mel-card p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;margin-bottom:8px;}
+.badge-f{background:rgba(0,230,118,.15);color:var(--green);}
+.badge-m{background:rgba(255,214,0,.15);color:var(--gold);}
+.badge-a{background:rgba(238,77,45,.15);color:var(--shopee);}
 
-/* COMPARAÇÃO TABELA */
-.comp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px;}
-.comp-table th{padding:8px 10px;text-align:center;font-size:10px;opacity:.4;
-  text-transform:uppercase;background:rgba(0,0,0,.3);font-weight:400;}
-.comp-table th:first-child{text-align:left;}
-.comp-table td{padding:8px 10px;border-top:1px solid rgba(255,255,255,.04);text-align:center;}
-.comp-table td:first-child{text-align:left;opacity:.6;font-size:11px;}
-.best-cell{color:var(--green)!important;font-weight:700!important;}
-.worst-cell{color:#e03e3e!important;}
-
-/* FOOTER */
-footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.05);
-  font-size:12px;opacity:.3;margin-top:40px;}
+footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);
+  font-size:11px;color:rgba(255,255,255,.2);margin-top:40px;}
 
 @media(max-width:600px){
-  .bm-steps{grid-template-columns:1fr;}
-  .comp-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .prod-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
-<div class="bg"></div>
+<div class="bg-fx"></div>
 <div class="wrapper">
 
-  <!-- NAV -->
   <nav>
-    <div class="nav-brand"><span>🛍️</span> GLM Studio</div>
+    <div class="nav-brand">
+      <div class="nav-logo">🛍️</div>
+      <div class="nav-brand-txt">GLM <span>Studio</span></div>
+    </div>
     <div class="nav-links">
-      <a href="index.html">📱 Calculadora</a>
+      <a href="https://gui-89.github.io/calculadoraglm/" target="_blank">📱 Calculadora</a>
       <a href="#bookmarklet">🔖 Bookmarklet</a>
       <a href="#comparador">⚖️ Comparador</a>
-      <a href="#melhorias">💡 Melhorias</a>
     </div>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">✅ Funciona em qualquer navegador · Sem instalar nada</div>
-    <h1>GLM Analisador Shopee<br>em <em>qualquer lugar</em></h1>
-    <p>Bookmarklet que roda no Chrome, Firefox, Safari, Edge e no celular — e comparador manual integrado à sua Calculadora.</p>
+    <div class="hero-pill"><span></span> Funciona em qualquer navegador · Sem instalar nada</div>
+    <h1>GLM Analisador<br><span class="hl">Shopee Pro</span></h1>
+    <p>Bookmarklet com painel completo — concorrência, vendas, datas, badges BOM e filtros inteligentes. Chrome, Firefox, Safari, Edge e celular.</p>
   </div>
 
-  <!-- TABS -->
   <div class="tabs">
     <button class="tab active" onclick="setTab('bookmarklet',this)">🔖 Bookmarklet</button>
     <button class="tab" onclick="setTab('comparador',this)">⚖️ Comparador</button>
     <button class="tab" onclick="setTab('melhorias',this)">💡 Melhorias</button>
   </div>
 
-  <!-- ════════ TAB BOOKMARKLET ════════ -->
-  <div id="tab-bookmarklet" class="tab-content active" id="bookmarklet">
-
-    <div class="mobile-alert">
-      📱 No celular: adicione esta página aos favoritos primeiro, depois edite o endereço do favorito e cole o código do bookmarklet no lugar da URL.
-    </div>
-
-    <div class="bm-install">
-      <h3>🔖 Arraste para sua Barra de Favoritos</h3>
-      <p>Este botão contém o analisador completo. Arraste para a barra de favoritos do navegador.
-         Depois, ao abrir qualquer busca na Shopee, clique no favorito para ativar.</p>
-
-      <!-- BOTÃO DO BOOKMARKLET — href preenchido pelo JS -->
-      <a id="bm-link" class="bm-drag-area" href="#" onclick="return false;">
-        🛍️ GLM Analisador Shopee
-      </a>
-
-      <div class="bm-steps">
-        <div class="bm-step">
-          <div class="bm-step-num">1</div>
-          <h4>Mostre a barra de favoritos</h4>
-          <p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Barra de Favoritos</p>
-        </div>
-        <div class="bm-step">
-          <div class="bm-step-num">2</div>
-          <h4>Arraste o botão laranja</h4>
-          <p>Segure e arraste o botão "🛍️ GLM Analisador Shopee" para a barra de favoritos do seu navegador.</p>
-        </div>
-        <div class="bm-step">
-          <div class="bm-step-num">3</div>
-          <h4>Abra a Shopee</h4>
-          <p>Acesse shopee.com.br, pesquise qualquer produto e clique no favorito salvo.</p>
-        </div>
-        <div class="bm-step">
-          <div class="bm-step-num">4</div>
-          <h4>Analyze! ✅</h4>
-          <p>O painel GLM abre sobre a Shopee com badges, scores e filtros. Clique novamente para fechar.</p>
-        </div>
+  <!-- ═══ BOOKMARKLET ═══ -->
+  <div id="tab-bookmarklet" class="tab-content active">
+    <div class="bm-hero">
+      <h2>🔖 Arraste para sua Barra de Favoritos</h2>
+      <p>Clique e arraste o botão abaixo para a barra de favoritos. Depois, em qualquer busca na Shopee, clique para ativar o painel GLM com todas as métricas.</p>
+      <a id="bm-link" class="bm-btn" href="#" onclick="return false;" draggable="true">🛍️ GLM Analisador Shopee</a>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><h4>Mostre a barra</h4><p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Favoritos</p></div>
+        <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste "🛍️ GLM Analisador Shopee" para a barra de favoritos.</p></div>
+        <div class="step"><div class="step-n">3</div><h4>Abra a Shopee</h4><p>Acesse shopee.com.br e pesquise qualquer produto.</p></div>
+        <div class="step"><div class="step-n">4</div><h4>Clique e analise!</h4><p>O painel GLM abre com concorrência, vendas, datas e badges BOM nos cards.</p></div>
       </div>
     </div>
 
-    <!-- Diferenças: Extensão vs Bookmarklet -->
     <div class="card">
-      <div class="sec-label">📊 Extensão Chrome vs Bookmarklet</div>
+      <div class="sec-lbl">📊 Extensão Chrome vs Bookmarklet</div>
       <div style="overflow-x:auto">
-        <table class="comp-table">
-          <thead>
-            <tr>
-              <th>Recurso</th>
-              <th>Extensão Chrome</th>
-              <th>Bookmarklet</th>
-            </tr>
-          </thead>
+        <table class="cmp-table">
+          <thead><tr><th>Recurso</th><th>Extensão</th><th>Bookmarklet</th></tr></thead>
           <tbody>
-            <tr><td>Chrome</td><td class="best-cell">✅ Automático</td><td class="best-cell">✅ Manual</td></tr>
-            <tr><td>Firefox</td><td>❌</td><td class="best-cell">✅</td></tr>
-            <tr><td>Safari (Mac/iPhone)</td><td>❌</td><td class="best-cell">✅</td></tr>
-            <tr><td>Edge / Opera</td><td>✅</td><td class="best-cell">✅</td></tr>
-            <tr><td>Celular Android</td><td>❌</td><td class="best-cell">✅ Chrome mobile</td></tr>
-            <tr><td>iPhone / iPad</td><td>❌</td><td class="best-cell">✅ Safari</td></tr>
-            <tr><td>Ativa automaticamente</td><td class="best-cell">✅</td><td>Manual (1 clique)</td></tr>
-            <tr><td>Dados da API Shopee</td><td class="best-cell">✅ Intercepta fetch</td><td>DOM (fallback)</td></tr>
-            <tr><td>Instalação</td><td>4 passos</td><td class="best-cell">Arrastar e soltar</td></tr>
+            <tr><td>Chrome / Edge</td><td class="best-cell">✅ Auto</td><td class="best-cell">✅ Manual</td></tr>
+            <tr><td>Firefox</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Safari (Mac/iPhone)</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Android (Chrome)</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Painel de concorrência</td><td class="best-cell">✅</td><td class="best-cell">✅</td></tr>
+            <tr><td>Badges nos cards</td><td class="best-cell">✅</td><td class="best-cell">✅</td></tr>
+            <tr><td>Instalação</td><td>4 passos + Chrome</td><td class="best-cell">Arrastar e soltar</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- ════════ TAB COMPARADOR ════════ -->
-  <div id="tab-comparador" class="tab-content" id="comparador">
+  <!-- ═══ COMPARADOR ═══ -->
+  <div id="tab-comparador" class="tab-content">
     <div class="card">
-      <div class="sec-label">⚖️ Comparador Manual de Produtos</div>
-      <p style="font-size:13px;opacity:.55;margin-bottom:20px;line-height:1.6;">
-        Pesquise produtos na Shopee, copie os dados e compare lado a lado aqui.
-        Ideal para análise aprofundada antes de decidir o que vender.
+      <div class="sec-lbl">⚖️ Comparador Manual de Produtos</div>
+      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:4px;">
+        Cole os dados de produtos da Shopee e compare lado a lado.
       </p>
-
-      <div class="comp-grid" id="prodGrid">
-        <!-- Cards de produto serão adicionados aqui -->
-        <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">
-          ➕ Adicionar Produto
-        </div>
+      <div class="prod-grid" id="prodGrid">
+        <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">➕ Adicionar Produto</div>
       </div>
-
       <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-        <button class="btn-add" style="flex:1;max-width:200px;" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
-        <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar Tudo</button>
+        <button class="btn-primary" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
+        <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar</button>
         <button class="btn-ghost" onclick="exportarCSV()">📊 Exportar CSV</button>
       </div>
     </div>
-
-    <!-- Resultados -->
     <div id="resultados" style="display:none;">
       <div class="card">
-        <div class="sec-label">🏆 Análise Comparativa</div>
-        <div class="comp-grid" id="resultGrid"></div>
-        <div style="overflow-x:auto;margin-top:20px;">
-          <table class="comp-table" id="resultTable"></table>
-        </div>
+        <div class="sec-lbl">🏆 Análise Comparativa</div>
+        <div class="prod-grid" id="resultGrid"></div>
+        <div style="overflow-x:auto;margin-top:18px;"><table class="cmp-table" id="resultTable"></table></div>
       </div>
     </div>
   </div>
 
-  <!-- ════════ TAB MELHORIAS ════════ -->
-  <div id="tab-melhorias" class="tab-content" id="melhorias">
+  <!-- ═══ MELHORIAS ═══ -->
+  <div id="tab-melhorias" class="tab-content">
     <div class="card">
-      <div class="sec-label">💡 Sugestões de Melhoria para o GLM Analisador</div>
-      <p style="font-size:13px;opacity:.5;margin-bottom:24px;line-height:1.6;">
-        Funcionalidades que podem elevar significativamente sua capacidade de encontrar produtos para vender:
-      </p>
-      <div class="melhoria-grid">
-
-        <div class="melhoria-card">
-          <div class="badge badge-facil">✅ Fácil</div>
-          <div class="icon">📊</div>
-          <h3>Histórico de Buscas</h3>
-          <p>Salvar automaticamente os produtos analisados com data, para acompanhar se um produto está crescendo ou caindo em vendas ao longo do tempo.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-facil">✅ Fácil</div>
-          <div class="icon">🔔</div>
-          <h3>Alerta de Preço</h3>
-          <p>Definir um preço-alvo para um produto e receber notificação (via popup) quando o preço cair abaixo do valor definido.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-medio">⚡ Médio</div>
-          <div class="icon">📈</div>
-          <h3>Gráfico de Tendência</h3>
-          <p>Comparar o score e vendas de produtos ao longo de diferentes sessões para identificar produtos em ascensão antes da concorrência perceber.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-medio">⚡ Médio</div>
-          <div class="icon">🎯</div>
-          <h3>Filtro por Margem de Lucro</h3>
-          <p>Integrar com sua Calculadora: inserir seu custo de produção e filtrar apenas produtos onde a margem de lucro seria viável para você.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-medio">⚡ Médio</div>
-          <div class="icon">🗺️</div>
-          <h3>Mapa de Oportunidades</h3>
-          <p>Identificar subcategorias com alta demanda e baixa oferta de vendedores bem avaliados — seu ponto de entrada ideal no mercado.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-avancado">🚀 Avançado</div>
-          <div class="icon">🤖</div>
-          <h3>Score com IA</h3>
-          <p>Usar a API do Claude para analisar as fotos, título e descrição dos produtos e sugerir melhorias para o seu próprio anúncio baseado nos mais vendidos.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-avancado">🚀 Avançado</div>
-          <div class="icon">📦</div>
-          <h3>Integração com Estoque</h3>
-          <p>Cruzar produtos analisados na Shopee com seu catálogo na Calculadora GLM, mostrando quais produtos você já fabrica e qual é sua margem real.</p>
-        </div>
-
-        <div class="melhoria-card">
-          <div class="badge badge-avancado">🚀 Avançado</div>
-          <div class="icon">🔄</div>
-          <h3>Análise Automática Agendada</h3>
-          <p>Executar análises em horários programados e enviar resumo diário por WhatsApp/email com os produtos mais quentes do dia na sua categoria.</p>
-        </div>
-
+      <div class="sec-lbl">💡 Sugestões de Melhoria</div>
+      <div class="mel-grid">
+        <div class="mel-card"><div class="badge badge-f">✅ Fácil</div><div class="mel-icon">📊</div><h3>Histórico de Buscas</h3><p>Salvar produtos analisados com data para acompanhar crescimento ao longo do tempo.</p></div>
+        <div class="mel-card"><div class="badge badge-f">✅ Fácil</div><div class="mel-icon">🔔</div><h3>Alerta de Preço</h3><p>Definir preço-alvo e receber notificação quando o produto cair abaixo do valor.</p></div>
+        <div class="mel-card"><div class="badge badge-m">⚡ Médio</div><div class="mel-icon">📈</div><h3>Gráfico de Tendência</h3><p>Comparar score e vendas ao longo de sessões para identificar produtos em ascensão.</p></div>
+        <div class="mel-card"><div class="badge badge-m">⚡ Médio</div><div class="mel-icon">🎯</div><h3>Filtro por Margem</h3><p>Integrar com a Calculadora: inserir custo e filtrar produtos com margem viável.</p></div>
+        <div class="mel-card"><div class="badge badge-a">🚀 Avançado</div><div class="mel-icon">🤖</div><h3>Score com IA</h3><p>Usar API do Claude para analisar fotos, título e sugerir melhorias no anúncio.</p></div>
+        <div class="mel-card"><div class="badge badge-a">🚀 Avançado</div><div class="mel-icon">📦</div><h3>Integração Estoque</h3><p>Cruzar Shopee com catálogo da Calculadora GLM e mostrar margem real.</p></div>
       </div>
-
-      <div style="margin-top:24px;padding:16px;background:rgba(0,198,122,.06);border:1px solid rgba(0,198,122,.2);border-radius:12px;">
-        <p style="font-size:13px;color:#86efac;line-height:1.6;">
-          💬 <b>Qual melhoria você quer implementar primeiro?</b> Me diga e eu crio o código na hora!
-          As marcadas como "Fácil" posso implementar diretamente na extensão atual sem grandes mudanças.
-        </p>
+      <div style="margin-top:20px;padding:16px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:12px;">
+        <p style="font-size:13px;color:#86efac;line-height:1.6;">💬 <b>Qual melhoria implementar primeiro?</b> As marcadas como "Fácil" posso implementar na extensão atual sem grandes mudanças!</p>
       </div>
     </div>
   </div>
@@ -404,44 +297,620 @@ footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,.0
 </div>
 
 <script>
-/* ════════ TABS ════════ */
-function setTab(id, btn){
+/* ═══ TABS ═══ */
+function setTab(id,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
 }
 
-/* ════════ BOOKMARKLET — carrega e injeta o href ════════ */
-/* O bookmarklet é carregado do arquivo .js inline abaixo */
+/* ═══════════════════════════════════════════════════════
+   BOOKMARKLET — versão completa com layout "Imprimindo Lucre"
+   ═══════════════════════════════════════════════════════ */
 (function(){
-  var lnk=document.getElementById('bm-link');
-  if(lnk){
-    lnk.href='javascript:(function(){ \'use strict\';var GLMID=\'glm-shopee-pro\'; if(document.getElementById(GLMID)){ document.getElementById(GLMID).remove();var css=document.getElementById(GLMID+\'-css\');if(css)css.remove();document.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});return;} var s=document.createElement(\'style\');s.id=GLMID+\'-css\';s.textContent=[ \'#\'+GLMID+\'{position:fixed;top:58px;right:8px;width:268px;max-height:90vh;\', \'background:#0a0b12;border:1px solid rgba(238,77,45,.45);border-radius:14px;\', \'box-shadow:0 20px 70px rgba(0,0,0,.9);z-index:2147483647;\', \'font-family:-apple-system,"Segoe UI",sans-serif;color:#fff;overflow:hidden;}\', \'#\'+GLMID+\' .ph{display:flex;align-items:center;justify-content:space-between;\', \'padding:10px 12px;background:linear-gradient(90deg,rgba(238,77,45,.22),rgba(77,139,255,.07));\', \'border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}\', \'#\'+GLMID+\' .pht{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;}\', \'#\'+GLMID+\' .hb{background:none;border:1px solid rgba(255,255,255,.15);color:#999;\', \'border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:11px;\', \'display:flex;align-items:center;justify-content:center;}\', \'#\'+GLMID+\' .bd{max-height:83vh;overflow-y:auto;scrollbar-width:thin;\', \'scrollbar-color:rgba(238,77,45,.3) transparent;}\', \'#\'+GLMID+\' .sc_{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05);}\', \'#\'+GLMID+\' .sl_{font-size:9px;opacity:.38;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px;}\', \'#\'+GLMID+\' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}\', \'#\'+GLMID+\' .bx{background:rgba(255,255,255,.04);border-radius:8px;padding:7px 8px;text-align:center;}\', \'#\'+GLMID+\' .bx b{display:block;font-size:17px;font-weight:800;color:#fff;line-height:1.2;}\', \'#\'+GLMID+\' .bx span{font-size:9px;opacity:.4;}\', \'#\'+GLMID+\' .vr{display:flex;justify-content:space-between;align-items:center;\', \'background:rgba(255,255,255,.04);border-radius:7px;padding:7px 10px;margin-bottom:5px;}\', \'#\'+GLMID+\' .vr span{font-size:11px;opacity:.5;}\', \'#\'+GLMID+\' .vr b{font-size:15px;font-weight:700;}\', \'#\'+GLMID+\' .tr{display:flex;align-items:center;gap:7px;padding:5px 0;\', \'border-bottom:1px solid rgba(255,255,255,.04);}\', \'#\'+GLMID+\' .tr:last-child{border-bottom:none;}\', \'#\'+GLMID+\' .ti{flex:1;min-width:0;}\', \'#\'+GLMID+\' .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}\', \'#\'+GLMID+\' .tm{font-size:9px;opacity:.4;margin-top:1px;}\', \'#\'+GLMID+\' .ci{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;\', \'justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;border:1.5px solid;}\', \'#\'+GLMID+\' .ci.ex{border-color:#00c67a;color:#00c67a;background:rgba(0,198,122,.1);}\', \'#\'+GLMID+\' .ci.gd{border-color:#4d8bff;color:#4d8bff;background:rgba(77,139,255,.1);}\', \'#\'+GLMID+\' .ci.md{border-color:#f5a623;color:#f5a623;background:rgba(245,166,35,.1);}\', \'#\'+GLMID+\' .ci.lw{border-color:#e03e3e;color:#e03e3e;background:rgba(224,62,62,.1);}\', \'#\'+GLMID+\' .dc{display:flex;gap:8px;margin-bottom:7px;padding:7px;\', \'background:rgba(255,255,255,.03);border-radius:7px;align-items:flex-start;}\', \'#\'+GLMID+\' .dc span{font-size:14px;flex-shrink:0;}\', \'#\'+GLMID+\' .dc p{font-size:11px;color:#ccc;line-height:1.5;margin:0;}\', \'#\'+GLMID+\' .dc b{color:#fff;}\', \'#\'+GLMID+\' .ab{width:100%;padding:11px;border:none;border-radius:9px;cursor:pointer;\', \'font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f05d40);color:#fff;margin-bottom:7px;}\', \'#\'+GLMID+\' .rb{width:100%;padding:8px;border:1px solid rgba(77,139,255,.3);border-radius:9px;\', \'cursor:pointer;font-size:12px;font-weight:600;background:rgba(77,139,255,.08);color:#7eb3ff;}\', \'#\'+GLMID+\' .pr{background:rgba(0,198,122,.08);border:1px solid rgba(0,198,122,.25);\', \'border-radius:9px;padding:12px;text-align:center;margin-bottom:9px;}\', \'#\'+GLMID+\' .pr b{display:block;font-size:26px;font-weight:900;color:#00c67a;line-height:1.2;}\', \'#\'+GLMID+\' .pr span{font-size:12px;color:#86efac;opacity:.8;}\', \'#\'+GLMID+\' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);\', \'border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#fff;font-size:12px;\', \'outline:none;cursor:pointer;margin-bottom:0;}\', \'#\'+GLMID+\' .sel option{background:#0a0b12;}\', \'#\'+GLMID+\' .gn{color:#00c67a!important;}\', \'#\'+GLMID+\' .go{color:#f5a623!important;}\', \'#\'+GLMID+\' .mt{font-size:11px;opacity:.28;text-align:center;padding:10px;}\',  \'.glm-sp-badge{display:block!important;width:100%!important;\', \'font-family:-apple-system,sans-serif!important;margin:3px 0!important;}\', \'.glm-sp-row{display:flex!important;align-items:center!important;gap:4px!important;\', \'padding:4px 7px!important;border-radius:5px!important;border-left:3px solid!important;\', \'background:rgba(6,7,14,.97)!important;min-height:26px!important;overflow:hidden!important;}\', \'.glm-sp-row.ex{border-color:#00c67a!important;}\', \'.glm-sp-row.gd{border-color:#4d8bff!important;}\', \'.glm-sp-row.md{border-color:#f5a623!important;}\', \'.glm-sp-row.lw{border-color:#e03e3e!important;}\', \'.glm-sp-num{font-size:15px!important;font-weight:900!important;flex-shrink:0!important;min-width:22px!important;text-align:center!important;}\', \'.glm-sp-num.ex{color:#00c67a!important;} .glm-sp-num.gd{color:#4d8bff!important;}\', \'.glm-sp-num.md{color:#f5a623!important;} .glm-sp-num.lw{color:#e03e3e!important;}\', \'.glm-sp-lbl{font-size:9px!important;color:rgba(255,255,255,.5)!important;flex-shrink:0!important;}\', \'.glm-sp-its{display:flex!important;gap:5px!important;flex:1!important;align-items:center!important;}\', \'.glm-sp-it{display:flex!important;flex-direction:column!important;align-items:center!important;}\', \'.glm-sp-il{font-size:7px!important;color:rgba(255,255,255,.3)!important;}\', \'.glm-sp-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}\', \'.glm-sp-iv.gn{color:#00c67a!important;} .glm-sp-iv.go{color:#f5a623!important;} .glm-sp-iv.gr{color:#ee4d2d!important;}\', \'.glm-sp-tags{display:flex!important;gap:3px!important;margin-left:auto!important;flex-shrink:0!important;}\', \'.glm-sp-bom{background:#00c67a!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-fr{background:rgba(77,139,255,.22)!important;color:#7eb3ff!important;font-size:7px!important;font-weight:700!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-op{font-size:7px!important;font-weight:700!important;padding:1px 4px!important;border-radius:2px!important;}\', \'.glm-sp-op.oa{background:rgba(0,198,122,.22)!important;color:#00c67a!important;}\', \'.glm-sp-op.om{background:rgba(245,166,35,.22)!important;color:#f5a623!important;}\' ].join(\'\');document.head.appendChild(s); var DB={};function scCls(n){return n>=70?\'ex\':n>=50?\'gd\':n>=30?\'md\':\'lw\';} function scTxt(n){return n>=70?\'Excelente\':n>=50?\'Bom\':n>=30?\'Médio\':\'Fraco\';} function fN(n){if(!n)return\'0\';return n>=1e6?(n/1e6).toFixed(1)+\'M\':n>=1000?(n/1000).toFixed(1).replace(\'.0\',\'\')+\'k\':String(n);} function fR(n){return\'R$\\u00A0\'+Number(n||0).toLocaleString(\'pt-BR\',{minimumFractionDigits:2});} function $i(id){return document.getElementById(id);}   function encontrarCards(){ var visitados=[];var cards=[]; var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{ acceptNode:function(n){ return /R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}},false);var node;while((node=walker.nextNode())){ var el=node.parentElement; for(var i=0;i<8;i++){ if(!el||el===document.body)break;var w=el.offsetWidth,h=el.offsetHeight; if(w>=130&&w<=420&&h>=220&&h<=750&&el.querySelector(\'img\')){  if(visitados.indexOf(el)===-1){ visitados.push(el); var isChild=cards.some(function(c){return c!==el&&c.contains(el);});var isParent=cards.some(function(c){return el!==c&&el.contains(c);});if(isParent){  break;}if(!isChild){cards.push(el);}}break;}el=el.parentElement;}}  return cards.filter(function(c){ return!cards.some(function(other){return other!==c&&c.contains(other);});});} function extrair(card){ var txt=(card.innerText||card.textContent||\'\').replace(/\\s+/g,\' \'); var re=/R\\$\\s*([\\d.]+,\\d{2})/g,m,precos=[];while((m=re.exec(txt))!==null){ var v=parseFloat(m[1].replace(/\\./g,\'\').replace(\',\',\'.\'));if(v>0&&v<200000)precos.push(v);}var preco=precos.length?Math.min.apply(null,precos):0;var orig=precos.length>1?Math.max.apply(null,precos):0;var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0; var dm=txt.match(/-\\s*(\\d{1,2})\\s*%/)||txt.match(/(\\d{1,2})\\s*%\\s*off/i);if(dm){var dv=parseInt(dm[1]);if(dv>0&&dv<100)desc=dv;}  var vendas=0;var vm=txt.match(/(\\d+(?:[.,]\\d+)?)\\s*mil\\+?\\s*vendidos?/i);var vk=txt.match(/(\\d+(?:[.,]\\d+)?)\\s*[kK]\\+?\\s*(?:vendas?|vendidos?)/i);var vn=txt.match(/(\\d{1,6})\\+?\\s*(?:vendas?|vendidos?)/i);if(vm)vendas=Math.round(parseFloat(vm[1].replace(\',\',\'.\'))*1000);else if(vk)vendas=Math.round(parseFloat(vk[1].replace(\',\',\'.\'))*1000);else if(vn){var vv=parseInt(vn[1]);if(vv<999999)vendas=vv;}  var rm=txt.match(/[★⭐]\\s*(\\d+\\.\\d)/)||txt.match(/\\b([4-5]\\.\\d)\\b/);var rating=rm?parseFloat(rm[1]):0; var freeShip=/frete\\s*gr[áa]ti[sz]|freeship/i.test(txt); var nivel=/shopee\\s*mall/i.test(txt)?\'Mall\':/preferido/i.test(txt)?\'Pref\':\'\'; var titulo=\'\';var imgs=card.querySelectorAll(\'img[alt]\');for(var ii=0;ii<imgs.length;ii++){if(imgs[ii].alt&&imgs[ii].alt.length>5){titulo=imgs[ii].alt;break;}} if(!titulo){  var spans=card.querySelectorAll(\'span,div,a\');var best=0;for(var jj=0;jj<spans.length;jj++){ var t2=(spans[jj].children.length===0&&spans[jj].textContent||\'\').trim();if(t2.length>best&&t2.length<200&&!/R\\$/.test(t2)&&!/\\d+%/.test(t2)){ best=t2.length;titulo=t2;}}}return{preco:preco,orig:orig,desc:desc,v30:vendas,vtot:vendas, rating:rating,numAval:0,freeShip:freeShip,nivel:nivel,dias:-1,titulo:titulo};} function calcScore(d){ var s=0,v=d.v30,vt=d.vtot,r=d.rating,dc=d.desc;s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;s+=vt>=5000?15:vt>=2000?12:vt>=500?8:vt>=100?4:vt>0?2:0;s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;if(d.freeShip)s+=15;s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;if(d.nivel===\'Mall\')s+=5;else if(d.nivel.indexOf(\'Pref\')>-1)s+=3;return Math.min(100,s);}function calcOport(d){ var pts=0;if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;if(d.numAval<50)pts+=2;if(d.numAval<20)pts+=1;if(d.freeShip)pts+=1;if(d.preco<=80)pts+=1;if(d.rating>=4.5)pts+=1;if(pts>=8)return{nivel:\'ALTA\',emoji:\'🚀\',cls:\'oa\'};if(pts>=5)return{nivel:\'MÉDIA\',emoji:\'📈\',cls:\'om\'};return null;} function encontrarInsercao(card){  var walker2=document.createTreeWalker(card,NodeFilter.SHOW_TEXT,{ acceptNode:function(n){return /R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;} },false);var n2=walker2.nextNode();if(!n2)return null;var el=n2.parentElement; for(var k=0;k<6;k++){ if(!el||el===card)break;if(el.offsetWidth>card.offsetWidth*0.35&&!el.querySelector(\'img\')&&el.previousElementSibling)return el;el=el.parentElement;} return card.querySelector(\'[class*="price"],[class*="Price"],[class*="preco"]\')||null;} function injetarBadge(card,d){ card.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});var cls=scCls(d.score),op=d.oport;var its=\'\';if(d.v30>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">30d</span><b class="glm-sp-iv gn">\'+fN(d.v30)+\'</b></span>\';else if(d.vtot>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">Total</span><b class="glm-sp-iv gn">\'+fN(d.vtot)+\'</b></span>\';if(d.rating>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">⭐</span><b class="glm-sp-iv go">\'+d.rating.toFixed(1)+\'</b></span>\';if(d.desc>0)its+=\'<span class="glm-sp-it"><span class="glm-sp-il">Off</span><b class="glm-sp-iv gr">-\'+d.desc+\'%</b></span>\';var tgs=\'\';if(d.score>=60)tgs+=\'<span class="glm-sp-bom">BOM</span>\';if(d.freeShip)tgs+=\'<span class="glm-sp-fr">✓Fr</span>\';if(op)tgs+=\'<span class="glm-sp-op \'+op.cls+\'">\'+op.emoji+op.nivel+\'</span>\';var div=document.createElement(\'div\');div.className=\'glm-sp-badge\';div.innerHTML=\'<div class="glm-sp-row \'+cls+\'"><span class="glm-sp-num \'+cls+\'">\'+d.score+\'</span>\' +\'<span class="glm-sp-lbl">\'+scTxt(d.score)+\'</span>\' +\'<span class="glm-sp-its">\'+its+\'</span>\' +\'<span class="glm-sp-tags">\'+tgs+\'</span></div>\';var alvo=encontrarInsercao(card);if(alvo&&alvo.parentElement){ alvo.parentElement.insertBefore(div,alvo);}else{  var ch=card.children;if(ch.length>0)card.insertBefore(div,ch[ch.length-1]);else card.appendChild(div);} var fixEls=[card].concat(Array.prototype.slice.call(card.querySelectorAll(\'*\')));fixEls.forEach(function(e){ try{ var cs=window.getComputedStyle(e);if(cs.overflow===\'hidden\'&&e!==card)e.style.overflow=\'visible\';if(cs.height&&cs.height!==\'auto\'&&parseInt(cs.height)>0&&e.tagName!==\'IMG\')e.style.minHeight=cs.height;}catch(err){} });card.style.height=\'auto\';} function analisar(){ var cards=encontrarCards();var novos=0;cards.forEach(function(card){ if(card.querySelector(\'.glm-sp-badge\'))return;var d=extrair(card);if(!d.preco&&!d.v30&&!d.rating)return;d.score=calcScore(d);d.oport=calcOport(d);var uid=\'g\'+Math.random().toString(36).slice(2,10);card._glmUid=uid;DB[uid]=d;injetarBadge(card,d);novos++;});var total=Object.keys(DB).length;if($i(\'glm-cnt\'))$i(\'glm-cnt\').textContent=total;atualizarPainel();return total;} function atualizarPainel(){ var todos=Object.keys(DB).map(function(k){return DB[k];});if(!todos.length)return;var precos=todos.map(function(d){return d.preco;}).filter(Boolean);var pm=precos.length?precos.reduce(function(a,b){return a+b;})/precos.length:0;function set(id,v){var e=$i(id);if(e)e.textContent=v;} set(\'sp-tot\',todos.length);set(\'sp-ot\',todos.filter(function(d){return d.score>=70;}).length);set(\'sp-bn\',todos.filter(function(d){return d.score>=50&&d.score<70;}).length);set(\'sp-pm\',pm>0?fR(pm):\'—\');set(\'sp-vt\',fN(todos.reduce(function(a,d){return a+(d.vtot||0);},0)));set(\'sp-v3\',fN(todos.reduce(function(a,d){return a+(d.v30||0);},0)));set(\'sp-dc\',todos.filter(function(d){return d.desc>0;}).length);set(\'sp-fr\',todos.filter(function(d){return d.freeShip;}).length);var rs=todos.filter(function(d){return d.rating>0;});set(\'sp-rt\',rs.length?(rs.reduce(function(a,d){return a+d.rating;},0)/rs.length).toFixed(1):\'—\'); var top=[].concat(todos).sort(function(a,b){return b.score-a.score;}).slice(0,3);var te=$i(\'sp-top\');if(te)te.innerHTML=top.map(function(d,i){ var medals=[\'🥇\',\'🥈\',\'🥉\'];return\'<div class="tr"><span>\'+medals[i]+\'</span><div class="ti">\' +\'<div class="tn">\'+(d.titulo||\'Produto\').slice(0,28)+\'…</div>\' +\'<div class="tm">\'+fR(d.preco)+(d.v30>0?\' · \'+fN(d.v30)+\'/30d\':\'\')+\'</div>\' +\'</div><div class="ci \'+scCls(d.score)+\'">\'+d.score+\'</div></div>\';}).join(\'\')||\'<div class="mt">—</div>\'; var de=$i(\'sp-dica\');if(de){ var avg30=todos.reduce(function(a,d){return a+(d.v30||0);},0)/(todos.length||1);var comFr=todos.filter(function(d){return d.freeShip;}).length;var avgPr=pm;var dicas=[];if(avg30>30)dicas.push({e:\'🔥\',t:\'Média de <b>\'+fN(Math.round(avg30))+\'</b> vendas/30d. Mercado aquecido!\'});if(comFr>todos.length*0.4)dicas.push({e:\'✅\',t:\'<b>\'+Math.round(comFr/todos.length*100)+\'%</b> têm frete grátis — essencial para competir.\'});if(avgPr&&avgPr<60)dicas.push({e:\'💰\',t:\'Ticket médio baixo (<b>\'+fR(avgPr)+\'</b>). Volume é a estratégia.\'});else if(avgPr)dicas.push({e:\'💎\',t:\'Ticket médio <b>\'+fR(avgPr)+\'</b>. Fotos e vídeo de qualidade são diferenciais.\'});de.innerHTML=dicas.slice(0,2).map(function(d){ return\'<div class="dc"><span>\'+d.e+\'</span><p>\'+d.t+\'</p></div>\';}).join(\'\')||\'<div class="mt">Analisando...</div>\';}}  var panel=document.createElement(\'div\');panel.id=GLMID;panel.innerHTML= \'<div class="ph" id="sp-drag"><div class="pht"><span>🛍️</span><b>GLM Analisador Pro</b></div>\' +\'<div style="display:flex;gap:5px">\' +\'<button class="hb" id="sp-min">—</button>\' +\'<button class="hb" onclick="(function(){document.getElementById(\\\'\'+GLMID+\'\\\').remove();document.getElementById(\\\'\'+GLMID+\'-css\\\').remove();document.querySelectorAll(\\\'.glm-sp-badge\\\').forEach(function(b){b.remove();});})()">✕</button>\' +\'</div></div>\' +\'<div class="bd" id="sp-body">\' +\'<div class="sc_">\' +\'<div class="pr"><b id="glm-cnt">0</b><span>produtos analisados</span></div>\' +\'<button class="ab" id="sp-btn">🔍 Analisar Produtos</button>\' +\'<button class="rb" id="sp-re">🔄 Re-analisar (limpar e refazer)</button>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">📊 RESUMO</div><div class="g2">\' +\'<div class="bx"><b id="sp-tot">—</b><span>Analisados</span></div>\' +\'<div class="bx"><b id="sp-ot" class="gn">—</b><span>Ótimos (70+)</span></div>\' +\'<div class="bx"><b id="sp-bn" class="go">—</b><span>Bons (50+)</span></div>\' +\'<div class="bx"><b id="sp-pm">—</b><span>Preço médio</span></div>\' +\'</div></div>\' +\'<div class="sc_"><div class="sl_">🛒 VENDAS</div>\' +\'<div class="vr"><span>Total unidades</span><b id="sp-vt">—</b></div>\' +\'<div class="vr"><span>📅 Últimos 30 dias</span><b id="sp-v3" class="gn">—</b></div>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">ℹ️ OUTRAS INFORMAÇÕES</div><div class="g2">\' +\'<div class="bx"><b id="sp-dc">—</b><span>Com desconto</span></div>\' +\'<div class="bx"><b id="sp-fr">—</b><span>Frete grátis</span></div>\' +\'<div class="bx" style="grid-column:1/3"><b id="sp-rt">—</b><span>⭐ Nota média</span></div>\' +\'</div></div>\' +\'<div class="sc_"><div class="sl_">🔽 ORDENAR</div>\' +\'<select class="sel" id="sp-ord">\' +\'<option value="n">Padrão (Shopee)</option>\' +\'<option value="s">⭐ Score GLM</option>\' +\'<option value="v">🔥 Mais Vendidos (30d)</option>\' +\'<option value="pa">💰 Menor Preço</option>\' +\'<option value="pd">💎 Maior Preço</option>\' +\'<option value="dc">🏷️ Maior Desconto</option>\' +\'</select>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">🏆 TOP DESTA BUSCA</div>\' +\'<div id="sp-top"><div class="mt">Clique em Analisar</div></div>\' +\'</div>\' +\'<div class="sc_"><div class="sl_">💡 DICAS</div>\' +\'<div id="sp-dica"><div class="mt">Analisando...</div></div>\' +\'</div>\' +\'</div>\';document.body.appendChild(panel); $i(\'sp-min\').onclick=function(){ var b=$i(\'sp-body\');b.style.display=b.style.display===\'none\'?\'\':\'none\';};$i(\'sp-btn\').onclick=function(){analisar();};$i(\'sp-re\').onclick=function(){ DB={};document.querySelectorAll(\'.glm-sp-badge\').forEach(function(b){b.remove();});setTimeout(analisar,200);};$i(\'sp-ord\').onchange=function(){ var t=this.value;var cards=encontrarCards();if(!cards.length)return;var par=cards[0].parentElement;if(!par)return;cards.sort(function(a,b){ var da=(a._glmUid&&DB[a._glmUid])||{};var db=(b._glmUid&&DB[b._glmUid])||{};if(t===\'s\')return(db.score||0)-(da.score||0);if(t===\'v\')return(db.v30||0)-(da.v30||0);if(t===\'pa\')return(da.preco||9999)-(db.preco||9999);if(t===\'pd\')return(db.preco||0)-(da.preco||0);if(t===\'dc\')return(db.desc||0)-(da.desc||0);return 0;});cards.forEach(function(c){par.appendChild(c);});}; var dh=$i(\'sp-drag\'),sx2,sy2,sl2,st2;dh.addEventListener(\'mousedown\',function(ev){ sx2=ev.clientX;sy2=ev.clientY;sl2=panel.offsetLeft;st2=panel.offsetTop;function mv(ev2){panel.style.left=(sl2+ev2.clientX-sx2)+\'px\';panel.style.top=(st2+ev2.clientY-sy2)+\'px\';panel.style.right=\'auto\';} function up(){document.removeEventListener(\'mousemove\',mv);document.removeEventListener(\'mouseup\',up);} document.addEventListener(\'mousemove\',mv);document.addEventListener(\'mouseup\',up);}); setTimeout(analisar,600);setTimeout(analisar,2200);})();';
-    lnk.onclick=null;
-    lnk.setAttribute('draggable','true');
+  var lnk = document.getElementById('bm-link');
+  if(!lnk) return;
+
+  /* Código do bookmarklet como string */
+  var code = `(function(){
+'use strict';
+var ID='glm-pro-v2';
+/* Toggle */
+if(document.getElementById(ID)){
+  document.getElementById(ID).remove();
+  var css2=document.getElementById(ID+'-css');if(css2)css2.remove();
+  document.querySelectorAll('.glm-badge').forEach(function(b){b.remove();});
+  return;
+}
+/* ─── ESTILOS ─── */
+var s=document.createElement('style');
+s.id=ID+'-css';
+s.textContent=
+  '#'+ID+'{position:fixed;top:60px;right:10px;width:280px;max-height:92vh;'+
+  'background:#0f1410;border:1px solid rgba(0,230,118,.3);border-radius:16px;'+
+  'box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;'+
+  'font-family:-apple-system,"Segoe UI",sans-serif;color:#fff;overflow:hidden;}'+
+  '#'+ID+' .hd{display:flex;align-items:center;justify-content:space-between;'+
+  'padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.12),rgba(238,77,45,.06));'+
+  'border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}'+
+  '#'+ID+' .hd-l{display:flex;align-items:center;gap:8px;}'+
+  '#'+ID+' .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);'+
+  'display:flex;align-items:center;justify-content:center;font-size:13px;}'+
+  '#'+ID+' .hd-ttl{font-size:13px;font-weight:700;letter-spacing:-.2px;}'+
+  '#'+ID+' .hd-ver{font-size:9px;color:rgba(255,255,255,.3);margin-top:1px;}'+
+  '#'+ID+' .hd-r{display:flex;gap:5px;}'+
+  '#'+ID+' .hb{background:none;border:1px solid rgba(255,255,255,.12);color:#888;'+
+  'border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:11px;line-height:1;padding:0;}'+
+  '#'+ID+' .body{max-height:calc(92vh - 50px);overflow-y:auto;'+
+  'scrollbar-width:thin;scrollbar-color:rgba(0,230,118,.25) transparent;}'+
+  /* DICA BANNER */
+  '#'+ID+' .dica{background:rgba(0,230,118,.08);border-bottom:1px solid rgba(0,230,118,.15);'+
+  'padding:9px 12px;display:flex;gap:8px;align-items:flex-start;}'+
+  '#'+ID+' .dica .di{font-size:13px;flex-shrink:0;margin-top:1px;}'+
+  '#'+ID+' .dica p{font-size:10px;color:#86efac;line-height:1.5;}'+
+  '#'+ID+' .dica b{color:#fff;}'+
+  /* VERSÃO */
+  '#'+ID+' .ver-bar{text-align:center;padding:6px;font-size:10px;color:rgba(255,255,255,.25);'+
+  'border-bottom:1px solid rgba(255,255,255,.05);}'+
+  /* SEÇÃO */
+  '#'+ID+' .sec{padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.05);}'+
+  '#'+ID+' .sec-lbl{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;'+
+  'color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;}'+
+  '#'+ID+' .sec-lbl span{font-size:13px;}'+
+  /* CHIPS COLORIDOS */
+  '#'+ID+' .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}'+
+  '#'+ID+' .chip{border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;'+
+  'transition:.2s;border:1.5px solid transparent;position:relative;}'+
+  '#'+ID+' .chip.active{border-color:rgba(255,255,255,.4)!important;transform:scale(.96);}'+
+  '#'+ID+' .chip b{display:block;font-size:18px;font-weight:800;line-height:1.1;}'+
+  '#'+ID+' .chip span{font-size:8px;font-weight:600;letter-spacing:.3px;}'+
+  '#'+ID+' .chip-g{background:rgba(0,230,118,.15);color:#00e676;}'+
+  '#'+ID+' .chip-y{background:rgba(255,214,0,.15);color:#ffd600;}'+
+  '#'+ID+' .chip-r{background:rgba(255,82,82,.15);color:#ff5252;}'+
+  '#'+ID+' .chip-b{background:rgba(68,138,255,.15);color:#448aff;}'+
+  '#'+ID+' .chip-w{background:rgba(255,255,255,.08);color:#fff;}'+
+  '#'+ID+' .chip-o{background:rgba(238,77,45,.15);color:#ee4d2d;}'+
+  /* ROWS */
+  '#'+ID+' .row{display:flex;justify-content:space-between;align-items:center;'+
+  'padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);}'+
+  '#'+ID+' .row:last-child{border-bottom:none;}'+
+  '#'+ID+' .row span{font-size:11px;color:rgba(255,255,255,.45);}'+
+  '#'+ID+' .row b{font-size:14px;font-weight:700;}'+
+  '#'+ID+' .row b.gn{color:#00e676;} #'+ID+' .row b.go{color:#ffd600;}'+
+  /* BIG STAT */
+  '#'+ID+' .big2{display:grid;grid-template-columns:1fr 1fr;gap:7px;}'+
+  '#'+ID+' .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}'+
+  '#'+ID+' .bst b{display:block;font-size:20px;font-weight:800;line-height:1.1;}'+
+  '#'+ID+' .bst b.gn{color:#00e676;} #'+ID+' .bst b.go{color:#ffd600;}'+
+  '#'+ID+' .bst span{font-size:8px;color:rgba(255,255,255,.3);}'+
+  /* TOP LIST */
+  '#'+ID+' .trow{display:flex;align-items:center;gap:8px;padding:5px 0;'+
+  'border-bottom:1px solid rgba(255,255,255,.04);}'+
+  '#'+ID+' .trow:last-child{border-bottom:none;}'+
+  '#'+ID+' .trow .ti{flex:1;min-width:0;}'+
+  '#'+ID+' .trow .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}'+
+  '#'+ID+' .trow .tm{font-size:9px;color:rgba(255,255,255,.35);}'+
+  '#'+ID+' .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;'+
+  'justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;border:1.5px solid;}'+
+  '#'+ID+' .ci.ex{border-color:#00e676;color:#00e676;background:rgba(0,230,118,.1);}'+
+  '#'+ID+' .ci.gd{border-color:#448aff;color:#448aff;background:rgba(68,138,255,.1);}'+
+  '#'+ID+' .ci.md{border-color:#ffd600;color:#ffd600;background:rgba(255,214,0,.1);}'+
+  '#'+ID+' .ci.lw{border-color:#ff5252;color:#ff5252;background:rgba(255,82,82,.1);}'+
+  /* BUTTONS */
+  '#'+ID+' .btn-an{width:100%;padding:11px;border:none;border-radius:10px;cursor:pointer;'+
+  'font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f06744);'+
+  'color:#fff;margin-bottom:7px;font-family:inherit;}'+
+  '#'+ID+' .btn-re{width:100%;padding:8px;border:1px solid rgba(68,138,255,.3);border-radius:10px;'+
+  'cursor:pointer;font-size:11px;font-weight:600;background:rgba(68,138,255,.08);'+
+  'color:#82b1ff;margin-bottom:6px;font-family:inherit;}'+
+  '#'+ID+' .btn-calc{width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;'+
+  'font-size:12px;font-weight:700;background:#00e676;color:#000;font-family:inherit;}'+
+  '#'+ID+' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);'+
+  'border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:11px;'+
+  'outline:none;cursor:pointer;}'+
+  '#'+ID+' .sel option{background:#0f1410;}'+
+  '#'+ID+' .mt{font-size:10px;color:rgba(255,255,255,.25);text-align:center;padding:8px;}'+
+  /* BADGE NOS CARDS */
+  '.glm-badge{display:block!important;width:100%!important;margin:3px 0!important;'+
+  'font-family:-apple-system,sans-serif!important;}'+
+  '.glm-row{display:flex!important;align-items:stretch!important;'+
+  'background:rgba(8,12,9,.97)!important;border-left:3px solid!important;'+
+  'border-radius:6px!important;overflow:hidden!important;min-height:0!important;}'+
+  '.glm-row.ex{border-color:#00e676!important;} .glm-row.gd{border-color:#448aff!important;}'+
+  '.glm-row.md{border-color:#ffd600!important;} .glm-row.lw{border-color:#ff5252!important;}'+
+  '.glm-sc{display:flex!important;flex-direction:column!important;align-items:center!important;'+
+  'justify-content:center!important;padding:4px 7px!important;min-width:34px!important;'+
+  'background:rgba(255,255,255,.03)!important;}'+
+  '.glm-sc b{font-size:14px!important;font-weight:900!important;line-height:1!important;}'+
+  '.glm-sc b.ex{color:#00e676!important;} .glm-sc b.gd{color:#448aff!important;}'+
+  '.glm-sc b.md{color:#ffd600!important;} .glm-sc b.lw{color:#ff5252!important;}'+
+  '.glm-sc span{font-size:7px!important;color:rgba(255,255,255,.3)!important;}'+
+  '.glm-info{flex:1!important;padding:4px 6px!important;display:flex!important;flex-direction:column!important;gap:2px!important;}'+
+  '.glm-line1{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}'+
+  '.glm-line2{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}'+
+  '.glm-it{display:flex!important;flex-direction:column!important;align-items:center!important;}'+
+  '.glm-il{font-size:7px!important;color:rgba(255,255,255,.3)!important;line-height:1!important;}'+
+  '.glm-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;line-height:1.2!important;}'+
+  '.glm-iv.gn{color:#00e676!important;} .glm-iv.go{color:#ffd600!important;} .glm-iv.gr{color:#ff5252!important;}'+
+  '.glm-tags{display:flex!important;gap:3px!important;align-items:center!important;margin-left:auto!important;flex-shrink:0!important;padding:3px 5px!important;}'+
+  '.glm-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;}'+
+  '.glm-fr{background:rgba(68,138,255,.25)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}'+
+  '.glm-op{font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}'+
+  '.glm-op.oa{background:rgba(0,230,118,.25)!important;color:#00e676!important;}'+
+  '.glm-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}'+
+  '.glm-dias{font-size:7px!important;font-weight:600!important;padding:1px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.5)!important;}'+
+  '.glm-dias.novo{background:rgba(0,230,118,.15)!important;color:#00e676!important;}'+
+  '.glm-dias.antigo{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}';
+document.head.appendChild(s);
+
+/* ─── HELPERS ─── */
+var DB={}, FILTER=null;
+function cls(n){return n>=70?'ex':n>=50?'gd':n>=30?'md':'lw';}
+function txt(n){return n>=70?'Excelente':n>=50?'Bom':n>=30?'Médio':'Fraco';}
+function fN(n){if(!n)return'0';return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1).replace('.0','')+'k':String(Math.round(n));}
+function fR(n){return'R$\\u00A0'+Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function $(id){return document.getElementById(id);}
+function set(id,v){var e=$(id);if(e)e.textContent=v;}
+
+/* ─── ENCONTRAR CARDS ─── */
+function findCards(){
+  var seen=[], result=[];
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode:function(n){return/R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}
+  },false);
+  var node;
+  while((node=walker.nextNode())){
+    var el=node.parentElement;
+    for(var i=0;i<8;i++){
+      if(!el||el===document.body)break;
+      var w=el.offsetWidth,h=el.offsetHeight;
+      if(w>=120&&w<=450&&h>=200&&h<=800&&el.querySelector('img')){
+        if(seen.indexOf(el)===-1){
+          seen.push(el);
+          var child=result.some(function(c){return c!==el&&c.contains(el);});
+          var parent=result.some(function(c){return el!==c&&el.contains(c);});
+          if(parent)break;
+          if(!child)result.push(el);
+        }
+        break;
+      }
+      el=el.parentElement;
+    }
   }
+  return result.filter(function(c){return!result.some(function(o){return o!==c&&c.contains(o);});});
+}
+
+/* ─── EXTRAIR DADOS ─── */
+function extrair(card){
+  var txt2=(card.innerText||card.textContent||'').replace(/\\s+/g,' ');
+
+  /* Preço */
+  var re=/R\\$\\s*([\\d.]+,\\d{2})/g,m,precos=[];
+  while((m=re.exec(txt2))!==null){
+    var v=parseFloat(m[1].replace(/\\./g,'').replace(',','.'));
+    if(v>0&&v<200000)precos.push(v);
+  }
+  var preco=precos.length?Math.min.apply(null,precos):0;
+  var orig=precos.length>1?Math.max.apply(null,precos):0;
+  var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
+  var dm=txt2.match(/-\\s*(\\d{1,2})\\s*%/)||txt2.match(/(\\d{1,2})\\s*%\\s*off/i);
+  if(dm){var dv=parseInt(dm[1]);if(dv>0&&dv<100)desc=dv;}
+
+  /* Vendas */
+  var vendas=0;
+  var vm=txt2.match(/(\\d+(?:[.,]\\d+)?)\\s*mil\\+?\\s*vendidos?/i);
+  var vk=txt2.match(/(\\d+(?:[.,]\\d+)?)\\s*[kK]\\+?\\s*(?:vendas?|vendidos?)/i);
+  var vn=txt2.match(/(\\d{1,7})\\+?\\s*(?:vendas?|vendidos?)/i);
+  if(vm)vendas=Math.round(parseFloat(vm[1].replace(',','.'))*1000);
+  else if(vk)vendas=Math.round(parseFloat(vk[1].replace(',','.'))*1000);
+  else if(vn){var vv=parseInt(vn[1]);if(vv<9999999)vendas=vv;}
+
+  /* Rating */
+  var rm=txt2.match(/[★⭐]\\s*(\\d+\\.\\d)/)||txt2.match(/\\b([4-5]\\.\\d)\\b/);
+  var rating=rm?parseFloat(rm[1]):0;
+
+  /* Avaliações */
+  var am=txt2.match(/(\\d{1,6})\\s*avalia[çc][oõ]es?/i)||txt2.match(/\\((\\d{1,6})\\)/);
+  var numAval=am?parseInt(am[1]):0;
+
+  /* Favoritos */
+  var fvm=txt2.match(/(\\d+(?:[.,]\\d+)?)\\s*k?\\+?\\s*favorito/i);
+  var favs=0;
+  if(fvm){
+    var fvs=fvm[1].replace(',','.');
+    favs=/k/i.test(fvm[0])?Math.round(parseFloat(fvs)*1000):parseInt(fvs);
+  }
+
+  /* Frete e nível */
+  var frete=/frete\\s*gr[áa]ti[sz]|freeship/i.test(txt2);
+  var nivel=/shopee\\s*mall/i.test(txt2)?'Mall':/preferido/i.test(txt2)?'Pref':'';
+  var isOficial=/oficial/i.test(txt2)?true:false;
+  var is5star=rating>=4.8;
+
+  /* Data criação — tenta extrair de algum elemento visível */
+  var dataCriacao=null;
+  var allTxt=card.querySelectorAll('*');
+  for(var ai=0;ai<allTxt.length;ai++){
+    var at=allTxt[ai].textContent||'';
+    var dm2=at.match(/(\\d{2}\\/\\d{2}\\/\\d{4})/);
+    if(dm2){dataCriacao=dm2[1];break;}
+  }
+  /* Calcular dias se tiver data */
+  var diasCriado=-1;
+  if(dataCriacao){
+    var parts=dataCriacao.split('/');
+    var dt=new Date(parts[2],parts[1]-1,parts[0]);
+    diasCriado=Math.round((Date.now()-dt.getTime())/(1000*60*60*24));
+  }
+
+  /* Título */
+  var titulo='';
+  var imgs=card.querySelectorAll('img[alt]');
+  for(var ii=0;ii<imgs.length;ii++){if(imgs[ii].alt&&imgs[ii].alt.length>5){titulo=imgs[ii].alt;break;}}
+  if(!titulo){
+    var els=card.querySelectorAll('span,div,a');var best=0;
+    for(var jj=0;jj<els.length;jj++){
+      var t2=(els[jj].children.length===0?els[jj].textContent:'').trim();
+      if(t2.length>best&&t2.length<200&&!/R\\$/.test(t2)&&!/\\d+%/.test(t2)){best=t2.length;titulo=t2;}
+    }
+  }
+
+  return{preco:preco,orig:orig,desc:desc,v30:vendas,vtot:vendas,
+    rating:rating,numAval:numAval,favs:favs,frete:frete,nivel:nivel,
+    isOficial:isOficial,is5star:is5star,diasCriado:diasCriado,
+    dataCriacao:dataCriacao,titulo:titulo};
+}
+
+/* ─── SCORE ─── */
+function calcScore(d){
+  var s=0,v=d.v30,r=d.rating,dc=d.desc;
+  s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
+  s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;
+  s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
+  if(d.frete)s+=15;
+  s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
+  if(d.nivel==='Mall')s+=5;else if(d.nivel==='Pref')s+=3;
+  if(d.diasCriado>=0&&d.diasCriado<=90)s+=5;else if(d.diasCriado<=180)s+=3;
+  return Math.min(100,s);
+}
+
+/* ─── OPORTUNIDADE ─── */
+function calcOport(d){
+  var pts=0;
+  if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
+  if(d.numAval<50)pts+=2;if(d.numAval<20)pts+=1;
+  if(d.diasCriado>=0&&d.diasCriado<=180)pts+=2;
+  if(d.frete)pts+=1;if(d.preco<=80)pts+=1;if(d.rating>=4.5)pts+=1;
+  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'oa'};
+  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'om'};
+  return null;
+}
+
+/* ─── ENCONTRAR PONTO DE INSERÇÃO ─── */
+function findInsert(card){
+  var walker2=document.createTreeWalker(card,NodeFilter.SHOW_TEXT,{
+    acceptNode:function(n){return/R\\$\\s*\\d/.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}
+  },false);
+  var n2=walker2.nextNode();
+  if(!n2)return null;
+  var el=n2.parentElement;
+  for(var k=0;k<6;k++){
+    if(!el||el===card)break;
+    if(el.offsetWidth>card.offsetWidth*0.3&&!el.querySelector('img')&&el.previousElementSibling)return el;
+    el=el.parentElement;
+  }
+  return card.querySelector('[class*="price"],[class*="Price"]')||null;
+}
+
+/* ─── BADGE NOS CARDS ─── */
+function injetarBadge(card,d){
+  card.querySelectorAll('.glm-badge').forEach(function(b){b.remove();});
+  var c=cls(d.score),op=d.oport;
+  /* Linha 1: score + vendas + rating + desconto */
+  var l1='';
+  if(d.v30>0)l1+='<span class="glm-it"><span class="glm-il">30d</span><b class="glm-iv gn">'+fN(d.v30)+'</b></span>';
+  if(d.vtot>0&&d.vtot!==d.v30)l1+='<span class="glm-it"><span class="glm-il">Total</span><b class="glm-iv gn">'+fN(d.vtot)+'</b></span>';
+  if(d.rating>0)l1+='<span class="glm-it"><span class="glm-il">⭐</span><b class="glm-iv go">'+d.rating.toFixed(1)+'</b></span>';
+  if(d.desc>0)l1+='<span class="glm-it"><span class="glm-il">Off</span><b class="glm-iv gr">-'+d.desc+'%</b></span>';
+  /* Linha 2: avaliações + favoritos + data */
+  var l2='';
+  if(d.numAval>0)l2+='<span class="glm-it"><span class="glm-il">Aval</span><b class="glm-iv">'+fN(d.numAval)+'</b></span>';
+  if(d.favs>0)l2+='<span class="glm-it"><span class="glm-il">♥</span><b class="glm-iv">'+fN(d.favs)+'</b></span>';
+  if(d.dataCriacao)l2+='<span class="glm-it"><span class="glm-il">Criado</span><b class="glm-iv">'+d.dataCriacao+'</b></span>';
+  /* Tags */
+  var tags='';
+  if(d.score>=60)tags+='<span class="glm-bom">BOM</span>';
+  if(d.frete)tags+='<span class="glm-fr">✓Fr</span>';
+  if(op)tags+='<span class="glm-op '+op.cls+'">'+op.emoji+op.nivel+'</span>';
+  if(d.diasCriado>=0){
+    var dcl=d.diasCriado<=90?'novo':d.diasCriado>=365?'antigo':'';
+    tags+='<span class="glm-dias '+dcl+'">Há '+d.diasCriado+'d</span>';
+  }
+  var div=document.createElement('div');
+  div.className='glm-badge';
+  div.innerHTML=
+    '<div class="glm-row '+c+'">'+
+      '<div class="glm-sc"><b class="'+c+'">'+d.score+'</b><span>'+txt(d.score)+'</span></div>'+
+      '<div class="glm-info">'+
+        '<div class="glm-line1">'+l1+'</div>'+
+        (l2?'<div class="glm-line2">'+l2+'</div>':'')+
+      '</div>'+
+      '<div class="glm-tags">'+tags+'</div>'+
+    '</div>';
+  var alvo=findInsert(card);
+  if(alvo&&alvo.parentElement){
+    alvo.parentElement.insertBefore(div,alvo);
+  } else {
+    var ch=card.children;
+    if(ch.length>0)card.insertBefore(div,ch[ch.length-1]);
+    else card.appendChild(div);
+  }
+  /* Fix overflow */
+  var els=[card].concat(Array.prototype.slice.call(card.querySelectorAll('*')));
+  els.forEach(function(e){
+    try{
+      var cs=window.getComputedStyle(e);
+      if(cs.overflow==='hidden'&&e!==card)e.style.overflow='visible';
+      if(cs.height&&cs.height!=='auto'&&parseInt(cs.height)>0&&e.tagName!=='IMG')e.style.minHeight=cs.height;
+    }catch(err){}
+  });
+  card.style.height='auto';
+}
+
+/* ─── ANALISAR ─── */
+function analisar(){
+  var cards=findCards();var novos=0;
+  cards.forEach(function(card){
+    if(card.querySelector('.glm-badge'))return;
+    var d=extrair(card);
+    if(!d.preco&&!d.v30&&!d.rating)return;
+    d.score=calcScore(d);d.oport=calcOport(d);
+    var uid='g'+Math.random().toString(36).slice(2,10);
+    card._glmUid=uid;DB[uid]=d;
+    injetarBadge(card,d);novos++;
+  });
+  atualizarPainel();
+  return Object.keys(DB).length;
+}
+
+/* ─── ATUALIZAR PAINEL ─── */
+function atualizarPainel(){
+  var todos=Object.keys(DB).map(function(k){return DB[k];});
+  if(!todos.length)return;
+  set('glm-cnt',todos.length);
+
+  var ofic=todos.filter(function(d){return d.isOficial;}).length;
+  var indicados=todos.filter(function(d){return d.nivel&&d.nivel!=='';}).length;
+  var cinco=todos.filter(function(d){return d.is5star;}).length;
+  set('glm-c-of',ofic);set('glm-c-in',indicados);set('glm-c-5s',cinco);
+
+  var ate180=todos.filter(function(d){return d.diasCriado>=0&&d.diasCriado<=180;}).length;
+  var ate365=todos.filter(function(d){return d.diasCriado>180&&d.diasCriado<=365;}).length;
+  var mais365=todos.filter(function(d){return d.diasCriado>365;}).length;
+  set('glm-d-180',ate180);set('glm-d-365',ate365);set('glm-d-plus',mais365);
+
+  var bons=todos.filter(function(d){return d.score>=60;}).length;
+  set('glm-bp',bons);
+
+  var vt=todos.reduce(function(a,d){return a+(d.vtot||0);},0);
+  var v30=todos.reduce(function(a,d){return a+(d.v30||0);},0);
+  set('glm-vt',fN(vt));set('glm-v30',fN(v30));
+
+  var tot=todos.length;
+  set('glm-an',tot);
+  var descontos=todos.filter(function(d){return d.desc>0;}).length;
+  set('glm-dc',descontos);
+  var nacionals=todos.filter(function(d){return true;}).length; // todos são nacionais por padrão
+  set('glm-nac',nacionals);
+  set('glm-int','0');
+  var precos=todos.map(function(d){return d.preco;}).filter(Boolean);
+  var pm=precos.length?Math.min.apply(null,precos):0;
+  var pM=precos.length?Math.max.apply(null,precos):0;
+  set('glm-pmin',pm>0?fR(pm):'—');set('glm-pmax',pM>0?fR(pM):'—');
+
+  /* Top 3 */
+  var top=[].concat(todos).sort(function(a,b){return b.score-a.score;}).slice(0,3);
+  var te=$('sp-top');
+  if(te)te.innerHTML=top.map(function(d,i){
+    var medals=['🥇','🥈','🥉'];
+    return'<div class="trow"><span>'+medals[i]+'</span><div class="ti">'+
+      '<div class="tn">'+(d.titulo||'Produto').slice(0,26)+'…</div>'+
+      '<div class="tm">'+fR(d.preco)+(d.v30>0?' · '+fN(d.v30)+'/30d':'')+'</div>'+
+      '</div><div class="ci '+cls(d.score)+'">'+d.score+'</div></div>';
+  }).join('')||'<div class="mt">—</div>';
+}
+
+/* ─── FILTRAR ─── */
+function filtrar(tipo,valor){
+  if(FILTER&&FILTER.tipo===tipo&&FILTER.valor===valor){
+    FILTER=null;
+    findCards().forEach(function(c){c.style.display='';});
+    document.querySelectorAll('#'+ID+' .chip').forEach(function(ch){ch.classList.remove('active');});
+    return;
+  }
+  FILTER={tipo:tipo,valor:valor};
+  findCards().forEach(function(card){
+    var uid=card._glmUid;
+    if(!uid||!DB[uid]){card.style.display='none';return;}
+    var d=DB[uid];var show=false;
+    if(tipo==='ofic')show=d.isOficial;
+    else if(tipo==='ind')show=d.nivel&&d.nivel!=='';
+    else if(tipo==='5s')show=d.is5star;
+    else if(tipo==='d180')show=d.diasCriado>=0&&d.diasCriado<=180;
+    else if(tipo==='d365')show=d.diasCriado>180&&d.diasCriado<=365;
+    else if(tipo==='dplus')show=d.diasCriado>365;
+    else if(tipo==='bom')show=d.score>=60;
+    card.style.display=show?'':'none';
+  });
+}
+
+/* ─── PAINEL HTML ─── */
+var panel=document.createElement('div');
+panel.id=ID;
+panel.innerHTML=
+  '<div class="hd" id="glm-drag">'+
+    '<div class="hd-l">'+
+      '<div class="hd-logo">🛍️</div>'+
+      '<div><div class="hd-ttl">Imprimindo Lucre</div><div class="hd-ver">GLM Analisador v2.0</div></div>'+
+    '</div>'+
+    '<div class="hd-r">'+
+      '<button class="hb" id="glm-min">—</button>'+
+      '<button class="hb" onclick="(function(){'+
+        'document.getElementById(\''+ID+'\').remove();'+
+        'var c=document.getElementById(\''+ID+'-css\');if(c)c.remove();'+
+        'document.querySelectorAll(\'.glm-badge\').forEach(function(b){b.remove();});'+
+      '})()">✕</button>'+
+    '</div>'+
+  '</div>'+
+  '<div class="body" id="glm-body">'+
+    '<div class="dica">'+
+      '<div class="di">💡</div>'+
+      '<p><b>Dica:</b> Clique nos cards coloridos para filtrar os anúncios. Clique de novo para desativar.</p>'+
+    '</div>'+
+    '<div class="ver-bar">Versão 2.0.0 · <span id="glm-cnt">0</span> produtos</div>'+
+    /* BOTÕES ANALISAR */
+    '<div class="sec">'+
+      '<button class="btn-an" id="glm-btn">🔍 Analisar Produtos</button>'+
+      '<button class="btn-re" id="glm-re">🔄 Re-analisar (limpar e refazer)</button>'+
+    '</div>'+
+    /* CONCORRÊNCIA */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>🏆</span> CONCORRÊNCIA</div>'+
+      '<div class="chips">'+
+        '<div class="chip chip-g" onclick="filtrar(\'ofic\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-c-of">0</b><span>OFICIAIS</span></div>'+
+        '<div class="chip chip-y" onclick="filtrar(\'ind\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-c-in">0</b><span>INDICADOS</span></div>'+
+        '<div class="chip chip-r" onclick="filtrar(\'5s\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-c-5s">0</b><span>5 ESTRELAS</span></div>'+
+      '</div>'+
+    '</div>'+
+    /* DATA DE CRIAÇÃO */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>📅</span> DATA DE CRIAÇÃO</div>'+
+      '<div class="chips">'+
+        '<div class="chip chip-g" onclick="filtrar(\'d180\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-d-180">0</b><span>ATÉ 180</span></div>'+
+        '<div class="chip chip-y" onclick="filtrar(\'d365\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-d-365">0</b><span>ATÉ 365</span></div>'+
+        '<div class="chip chip-r" onclick="filtrar(\'dplus\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-d-plus">0</b><span>+ DE 365</span></div>'+
+      '</div>'+
+    '</div>'+
+    /* BONS PRODUTOS */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>⭐</span> BONS PRODUTOS</div>'+
+      '<div class="chips" style="grid-template-columns:1fr;">'+
+        '<div class="chip chip-g" style="padding:10px;" onclick="filtrar(\'bom\',true);this.classList.toggle(\'active\');">'+
+          '<b id="glm-bp">0</b><span>BOM PRODUTO</span></div>'+
+      '</div>'+
+    '</div>'+
+    /* VENDAS */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>📦</span> VENDAS</div>'+
+      '<div class="big2">'+
+        '<div class="bst"><b id="glm-vt">—</b><span>TOTAL UNIDADES</span></div>'+
+        '<div class="bst"><b class="gn" id="glm-v30">—</b><span>ÚLTIMOS 30 DIAS</span></div>'+
+      '</div>'+
+    '</div>'+
+    /* OUTRAS INFORMAÇÕES */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>ℹ️</span> OUTRAS INFORMAÇÕES</div>'+
+      '<div class="big2">'+
+        '<div class="bst"><b id="glm-an">—</b><span>ANÚNCIOS</span></div>'+
+        '<div class="bst"><b id="glm-dc">—</b><span>DESCONTOS</span></div>'+
+        '<div class="bst"><b id="glm-nac">—</b><span>NACIONAIS</span></div>'+
+        '<div class="bst"><b id="glm-int">0</b><span>INTERNACIONAIS</span></div>'+
+        '<div class="bst"><b class="gn" id="glm-pmin">—</b><span>MENOR PREÇO</span></div>'+
+        '<div class="bst"><b class="go" id="glm-pmax">—</b><span>MAIOR PREÇO</span></div>'+
+      '</div>'+
+    '</div>'+
+    /* ORDENAR */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>🔽</span> ORDENAR</div>'+
+      '<select class="sel" id="glm-ord">'+
+        '<option value="n">Padrão (Shopee)</option>'+
+        '<option value="s">⭐ Score GLM</option>'+
+        '<option value="v">🔥 Mais Vendidos (30d)</option>'+
+        '<option value="pa">💰 Menor Preço</option>'+
+        '<option value="pd">💎 Maior Preço</option>'+
+        '<option value="dc">🏷️ Maior Desconto</option>'+
+      '</select>'+
+    '</div>'+
+    /* TOP */
+    '<div class="sec">'+
+      '<div class="sec-lbl"><span>🏆</span> TOP DESTA BUSCA</div>'+
+      '<div id="sp-top"><div class="mt">Clique em Analisar</div></div>'+
+    '</div>'+
+    /* CALC */
+    '<div class="sec">'+
+      '<button class="btn-calc" onclick="window.open(\'https://gui-89.github.io/calculadoraglm/\',\'_blank\')">'+
+        'Conheça nossa calculadora! →'+
+      '</button>'+
+    '</div>'+
+  '</div>';
+document.body.appendChild(panel);
+
+/* EVENTOS */
+$('glm-min').onclick=function(){var b=$('glm-body');b.style.display=b.style.display==='none'?'':'none';};
+$('glm-btn').onclick=function(){analisar();};
+$('glm-re').onclick=function(){
+  DB={};FILTER=null;
+  document.querySelectorAll('.glm-badge').forEach(function(b){b.remove();});
+  findCards().forEach(function(c){c.style.display='';});
+  setTimeout(analisar,200);
+};
+$('glm-ord').onchange=function(){
+  var t=this.value;var cards=findCards();
+  if(!cards.length)return;
+  var par=cards[0].parentElement;if(!par)return;
+  cards.sort(function(a,b){
+    var da=(a._glmUid&&DB[a._glmUid])||{};var db=(b._glmUid&&DB[b._glmUid])||{};
+    if(t==='s')return(db.score||0)-(da.score||0);
+    if(t==='v')return(db.v30||0)-(da.v30||0);
+    if(t==='pa')return(da.preco||9999)-(db.preco||9999);
+    if(t==='pd')return(db.preco||0)-(da.preco||0);
+    if(t==='dc')return(db.desc||0)-(da.desc||0);
+    return 0;
+  });
+  cards.forEach(function(c){par.appendChild(c);});
+};
+
+/* DRAG */
+var dh=$('glm-drag'),sx,sy,sl,st;
+dh.addEventListener('mousedown',function(ev){
+  sx=ev.clientX;sy=ev.clientY;sl=panel.offsetLeft;st=panel.offsetTop;
+  function mv(e2){panel.style.left=(sl+e2.clientX-sx)+'px';panel.style.top=(st+e2.clientY-sy)+'px';panel.style.right='auto';}
+  function up(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);}
+  document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);
+});
+
+setTimeout(analisar,700);
+setTimeout(analisar,2500);
+})();`;
+
+  lnk.href = 'javascript:' + encodeURIComponent(code);
+  lnk.onclick = null;
+  lnk.setAttribute('draggable','true');
 })();
 
-/* ════════ COMPARADOR ════════ */
-let produtos = [];
-let cardCount = 0;
+/* ═══ COMPARADOR ═══ */
+let produtos=[], cardCount=0;
 
 function adicionarCard(){
-  if(cardCount >= 5){ alert('Máximo 5 produtos!'); return; }
+  if(cardCount>=5){alert('Máximo 5 produtos!');return;}
   cardCount++;
-  const id = 'p'+Date.now();
-  const div = document.createElement('div');
-  div.className = 'prod-card';
-  div.id = id;
-  div.innerHTML = `
+  const id='p'+Date.now();
+  const div=document.createElement('div');
+  div.className='prod-card';div.id=id;
+  div.innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <div style="font-size:11px;font-weight:600;opacity:.5;">Produto ${cardCount}</div>
-      <button onclick="removerCard('${id}')" style="background:none;border:none;color:#ff5f5f;cursor:pointer;font-size:14px;">✕</button>
+      <div style="font-size:11px;font-weight:600;opacity:.45;">Produto ${cardCount}</div>
+      <button onclick="removerCard('${id}')" style="background:none;border:none;color:#ff5252;cursor:pointer;font-size:14px;">✕</button>
     </div>
     <div class="prod-form">
-      <div><label>Nome do Produto *</label>
-        <input type="text" placeholder="Ex: Luminária 3D LED Touch..." id="${id}-nome"></div>
+      <div><label>Nome *</label><input type="text" placeholder="Ex: Luminária 3D LED..." id="${id}-nome"></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
         <div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="${id}-preco"></div>
         <div><label>Preço original</label><input type="number" placeholder="69.90" id="${id}-orig"></div>
@@ -456,44 +925,27 @@ function adicionarCard(){
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
         <div><label>Frete</label>
-          <select id="${id}-frete">
-            <option value="1">✅ Grátis</option>
-            <option value="0">❌ Pago</option>
-          </select></div>
+          <select id="${id}-frete"><option value="1">✅ Grátis</option><option value="0">❌ Pago</option></select>
+        </div>
         <div><label>Idade (dias)</label><input type="number" placeholder="90" id="${id}-dias"></div>
       </div>
-      <div><label>Nível do Vendedor</label>
-        <select id="${id}-nivel">
-          <option value="">Normal</option>
-          <option value="Mall">Shopee Mall</option>
-          <option value="Pref">Preferido</option>
-        </select></div>
+      <div><label>Nível</label>
+        <select id="${id}-nivel"><option value="">Normal</option><option value="Mall">Shopee Mall</option><option value="Pref">Preferido</option></select>
+      </div>
     </div>`;
-  const btnAdd = document.getElementById('btnAdd');
-  document.getElementById('prodGrid').insertBefore(div, btnAdd);
+  document.getElementById('prodGrid').insertBefore(div,document.getElementById('btnAdd'));
 }
 
-function removerCard(id){
-  document.getElementById(id)?.remove();
-  cardCount--;
-}
-
-function limparTudo(){
-  document.querySelectorAll('.prod-card').forEach(c=>c.remove());
-  cardCount=0;
-  produtos=[];
-  document.getElementById('resultados').style.display='none';
-}
-
-function g(id){ return document.getElementById(id); }
-function gv(id){ return g(id)?.value?.trim() || ''; }
-function gn(id){ return parseFloat(gv(id)) || 0; }
+function removerCard(id){document.getElementById(id)?.remove();cardCount--;}
+function limparTudo(){document.querySelectorAll('.prod-card').forEach(c=>c.remove());cardCount=0;produtos=[];document.getElementById('resultados').style.display='none';}
+function g(id){return document.getElementById(id);}
+function gv(id){return g(id)?.value?.trim()||'';}
+function gn(id){return parseFloat(gv(id))||0;}
 
 function calcScore(d){
-  let s=0;
-  const v=d.v30,vt=d.vtot,r=d.nota,dc=d.desc;
+  let s=0;const v=d.v30,r=d.nota,dc=d.desc;
   s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
-  s+=vt>=5000?15:vt>=2000?12:vt>=500?8:vt>=100?4:vt>0?2:0;
+  s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;
   s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
   if(d.frete)s+=15;
   s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
@@ -501,51 +953,36 @@ function calcScore(d){
   if(d.nivel==='Mall')s+=5;else if(d.nivel.includes('Pref'))s+=3;
   return Math.min(100,s);
 }
-
 function calcOport(d){
   let pts=0;
   if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
   if(d.aval<50)pts+=2;if(d.aval<20)pts+=1;
   if(d.dias>=0&&d.dias<=180)pts+=2;
   if(d.nota>=4.5)pts+=1;if(d.preco<=80)pts+=1;if(d.frete)pts+=1;
-  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'oport-alta'};
-  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'oport-media'};
+  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'tag-green'};
+  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'tag-gold'};
   return null;
 }
-
 function scCls(s){return s>=70?'ex':s>=50?'gd':s>=30?'md':'lw';}
 function scTxt(s){return s>=70?'🔥 Excelente':s>=50?'👍 Bom':s>=30?'⚠️ Médio':'📉 Fraco';}
-function fN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(n||0);}
+function fN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1).replace('.0','')+'k':String(n||0);}
 function fR(n){return 'R$\u00A0'+n.toLocaleString('pt-BR',{minimumFractionDigits:2});}
 
 function analisarTodos(){
   const cards=[...document.querySelectorAll('.prod-card')];
   if(!cards.length){alert('Adicione pelo menos 1 produto!');return;}
-
-  produtos = cards.map(card=>{
+  produtos=cards.map(card=>{
     const id=card.id;
-    const preco=gn(id+'-preco'), orig=gn(id+'-orig');
+    const preco=gn(id+'-preco'),orig=gn(id+'-orig');
     const desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
-    const d={
-      nome: gv(id+'-nome')||'Produto',
-      preco, orig, desc,
-      v30:  gn(id+'-v30'),
-      vtot: gn(id+'-vtot'),
-      nota: gn(id+'-nota'),
-      aval: gn(id+'-aval'),
-      frete:gv(id+'-frete')==='1',
-      dias: gn(id+'-dias')||(-1),
-      nivel:gv(id+'-nivel'),
-    };
-    d.score=calcScore(d);
-    d.oport=calcOport(d);
-    return d;
+    const d={nome:gv(id+'-nome')||'Produto',preco,orig,desc,
+      v30:gn(id+'-v30'),vtot:gn(id+'-vtot'),nota:gn(id+'-nota'),
+      aval:gn(id+'-aval'),frete:gv(id+'-frete')==='1',
+      dias:gn(id+'-dias')||(-1),nivel:gv(id+'-nivel')};
+    d.score=calcScore(d);d.oport=calcOport(d);return d;
   }).filter(d=>d.nome||d.preco);
-
-  if(!produtos.length){alert('Preencha ao menos o nome e preço de um produto.');return;}
-
+  if(!produtos.length){alert('Preencha ao menos nome e preço.');return;}
   renderResultados();
-  setTab('comparador', document.querySelectorAll('.tab')[1]);
   document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
 }
 
@@ -555,58 +992,42 @@ function renderResultados(){
   const grid=document.getElementById('resultGrid');
   const table=document.getElementById('resultTable');
   document.getElementById('resultados').style.display='block';
-
-  /* Cards */
   grid.innerHTML=todos.map((d,i)=>{
-    const cls=scCls(d.score);
-    const isBest=d.score===maxScore&&todos.length>1;
+    const c=scCls(d.score);const isBest=d.score===maxScore&&todos.length>1;
     const tags=[];
-    if(d.frete)tags.push(`<span class="rc-tag blue">✅ Frete Grátis</span>`);
-    if(d.nivel)tags.push(`<span class="rc-tag orange">${d.nivel}</span>`);
-    if(d.oport)tags.push(`<span class="rc-tag green">${d.oport.emoji} Oport. ${d.oport.nivel}</span>`);
-    return `
-      <div class="result-card ${isBest?'best':''} ${cls}">
-        <div class="rank-badge">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]||''}</div>
-        <div class="rc-header">
-          <div>
-            <div class="rc-score ${cls}">${d.score}</div>
-            <div class="rc-label">${scTxt(d.score)}</div>
-          </div>
-          ${d.score>=60?'<span class="bom-tag">BOM</span>':''}
-        </div>
-        <div style="font-size:12px;font-weight:600;margin-bottom:10px;opacity:.9;">${d.nome.slice(0,35)}${d.nome.length>35?'…':''}</div>
-        <div class="rc-metrics">
-          <div class="rc-m"><span>Preço</span><b>${d.preco>0?fR(d.preco):'N/D'}</b></div>
-          <div class="rc-m"><span>Desconto</span><b class="gr">${d.desc>0?'-'+d.desc+'%':'—'}</b></div>
-          <div class="rc-m"><span>Vendas/30d</span><b class="gn">${d.v30>0?fN(d.v30):'N/D'}</b></div>
-          <div class="rc-m"><span>Total</span><b class="gn">${d.vtot>0?fN(d.vtot):'N/D'}</b></div>
-          <div class="rc-m"><span>Nota</span><b class="go">${d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D'}</b></div>
-          <div class="rc-m"><span>Avaliações</span><b>${d.aval>0?fN(d.aval):'N/D'}</b></div>
-        </div>
-        ${tags.length?`<div class="rc-tags">${tags.join('')}</div>`:''}
-        ${d.oport?`<div class="${d.oport.cls} oport-tag">${d.oport.emoji} Oportunidade ${d.oport.nivel}</div>`:''}
-        <div class="rc-bar">
-          <div style="display:flex;justify-content:space-between;font-size:10px;opacity:.5;margin-bottom:3px;">
-            <span>Potencial de Venda</span><span>${d.score}/100</span>
-          </div>
-          <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${d.score}%"></div></div>
-        </div>
-      </div>`;
+    if(d.frete)tags.push(`<span class="rc-tag tag-blue">✅ Frete Grátis</span>`);
+    if(d.nivel)tags.push(`<span class="rc-tag tag-gold">${d.nivel}</span>`);
+    if(d.oport)tags.push(`<span class="rc-tag ${d.oport.cls}">${d.oport.emoji} ${d.oport.nivel}</span>`);
+    return`<div class="rc ${isBest?'best':''} ${c}">
+      <div style="font-size:20px;margin-bottom:6px;">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]||''}</div>
+      <div class="rc-top">
+        <div><div class="rc-score ${c}">${d.score}</div><div class="rc-lbl">${scTxt(d.score)}</div></div>
+        ${d.score>=60?'<span class="bom-chip">BOM</span>':''}
+      </div>
+      <div class="rc-name">${d.nome}</div>
+      <div class="rc-grid">
+        <div class="rc-m"><span>Preço</span><b>${d.preco>0?fR(d.preco):'N/D'}</b></div>
+        <div class="rc-m"><span>Desconto</span><b class="gr">${d.desc>0?'-'+d.desc+'%':'—'}</b></div>
+        <div class="rc-m"><span>Vendas/30d</span><b class="gn">${d.v30>0?fN(d.v30):'N/D'}</b></div>
+        <div class="rc-m"><span>Total</span><b class="gn">${d.vtot>0?fN(d.vtot):'N/D'}</b></div>
+        <div class="rc-m"><span>Nota</span><b class="go">${d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D'}</b></div>
+        <div class="rc-m"><span>Avaliações</span><b>${d.aval>0?fN(d.aval):'N/D'}</b></div>
+      </div>
+      ${tags.length?`<div class="rc-tags">${tags.join('')}</div>`:''}
+      <div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:3px;margin-top:6px;">Potencial · ${d.score}/100</div>
+      <div class="rc-bar-track"><div class="rc-bar-fill" style="width:${d.score}%"></div></div>
+    </div>`;
   }).join('');
-
-  /* Tabela comparativa */
   const rows=[
     {l:'Score',k:'score',fmt:v=>v+'/100',dir:'max'},
     {l:'Preço',k:'preco',fmt:v=>v>0?fR(v):'N/D',dir:'min'},
     {l:'Desconto',k:'desc',fmt:v=>v+'%',dir:'max'},
     {l:'Vendas 30d',k:'v30',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
-    {l:'Vendas Total',k:'vtot',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
+    {l:'Total',k:'vtot',fmt:v=>v>0?fN(v):'N/D',dir:'max'},
     {l:'Nota',k:'nota',fmt:v=>v>0?v.toFixed(1)+'⭐':'N/D',dir:'max'},
     {l:'Frete',k:'frete',fmt:v=>v?'✅':'❌'},
   ];
-  let h=`<thead><tr><th>Métrica</th>`;
-  todos.forEach((_,i)=>h+=`<th>Prod. ${i+1}</th>`);
-  h+=`</tr></thead>`;
+  let h=`<thead><tr><th>Métrica</th>`;todos.forEach((_,i)=>h+=`<th>Prod ${i+1}</th>`);h+=`</tr></thead>`;
   let b=`<tbody>`;
   rows.forEach(row=>{
     const vals=todos.map(p=>typeof p[row.k]==='number'?p[row.k]:null).filter(v=>v!==null);
@@ -614,31 +1035,24 @@ function renderResultados(){
     const worst=row.dir==='max'?Math.min(...vals):row.dir==='min'?Math.max(...vals):null;
     b+=`<tr><td>${row.l}</td>`;
     todos.forEach(p=>{
-      const val=p[row.k];
-      const nv=typeof val==='number'?val:null;
-      const cls=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
-      b+=`<td class="${cls}">${row.fmt(val)}</td>`;
+      const val=p[row.k];const nv=typeof val==='number'?val:null;
+      const c2=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';
+      b+=`<td class="${c2}">${row.fmt(val)}</td>`;
     });
     b+=`</tr>`;
   });
-  b+=`</tbody>`;
-  table.innerHTML=h+b;
+  b+=`</tbody>`;table.innerHTML=h+b;
 }
 
 function exportarCSV(){
   if(!produtos.length){alert('Analise os produtos primeiro!');return;}
   const lines=["Nome,Preço,Desconto%,Vendas30d,VendasTotal,Nota,Avaliações,FreteGrátis,Idade,Nível,Score"];
-  produtos.forEach(p=>{
-    lines.push(`"${p.nome}",${p.preco},${p.desc},${p.v30},${p.vtot},${p.nota},${p.aval},${p.frete?'Sim':'Não'},${p.dias},${p.nivel},${p.score}`);
-  });
+  produtos.forEach(p=>lines.push(`"${p.nome}",${p.preco},${p.desc},${p.v30},${p.vtot},${p.nota},${p.aval},${p.frete?'Sim':'Não'},${p.dias},${p.nivel},${p.score}`));
   const blob=new Blob(['\uFEFF'+lines.join('\n')],{type:'text/csv;charset=utf-8;'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='comparativo_shopee.csv';a.click();
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='comparativo_shopee.csv';a.click();
 }
 
-/* ── Adiciona primeiro card automaticamente ── */
-adicionarCard();
-adicionarCard();
+adicionarCard();adicionarCard();
 </script>
 </body>
 </html>
