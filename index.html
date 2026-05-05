@@ -130,7 +130,7 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-
     <div class="bm-hero">
       <h2>🔖 Arraste para sua Barra de Favoritos</h2>
       <p>Clique e arraste o botão abaixo para a barra de favoritos. Depois, em qualquer busca na Shopee, clique para ativar o painel GLM com todas as métricas.</p>
-      <a id="bm-link" class="bm-btn" href="#" onclick="return false;" draggable="true">🛍️ GLM Analisador Shopee</a>
+      <a id="bm-link" class="bm-btn" href="#" draggable="true">🛍️ GLM Analisador Shopee</a>
       <div class="steps">
         <div class="step"><div class="step-n">1</div><h4>Mostre a barra</h4><p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Favoritos</p></div>
         <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste o botão para a barra de favoritos do navegador.</p></div>
@@ -209,17 +209,18 @@ function setTab(id, btn) {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   BOOKMARKLET — escrito como função real (sem string-dentro-string)
-   O .toString() captura o código-fonte exato, sem escaping issues
+   BOOKMARKLET
+   FIX 1: Removido 'use strict' — conflitava com SES lockdown da Shopee
+   FIX 2: Badge inserido FORA do <a> (dentro do <li>) — resolve overflow:hidden
+   FIX 3: findCards() prioriza seletores corretos do layout atual Shopee BR
    ════════════════════════════════════════════════════════════════ */
 function glmBookmarklet() {
-  /* jshint ignore:start */
-  'use strict';
   var ID = 'glm-sp5';
 
   // === TOGGLE se já aberto ===
   if (document.getElementById(ID)) {
-    document.getElementById(ID).remove();
+    var oldPanel = document.getElementById(ID);
+    if (oldPanel) oldPanel.remove();
     var oc = document.getElementById(ID + '-css');
     if (oc) oc.remove();
     var badges = document.querySelectorAll('.glm5-badge');
@@ -284,9 +285,12 @@ function glmBookmarklet() {
     '#' + ID + ' .cnt-box{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}' +
     '#' + ID + ' .cnt-box b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}' +
     '#' + ID + ' .cnt-box span{font-size:11px;color:#86efac;}' +
-    /* BADGE NOS CARDS */
-    '.glm5-badge{display:block!important;width:100%!important;margin:3px 0!important;font-family:-apple-system,sans-serif!important;}' +
-    '.glm5-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:6px!important;overflow:hidden!important;}' +
+    /* ── BADGE NOS CARDS ──
+       FIX 2: display:flex no li para badge aparecer abaixo do <a>
+       O <li> vira coluna, <a> fica em cima, badge embaixo — sem overflow:hidden cortando */
+    '.glm5-badge-wrap{display:flex!important;flex-direction:column!important;overflow:visible!important;}' +
+    '.glm5-badge{display:block!important;width:100%!important;margin:0!important;font-family:-apple-system,sans-serif!important;overflow:visible!important;position:relative!important;z-index:99!important;}' +
+    '.glm5-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:0 0 6px 6px!important;overflow:hidden!important;}' +
     '.glm5-row.ex{border-color:#00e676!important;}.glm5-row.gd{border-color:#448aff!important;}.glm5-row.md{border-color:#ffd600!important;}.glm5-row.lw{border-color:#ff5252!important;}' +
     '.glm5-sc{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:4px 7px!important;min-width:36px!important;background:rgba(255,255,255,.03)!important;border-right:1px solid rgba(255,255,255,.05)!important;}' +
     '.glm5-sc b{font-size:15px!important;font-weight:900!important;line-height:1!important;}' +
@@ -320,27 +324,36 @@ function glmBookmarklet() {
     return n >= 1000000 ? (n / 1000000).toFixed(1) + 'M' : n >= 1000 ? (n / 1000).toFixed(1).replace('.0', '') + 'k' : String(n);
   }
   function fR(n) { return 'R$\u00A0' + Number(n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 }); }
-  function $i(id) { return document.getElementById(id); }
-  function sv(id, v) { var e = $i(id); if (e) e.textContent = v; }
+  function gi(id) { return document.getElementById(id); }
+  function sv(id, v) { var e = gi(id); if (e) e.textContent = v; }
   function toArr(nl) { return Array.prototype.slice.call(nl); }
 
-  // === DETECTAR CARDS (4 estratégias) ===
+  /* ══════════════════════════════════════════════════════
+     FIX 3 — findCards() reescrito: prioriza seletores
+     corretos do Shopee BR atual, com fallbacks robustos
+     ══════════════════════════════════════════════════════ */
   function findCards() {
     var result, i, filt;
 
-    // 1. Atributo nativo Shopee
+    // 1. Seletor primário Shopee BR — li col-xs-2-4 (grid de busca)
+    var liCols = toArr(document.querySelectorAll('li[class*="col-xs-2-4"]'));
+    filt = liCols.filter(function(el) {
+      return el.querySelector('img') && /R\$/.test(el.innerText || el.textContent || '');
+    });
+    if (filt.length >= 2) return filt;
+
+    // 2. Atributo nativo Shopee data-sqe
     var sqe = document.querySelectorAll('[data-sqe="item"]');
     if (sqe.length >= 2) {
       result = toArr(sqe);
       return result.filter(function(c) { return !result.some(function(o) { return o !== c && c.contains(o); }); });
     }
 
-    // 2. Classes conhecidas da Shopee
+    // 3. Classes conhecidas Shopee
     var patterns = [
-      'li[class*="col-xs-2-4"]',
-      'li[class*="col-xs-3"]',
       '[class*="shopee-search-item-result__item"]',
       '[class*="search-item-result__item"]',
+      'li[class*="col-xs-3"]',
       'li[class*="col-"]'
     ];
     for (i = 0; i < patterns.length; i++) {
@@ -352,30 +365,24 @@ function glmBookmarklet() {
       }
     }
 
-    // 3. Detecção por preço + estrutura grid
+    // 4. Detecção por estrutura: elemento com img + preço + tamanho de card
     var seen = [], cards = [];
-    var allEls = document.querySelectorAll('*');
-    for (i = 0; i < allEls.length; i++) {
-      var el = allEls[i];
+    var priceEls = document.querySelectorAll('*');
+    for (i = 0; i < priceEls.length; i++) {
+      var el = priceEls[i];
       if (el.children.length > 0) continue;
-      var txt = (el.textContent || '').trim();
-      if (!/^R\$\s*\d/.test(txt)) continue;
+      if (!/^R\$\s*\d/.test((el.textContent || '').trim())) continue;
       var cur = el.parentElement;
       for (var up = 0; up < 14; up++) {
-        if (!cur || cur === document.body || cur === document.documentElement) break;
-        var hasImg = !!cur.querySelector('img');
+        if (!cur || cur === document.body) break;
         var w = cur.offsetWidth, h = cur.offsetHeight;
-        if (hasImg && w >= 100 && w <= 700 && h >= 140) {
+        if (cur.querySelector('img') && w >= 100 && w <= 700 && h >= 140) {
           var par = cur.parentElement;
           if (par) {
             var sibs = toArr(par.children).filter(function(s) {
-              return s !== cur && s.querySelector && s.querySelector('img') && /R\$/.test(s.innerText || s.textContent || '');
+              return s.querySelector && s.querySelector('img') && /R\$/.test(s.innerText || s.textContent || '');
             });
-            if (sibs.length >= 1 && seen.indexOf(cur) === -1) {
-              seen.push(cur);
-              cards.push(cur);
-              break;
-            }
+            if (sibs.length >= 1 && seen.indexOf(cur) === -1) { seen.push(cur); cards.push(cur); break; }
           }
         }
         cur = cur.parentElement;
@@ -384,12 +391,10 @@ function glmBookmarklet() {
     result = cards.filter(function(c) { return !cards.some(function(o) { return o !== c && c.contains(o); }); });
     if (result.length >= 2) return result;
 
-    // 4. Fallback: li/article com img e preço
+    // 5. Fallback: li/article com img e preço
     filt = toArr(document.querySelectorAll('li,article')).filter(function(li) {
-      return li.offsetWidth >= 100 && li.offsetWidth <= 700 &&
-             li.offsetHeight >= 140 &&
-             li.querySelector('img') &&
-             /R\$/.test(li.innerText || li.textContent || '');
+      return li.offsetWidth >= 100 && li.offsetWidth <= 700 && li.offsetHeight >= 140 &&
+             li.querySelector('img') && /R\$/.test(li.innerText || li.textContent || '');
     });
     return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
   }
@@ -515,39 +520,32 @@ function glmBookmarklet() {
     return null;
   }
 
-  // === PONTO DE INSERÇÃO DO BADGE ===
-  function findInsert(card) {
-    var allE = card.querySelectorAll('*');
-    for (var i = 0; i < allE.length; i++) {
-      var el = allE[i];
-      if (el.children.length > 0) continue;
-      if (!/R\$\s*\d/.test(el.textContent || '')) continue;
-      var cur = el.parentElement;
-      for (var up = 0; up < 8; up++) {
-        if (!cur || cur === card) break;
-        if (cur.previousElementSibling && cur.offsetWidth > card.offsetWidth * 0.2 && !cur.querySelector('img')) return cur;
-        cur = cur.parentElement;
-      }
-    }
-    return card.querySelector('[class*="price"],[class*="Price"],[class*="preco"]') || null;
-  }
-
-  // === INJETAR BADGE NOS CARDS ===
+  /* ══════════════════════════════════════════════════════
+     FIX 2 — injetarBadge() reescrito:
+     Badge é inserido DEPOIS do <a> dentro do <li>,
+     nunca dentro do <a> (que tem overflow:hidden na Shopee).
+     O <li> recebe overflow:visible e height:auto.
+     ══════════════════════════════════════════════════════ */
   function injetarBadge(card, d) {
+    // Remove badges antigos
     var old = card.querySelectorAll('.glm5-badge');
     for (var oi = 0; oi < old.length; oi++) old[oi].remove();
+
     var c = scC(d.score), op = d.oport;
 
+    // Linha 1: vendas, rating, desconto, preço
     var L1 = '';
     if (d.v30 > 0) L1 += '<span class="glm5-it"><span class="glm5-il">30d</span><b class="glm5-iv gn">' + fN(d.v30) + '</b></span>';
     if (d.rating > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Nota</span><b class="glm5-iv go">' + d.rating.toFixed(1) + '</b></span>';
     if (d.desc > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Off</span><b class="glm5-iv gr">-' + d.desc + '%</b></span>';
     if (d.preco > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Preco</span><b class="glm5-iv">' + fR(d.preco) + '</b></span>';
 
+    // Linha 2: avaliações e favs
     var L2 = '';
     if (d.numAval > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Aval</span><b class="glm5-iv">' + fN(d.numAval) + '</b></span>';
     if (d.favs > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Fav</span><b class="glm5-iv">' + fN(d.favs) + '</b></span>';
 
+    // Tags
     var tags = '';
     if (d.score >= 60) tags += '<span class="glm5-bom">BOM</span>';
     if (d.frete) tags += '<span class="glm5-fr">Fr.Gr.</span>';
@@ -569,44 +567,58 @@ function glmBookmarklet() {
         '<div class="glm5-tags">' + tags + '</div>' +
       '</div>';
 
-    var alvo = findInsert(card);
-    if (alvo && alvo.parentElement) {
-      alvo.parentElement.insertBefore(div, alvo);
-    } else {
-      var ch = card.children;
-      if (ch.length > 0) card.insertBefore(div, ch[ch.length - 1]);
-      else card.appendChild(div);
-    }
-
-    // Libera overflow/height que esconde o badge
+    /* ── INSERÇÃO FORA DO <a> ──
+       Sobe a partir do <a> até ser filho direto do <li>/card,
+       então insere o badge como próximo irmão do <a>.
+       Isso evita overflow:hidden do link cortando o badge. */
     try {
-      var fixEls = [card].concat(toArr(card.querySelectorAll('div,a,li,section')));
-      for (var fi = 0; fi < fixEls.length; fi++) {
-        try {
-          var cs = window.getComputedStyle(fixEls[fi]);
-          if (cs.overflow === 'hidden' && fixEls[fi] !== card && fixEls[fi].tagName !== 'IMG') fixEls[fi].style.overflow = 'visible';
-          if (cs.maxHeight && cs.maxHeight !== 'none' && parseInt(cs.maxHeight) > 0 && parseInt(cs.maxHeight) < 900 && fixEls[fi].tagName !== 'IMG') fixEls[fi].style.maxHeight = 'none';
-        } catch(e) {}
+      var mainLink = card.querySelector('a');
+      if (mainLink) {
+        var cur = mainLink;
+        while (cur.parentElement && cur.parentElement !== card) cur = cur.parentElement;
+        if (cur.parentElement === card) {
+          // Inserir após o elemento filho do card (irmão do <a> no <li>)
+          if (cur.nextSibling) {
+            card.insertBefore(div, cur.nextSibling);
+          } else {
+            card.appendChild(div);
+          }
+        } else {
+          card.appendChild(div);
+        }
+      } else {
+        card.appendChild(div);
       }
+
+      // Libera o card (li) para mostrar o badge
+      card.style.overflow = 'visible';
       card.style.height = 'auto';
-    } catch(e) {}
+      card.style.maxHeight = 'none';
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+
+    } catch(e) {
+      try { card.appendChild(div); } catch(e2) {}
+    }
   }
 
   // === ANALISAR ===
   function analisar() {
     var cards = findCards(), novos = 0;
     for (var i = 0; i < cards.length; i++) {
-      var card = cards[i];
-      if (card.querySelector('.glm5-badge')) continue;
-      var d = extrair(card);
-      if (!d.preco && !d.v30 && !d.rating) continue;
-      d.score = calcScore(d);
-      d.oport = calcOport(d);
-      var uid = 'g' + i + '_' + Date.now();
-      card._glmUid = uid;
-      DB[uid] = d;
-      injetarBadge(card, d);
-      novos++;
+      try {
+        var card = cards[i];
+        if (card.querySelector('.glm5-badge')) continue;
+        var d = extrair(card);
+        if (!d.preco && !d.v30 && !d.rating) continue;
+        d.score = calcScore(d);
+        d.oport = calcOport(d);
+        var uid = 'g' + i + '_' + Date.now();
+        card._glmUid = uid;
+        DB[uid] = d;
+        injetarBadge(card, d);
+        novos++;
+      } catch(e) {}
     }
     atualizarPainel();
     var total = Object.keys(DB).length;
@@ -636,7 +648,7 @@ function glmBookmarklet() {
     sv('g5-pmax', precos.length ? fR(Math.max.apply(null, precos)) : '\u2014');
 
     var top = todos.slice().sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
-    var te = $i('g5-top');
+    var te = gi('g5-top');
     if (te) {
       var medals = ['\uD83E\uDD47', '\uD83E\uDD48', '\uD83E\uDD49'];
       te.innerHTML = top.map(function(d, i) {
@@ -680,14 +692,14 @@ function glmBookmarklet() {
     }
   }
 
-  // === PAINEL HTML (sem inline onlick com string args — usa data-f) ===
+  // === PAINEL HTML ===
   var p = document.createElement('div');
   p.id = ID;
   p.innerHTML =
     '<div class="hd" id="' + ID + '-drag">' +
       '<div class="hd-l">' +
         '<div class="hd-logo">\uD83D\uDED2</div>' +
-        '<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v5.0</div></div>' +
+        '<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v5.1</div></div>' +
       '</div>' +
       '<div class="hd-r">' +
         '<button class="hb" id="' + ID + '-min">\u2014</button>' +
@@ -698,7 +710,7 @@ function glmBookmarklet() {
       '<div class="tip"><span style="font-size:14px">\uD83D\uDCA1</span>' +
         '<p><b>Dica:</b> Clique nos chips coloridos para filtrar. Clique de novo para desativar.</p>' +
       '</div>' +
-      '<div class="vbar">v5.0 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
+      '<div class="vbar">v5.1 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
       '<div class="sec">' +
         '<div class="cnt-box"><b id="glm5-cnt2">0</b><span>produtos analisados</span></div>' +
         '<button class="btn-a" id="' + ID + '-btn">\uD83D\uDD0D Analisar Produtos</button>' +
@@ -757,22 +769,22 @@ function glmBookmarklet() {
 
   document.body.appendChild(p);
 
-  // === EVENT LISTENERS (sem onclick inline com string args) ===
-  $i(ID + '-cls').onclick = function() {
+  // === EVENTOS ===
+  gi(ID + '-cls').onclick = function() {
     p.remove();
-    var c = $i(ID + '-css'); if (c) c.remove();
+    var c = gi(ID + '-css'); if (c) c.remove();
     var bs = document.querySelectorAll('.glm5-badge');
     for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
   };
 
-  $i(ID + '-min').onclick = function() {
-    var b = $i(ID + '-body');
+  gi(ID + '-min').onclick = function() {
+    var b = gi(ID + '-body');
     b.style.display = b.style.display === 'none' ? '' : 'none';
   };
 
-  $i(ID + '-btn').onclick = analisar;
+  gi(ID + '-btn').onclick = analisar;
 
-  $i(ID + '-re').onclick = function() {
+  gi(ID + '-re').onclick = function() {
     DB = {}; FILT = null;
     var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
     var fc = findCards(); for (var ci = 0; ci < fc.length; ci++) fc[ci].style.display = '';
@@ -780,9 +792,9 @@ function glmBookmarklet() {
     setTimeout(analisar, 200);
   };
 
-  $i(ID + '-calc').onclick = function() { window.open('https://gui-89.github.io/calculadoraglm/', '_blank'); };
+  gi(ID + '-calc').onclick = function() { window.open('https://gui-89.github.io/calculadoraglm/', '_blank'); };
 
-  // Chips — usa data-f para evitar string args no onclick
+  // Chips
   var chips = toArr(p.querySelectorAll('[data-f]'));
   for (var ci = 0; ci < chips.length; ci++) {
     chips[ci].onclick = (function(ch) {
@@ -791,7 +803,7 @@ function glmBookmarklet() {
   }
 
   // Ordenar
-  $i(ID + '-ord').onchange = function() {
+  gi(ID + '-ord').onchange = function() {
     var t = this.value, cards = findCards();
     if (!cards.length) return;
     var par = cards[0].parentElement; if (!par) return;
@@ -809,7 +821,7 @@ function glmBookmarklet() {
   };
 
   // Drag
-  var dh = $i(ID + '-drag'), sx, sy, sl, st;
+  var dh = gi(ID + '-drag'), sx, sy, sl, st;
   dh.addEventListener('mousedown', function(ev) {
     sx = ev.clientX; sy = ev.clientY; sl = p.offsetLeft; st = p.offsetTop;
     function mv(e2) { p.style.left = (sl + e2.clientX - sx) + 'px'; p.style.top = (st + e2.clientY - sy) + 'px'; p.style.right = 'auto'; }
@@ -818,20 +830,20 @@ function glmBookmarklet() {
     document.addEventListener('mouseup', up);
   });
 
-  // Auto analisar
-  setTimeout(analisar, 1000);
-  setTimeout(analisar, 3200);
-  /* jshint ignore:end */
+  // Auto-analisar ao abrir
+  setTimeout(analisar, 800);
+  setTimeout(analisar, 2500);
 }
 
-// === GERA O BOOKMARKLET VIA .toString() — sem string-inside-string ===
+/* ══════════════════════════════════════════════════════════
+   GERA O BOOKMARKLET via .toString()
+   Sem string-inside-string, sem escaping manual
+   ══════════════════════════════════════════════════════════ */
 (function() {
   var lnk = document.getElementById('bm-link');
   if (!lnk) return;
-  // toString() captura o código-fonte real da função, evitando escaping manual
   var code = '(' + glmBookmarklet.toString() + ')()';
   lnk.href = 'javascript:' + encodeURIComponent(code);
-  lnk.removeAttribute('onclick');
 })();
 
 /* ═══ COMPARADOR ═══ */
@@ -877,12 +889,12 @@ function gv(id) { var el = document.getElementById(id); return el ? el.value.tri
 function gn(id) { return parseFloat(gv(id)) || 0; }
 
 function calcScoreComp(d) {
-  var s = 0, v = d.v30, r = d.nota, dc = d.desc;
+  var s = 0, v = d.v30, r = d.nota;
   s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
   s += d.vtot >= 5000 ? 15 : d.vtot >= 2000 ? 12 : d.vtot >= 500 ? 8 : d.vtot >= 100 ? 4 : d.vtot > 0 ? 2 : 0;
   s += r >= 4.8 ? 20 : r >= 4.5 ? 15 : r >= 4.0 ? 10 : r >= 3.5 ? 5 : r > 0 ? 2 : 0;
   if (d.frete) s += 15;
-  s += dc >= 60 ? 10 : dc >= 40 ? 8 : dc >= 20 ? 5 : dc >= 10 ? 2 : 0;
+  s += d.desc >= 60 ? 10 : d.desc >= 40 ? 8 : d.desc >= 20 ? 5 : d.desc >= 10 ? 2 : 0;
   if (d.dias >= 0 && d.dias <= 90) s += 5; else if (d.dias <= 180) s += 3;
   if (d.nivel === 'Mall') s += 5; else if (d.nivel.indexOf('Pref') >= 0) s += 3;
   return Math.min(100, s);
