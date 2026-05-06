@@ -295,6 +295,7 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-
       <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center;">
         <button class="btn-primary" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
         <button class="btn-ia" id="btn-ia-analise" onclick="analisarComIA()" style="display:none">🤖 Analisar com IA</button>
+        <button id="btn-ia-key" onclick="(function(){localStorage.removeItem('glm_anthropic_key');toast('0001F511 API KEY REMOVIDA. SER00E1 SOLICITADA NOVAMENTE.','INFO');})()" STYLE="DISPLAY:NONE;BACKGROUND:NONE;BORDER:1PX SOLID RGBA(179,157,219,.2);COLOR:RGBA(179,157,219,.6);FONT-SIZE:10PX;PADDING:4PX 10PX;BORDER-RADIUS:6PX;CURSOR:POINTER;FONT-FAMILY:INHERIT;">���� TROCAR API KEY</BUTTON>
         <button class="btn-export" id="btn-export" onclick="exportarRelatorio()" style="display:none">📊 Exportar Relatório</button>
         <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar</button>
         <button class="btn-ghost" onclick="exportarCSV()">📁 CSV</button>
@@ -841,7 +842,7 @@ function limparTudo(){
   cardCount=0;produtos=[];
   document.getElementById('resultados').style.display='none';
   document.getElementById('ia-panel').style.display='none';
-  document.getElementById('btn-ia-analise').style.display='none';
+  document.getElementById('btn-ia-analise').style.display='none';document.getElementById('btn-ia-key').style.display='none';
   document.getElementById('btn-export').style.display='none';
 }
 
@@ -884,7 +885,7 @@ function analisarTodos(){
   /* Salvar no histórico localStorage */
   salvarNoHistorico(produtos);
   /* Mostrar botões extras */
-  document.getElementById('btn-ia-analise').style.display='flex';
+  document.getElementById('btn-ia-analise').style.display='flex';document.getElementById('btn-ia-key').style.display='block';
   document.getElementById('btn-export').style.display='block';
   document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
   toast('✅ Comparação salva no histórico!');
@@ -950,8 +951,35 @@ function renderResultados(){
 /* ═══════════════════════════════════════════════════════
    MELHORIA 1: SCORE COM IA (Claude API)
    ═══════════════════════════════════════════════════════ */
+function getApiKey() {
+  return localStorage.getItem('glm_anthropic_key') || '';
+}
+
+function promptApiKey() {
+  var key = prompt(
+    '🔑 API Key da Anthropic\n\n' +
+    'Para usar a análise de IA, informe sua chave em:\nhttps://console.anthropic.com/settings/keys\n\n' +
+    'A chave fica salva apenas no seu navegador (localStorage).\nDigite a chave (começa com sk-ant-):'
+  );
+  if (key && key.trim().startsWith('sk-')) {
+    localStorage.setItem('glm_anthropic_key', key.trim());
+    return key.trim();
+  } else if (key !== null) {
+    alert('❌ Chave inválida. Deve começar com sk-ant-');
+  }
+  return '';
+}
+
 async function analisarComIA() {
   if(!produtos.length){alert('Compare os produtos primeiro!');return;}
+
+  /* ── Verifica/solicita API Key ── */
+  var apiKey = getApiKey();
+  if (!apiKey) {
+    apiKey = promptApiKey();
+    if (!apiKey) return;
+  }
+
   var panel=document.getElementById('ia-panel');
   var content=document.getElementById('ia-content');
   panel.style.display='block';
@@ -965,14 +993,29 @@ async function analisarComIA() {
   try {
     var response=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:1000,
         messages:[{role:'user',content:prompt}]
       })
     });
+
+    if (response.status === 401) {
+      localStorage.removeItem('glm_anthropic_key');
+      content.innerHTML='<div class="ia-error">❌ API Key inválida ou expirada.<br><span style="font-size:11px;opacity:.6">Clique em "Analisar com IA" novamente para informar uma nova chave.</span></div>';
+      return;
+    }
+
     var data=await response.json();
+    if (data.error) {
+      throw new Error(data.error.message || 'Erro da API');
+    }
     var text=data.content.map(function(i){return i.text||'';}).filter(Boolean).join('');
     var clean=text.replace(/```json|```/g,'').trim();
     var result=JSON.parse(clean);
@@ -1094,7 +1137,7 @@ function recarregarComparacao(hid) {
   h.produtos.forEach(function(p){adicionarCard(p);});
   document.getElementById('resultados').style.display='none';
   document.getElementById('ia-panel').style.display='none';
-  document.getElementById('btn-ia-analise').style.display='none';
+  document.getElementById('btn-ia-analise').style.display='none';document.getElementById('btn-ia-key').style.display='none';
   document.getElementById('btn-export').style.display='none';
   setTab('comparador',document.querySelectorAll('.tab')[1]);
   toast('📂 Comparação recarregada!','info');
