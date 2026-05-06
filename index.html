@@ -117,7 +117,7 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-
   <div class="hero">
     <div class="hero-pill"><span></span> Funciona em qualquer navegador · Sem instalar nada</div>
     <h1>GLM Analisador<br><span class="hl">Shopee Pro</span></h1>
-    <p>Bookmarklet com painel completo — concorrência, vendas, datas, badges BOM e filtros inteligentes. Chrome, Firefox, Safari, Edge e celular.</p>
+    <p>Bookmarklet com painel completo — concorrência, vendas, localização, badges BOM e filtros inteligentes. Chrome, Firefox, Safari, Edge e celular.</p>
   </div>
 
   <div class="tabs">
@@ -135,7 +135,7 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-
         <div class="step"><div class="step-n">1</div><h4>Mostre a barra</h4><p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Favoritos</p></div>
         <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste o botão para a barra de favoritos do navegador.</p></div>
         <div class="step"><div class="step-n">3</div><h4>Abra a Shopee</h4><p>Acesse shopee.com.br e pesquise qualquer produto.</p></div>
-        <div class="step"><div class="step-n">4</div><h4>Clique e analise!</h4><p>O painel GLM abre com concorrência, vendas, datas e badges BOM nos cards.</p></div>
+        <div class="step"><div class="step-n">4</div><h4>Clique e analise!</h4><p>O painel GLM abre com concorrência, vendas, localização e badges BOM nos cards.</p></div>
       </div>
     </div>
     <div class="card">
@@ -208,31 +208,27 @@ function setTab(id, btn) {
   btn.classList.add('active');
 }
 
-/* ════════════════════════════════════════════════════════════════
-   BOOKMARKLET
-   FIX 1: Removido 'use strict' — conflitava com SES lockdown da Shopee
-   FIX 2: Badge inserido FORA do <a> (dentro do <li>) — resolve overflow:hidden
-   FIX 3: findCards() prioriza seletores corretos do layout atual Shopee BR
-   ════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   BOOKMARKLET v5.2
+   NOVO: extração de localização, JSON embutido Shopee,
+         vendas melhorado, data de criação via JSON,
+         localização no badge e painel
+   ══════════════════════════════════════════════════════ */
 function glmBookmarklet() {
   var ID = 'glm-sp5';
 
-  // === TOGGLE se já aberto ===
   if (document.getElementById(ID)) {
-    var oldPanel = document.getElementById(ID);
-    if (oldPanel) oldPanel.remove();
-    var oc = document.getElementById(ID + '-css');
-    if (oc) oc.remove();
-    var badges = document.querySelectorAll('.glm5-badge');
-    for (var bi = 0; bi < badges.length; bi++) badges[bi].remove();
+    var op = document.getElementById(ID); if (op) op.remove();
+    var oc = document.getElementById(ID + '-css'); if (oc) oc.remove();
+    var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
     return;
   }
 
-  // === CSS ===
+  /* ── CSS ── */
   var style = document.createElement('style');
   style.id = ID + '-css';
   style.textContent =
-    '#' + ID + '{position:fixed;top:58px;right:10px;width:282px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}' +
+    '#' + ID + '{position:fixed;top:58px;right:10px;width:288px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}' +
     '#' + ID + ' .hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.1),rgba(238,77,45,.06));border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}' +
     '#' + ID + ' .hd-l{display:flex;align-items:center;gap:8px;}' +
     '#' + ID + ' .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);display:flex;align-items:center;justify-content:center;font-size:13px;}' +
@@ -261,7 +257,7 @@ function glmBookmarklet() {
     '#' + ID + ' .cr{background:rgba(255,82,82,.13);color:#ff5252;}' +
     '#' + ID + ' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}' +
     '#' + ID + ' .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}' +
-    '#' + ID + ' .bst b{display:block;font-size:20px;font-weight:800;line-height:1.15;}' +
+    '#' + ID + ' .bst b{display:block;font-size:18px;font-weight:800;line-height:1.2;}' +
     '#' + ID + ' .bst span{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;}' +
     '#' + ID + ' .gn{color:#00e676!important;}' +
     '#' + ID + ' .go{color:#ffd600!important;}' +
@@ -285,10 +281,9 @@ function glmBookmarklet() {
     '#' + ID + ' .cnt-box{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}' +
     '#' + ID + ' .cnt-box b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}' +
     '#' + ID + ' .cnt-box span{font-size:11px;color:#86efac;}' +
-    /* ── BADGE NOS CARDS ──
-       FIX 2: display:flex no li para badge aparecer abaixo do <a>
-       O <li> vira coluna, <a> fica em cima, badge embaixo — sem overflow:hidden cortando */
-    '.glm5-badge-wrap{display:flex!important;flex-direction:column!important;overflow:visible!important;}' +
+    '#' + ID + ' .loc-bar{font-size:10px;color:rgba(255,255,255,.35);padding:4px 0 2px;display:flex;flex-wrap:wrap;gap:4px;}' +
+    '#' + ID + ' .loc-pill{background:rgba(255,255,255,.06);border-radius:4px;padding:2px 6px;font-size:9px;color:rgba(255,255,255,.5);}' +
+    /* BADGE NOS CARDS */
     '.glm5-badge{display:block!important;width:100%!important;margin:0!important;font-family:-apple-system,sans-serif!important;overflow:visible!important;position:relative!important;z-index:99!important;}' +
     '.glm5-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:0 0 6px 6px!important;overflow:hidden!important;}' +
     '.glm5-row.ex{border-color:#00e676!important;}.glm5-row.gd{border-color:#448aff!important;}.glm5-row.md{border-color:#ffd600!important;}.glm5-row.lw{border-color:#ff5252!important;}' +
@@ -301,7 +296,7 @@ function glmBookmarklet() {
     '.glm5-it{display:flex!important;flex-direction:column!important;align-items:center!important;line-height:1.1!important;}' +
     '.glm5-il{font-size:7px!important;color:rgba(255,255,255,.28)!important;}' +
     '.glm5-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}' +
-    '.glm5-iv.gn{color:#00e676!important;}.glm5-iv.go{color:#ffd600!important;}.glm5-iv.gr{color:#ff5252!important;}' +
+    '.glm5-iv.gn{color:#00e676!important;}.glm5-iv.go{color:#ffd600!important;}.glm5-iv.gr{color:#ff5252!important;}.glm5-iv.bl{color:#82b1ff!important;}' +
     '.glm5-tags{display:flex!important;gap:3px!important;align-items:center!important;flex-shrink:0!important;padding:3px 5px!important;flex-wrap:wrap!important;}' +
     '.glm5-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;letter-spacing:.3px!important;}' +
     '.glm5-fr{background:rgba(68,138,255,.22)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}' +
@@ -309,13 +304,14 @@ function glmBookmarklet() {
     '.glm5-op.oa{background:rgba(0,230,118,.2)!important;color:#00e676!important;}.glm5-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}' +
     '.glm5-d{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.45)!important;}' +
     '.glm5-d.nv{background:rgba(0,230,118,.15)!important;color:#00e676!important;}' +
-    '.glm5-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}';
+    '.glm5-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}' +
+    '.glm5-loc{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.06)!important;color:rgba(255,255,255,.4)!important;}';
   document.head.appendChild(style);
 
-  // === ESTADO ===
-  var DB = {}, FILT = null;
+  /* ── ESTADO ── */
+  var DB = {}, FILT = null, PGDATA = {};
 
-  // === HELPERS ===
+  /* ── HELPERS ── */
   function scC(n) { return n >= 70 ? 'ex' : n >= 50 ? 'gd' : n >= 30 ? 'md' : 'lw'; }
   function scT(n) { return n >= 70 ? 'Excelente' : n >= 50 ? 'Bom' : n >= 30 ? 'Medio' : 'Fraco'; }
   function fN(n) {
@@ -329,27 +325,151 @@ function glmBookmarklet() {
   function toArr(nl) { return Array.prototype.slice.call(nl); }
 
   /* ══════════════════════════════════════════════════════
-     FIX 3 — findCards() reescrito: prioriza seletores
-     corretos do Shopee BR atual, com fallbacks robustos
+     NOVO: Extrair dados do JSON embutido pela Shopee na página.
+     A Shopee injeta os dados de busca em window.__NEXT_DATA__
+     ou em tags <script> com o estado da aplicação.
+     Isso nos dá: vendas reais, data de criação, shopid, etc.
      ══════════════════════════════════════════════════════ */
+  function extrairDadosJSON() {
+    var items = {};
+    try {
+      // Tenta window.__NEXT_DATA__ (Shopee usa Next.js)
+      if (window.__NEXT_DATA__ && window.__NEXT_DATA__.props) {
+        var props = window.__NEXT_DATA__.props;
+        var pageProps = props.pageProps || props.initialProps || {};
+        var data = pageProps.initialData || pageProps.data || pageProps.searchData || {};
+        var itemList = data.items || data.item_list || data.sections || [];
+        if (Array.isArray(itemList)) {
+          itemList.forEach(function(item) {
+            var it = item.item_basic || item.info || item;
+            if (it && it.itemid) {
+              items[String(it.itemid)] = {
+                vendas: it.historical_sold || it.sold || 0,
+                v30: it.sold || 0,
+                diasCriado: it.ctime ? Math.round((Date.now() / 1000 - it.ctime) / 86400) : -1,
+                locTxt: it.shop_location || ''
+              };
+            }
+          });
+        }
+      }
+    } catch(e) {}
+
+    try {
+      // Tenta parsear scripts com dados de busca
+      var scripts = document.querySelectorAll('script:not([src])');
+      for (var i = 0; i < scripts.length; i++) {
+        var txt = scripts[i].textContent || '';
+        // Procura por padrão de item_list da Shopee
+        if (txt.indexOf('historical_sold') === -1 && txt.indexOf('"sold"') === -1) continue;
+        // Tenta extrair JSON de "item_basic"
+        var re = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,500}?"(?:historical_sold|sold)"\s*:\s*(\d+)/g;
+        var m;
+        while ((m = re.exec(txt)) !== null) {
+          var iid = m[1], sold = parseInt(m[2]);
+          if (!items[iid]) items[iid] = { vendas: sold, v30: sold, diasCriado: -1, locTxt: '' };
+          else if (items[iid].vendas === 0) items[iid].vendas = sold;
+        }
+        // Tenta extrair ctime
+        var re2 = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,600}?"ctime"\s*:\s*(\d+)/g;
+        while ((m = re2.exec(txt)) !== null) {
+          var iid2 = m[1], ct = parseInt(m[2]);
+          if (ct > 1000000000 && ct < 9999999999) {
+            var dc = Math.round((Date.now() / 1000 - ct) / 86400);
+            if (!items[iid2]) items[iid2] = { vendas: 0, v30: 0, diasCriado: dc, locTxt: '' };
+            else items[iid2].diasCriado = dc;
+          }
+        }
+        // Extrai shop_location
+        var re3 = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,800}?"shop_location"\s*:\s*"([^"]+)"/g;
+        while ((m = re3.exec(txt)) !== null) {
+          if (!items[m[1]]) items[m[1]] = { vendas: 0, v30: 0, diasCriado: -1, locTxt: m[2] };
+          else items[m[1]].locTxt = m[2];
+        }
+      }
+    } catch(e) {}
+
+    return items;
+  }
+
+  /* ── LOCALIZAÇÃO: extrai do texto visível do card ── */
+  function extrairLocalizacao(card) {
+    // 1. Elemento com classe de localização da Shopee
+    var selLoc = [
+      '[class*="location"]', '[class*="Location"]',
+      '[class*="shopLoc"]', '[class*="shop-loc"]',
+      '[class*="address"]', '[class*="region"]'
+    ];
+    for (var i = 0; i < selLoc.length; i++) {
+      var el = card.querySelector(selLoc[i]);
+      if (el) {
+        var t = (el.textContent || '').trim();
+        if (t.length > 2 && t.length < 60) return t;
+      }
+    }
+
+    // 2. Padrão textual: estados e cidades BR comuns
+    var txt = (card.innerText || card.textContent || '').replace(/\s+/g, ' ');
+    var estados = [
+      'Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal',
+      'Espírito Santo','Espirito Santo','Goiás','Goias','Maranhão','Maranhao',
+      'Mato Grosso','Minas Gerais','Pará','Para','Paraíba','Paraiba','Paraná','Parana',
+      'Pernambuco','Piauí','Piaui','Rio de Janeiro','Rio Grande do Norte',
+      'Rio Grande do Sul','Rondônia','Rondonia','Roraima','Santa Catarina',
+      'São Paulo','Sao Paulo','Sergipe','Tocantins',
+      'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG',
+      'PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'
+    ];
+    for (var ei = 0; ei < estados.length; ei++) {
+      // Verifica se aparece isolado como texto (com espaços ou fim de linha)
+      var re = new RegExp('(?:^|\\s)(' + estados[ei] + ')(?:\\s|$)');
+      var m = txt.match(re);
+      if (m) return m[1];
+    }
+    return '';
+  }
+
+  /* ── BUSCA ITEMID DO CARD (para cruzar com JSON) ── */
+  function extrairItemId(card) {
+    // Shopee coloca o itemid no link do produto
+    var link = card.querySelector('a[href]');
+    if (link) {
+      var href = link.href || link.getAttribute('href') || '';
+      // Padrão URL Shopee: /product/SHOPID/ITEMID ou .-i.SHOPID.ITEMID
+      var m = href.match(/[-.]i\.(\d+)\.(\d+)/) || href.match(/\/product\/(\d+)\/(\d+)/);
+      if (m) return m[2];
+      // Outro padrão
+      var m2 = href.match(/itemid=(\d+)/);
+      if (m2) return m2[1];
+    }
+    // Tenta data-* attributes
+    var allEls = card.querySelectorAll('[data-item-id],[data-id],[data-sqe]');
+    for (var i = 0; i < allEls.length; i++) {
+      var did = allEls[i].getAttribute('data-item-id') || allEls[i].getAttribute('data-id');
+      if (did && /^\d+$/.test(did)) return did;
+    }
+    return '';
+  }
+
+  /* ── findCards() ── */
   function findCards() {
     var result, i, filt;
 
-    // 1. Seletor primário Shopee BR — li col-xs-2-4 (grid de busca)
+    // 1. li col-xs-2-4 (layout padrão Shopee BR)
     var liCols = toArr(document.querySelectorAll('li[class*="col-xs-2-4"]'));
     filt = liCols.filter(function(el) {
       return el.querySelector('img') && /R\$/.test(el.innerText || el.textContent || '');
     });
     if (filt.length >= 2) return filt;
 
-    // 2. Atributo nativo Shopee data-sqe
+    // 2. data-sqe="item"
     var sqe = document.querySelectorAll('[data-sqe="item"]');
     if (sqe.length >= 2) {
       result = toArr(sqe);
       return result.filter(function(c) { return !result.some(function(o) { return o !== c && c.contains(o); }); });
     }
 
-    // 3. Classes conhecidas Shopee
+    // 3. Classes conhecidas
     var patterns = [
       '[class*="shopee-search-item-result__item"]',
       '[class*="search-item-result__item"]',
@@ -365,11 +485,11 @@ function glmBookmarklet() {
       }
     }
 
-    // 4. Detecção por estrutura: elemento com img + preço + tamanho de card
+    // 4. Detecção por estrutura
     var seen = [], cards = [];
-    var priceEls = document.querySelectorAll('*');
-    for (i = 0; i < priceEls.length; i++) {
-      var el = priceEls[i];
+    var allEls = document.querySelectorAll('*');
+    for (i = 0; i < allEls.length; i++) {
+      var el = allEls[i];
       if (el.children.length > 0) continue;
       if (!/^R\$\s*\d/.test((el.textContent || '').trim())) continue;
       var cur = el.parentElement;
@@ -391,7 +511,7 @@ function glmBookmarklet() {
     result = cards.filter(function(c) { return !cards.some(function(o) { return o !== c && c.contains(o); }); });
     if (result.length >= 2) return result;
 
-    // 5. Fallback: li/article com img e preço
+    // 5. Fallback
     filt = toArr(document.querySelectorAll('li,article')).filter(function(li) {
       return li.offsetWidth >= 100 && li.offsetWidth <= 700 && li.offsetHeight >= 140 &&
              li.querySelector('img') && /R\$/.test(li.innerText || li.textContent || '');
@@ -399,11 +519,17 @@ function glmBookmarklet() {
     return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
   }
 
-  // === EXTRAIR DADOS ===
-  function extrair(card) {
+  /* ══════════════════════════════════════════════════════
+     EXTRAIR DADOS DO CARD — v5.2
+     Melhorias:
+     - Localização extraída do texto e do JSON
+     - Vendas com mais padrões e cruzamento com JSON
+     - Data de criação via JSON (ctime) quando disponível
+     ══════════════════════════════════════════════════════ */
+  function extrair(card, jsonData) {
     var txt = (card.innerText || card.textContent || '').replace(/\s+/g, ' ');
 
-    // Preços
+    /* Preços */
     var reP = /R\$\s*([\d.]+,\d{2})/g, m, precos = [];
     while ((m = reP.exec(txt)) !== null) {
       var v = parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
@@ -415,64 +541,110 @@ function glmBookmarklet() {
     var dm = txt.match(/-(\d{1,2})\s*%/) || txt.match(/(\d{1,2})\s*%\s*(?:off|desconto)/i);
     if (dm) { var dv = parseInt(dm[1]); if (dv > 0 && dv < 100) desc = dv; }
 
-    // Vendas
+    /* ── VENDAS: padrões ampliados ── */
     var vendas = 0;
-    var vpats = [
-      /(\d+(?:[.,]\d+)?)\s*mil\+?\s*(?:vendas?|vendidos?|sold)/i,
-      /(\d+(?:[.,]\d+)?)\s*[kK]\+?\s*(?:vendas?|vendidos?|sold)/i,
-      /(\d{1,7})\+?\s*(?:vendas?|vendidos?|sold)/i,
-      /vendidos?\s*(\d{1,7})/i
-    ];
-    for (var vi = 0; vi < vpats.length; vi++) {
-      var vm = txt.match(vpats[vi]);
-      if (vm) {
-        var vs = vm[1].replace(',', '.');
-        var vnum = parseFloat(vs);
-        if (/mil|[kK]/i.test(vm[0])) vnum *= 1000;
-        vnum = Math.round(vnum);
-        if (vnum > 0 && vnum < 99999999) { vendas = vnum; break; }
+    // Prioridade 1: JSON embutido
+    if (jsonData && jsonData.v30 > 0) {
+      vendas = jsonData.v30;
+    } else if (jsonData && jsonData.vendas > 0) {
+      vendas = jsonData.vendas;
+    } else {
+      // Prioridade 2: texto visível do card
+      var vpats = [
+        // "1.2k+ vendidos", "1,2K vendidos"
+        /(\d+(?:[.,]\d+)?)\s*[kK]\+?\s*(?:vendas?|vendidos?|sold)/i,
+        // "1 mil+ vendidos", "2 mil vendas"
+        /(\d+(?:[.,]\d+)?)\s*mil\+?\s*(?:vendas?|vendidos?|sold)/i,
+        // "843 vendidos", "843+ vendidos", "843 vendas"
+        /(\d{1,7})\+?\s*(?:vendas?|vendidos?|sold)/i,
+        // "vendidos 843"
+        /(?:vendas?|vendidos?|sold)\s*(\d{1,7})/i,
+        // "+500 vendidos" (Shopee às vezes formata assim)
+        /\+(\d{1,7})\s*(?:vendas?|vendidos?)/i
+      ];
+      for (var vi = 0; vi < vpats.length; vi++) {
+        var vm = txt.match(vpats[vi]);
+        if (vm) {
+          var vs = vm[1].replace(',', '.');
+          var vnum = parseFloat(vs);
+          if (/mil/i.test(vm[0])) vnum *= 1000;
+          else if (/[kK]/.test(vm[0])) vnum *= 1000;
+          vnum = Math.round(vnum);
+          if (vnum > 0 && vnum < 99999999) { vendas = vnum; break; }
+        }
+      }
+
+      // Prioridade 3: elemento específico de vendas da Shopee
+      if (!vendas) {
+        var soldEls = card.querySelectorAll('[class*="sold"],[class*="Sold"],[class*="vend"],[class*="sales"]');
+        for (var si = 0; si < soldEls.length; si++) {
+          var st = (soldEls[si].textContent || '').trim();
+          var sm = st.match(/(\d+(?:[.,]\d+)?)\s*([kKmM]?)/);
+          if (sm) {
+            var sv2 = parseFloat(sm[1].replace(',', '.'));
+            if (sm[2].toLowerCase() === 'k') sv2 *= 1000;
+            if (sm[2].toLowerCase() === 'm') sv2 *= 1000000;
+            if (sv2 > 0) { vendas = Math.round(sv2); break; }
+          }
+        }
       }
     }
 
-    // Rating
+    /* Rating */
     var rm = txt.match(/[\u2605\u2B50]\s*(\d+[.,]\d)/) || txt.match(/\b([4-5][.,]\d)\b/);
     var rating = rm ? parseFloat(rm[1].replace(',', '.')) : 0;
 
-    // Avaliações
+    /* Avaliações */
     var am = txt.match(/\((\d{1,6})\)/) || txt.match(/(\d{1,6})\s*avalia[çc][õo]es?/i);
     var numAval = am ? parseInt(am[1]) : 0;
 
-    // Favoritos
+    /* Favoritos */
     var fvm = txt.match(/(\d+(?:[.,]\d+)?)\s*[kK]?\s*favorito/i);
     var favs = 0;
     if (fvm) { var fvn = parseFloat(fvm[1].replace(',', '.')); if (/[kK]/i.test(fvm[0])) fvn *= 1000; favs = Math.round(fvn); }
 
-    // Frete grátis
+    /* Frete grátis */
     var frete = /frete\s*gr[aá]ti[sz]|freeship|envio\s*gr[aá]tis/i.test(txt);
     var imgs = card.querySelectorAll('img');
     for (var ii = 0; ii < imgs.length; ii++) { if (/freeship|free.ship/i.test(imgs[ii].src || '')) { frete = true; break; } }
 
-    // Nível / oficial
+    /* Nível / oficial */
     var nivel = '';
     if (/shopee\s*mall/i.test(txt)) nivel = 'Mall';
     else if (/preferido/i.test(txt)) nivel = 'Pref';
     var isOfic = nivel === 'Mall' || /(loja|vendedor)\s*oficial/i.test(txt);
     var is5 = rating >= 4.8;
 
-    // Data de criação
+    /* ── DATA DE CRIAÇÃO: JSON > texto ── */
     var diasCriado = -1, dataTxt = '';
-    var dRe = /(\d{2})\/(\d{2})\/(\d{4})/g, dm3;
-    while ((dm3 = dRe.exec(txt)) !== null) {
-      var dd = parseInt(dm3[1]), mo = parseInt(dm3[2]), yy = parseInt(dm3[3]);
-      if (yy >= 2018 && yy <= 2030 && mo >= 1 && mo <= 12 && dd >= 1 && dd <= 31) {
-        var dt = new Date(yy, mo - 1, dd);
-        var dc = Math.round((Date.now() - dt.getTime()) / 86400000);
-        if (dc >= 0 && dc < 3650) { diasCriado = dc; dataTxt = dm3[1] + '/' + dm3[2] + '/' + dm3[3]; break; }
+    if (jsonData && jsonData.diasCriado >= 0) {
+      diasCriado = jsonData.diasCriado;
+    } else {
+      // Tenta extrair de texto (raro na página de busca)
+      var dRe = /(\d{2})\/(\d{2})\/(\d{4})/g, dm3;
+      while ((dm3 = dRe.exec(txt)) !== null) {
+        var dd = parseInt(dm3[1]), mo = parseInt(dm3[2]), yy = parseInt(dm3[3]);
+        if (yy >= 2018 && yy <= 2030 && mo >= 1 && mo <= 12 && dd >= 1 && dd <= 31) {
+          var dt = new Date(yy, mo - 1, dd);
+          var dc = Math.round((Date.now() - dt.getTime()) / 86400000);
+          if (dc >= 0 && dc < 3650) { diasCriado = dc; dataTxt = dm3[1] + '/' + dm3[2] + '/' + dm3[3]; break; }
+        }
+      }
+      if (diasCriado < 0) {
+        var hm = txt.match(/h[aá]\s*(\d+)\s*dias?/i);
+        if (hm) diasCriado = parseInt(hm[1]);
       }
     }
-    if (diasCriado < 0) { var hm = txt.match(/h[aá]\s*(\d+)\s*dias?/i); if (hm) diasCriado = parseInt(hm[1]); }
 
-    // Título
+    /* ── LOCALIZAÇÃO ── */
+    var locTxt = '';
+    if (jsonData && jsonData.locTxt) {
+      locTxt = jsonData.locTxt;
+    } else {
+      locTxt = extrairLocalizacao(card);
+    }
+
+    /* Título */
     var titulo = '';
     for (var ij = 0; ij < imgs.length; ij++) { if (imgs[ij].alt && imgs[ij].alt.length > 8) { titulo = imgs[ij].alt; break; } }
     if (!titulo) {
@@ -493,10 +665,11 @@ function glmBookmarklet() {
 
     return { preco: preco, orig: orig, desc: desc, v30: vendas, vtot: vendas,
       rating: rating, numAval: numAval, favs: favs, frete: frete, nivel: nivel,
-      isOfic: isOfic, is5: is5, diasCriado: diasCriado, dataTxt: dataTxt, titulo: titulo };
+      isOfic: isOfic, is5: is5, diasCriado: diasCriado, dataTxt: dataTxt,
+      titulo: titulo, locTxt: locTxt };
   }
 
-  // === SCORE ===
+  /* ── SCORE ── */
   function calcScore(d) {
     var s = 0, v = d.v30, r = d.rating, dc = d.desc;
     s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
@@ -520,32 +693,26 @@ function glmBookmarklet() {
     return null;
   }
 
-  /* ══════════════════════════════════════════════════════
-     FIX 2 — injetarBadge() reescrito:
-     Badge é inserido DEPOIS do <a> dentro do <li>,
-     nunca dentro do <a> (que tem overflow:hidden na Shopee).
-     O <li> recebe overflow:visible e height:auto.
-     ══════════════════════════════════════════════════════ */
+  /* ── BADGE NOS CARDS (inserido fora do <a>) ── */
   function injetarBadge(card, d) {
-    // Remove badges antigos
     var old = card.querySelectorAll('.glm5-badge');
     for (var oi = 0; oi < old.length; oi++) old[oi].remove();
-
     var c = scC(d.score), op = d.oport;
 
-    // Linha 1: vendas, rating, desconto, preço
+    /* Linha 1: vendas, nota, desconto, preço */
     var L1 = '';
-    if (d.v30 > 0) L1 += '<span class="glm5-it"><span class="glm5-il">30d</span><b class="glm5-iv gn">' + fN(d.v30) + '</b></span>';
+    if (d.v30 > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Vendas</span><b class="glm5-iv gn">' + fN(d.v30) + '</b></span>';
     if (d.rating > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Nota</span><b class="glm5-iv go">' + d.rating.toFixed(1) + '</b></span>';
     if (d.desc > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Off</span><b class="glm5-iv gr">-' + d.desc + '%</b></span>';
-    if (d.preco > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Preco</span><b class="glm5-iv">' + fR(d.preco) + '</b></span>';
+    if (d.preco > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Pre\u00E7o</span><b class="glm5-iv">' + fR(d.preco) + '</b></span>';
 
-    // Linha 2: avaliações e favs
+    /* Linha 2: avaliações, local, data */
     var L2 = '';
     if (d.numAval > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Aval</span><b class="glm5-iv">' + fN(d.numAval) + '</b></span>';
-    if (d.favs > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Fav</span><b class="glm5-iv">' + fN(d.favs) + '</b></span>';
+    if (d.locTxt) L2 += '<span class="glm5-it"><span class="glm5-il">Local</span><b class="glm5-iv bl">' + d.locTxt.slice(0, 12) + '</b></span>';
+    if (d.diasCriado >= 0) L2 += '<span class="glm5-it"><span class="glm5-il">Criado</span><b class="glm5-iv">' + d.diasCriado + 'd</b></span>';
 
-    // Tags
+    /* Tags */
     var tags = '';
     if (d.score >= 60) tags += '<span class="glm5-bom">BOM</span>';
     if (d.frete) tags += '<span class="glm5-fr">Fr.Gr.</span>';
@@ -567,49 +734,47 @@ function glmBookmarklet() {
         '<div class="glm5-tags">' + tags + '</div>' +
       '</div>';
 
-    /* ── INSERÇÃO FORA DO <a> ──
-       Sobe a partir do <a> até ser filho direto do <li>/card,
-       então insere o badge como próximo irmão do <a>.
-       Isso evita overflow:hidden do link cortando o badge. */
+    /* Inserir FORA do <a> (resolve overflow:hidden) */
     try {
       var mainLink = card.querySelector('a');
       if (mainLink) {
         var cur = mainLink;
         while (cur.parentElement && cur.parentElement !== card) cur = cur.parentElement;
         if (cur.parentElement === card) {
-          // Inserir após o elemento filho do card (irmão do <a> no <li>)
-          if (cur.nextSibling) {
-            card.insertBefore(div, cur.nextSibling);
-          } else {
-            card.appendChild(div);
-          }
+          if (cur.nextSibling) card.insertBefore(div, cur.nextSibling);
+          else card.appendChild(div);
         } else {
           card.appendChild(div);
         }
       } else {
         card.appendChild(div);
       }
-
-      // Libera o card (li) para mostrar o badge
       card.style.overflow = 'visible';
       card.style.height = 'auto';
       card.style.maxHeight = 'none';
       card.style.display = 'flex';
       card.style.flexDirection = 'column';
-
     } catch(e) {
       try { card.appendChild(div); } catch(e2) {}
     }
   }
 
-  // === ANALISAR ===
+  /* ── ANALISAR ── */
   function analisar() {
+    // Extrai dados do JSON da página (feito uma vez por análise)
+    PGDATA = extrairDadosJSON();
+
     var cards = findCards(), novos = 0;
     for (var i = 0; i < cards.length; i++) {
       try {
         var card = cards[i];
         if (card.querySelector('.glm5-badge')) continue;
-        var d = extrair(card);
+
+        // Tenta cruzar com JSON pelo itemId
+        var itemId = extrairItemId(card);
+        var jsonData = (itemId && PGDATA[itemId]) ? PGDATA[itemId] : null;
+
+        var d = extrair(card, jsonData);
         if (!d.preco && !d.v30 && !d.rating) continue;
         d.score = calcScore(d);
         d.oport = calcOport(d);
@@ -626,7 +791,7 @@ function glmBookmarklet() {
     return total;
   }
 
-  // === ATUALIZAR PAINEL ===
+  /* ── ATUALIZAR PAINEL ── */
   function atualizarPainel() {
     var todos = Object.keys(DB).map(function(k) { return DB[k]; });
     if (!todos.length) return;
@@ -647,6 +812,29 @@ function glmBookmarklet() {
     sv('g5-pmin', precos.length ? fR(Math.min.apply(null, precos)) : '\u2014');
     sv('g5-pmax', precos.length ? fR(Math.max.apply(null, precos)) : '\u2014');
 
+    /* Resumo data de criação */
+    var comData = todos.filter(function(d) { return d.diasCriado >= 0; }).length;
+    var dateNote = gi('g5-date-note');
+    if (dateNote) {
+      dateNote.textContent = comData > 0
+        ? comData + '/' + todos.length + ' c/ data'
+        : 'Via JSON da p\u00E1gina';
+    }
+
+    /* Top por localização */
+    var locMap = {};
+    todos.forEach(function(d) {
+      if (d.locTxt) locMap[d.locTxt] = (locMap[d.locTxt] || 0) + 1;
+    });
+    var locBar = gi('g5-loc-bar');
+    if (locBar) {
+      var locs = Object.keys(locMap).sort(function(a, b) { return locMap[b] - locMap[a]; }).slice(0, 4);
+      locBar.innerHTML = locs.length
+        ? locs.map(function(l) { return '<span class="loc-pill">' + l + '\u00A0' + locMap[l] + '</span>'; }).join('')
+        : '<span style="font-size:9px;color:rgba(255,255,255,.2)">N\u00E3o detectado</span>';
+    }
+
+    /* Top 3 */
     var top = todos.slice().sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
     var te = gi('g5-top');
     if (te) {
@@ -654,13 +842,15 @@ function glmBookmarklet() {
       te.innerHTML = top.map(function(d, i) {
         return '<div class="trow"><span>' + medals[i] + '</span><div class="ti">' +
           '<div class="tn">' + (d.titulo || 'Produto').slice(0, 26) + '...</div>' +
-          '<div class="tm">' + fR(d.preco) + (d.v30 > 0 ? ' \u00B7 ' + fN(d.v30) + '/30d' : '') + '</div>' +
-          '</div><div class="ci ' + scC(d.score) + '">' + d.score + '</div></div>';
+          '<div class="tm">' + fR(d.preco) +
+            (d.v30 > 0 ? ' \u00B7 ' + fN(d.v30) + ' vend' : '') +
+            (d.locTxt ? ' \u00B7 ' + d.locTxt.slice(0, 8) : '') +
+          '</div></div><div class="ci ' + scC(d.score) + '">' + d.score + '</div></div>';
       }).join('') || '<div class="mt">\u2014</div>';
     }
   }
 
-  // === FILTRAR ===
+  /* ── FILTRAR ── */
   function filtrar(tipo) {
     var chips = toArr(document.querySelectorAll('#' + ID + ' .chip'));
     if (FILT === tipo) {
@@ -674,7 +864,6 @@ function glmBookmarklet() {
     for (var chi2 = 0; chi2 < chips.length; chi2++) chips[chi2].classList.remove('on');
     var activeChip = document.querySelector('#' + ID + ' [data-f="' + tipo + '"]');
     if (activeChip) activeChip.classList.add('on');
-
     var fc = findCards();
     for (var fi = 0; fi < fc.length; fi++) {
       var card = fc[fi];
@@ -692,14 +881,14 @@ function glmBookmarklet() {
     }
   }
 
-  // === PAINEL HTML ===
+  /* ── PAINEL HTML ── */
   var p = document.createElement('div');
   p.id = ID;
   p.innerHTML =
     '<div class="hd" id="' + ID + '-drag">' +
       '<div class="hd-l">' +
         '<div class="hd-logo">\uD83D\uDED2</div>' +
-        '<div><div class="hd-t">Imprimindo Lucro</div><div class="hd-v">GLM v5.1</div></div>' +
+        '<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v5.2</div></div>' +
       '</div>' +
       '<div class="hd-r">' +
         '<button class="hb" id="' + ID + '-min">\u2014</button>' +
@@ -710,7 +899,7 @@ function glmBookmarklet() {
       '<div class="tip"><span style="font-size:14px">\uD83D\uDCA1</span>' +
         '<p><b>Dica:</b> Clique nos chips coloridos para filtrar. Clique de novo para desativar.</p>' +
       '</div>' +
-      '<div class="vbar">v5.1 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
+      '<div class="vbar">v5.2 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
       '<div class="sec">' +
         '<div class="cnt-box"><b id="glm5-cnt2">0</b><span>produtos analisados</span></div>' +
         '<button class="btn-a" id="' + ID + '-btn">\uD83D\uDD0D Analisar Produtos</button>' +
@@ -723,7 +912,8 @@ function glmBookmarklet() {
           '<div class="chip cr" data-f="5s"><b id="g5-5s">0</b><span>5 ESTRELAS</span></div>' +
         '</div>' +
       '</div>' +
-      '<div class="sec"><div class="sl"><span>\uD83D\uDCC5</span> DATA DE CRIA\u00C7\u00C3O</div>' +
+      '<div class="sec">' +
+        '<div class="sl"><span>\uD83D\uDCC5</span> DATA DE CRIA\u00C7\u00C3O <span id="g5-date-note" style="font-weight:400;opacity:.6;font-size:8px;margin-left:4px;text-transform:none;letter-spacing:0">Via JSON da p\u00E1gina</span></div>' +
         '<div class="chips">' +
           '<div class="chip cg" data-f="d180"><b id="g5-d180">0</b><span>AT\u00C9 180d</span></div>' +
           '<div class="chip cy" data-f="d365"><b id="g5-d365">0</b><span>AT\u00C9 365d</span></div>' +
@@ -741,6 +931,10 @@ function glmBookmarklet() {
           '<div class="bst"><b class="gn" id="g5-v30">\u2014</b><span>\u00DALTlMOS 30D</span></div>' +
         '</div>' +
       '</div>' +
+      '<div class="sec">' +
+        '<div class="sl"><span>\uD83D\uDCCD</span> LOCALIZA\u00C7\u00C3O</div>' +
+        '<div class="loc-bar" id="g5-loc-bar"><span style="font-size:9px;color:rgba(255,255,255,.2)">Clique em Analisar</span></div>' +
+      '</div>' +
       '<div class="sec"><div class="sl"><span>\u2139\uFE0F</span> RESUMO</div>' +
         '<div class="g2">' +
           '<div class="bst"><b id="g5-an">\u2014</b><span>AN\u00DANCIOS</span></div>' +
@@ -753,7 +947,7 @@ function glmBookmarklet() {
         '<select class="sel" id="' + ID + '-ord">' +
           '<option value="n">Padr\u00E3o (Shopee)</option>' +
           '<option value="s">\u2B50 Score GLM</option>' +
-          '<option value="v">\uD83D\uDD25 Mais Vendidos (30d)</option>' +
+          '<option value="v">\uD83D\uDD25 Mais Vendidos</option>' +
           '<option value="pa">\uD83D\uDCB0 Menor Pre\u00E7o</option>' +
           '<option value="pd">\uD83D\uDC8E Maior Pre\u00E7o</option>' +
           '<option value="dc">\uD83C\uDFF7\uFE0F Maior Desconto</option>' +
@@ -769,32 +963,28 @@ function glmBookmarklet() {
 
   document.body.appendChild(p);
 
-  // === EVENTOS ===
+  /* ── EVENTOS ── */
   gi(ID + '-cls').onclick = function() {
     p.remove();
     var c = gi(ID + '-css'); if (c) c.remove();
     var bs = document.querySelectorAll('.glm5-badge');
     for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
   };
-
   gi(ID + '-min').onclick = function() {
     var b = gi(ID + '-body');
     b.style.display = b.style.display === 'none' ? '' : 'none';
   };
-
   gi(ID + '-btn').onclick = analisar;
-
   gi(ID + '-re').onclick = function() {
-    DB = {}; FILT = null;
+    DB = {}; FILT = null; PGDATA = {};
     var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
     var fc = findCards(); for (var ci = 0; ci < fc.length; ci++) fc[ci].style.display = '';
     var chips = document.querySelectorAll('#' + ID + ' .chip'); for (var chi = 0; chi < chips.length; chi++) chips[chi].classList.remove('on');
     setTimeout(analisar, 200);
   };
-
   gi(ID + '-calc').onclick = function() { window.open('https://gui-89.github.io/calculadoraglm/', '_blank'); };
 
-  // Chips
+  /* Chips */
   var chips = toArr(p.querySelectorAll('[data-f]'));
   for (var ci = 0; ci < chips.length; ci++) {
     chips[ci].onclick = (function(ch) {
@@ -802,7 +992,7 @@ function glmBookmarklet() {
     })(chips[ci]);
   }
 
-  // Ordenar
+  /* Ordenar */
   gi(ID + '-ord').onchange = function() {
     var t = this.value, cards = findCards();
     if (!cards.length) return;
@@ -820,7 +1010,7 @@ function glmBookmarklet() {
     for (var si = 0; si < cards.length; si++) par.appendChild(cards[si]);
   };
 
-  // Drag
+  /* Drag */
   var dh = gi(ID + '-drag'), sx, sy, sl, st;
   dh.addEventListener('mousedown', function(ev) {
     sx = ev.clientX; sy = ev.clientY; sl = p.offsetLeft; st = p.offsetTop;
@@ -830,15 +1020,14 @@ function glmBookmarklet() {
     document.addEventListener('mouseup', up);
   });
 
-  // Auto-analisar ao abrir
+  /* Auto-analisar */
   setTimeout(analisar, 800);
-  setTimeout(analisar, 2500);
+  setTimeout(analisar, 2800);
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════
    GERA O BOOKMARKLET via .toString()
-   Sem string-inside-string, sem escaping manual
-   ══════════════════════════════════════════════════════════ */
+   ══════════════════════════════════════════════════════ */
 (function() {
   var lnk = document.getElementById('bm-link');
   if (!lnk) return;
