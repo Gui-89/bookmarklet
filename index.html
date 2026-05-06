@@ -3,37 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GLM Analisador Shopee</title>
+<title>GLM Analisador Shopee v6</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --shopee:#ee4d2d;--green:#00e676;--green2:#1de9b6;--gold:#ffd600;
   --red:#ff5252;--blue:#448aff;--bg:#0d0f0e;--card:#141916;--card2:#111310;--border:rgba(255,255,255,.07);
+  --purple:#b39ddb;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;min-height:100vh;}
 .bg-fx{position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(ellipse 50% 35% at 15% 0%,rgba(0,230,118,.06),transparent),
-             radial-gradient(ellipse 40% 30% at 85% 100%,rgba(238,77,45,.05),transparent);}
+             radial-gradient(ellipse 40% 30% at 85% 100%,rgba(238,77,45,.05),transparent),
+             radial-gradient(ellipse 30% 20% at 50% 50%,rgba(68,138,255,.03),transparent);}
 .wrapper{max-width:960px;margin:auto;padding:0 24px;position:relative;z-index:1;}
+
+/* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:48px;flex-wrap:wrap;gap:12px;}
 .nav-brand{display:flex;align-items:center;gap:10px;}
 .nav-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--shopee),#ff8a65);display:flex;align-items:center;justify-content:center;font-size:16px;}
 .nav-brand-txt{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
 .nav-brand-txt span{color:var(--shopee);}
+.nav-badge{background:rgba(238,77,45,.15);border:1px solid rgba(238,77,45,.3);color:var(--shopee);font-size:9px;font-weight:800;padding:2px 7px;border-radius:4px;letter-spacing:.5px;}
 .nav-links{display:flex;gap:4px;}
 .nav-links a{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;padding:6px 12px;border-radius:8px;transition:.2s;font-weight:500;}
 .nav-links a:hover{background:rgba(255,255,255,.06);color:#fff;}
+
+/* HERO */
 .hero{text-align:center;padding:8px 0 52px;}
 .hero-pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:22px;padding:5px 14px 5px 10px;border-radius:30px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);font-size:11px;font-weight:600;color:var(--green);letter-spacing:.3px;}
 .hero-pill span{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
 .hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,5.5vw,52px);font-weight:800;line-height:1.05;margin-bottom:18px;letter-spacing:-1px;}
 .hero h1 .hl{background:linear-gradient(90deg,var(--shopee) 0%,#ff8a65 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{font-size:14px;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto 40px;line-height:1.7;}
-.tabs{display:flex;gap:3px;background:rgba(255,255,255,.04);border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:28px;}
-.tab{flex:1;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;transition:.2s;color:rgba(255,255,255,.4);border:none;background:none;font-family:'DM Sans',sans-serif;}
+.hero p{font-size:14px;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto 40px;line-height:1.7;}
+.hero-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.hero-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:8px;font-size:11px;font-weight:600;border:1px solid;transition:.2s;}
+.hero-chip.gc{background:rgba(0,230,118,.08);border-color:rgba(0,230,118,.2);color:var(--green);}
+.hero-chip.rc{background:rgba(238,77,45,.08);border-color:rgba(238,77,45,.2);color:var(--shopee);}
+.hero-chip.bc{background:rgba(68,138,255,.08);border-color:rgba(68,138,255,.2);color:#82b1ff;}
+.hero-chip.pc{background:rgba(179,157,219,.08);border-color:rgba(179,157,219,.2);color:var(--purple);}
+
+/* TABS */
+.tabs{display:flex;gap:3px;background:rgba(255,255,255,.04);border-radius:12px;padding:4px;border:1px solid var(--border);margin-bottom:28px;flex-wrap:wrap;}
+.tab{flex:1;min-width:100px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;transition:.2s;color:rgba(255,255,255,.4);border:none;background:none;font-family:'DM Sans',sans-serif;}
 .tab.active{background:rgba(238,77,45,.15);color:var(--shopee);border:1px solid rgba(238,77,45,.25);}
 .tab-content{display:none;}.tab-content.active{display:block;}
+
+/* CARDS */
+.card{background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
+.sec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.cmp-table{width:100%;border-collapse:collapse;font-size:12px;}
+.cmp-table th{padding:8px 10px;text-align:center;font-size:10px;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;background:rgba(0,0,0,.25);}
+.cmp-table th:first-child{text-align:left;}
+.cmp-table td{padding:8px 10px;border-top:1px solid var(--border);text-align:center;}
+.cmp-table td:first-child{text-align:left;color:rgba(255,255,255,.5);font-size:11px;}
+.best-cell{color:var(--green)!important;font-weight:700!important;}
+.worst-cell{color:#ff5252!important;}
+
+/* BOOKMARKLET */
 .bm-hero{background:linear-gradient(135deg,rgba(0,230,118,.07) 0%,rgba(238,77,45,.05) 100%);border:1px solid rgba(0,230,118,.18);border-radius:20px;padding:32px;text-align:center;margin-bottom:20px;}
 .bm-hero h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;}
 .bm-hero p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:26px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;}
@@ -45,16 +74,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0
 .step-n{width:26px;height:26px;border-radius:50%;background:var(--shopee);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:10px;}
 .step h4{font-size:12px;font-weight:600;margin-bottom:5px;}
 .step p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.55;}
-.card{background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
-.sec-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;}
-.cmp-table{width:100%;border-collapse:collapse;font-size:12px;}
-.cmp-table th{padding:8px 10px;text-align:center;font-size:10px;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;background:rgba(0,0,0,.25);}
-.cmp-table th:first-child{text-align:left;}
-.cmp-table td{padding:8px 10px;border-top:1px solid var(--border);text-align:center;}
-.cmp-table td:first-child{text-align:left;color:rgba(255,255,255,.5);font-size:11px;}
-.best-cell{color:var(--green)!important;font-weight:700!important;}
-.worst-cell{color:#ff5252!important;}
+.v6-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(68,138,255,.12);border:1px solid rgba(68,138,255,.25);color:#82b1ff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:14px;}
+
+/* COMPARADOR */
 .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:12px;margin-top:16px;}
 .prod-card{background:var(--card2);border-radius:14px;border:1px solid var(--border);padding:16px;}
 .prod-card:hover{border-color:rgba(238,77,45,.2);}
@@ -68,6 +90,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0
 .btn-primary:hover{opacity:.88;}
 .btn-ghost{background:none;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;}
 .btn-ghost:hover{border-color:rgba(255,255,255,.25);color:#fff;}
+.btn-ia{padding:10px 20px;border:none;border-radius:9px;cursor:pointer;background:linear-gradient(90deg,#5c35cc,#7c4dff);color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;display:flex;align-items:center;gap:6px;}
+.btn-ia:hover{opacity:.88;}
+.btn-export{padding:10px 20px;border:1px solid rgba(68,138,255,.3);border-radius:9px;cursor:pointer;background:rgba(68,138,255,.08);color:#82b1ff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;}
+.btn-export:hover{background:rgba(68,138,255,.15);}
+
+/* RESULT CARDS */
 .rc{background:var(--card2);border-radius:14px;padding:16px;border:1px solid var(--border);transition:.2s;}
 .rc.best{border-color:rgba(0,230,118,.35);box-shadow:0 0 24px rgba(0,230,118,.08);}
 .rc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
@@ -87,89 +115,192 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0
 .rc-bar-track{background:rgba(255,255,255,.07);border-radius:3px;height:4px;overflow:hidden;margin-top:8px;}
 .rc-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;}
 .ex .rc-bar-fill{background:linear-gradient(90deg,var(--green),var(--green2));}.gd .rc-bar-fill{background:linear-gradient(90deg,var(--blue),#82b1ff);}.md .rc-bar-fill{background:var(--gold);}.lw .rc-bar-fill{background:var(--red);}
+.rc-calc-btn{display:block;width:100%;margin-top:10px;padding:6px;border:1px solid rgba(0,230,118,.25);border-radius:7px;background:rgba(0,230,118,.06);color:var(--green);font-size:10px;font-weight:600;text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;}
+.rc-calc-btn:hover{background:rgba(0,230,118,.12);}
+
+/* IA PANEL */
+.ia-panel{background:linear-gradient(135deg,rgba(92,53,204,.08),rgba(124,77,255,.05));border:1px solid rgba(124,77,255,.25);border-radius:18px;padding:24px;margin-top:16px;}
+.ia-panel-hd{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.ia-panel-hd h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;}
+.ia-badge{background:linear-gradient(90deg,#5c35cc,#7c4dff);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.5px;}
+.ia-loading{text-align:center;padding:32px;font-size:13px;color:rgba(255,255,255,.4);}
+.ia-loading .ia-spin{display:inline-block;font-size:24px;animation:spin 1s linear infinite;margin-bottom:10px;display:block;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}}
+.ia-error{text-align:center;padding:20px;color:var(--red);font-size:13px;}
+.ia-result{display:flex;flex-direction:column;gap:12px;}
+.ia-header-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.ia-stat{background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center;}
+.ia-stat span{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px;}
+.ia-stat b{font-size:15px;font-weight:800;}
+.ia-stat b.alta{color:var(--green);}.ia-stat b.media{color:var(--gold);}.ia-stat b.baixa{color:var(--red);}
+.ia-resumo{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;padding:12px;background:rgba(255,255,255,.03);border-radius:10px;border-left:3px solid rgba(124,77,255,.5);}
+.ia-nichos{display:flex;gap:6px;flex-wrap:wrap;}
+.ia-nicho{background:rgba(179,157,219,.12);border:1px solid rgba(179,157,219,.2);color:var(--purple);font-size:10px;font-weight:600;padding:4px 10px;border-radius:6px;}
+.ia-insights{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;}
+.ia-insight{border-radius:10px;padding:11px;border-left:3px solid;}
+.ia-insight.positivo{background:rgba(0,230,118,.06);border-color:var(--green);}
+.ia-insight.negativo{background:rgba(255,82,82,.06);border-color:var(--red);}
+.ia-insight.neutro{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.15);}
+.ia-insight b{font-size:11px;font-weight:700;display:block;margin-bottom:4px;}
+.ia-insight p{font-size:10px;color:rgba(255,255,255,.5);line-height:1.5;}
+.ia-titulo-box{background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.2);border-radius:10px;padding:12px;}
+.ia-titulo-box span{font-size:9px;color:rgba(255,214,0,.7);text-transform:uppercase;letter-spacing:.5px;font-weight:700;display:block;margin-bottom:5px;}
+.ia-titulo-box b{font-size:12px;color:var(--gold);}
+.ia-rec-box{background:rgba(238,77,45,.07);border:1px solid rgba(238,77,45,.2);border-radius:10px;padding:12px;font-size:12px;color:rgba(255,255,255,.8);line-height:1.5;}
+.ia-rec-box strong{color:var(--shopee);}
+
+/* HISTÓRICO */
+.hist-empty{text-align:center;padding:48px 24px;color:rgba(255,255,255,.25);font-size:13px;}
+.hist-empty .hist-icon{font-size:36px;display:block;margin-bottom:12px;}
+.hist-item{background:var(--card2);border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:10px;transition:.2s;}
+.hist-item:hover{border-color:rgba(238,77,45,.2);}
+.hist-item-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.hist-date{font-size:10px;color:rgba(255,255,255,.35);font-weight:600;}
+.hist-prods{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.hist-prod{background:rgba(255,255,255,.05);border-radius:6px;padding:4px 8px;font-size:10px;color:rgba(255,255,255,.6);}
+.hist-prod .sc{font-weight:800;margin-left:4px;}
+.hist-prod .sc.ex{color:var(--green);}.hist-prod .sc.gd{color:var(--blue);}.hist-prod .sc.md{color:var(--gold);}.hist-prod .sc.lw{color:var(--red);}
+.hist-actions{display:flex;gap:6px;}
+.btn-sm{padding:5px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-weight:600;font-family:'DM Sans',sans-serif;transition:.2s;border:none;}
+.btn-sm-green{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,.2);}
+.btn-sm-green:hover{background:rgba(0,230,118,.2);}
+.btn-sm-red{background:rgba(255,82,82,.1);color:#ff8a80;border:1px solid rgba(255,82,82,.2);}
+.btn-sm-red:hover{background:rgba(255,82,82,.18);}
+.hist-stats{display:flex;gap:12px;flex-wrap:wrap;}
+.hist-stat{font-size:10px;color:rgba(255,255,255,.35);}
+.hist-stat b{color:rgba(255,255,255,.7);}
+.hist-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+
+/* MELHORIAS */
 .mel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
 .mel-card{background:var(--card2);border-radius:14px;padding:18px;border:1px solid var(--border);}
+.mel-card.done{border-color:rgba(0,230,118,.2);background:rgba(0,230,118,.03);}
 .mel-icon{font-size:26px;margin-bottom:10px;}
 .mel-card h3{font-size:13px;font-weight:700;margin-bottom:5px;}
 .mel-card p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;margin-bottom:8px;}
 .badge-f{background:rgba(0,230,118,.15);color:var(--green);}.badge-m{background:rgba(255,214,0,.15);color:var(--gold);}.badge-a{background:rgba(238,77,45,.15);color:var(--shopee);}
+.badge-done{background:rgba(0,230,118,.2);color:var(--green);}
+
+/* TOAST NOTIFICATION */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#141916;border:1px solid rgba(0,230,118,.35);color:var(--green);padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:all .35s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.error{border-color:rgba(255,82,82,.35);color:#ff8a80;}
+.toast.info{border-color:rgba(68,138,255,.35);color:#82b1ff;}
+
+/* BOOKMARKLET DATA ALERT */
+.bm-data-alert{background:linear-gradient(135deg,rgba(0,230,118,.08),rgba(68,138,255,.05));border:1px solid rgba(0,230,118,.25);border-radius:14px;padding:16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.bm-data-alert .icon{font-size:24px;flex-shrink:0;}
+.bm-data-alert p{font-size:13px;color:#86efac;line-height:1.5;}
+.bm-data-alert p b{color:#fff;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:20px 0;}
+
 footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-size:11px;color:rgba(255,255,255,.2);margin-top:40px;}
-@media(max-width:600px){.steps,.prod-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.steps,.prod-grid,.ia-header-row,.ia-insights,.mel-grid{grid-template-columns:1fr;}.tabs{gap:2px;}.tab{font-size:11px;padding:8px 6px;}}
 </style>
 </head>
 <body>
 <div class="bg-fx"></div>
-<div class="wrapper">
+<div class="toast" id="glm-toast"></div>
 
+<div class="wrapper">
   <nav>
     <div class="nav-brand">
       <div class="nav-logo">🛍️</div>
       <div class="nav-brand-txt">GLM <span>Studio</span></div>
+      <span class="nav-badge">v6.0</span>
     </div>
     <div class="nav-links">
       <a href="https://gui-89.github.io/calculadoraglm/" target="_blank">📱 Calculadora</a>
-      <a href="#bookmarklet">🔖 Bookmarklet</a>
-      <a href="#comparador">⚖️ Comparador</a>
+      <a href="#" onclick="setTab('bookmarklet',document.querySelector('.tab'));return false">🔖 Bookmarklet</a>
+      <a href="#" onclick="setTab('comparador',document.querySelectorAll('.tab')[1]);return false">⚖️ Comparador</a>
     </div>
   </nav>
 
   <div class="hero">
-    <div class="hero-pill"><span></span> Funciona em qualquer navegador · Sem instalar nada</div>
-    <h1>GLM Analisador<br><span class="hl">Shopee Pro</span></h1>
-    <p>Bookmarklet com painel completo — concorrência, vendas, localização, badges BOM e filtros inteligentes. Chrome, Firefox, Safari, Edge e celular.</p>
+    <div class="hero-pill"><span></span> v6 · 4 novas funcionalidades implementadas</div>
+    <h1>GLM Analisador<br><span class="hl">Shopee Pro v6</span></h1>
+    <p>Análise com IA via Claude, histórico persistente, integração com Calculadora GLM e exportação de relatório visual. Sem instalar nada.</p>
+    <div class="hero-chips">
+      <span class="hero-chip gc">🤖 Score com IA</span>
+      <span class="hero-chip bc">💾 Histórico</span>
+      <span class="hero-chip rc">🔗 Calculadora GLM</span>
+      <span class="hero-chip pc">📊 Relatório Visual</span>
+    </div>
   </div>
 
   <div class="tabs">
     <button class="tab active" onclick="setTab('bookmarklet',this)">🔖 Bookmarklet</button>
     <button class="tab" onclick="setTab('comparador',this)">⚖️ Comparador</button>
+    <button class="tab" onclick="setTab('historico',this);renderHistorico()">📜 Histórico</button>
     <button class="tab" onclick="setTab('melhorias',this)">💡 Melhorias</button>
   </div>
 
+  <!-- ══════════ TAB: BOOKMARKLET ══════════ -->
   <div id="tab-bookmarklet" class="tab-content active">
+    <div id="bm-data-banner" style="display:none" class="bm-data-alert">
+      <div class="icon">📥</div>
+      <div>
+        <p><b>Dados recebidos do Bookmarklet!</b><br>
+        <span id="bm-data-info">Produtos carregados. Acesse a aba Comparador para analisar.</span></p>
+      </div>
+    </div>
+
     <div class="bm-hero">
       <h2>🔖 Arraste para sua Barra de Favoritos</h2>
-      <p>Clique e arraste o botão abaixo para a barra de favoritos. Depois, em qualquer busca na Shopee, clique para ativar o painel GLM com todas as métricas.</p>
+      <p>Bookmarklet com painel completo. Agora com salvamento de histórico e botão para enviar os melhores produtos direto para o Comparador GLM.</p>
+      <div class="v6-badge">✨ v6.0 — Novo: Enviar ao GLM + Histórico</div><br>
       <a id="bm-link" class="bm-btn" href="#" draggable="true">🛍️ GLM Analisador Shopee</a>
       <div class="steps">
         <div class="step"><div class="step-n">1</div><h4>Mostre a barra</h4><p>Chrome: <code>Ctrl+Shift+B</code><br>Firefox: <code>Ctrl+B</code><br>Safari: Ver → Favoritos</p></div>
         <div class="step"><div class="step-n">2</div><h4>Arraste o botão</h4><p>Segure e arraste o botão para a barra de favoritos do navegador.</p></div>
-        <div class="step"><div class="step-n">3</div><h4>Abra a Shopee</h4><p>Acesse shopee.com.br e pesquise qualquer produto.</p></div>
-        <div class="step"><div class="step-n">4</div><h4>Clique e analise!</h4><p>O painel GLM abre com concorrência, vendas, localização e badges BOM nos cards.</p></div>
+        <div class="step"><div class="step-n">3</div><h4>Analise na Shopee</h4><p>Acesse shopee.com.br, pesquise um produto e clique no bookmarklet.</p></div>
+        <div class="step"><div class="step-n">4</div><h4>📤 Enviar ao GLM</h4><p>Clique "Enviar ao GLM" no painel para abrir os top produtos aqui no Comparador.</p></div>
       </div>
     </div>
+
     <div class="card">
       <div class="sec-lbl">📊 Extensão Chrome vs Bookmarklet</div>
       <div style="overflow-x:auto">
         <table class="cmp-table">
-          <thead><tr><th>Recurso</th><th>Extensão</th><th>Bookmarklet</th></tr></thead>
+          <thead><tr><th>Recurso</th><th>Extensão</th><th>Bookmarklet v6</th></tr></thead>
           <tbody>
             <tr><td>Chrome / Edge</td><td class="best-cell">✅ Auto</td><td class="best-cell">✅ Manual</td></tr>
-            <tr><td>Firefox</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
-            <tr><td>Safari (Mac/iPhone)</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
-            <tr><td>Android (Chrome)</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
+            <tr><td>Firefox / Safari</td><td class="worst-cell">❌</td><td class="best-cell">✅</td></tr>
             <tr><td>Painel de concorrência</td><td class="best-cell">✅</td><td class="best-cell">✅</td></tr>
             <tr><td>Badges nos cards</td><td class="best-cell">✅</td><td class="best-cell">✅</td></tr>
-            <tr><td>Instalação</td><td>4 passos + Chrome</td><td class="best-cell">Arrastar e soltar</td></tr>
+            <tr><td>Histórico local (novo)</td><td class="worst-cell">❌</td><td class="best-cell">✅ v6</td></tr>
+            <tr><td>Enviar ao Comparador (novo)</td><td class="worst-cell">❌</td><td class="best-cell">✅ v6</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
+  <!-- ══════════ TAB: COMPARADOR ══════════ -->
   <div id="tab-comparador" class="tab-content">
+    <div id="bm-import-banner" style="display:none;" class="bm-data-alert">
+      <div class="icon">🚀</div>
+      <div><p id="bm-import-msg"><b>Produtos importados do Bookmarklet!</b><br>Verifique os dados abaixo e clique em Comparar.</p></div>
+    </div>
+
     <div class="card">
       <div class="sec-lbl">⚖️ Comparador Manual de Produtos</div>
-      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:4px;">Cole os dados de produtos da Shopee e compare lado a lado.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:4px;">Cole os dados de produtos da Shopee e compare lado a lado com análise de IA.</p>
       <div class="prod-grid" id="prodGrid">
         <div class="add-card-btn" onclick="adicionarCard()" id="btnAdd">➕ Adicionar Produto</div>
       </div>
-      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center;">
         <button class="btn-primary" onclick="analisarTodos()">⚖️ Comparar Produtos</button>
+        <button class="btn-ia" id="btn-ia-analise" onclick="analisarComIA()" style="display:none">🤖 Analisar com IA</button>
+        <button class="btn-export" id="btn-export" onclick="exportarRelatorio()" style="display:none">📊 Exportar Relatório</button>
         <button class="btn-ghost" onclick="limparTudo()">🗑️ Limpar</button>
-        <button class="btn-ghost" onclick="exportarCSV()">📊 Exportar CSV</button>
+        <button class="btn-ghost" onclick="exportarCSV()">📁 CSV</button>
       </div>
     </div>
+
     <div id="resultados" style="display:none;">
       <div class="card">
         <div class="sec-lbl">🏆 Análise Comparativa</div>
@@ -177,1017 +308,961 @@ footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);font-
         <div style="overflow-x:auto;margin-top:18px;"><table class="cmp-table" id="resultTable"></table></div>
       </div>
     </div>
+
+    <!-- IA PANEL -->
+    <div id="ia-panel" class="ia-panel" style="display:none;">
+      <div class="ia-panel-hd">
+        <span style="font-size:24px;">🤖</span>
+        <div>
+          <h3>Análise com Inteligência Artificial</h3>
+          <p style="font-size:11px;color:rgba(255,255,255,.4);">Insights gerados pelo Claude para seus produtos</p>
+        </div>
+        <span class="ia-badge">CLAUDE AI</span>
+      </div>
+      <div id="ia-content"><div class="ia-loading"><span class="ia-spin">⚙️</span>Preparando análise...</div></div>
+    </div>
   </div>
 
+  <!-- ══════════ TAB: HISTÓRICO ══════════ -->
+  <div id="tab-historico" class="tab-content">
+    <div class="card">
+      <div class="hist-toolbar">
+        <div class="sec-lbl" style="margin:0;">📜 Histórico de Comparações</div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn-ghost" onclick="renderHistorico()" style="font-size:11px;padding:6px 12px;">🔄 Atualizar</button>
+          <button class="btn-sm btn-sm-red" onclick="limparHistorico()" style="font-size:11px;padding:6px 12px;">🗑️ Limpar Tudo</button>
+        </div>
+      </div>
+      <div id="hist-list"><div class="hist-empty"><span class="hist-icon">📭</span>Nenhuma comparação salva ainda.<br>Compare produtos na aba Comparador para criar histórico.</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB: MELHORIAS ══════════ -->
   <div id="tab-melhorias" class="tab-content">
     <div class="card">
-      <div class="sec-lbl">💡 Sugestões de Melhoria</div>
+      <div class="sec-lbl">💡 Funcionalidades v6</div>
       <div class="mel-grid">
-        <div class="mel-card"><div class="badge badge-f">✅ Fácil</div><div class="mel-icon">📊</div><h3>Histórico de Buscas</h3><p>Salvar produtos analisados com data para acompanhar crescimento ao longo do tempo.</p></div>
-        <div class="mel-card"><div class="badge badge-f">✅ Fácil</div><div class="mel-icon">🔔</div><h3>Alerta de Preço</h3><p>Definir preço-alvo e receber notificação quando o produto cair abaixo do valor.</p></div>
-        <div class="mel-card"><div class="badge badge-m">⚡ Médio</div><div class="mel-icon">📈</div><h3>Gráfico de Tendência</h3><p>Comparar score e vendas ao longo de sessões para identificar produtos em ascensão.</p></div>
-        <div class="mel-card"><div class="badge badge-m">⚡ Médio</div><div class="mel-icon">🎯</div><h3>Filtro por Margem</h3><p>Integrar com a Calculadora: inserir custo e filtrar produtos com margem viável.</p></div>
-        <div class="mel-card"><div class="badge badge-a">🚀 Avançado</div><div class="mel-icon">🤖</div><h3>Score com IA</h3><p>Usar API do Claude para analisar fotos, título e sugerir melhorias no anúncio.</p></div>
-        <div class="mel-card"><div class="badge badge-a">🚀 Avançado</div><div class="mel-icon">📦</div><h3>Integração Estoque</h3><p>Cruzar Shopee com catálogo da Calculadora GLM e mostrar margem real.</p></div>
-      </div>
-      <div style="margin-top:20px;padding:16px;background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:12px;">
-        <p style="font-size:13px;color:#86efac;line-height:1.6;">💬 <b>Qual melhoria implementar primeiro?</b> As marcadas como "Fácil" posso implementar na extensão atual sem grandes mudanças!</p>
+        <div class="mel-card done"><div class="badge badge-done">✅ Implementado v6</div><div class="mel-icon">🤖</div><h3>Score com IA (Claude)</h3><p>Análise de potencial, sugestão de título otimizado, identificação de nicho e insights personalizados por produto.</p></div>
+        <div class="mel-card done"><div class="badge badge-done">✅ Implementado v6</div><div class="mel-icon">💾</div><h3>Histórico Persistente</h3><p>Comparações salvas automaticamente com data/hora. Recarregue qualquer análise anterior com 1 clique.</p></div>
+        <div class="mel-card done"><div class="badge badge-done">✅ Implementado v6</div><div class="mel-icon">🔗</div><h3>Integração Calculadora GLM</h3><p>Botão direto em cada produto para abrir a Calculadora GLM com preço e vendas pré-preenchidos.</p></div>
+        <div class="mel-card done"><div class="badge badge-done">✅ Implementado v6</div><div class="mel-icon">📊</div><h3>Relatório Visual HTML</h3><p>Exportar relatório profissional pronto para impressão com todos os produtos, scores e insights da IA.</p></div>
+        <div class="mel-card"><div class="badge badge-m">⚡ Próxima versão</div><div class="mel-icon">📈</div><h3>Gráfico de Tendência</h3><p>Comparar score e vendas ao longo de sessões para identificar produtos em ascensão usando o histórico.</p></div>
+        <div class="mel-card"><div class="badge badge-m">⚡ Próxima versão</div><div class="mel-icon">🎯</div><h3>Filtro por Margem</h3><p>Integrar custo + margem diretamente no comparador, cruzando com dados da Calculadora GLM.</p></div>
       </div>
     </div>
   </div>
 
-  <footer>GLM Studio · Calculadora + Analisador Shopee · Feito para impressores 3D 🖨️</footer>
+  <footer>GLM Studio v6 · Calculadora + Analisador Shopee · Score IA · Histórico · Feito para impressores 3D 🖨️</footer>
 </div>
 
 <script>
-/* ═══ PAGE TABS ═══ */
+/* ═══════════════════════════════════════════════════════
+   GLM ANALISADOR SHOPEE v6
+   Novas funcionalidades:
+   1. Score com IA (Claude API)
+   2. Histórico persistente (localStorage)
+   3. Integração com Calculadora GLM
+   4. Exportar relatório visual HTML
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── TABS ─── */
 function setTab(id, btn) {
-  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
-  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
 }
 
-/* ══════════════════════════════════════════════════════
-   BOOKMARKLET v5.2
-   NOVO: extração de localização, JSON embutido Shopee,
-         vendas melhorado, data de criação via JSON,
-         localização no badge e painel
-   ══════════════════════════════════════════════════════ */
-function glmBookmarklet() {
-  var ID = 'glm-sp5';
+/* ─── TOAST ─── */
+function toast(msg, type, dur) {
+  var t = document.getElementById('glm-toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' '+type : '');
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(function(){t.classList.remove('show');}, dur||3000);
+}
 
-  if (document.getElementById(ID)) {
-    var op = document.getElementById(ID); if (op) op.remove();
-    var oc = document.getElementById(ID + '-css'); if (oc) oc.remove();
-    var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
+/* ─── HELPERS ─── */
+function fRc(n){return 'R$\u00A0'+Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+function fNc(n){n=Math.round(n||0);return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1).replace('.0','')+'k':String(n);}
+function scClsC(s){return s>=70?'ex':s>=50?'gd':s>=30?'md':'lw';}
+function scTxtC(s){return s>=70?'🔥 Excelente':s>=50?'👍 Bom':s>=30?'⚠️ Médio':'📉 Fraco';}
+function gv(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function gn(id){return parseFloat(gv(id))||0;}
+
+/* ═══════════════════════════════════════════════════════
+   BOOKMARKLET v6.0
+   Novo: Histórico localStorage + Botão "Enviar ao GLM"
+   ═══════════════════════════════════════════════════════ */
+function glmBookmarklet() {
+  var ID='glm-sp6';
+  if(document.getElementById(ID)){
+    var op=document.getElementById(ID);if(op)op.remove();
+    var oc=document.getElementById(ID+'-css');if(oc)oc.remove();
+    var bs=document.querySelectorAll('.glm6-badge');for(var bi=0;bi<bs.length;bi++)bs[bi].remove();
     return;
   }
 
-  /* ── CSS ── */
-  var style = document.createElement('style');
-  style.id = ID + '-css';
-  style.textContent =
-    '#' + ID + '{position:fixed;top:58px;right:10px;width:288px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}' +
-    '#' + ID + ' .hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.1),rgba(238,77,45,.06));border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}' +
-    '#' + ID + ' .hd-l{display:flex;align-items:center;gap:8px;}' +
-    '#' + ID + ' .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);display:flex;align-items:center;justify-content:center;font-size:13px;}' +
-    '#' + ID + ' .hd-t{font-size:13px;font-weight:700;}' +
-    '#' + ID + ' .hd-v{font-size:9px;color:rgba(255,255,255,.28);}' +
-    '#' + ID + ' .hd-r{display:flex;gap:5px;}' +
-    '#' + ID + ' .hb{background:none;border:1px solid rgba(255,255,255,.12);color:#888;border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:12px;line-height:1;padding:0;}' +
-    '#' + ID + ' .bd{max-height:calc(92vh - 52px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,230,118,.2) transparent;}' +
-    '#' + ID + ' .bd::-webkit-scrollbar{width:3px;}' +
-    '#' + ID + ' .bd::-webkit-scrollbar-thumb{background:rgba(0,230,118,.2);border-radius:3px;}' +
-    '#' + ID + ' .tip{background:rgba(0,230,118,.07);border-bottom:1px solid rgba(0,230,118,.12);padding:9px 12px;display:flex;gap:8px;align-items:flex-start;}' +
-    '#' + ID + ' .tip p{font-size:10px;color:#86efac;line-height:1.5;}' +
-    '#' + ID + ' .tip b{color:#fff;}' +
-    '#' + ID + ' .vbar{text-align:center;padding:5px;font-size:10px;color:rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.05);}' +
-    '#' + ID + ' .sec{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);}' +
-    '#' + ID + ' .sl{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;}' +
-    '#' + ID + ' .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}' +
-    '#' + ID + ' .chips.one{grid-template-columns:1fr;}' +
-    '#' + ID + ' .chip{border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:.18s;border:1.5px solid transparent;}' +
-    '#' + ID + ' .chip:hover{filter:brightness(1.15);}' +
-    '#' + ID + ' .chip.on{border-color:rgba(255,255,255,.5)!important;transform:scale(.95);}' +
-    '#' + ID + ' .chip b{display:block;font-size:20px;font-weight:900;line-height:1.15;}' +
-    '#' + ID + ' .chip span{font-size:8px;font-weight:600;letter-spacing:.3px;}' +
-    '#' + ID + ' .cg{background:rgba(0,230,118,.13);color:#00e676;}' +
-    '#' + ID + ' .cy{background:rgba(255,214,0,.13);color:#ffd600;}' +
-    '#' + ID + ' .cr{background:rgba(255,82,82,.13);color:#ff5252;}' +
-    '#' + ID + ' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}' +
-    '#' + ID + ' .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}' +
-    '#' + ID + ' .bst b{display:block;font-size:18px;font-weight:800;line-height:1.2;}' +
-    '#' + ID + ' .bst span{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;}' +
-    '#' + ID + ' .gn{color:#00e676!important;}' +
-    '#' + ID + ' .go{color:#ffd600!important;}' +
-    '#' + ID + ' .gr{color:#ff5252!important;}' +
-    '#' + ID + ' .trow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}' +
-    '#' + ID + ' .trow:last-child{border-bottom:none;}' +
-    '#' + ID + ' .trow .ti{flex:1;min-width:0;}' +
-    '#' + ID + ' .trow .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
-    '#' + ID + ' .trow .tm{font-size:9px;color:rgba(255,255,255,.32);}' +
-    '#' + ID + ' .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;border:1.5px solid;}' +
-    '#' + ID + ' .ci.ex{border-color:#00e676;color:#00e676;background:rgba(0,230,118,.1);}' +
-    '#' + ID + ' .ci.gd{border-color:#448aff;color:#448aff;background:rgba(68,138,255,.1);}' +
-    '#' + ID + ' .ci.md{border-color:#ffd600;color:#ffd600;background:rgba(255,214,0,.1);}' +
-    '#' + ID + ' .ci.lw{border-color:#ff5252;color:#ff5252;background:rgba(255,82,82,.1);}' +
-    '#' + ID + ' .btn-a{width:100%;padding:11px;border:none;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f06744);color:#fff;margin-bottom:6px;font-family:inherit;}' +
-    '#' + ID + ' .btn-r{width:100%;padding:8px;border:1px solid rgba(68,138,255,.3);border-radius:10px;cursor:pointer;font-size:11px;font-weight:600;background:rgba(68,138,255,.08);color:#82b1ff;margin-bottom:5px;font-family:inherit;}' +
-    '#' + ID + ' .btn-c{width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;font-size:12px;font-weight:700;background:#00e676;color:#000;font-family:inherit;}' +
-    '#' + ID + ' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:11px;outline:none;cursor:pointer;}' +
-    '#' + ID + ' .sel option{background:#0f1410;}' +
-    '#' + ID + ' .mt{font-size:10px;color:rgba(255,255,255,.22);text-align:center;padding:10px;}' +
-    '#' + ID + ' .cnt-box{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}' +
-    '#' + ID + ' .cnt-box b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}' +
-    '#' + ID + ' .cnt-box span{font-size:11px;color:#86efac;}' +
-    '#' + ID + ' .loc-bar{font-size:10px;color:rgba(255,255,255,.35);padding:4px 0 2px;display:flex;flex-wrap:wrap;gap:4px;}' +
-    '#' + ID + ' .loc-pill{background:rgba(255,255,255,.06);border-radius:4px;padding:2px 6px;font-size:9px;color:rgba(255,255,255,.5);}' +
+  var GLM_URL = window.GLM_ANALISADOR_URL || 'https://gui-89.github.io/glmanalisador/';
+
+  var style=document.createElement('style');
+  style.id=ID+'-css';
+  style.textContent=
+    '#'+ID+'{position:fixed;top:58px;right:10px;width:292px;max-height:92vh;background:#0f1410;border:1px solid rgba(0,230,118,.28);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.95);z-index:2147483647;font-family:-apple-system,Segoe UI,Arial,sans-serif;color:#fff;overflow:hidden;}'+
+    '#'+ID+' .hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:linear-gradient(90deg,rgba(0,230,118,.1),rgba(238,77,45,.06));border-bottom:1px solid rgba(255,255,255,.07);cursor:move;user-select:none;}'+
+    '#'+ID+' .hd-l{display:flex;align-items:center;gap:8px;}'+
+    '#'+ID+' .hd-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#ee4d2d,#ff8a65);display:flex;align-items:center;justify-content:center;font-size:13px;}'+
+    '#'+ID+' .hd-t{font-size:13px;font-weight:700;}'+
+    '#'+ID+' .hd-v{font-size:9px;color:rgba(255,255,255,.28);}'+
+    '#'+ID+' .hd-r{display:flex;gap:5px;}'+
+    '#'+ID+' .hb{background:none;border:1px solid rgba(255,255,255,.12);color:#888;border-radius:5px;width:22px;height:22px;cursor:pointer;font-size:12px;line-height:1;padding:0;}'+
+    '#'+ID+' .bd{max-height:calc(92vh - 52px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,230,118,.2) transparent;}'+
+    '#'+ID+' .bd::-webkit-scrollbar{width:3px;}'+
+    '#'+ID+' .bd::-webkit-scrollbar-thumb{background:rgba(0,230,118,.2);border-radius:3px;}'+
+    '#'+ID+' .tip{background:rgba(0,230,118,.07);border-bottom:1px solid rgba(0,230,118,.12);padding:9px 12px;display:flex;gap:8px;align-items:flex-start;}'+
+    '#'+ID+' .tip p{font-size:10px;color:#86efac;line-height:1.5;}'+
+    '#'+ID+' .tip b{color:#fff;}'+
+    '#'+ID+' .vbar{text-align:center;padding:5px;font-size:10px;color:rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.05);}'+
+    '#'+ID+' .sec{padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.05);}'+
+    '#'+ID+' .sl{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;}'+
+    '#'+ID+' .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}'+
+    '#'+ID+' .chips.one{grid-template-columns:1fr;}'+
+    '#'+ID+' .chip{border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:.18s;border:1.5px solid transparent;}'+
+    '#'+ID+' .chip:hover{filter:brightness(1.15);}'+
+    '#'+ID+' .chip.on{border-color:rgba(255,255,255,.5)!important;transform:scale(.95);}'+
+    '#'+ID+' .chip b{display:block;font-size:20px;font-weight:900;line-height:1.15;}'+
+    '#'+ID+' .chip span{font-size:8px;font-weight:600;letter-spacing:.3px;}'+
+    '#'+ID+' .cg{background:rgba(0,230,118,.13);color:#00e676;}'+
+    '#'+ID+' .cy{background:rgba(255,214,0,.13);color:#ffd600;}'+
+    '#'+ID+' .cr{background:rgba(255,82,82,.13);color:#ff5252;}'+
+    '#'+ID+' .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}'+
+    '#'+ID+' .bst{background:rgba(255,255,255,.04);border-radius:9px;padding:9px;text-align:center;}'+
+    '#'+ID+' .bst b{display:block;font-size:18px;font-weight:800;line-height:1.2;}'+
+    '#'+ID+' .bst span{font-size:8px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;}'+
+    '#'+ID+' .gn{color:#00e676!important;}'+
+    '#'+ID+' .go{color:#ffd600!important;}'+
+    '#'+ID+' .gr{color:#ff5252!important;}'+
+    '#'+ID+' .trow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}'+
+    '#'+ID+' .trow:last-child{border-bottom:none;}'+
+    '#'+ID+' .trow .ti{flex:1;min-width:0;}'+
+    '#'+ID+' .trow .tn{font-size:10px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}'+
+    '#'+ID+' .trow .tm{font-size:9px;color:rgba(255,255,255,.32);}'+
+    '#'+ID+' .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;border:1.5px solid;}'+
+    '#'+ID+' .ci.ex{border-color:#00e676;color:#00e676;background:rgba(0,230,118,.1);}'+
+    '#'+ID+' .ci.gd{border-color:#448aff;color:#448aff;background:rgba(68,138,255,.1);}'+
+    '#'+ID+' .ci.md{border-color:#ffd600;color:#ffd600;background:rgba(255,214,0,.1);}'+
+    '#'+ID+' .ci.lw{border-color:#ff5252;color:#ff5252;background:rgba(255,82,82,.1);}'+
+    '#'+ID+' .btn-a{width:100%;padding:11px;border:none;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;background:linear-gradient(90deg,#ee4d2d,#f06744);color:#fff;margin-bottom:6px;font-family:inherit;}'+
+    '#'+ID+' .btn-r{width:100%;padding:8px;border:1px solid rgba(68,138,255,.3);border-radius:10px;cursor:pointer;font-size:11px;font-weight:600;background:rgba(68,138,255,.08);color:#82b1ff;margin-bottom:5px;font-family:inherit;}'+
+    '#'+ID+' .btn-c{width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;font-size:12px;font-weight:700;background:#00e676;color:#000;font-family:inherit;margin-bottom:5px;}'+
+    '#'+ID+' .btn-glm{width:100%;padding:10px;border:1px solid rgba(0,230,118,.3);border-radius:10px;cursor:pointer;font-size:12px;font-weight:700;background:rgba(0,230,118,.08);color:#00e676;font-family:inherit;}'+
+    '#'+ID+' .sel{width:100%;padding:7px 9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:11px;outline:none;cursor:pointer;}'+
+    '#'+ID+' .sel option{background:#0f1410;}'+
+    '#'+ID+' .mt{font-size:10px;color:rgba(255,255,255,.22);text-align:center;padding:10px;}'+
+    '#'+ID+' .cnt-box{background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px;}'+
+    '#'+ID+' .cnt-box b{display:block;font-size:28px;font-weight:900;color:#00e676;line-height:1.1;}'+
+    '#'+ID+' .cnt-box span{font-size:11px;color:#86efac;}'+
+    '#'+ID+' .loc-bar{font-size:10px;color:rgba(255,255,255,.35);padding:4px 0 2px;display:flex;flex-wrap:wrap;gap:4px;}'+
+    '#'+ID+' .loc-pill{background:rgba(255,255,255,.06);border-radius:4px;padding:2px 6px;font-size:9px;color:rgba(255,255,255,.5);}'+
+    '#'+ID+' .hist-saved{background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.15);border-radius:8px;padding:6px 10px;font-size:10px;color:#86efac;text-align:center;margin-top:6px;}'+
     /* BADGE NOS CARDS */
-    '.glm5-badge{display:block!important;width:100%!important;margin:0!important;font-family:-apple-system,sans-serif!important;overflow:visible!important;position:relative!important;z-index:99!important;}' +
-    '.glm5-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:0 0 6px 6px!important;overflow:hidden!important;}' +
-    '.glm5-row.ex{border-color:#00e676!important;}.glm5-row.gd{border-color:#448aff!important;}.glm5-row.md{border-color:#ffd600!important;}.glm5-row.lw{border-color:#ff5252!important;}' +
-    '.glm5-sc{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:4px 7px!important;min-width:36px!important;background:rgba(255,255,255,.03)!important;border-right:1px solid rgba(255,255,255,.05)!important;}' +
-    '.glm5-sc b{font-size:15px!important;font-weight:900!important;line-height:1!important;}' +
-    '.glm5-sc b.ex{color:#00e676!important;}.glm5-sc b.gd{color:#448aff!important;}.glm5-sc b.md{color:#ffd600!important;}.glm5-sc b.lw{color:#ff5252!important;}' +
-    '.glm5-sc s{font-size:7px!important;color:rgba(255,255,255,.28)!important;font-style:normal!important;}' +
-    '.glm5-inf{flex:1!important;padding:4px 6px!important;display:flex!important;flex-direction:column!important;gap:2px!important;}' +
-    '.glm5-L{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}' +
-    '.glm5-it{display:flex!important;flex-direction:column!important;align-items:center!important;line-height:1.1!important;}' +
-    '.glm5-il{font-size:7px!important;color:rgba(255,255,255,.28)!important;}' +
-    '.glm5-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}' +
-    '.glm5-iv.gn{color:#00e676!important;}.glm5-iv.go{color:#ffd600!important;}.glm5-iv.gr{color:#ff5252!important;}.glm5-iv.bl{color:#82b1ff!important;}' +
-    '.glm5-tags{display:flex!important;gap:3px!important;align-items:center!important;flex-shrink:0!important;padding:3px 5px!important;flex-wrap:wrap!important;}' +
-    '.glm5-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;letter-spacing:.3px!important;}' +
-    '.glm5-fr{background:rgba(68,138,255,.22)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}' +
-    '.glm5-op{font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}' +
-    '.glm5-op.oa{background:rgba(0,230,118,.2)!important;color:#00e676!important;}.glm5-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}' +
-    '.glm5-d{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.45)!important;}' +
-    '.glm5-d.nv{background:rgba(0,230,118,.15)!important;color:#00e676!important;}' +
-    '.glm5-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}' +
-    '.glm5-loc{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.06)!important;color:rgba(255,255,255,.4)!important;}';
+    '.glm6-badge{display:block!important;width:100%!important;margin:0!important;font-family:-apple-system,sans-serif!important;overflow:visible!important;position:relative!important;z-index:99!important;}'+
+    '.glm6-row{display:flex!important;align-items:stretch!important;background:rgba(6,9,7,.97)!important;border-left:3px solid!important;border-radius:0 0 6px 6px!important;overflow:hidden!important;}'+
+    '.glm6-row.ex{border-color:#00e676!important;}.glm6-row.gd{border-color:#448aff!important;}.glm6-row.md{border-color:#ffd600!important;}.glm6-row.lw{border-color:#ff5252!important;}'+
+    '.glm6-sc{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:4px 7px!important;min-width:36px!important;background:rgba(255,255,255,.03)!important;border-right:1px solid rgba(255,255,255,.05)!important;}'+
+    '.glm6-sc b{font-size:15px!important;font-weight:900!important;line-height:1!important;}'+
+    '.glm6-sc b.ex{color:#00e676!important;}.glm6-sc b.gd{color:#448aff!important;}.glm6-sc b.md{color:#ffd600!important;}.glm6-sc b.lw{color:#ff5252!important;}'+
+    '.glm6-sc s{font-size:7px!important;color:rgba(255,255,255,.28)!important;font-style:normal!important;}'+
+    '.glm6-inf{flex:1!important;padding:4px 6px!important;display:flex!important;flex-direction:column!important;gap:2px!important;}'+
+    '.glm6-L{display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:wrap!important;}'+
+    '.glm6-it{display:flex!important;flex-direction:column!important;align-items:center!important;line-height:1.1!important;}'+
+    '.glm6-il{font-size:7px!important;color:rgba(255,255,255,.28)!important;}'+
+    '.glm6-iv{font-size:10px!important;font-weight:700!important;color:#fff!important;white-space:nowrap!important;}'+
+    '.glm6-iv.gn{color:#00e676!important;}.glm6-iv.go{color:#ffd600!important;}.glm6-iv.gr{color:#ff5252!important;}.glm6-iv.bl{color:#82b1ff!important;}'+
+    '.glm6-tags{display:flex!important;gap:3px!important;align-items:center!important;flex-shrink:0!important;padding:3px 5px!important;flex-wrap:wrap!important;}'+
+    '.glm6-bom{background:#00e676!important;color:#000!important;font-size:7px!important;font-weight:900!important;padding:2px 5px!important;border-radius:3px!important;letter-spacing:.3px!important;}'+
+    '.glm6-fr{background:rgba(68,138,255,.22)!important;color:#82b1ff!important;font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}'+
+    '.glm6-op{font-size:7px!important;font-weight:700!important;padding:2px 5px!important;border-radius:3px!important;}'+
+    '.glm6-op.oa{background:rgba(0,230,118,.2)!important;color:#00e676!important;}.glm6-op.om{background:rgba(255,214,0,.2)!important;color:#ffd600!important;}'+
+    '.glm6-d{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.08)!important;color:rgba(255,255,255,.45)!important;}'+
+    '.glm6-d.nv{background:rgba(0,230,118,.15)!important;color:#00e676!important;}.glm6-d.old{background:rgba(255,82,82,.12)!important;color:#ff8a80!important;}'+
+    '.glm6-loc{font-size:7px!important;font-weight:600!important;padding:2px 5px!important;border-radius:3px!important;background:rgba(255,255,255,.06)!important;color:rgba(255,255,255,.4)!important;}';
   document.head.appendChild(style);
 
-  /* ── ESTADO ── */
-  var DB = {}, FILT = null, PGDATA = {};
+  var DB={},FILT=null,PGDATA={};
+  function scC(n){return n>=70?'ex':n>=50?'gd':n>=30?'md':'lw';}
+  function scT(n){return n>=70?'Excelente':n>=50?'Bom':n>=30?'Medio':'Fraco';}
+  function fN(n){if(!n||n===0)return'0';n=Math.round(n);return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(n);}
+  function fR(n){return 'R$\u00A0'+Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2});}
+  function gi(id){return document.getElementById(id);}
+  function sv(id,v){var e=gi(id);if(e)e.textContent=v;}
+  function toArr(nl){return Array.prototype.slice.call(nl);}
 
-  /* ── HELPERS ── */
-  function scC(n) { return n >= 70 ? 'ex' : n >= 50 ? 'gd' : n >= 30 ? 'md' : 'lw'; }
-  function scT(n) { return n >= 70 ? 'Excelente' : n >= 50 ? 'Bom' : n >= 30 ? 'Medio' : 'Fraco'; }
-  function fN(n) {
-    if (!n || n === 0) return '0';
-    n = Math.round(n);
-    return n >= 1000000 ? (n / 1000000).toFixed(1) + 'M' : n >= 1000 ? (n / 1000).toFixed(1).replace('.0', '') + 'k' : String(n);
-  }
-  function fR(n) { return 'R$\u00A0' + Number(n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 }); }
-  function gi(id) { return document.getElementById(id); }
-  function sv(id, v) { var e = gi(id); if (e) e.textContent = v; }
-  function toArr(nl) { return Array.prototype.slice.call(nl); }
-
-  /* ══════════════════════════════════════════════════════
-     NOVO: Extrair dados do JSON embutido pela Shopee na página.
-     A Shopee injeta os dados de busca em window.__NEXT_DATA__
-     ou em tags <script> com o estado da aplicação.
-     Isso nos dá: vendas reais, data de criação, shopid, etc.
-     ══════════════════════════════════════════════════════ */
-  function extrairDadosJSON() {
-    var items = {};
-    try {
-      // Tenta window.__NEXT_DATA__ (Shopee usa Next.js)
-      if (window.__NEXT_DATA__ && window.__NEXT_DATA__.props) {
-        var props = window.__NEXT_DATA__.props;
-        var pageProps = props.pageProps || props.initialProps || {};
-        var data = pageProps.initialData || pageProps.data || pageProps.searchData || {};
-        var itemList = data.items || data.item_list || data.sections || [];
-        if (Array.isArray(itemList)) {
-          itemList.forEach(function(item) {
-            var it = item.item_basic || item.info || item;
-            if (it && it.itemid) {
-              items[String(it.itemid)] = {
-                vendas: it.historical_sold || it.sold || 0,
-                v30: it.sold || 0,
-                diasCriado: it.ctime ? Math.round((Date.now() / 1000 - it.ctime) / 86400) : -1,
-                locTxt: it.shop_location || ''
-              };
-            }
-          });
-        }
+  function extrairDadosJSON(){
+    var items={};
+    try{
+      if(window.__NEXT_DATA__&&window.__NEXT_DATA__.props){
+        var props=window.__NEXT_DATA__.props,pageProps=props.pageProps||props.initialProps||{},data=pageProps.initialData||pageProps.data||pageProps.searchData||{},itemList=data.items||data.item_list||data.sections||[];
+        if(Array.isArray(itemList)){itemList.forEach(function(item){var it=item.item_basic||item.info||item;if(it&&it.itemid){items[String(it.itemid)]={vendas:it.historical_sold||it.sold||0,v30:it.sold||0,diasCriado:it.ctime?Math.round((Date.now()/1000-it.ctime)/86400):-1,locTxt:it.shop_location||''};}});}
       }
-    } catch(e) {}
-
-    try {
-      // Tenta parsear scripts com dados de busca
-      var scripts = document.querySelectorAll('script:not([src])');
-      for (var i = 0; i < scripts.length; i++) {
-        var txt = scripts[i].textContent || '';
-        // Procura por padrão de item_list da Shopee
-        if (txt.indexOf('historical_sold') === -1 && txt.indexOf('"sold"') === -1) continue;
-        // Tenta extrair JSON de "item_basic"
-        var re = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,500}?"(?:historical_sold|sold)"\s*:\s*(\d+)/g;
-        var m;
-        while ((m = re.exec(txt)) !== null) {
-          var iid = m[1], sold = parseInt(m[2]);
-          if (!items[iid]) items[iid] = { vendas: sold, v30: sold, diasCriado: -1, locTxt: '' };
-          else if (items[iid].vendas === 0) items[iid].vendas = sold;
-        }
-        // Tenta extrair ctime
-        var re2 = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,600}?"ctime"\s*:\s*(\d+)/g;
-        while ((m = re2.exec(txt)) !== null) {
-          var iid2 = m[1], ct = parseInt(m[2]);
-          if (ct > 1000000000 && ct < 9999999999) {
-            var dc = Math.round((Date.now() / 1000 - ct) / 86400);
-            if (!items[iid2]) items[iid2] = { vendas: 0, v30: 0, diasCriado: dc, locTxt: '' };
-            else items[iid2].diasCriado = dc;
-          }
-        }
-        // Extrai shop_location
-        var re3 = /"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,800}?"shop_location"\s*:\s*"([^"]+)"/g;
-        while ((m = re3.exec(txt)) !== null) {
-          if (!items[m[1]]) items[m[1]] = { vendas: 0, v30: 0, diasCriado: -1, locTxt: m[2] };
-          else items[m[1]].locTxt = m[2];
-        }
+    }catch(e){}
+    try{
+      var scripts=document.querySelectorAll('script:not([src])');
+      for(var i=0;i<scripts.length;i++){
+        var txt=scripts[i].textContent||'';
+        if(txt.indexOf('historical_sold')===-1&&txt.indexOf('"sold"')===-1)continue;
+        var re=/"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,500}?"(?:historical_sold|sold)"\s*:\s*(\d+)/g,m;
+        while((m=re.exec(txt))!==null){var iid=m[1],sold=parseInt(m[2]);if(!items[iid])items[iid]={vendas:sold,v30:sold,diasCriado:-1,locTxt:''};else if(items[iid].vendas===0)items[iid].vendas=sold;}
+        var re2=/"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,600}?"ctime"\s*:\s*(\d+)/g;
+        while((m=re2.exec(txt))!==null){var iid2=m[1],ct=parseInt(m[2]);if(ct>1000000000&&ct<9999999999){var dc=Math.round((Date.now()/1000-ct)/86400);if(!items[iid2])items[iid2]={vendas:0,v30:0,diasCriado:dc,locTxt:''};else items[iid2].diasCriado=dc;}}
+        var re3=/"item(?:id|Id)"\s*:\s*(\d+)[^}]{0,800}?"shop_location"\s*:\s*"([^"]+)"/g;
+        while((m=re3.exec(txt))!==null){if(!items[m[1]])items[m[1]]={vendas:0,v30:0,diasCriado:-1,locTxt:m[2]};else items[m[1]].locTxt=m[2];}
       }
-    } catch(e) {}
-
+    }catch(e){}
     return items;
   }
 
-  /* ── LOCALIZAÇÃO: extrai do texto visível do card ── */
-  function extrairLocalizacao(card) {
-    // 1. Elemento com classe de localização da Shopee
-    var selLoc = [
-      '[class*="location"]', '[class*="Location"]',
-      '[class*="shopLoc"]', '[class*="shop-loc"]',
-      '[class*="address"]', '[class*="region"]'
-    ];
-    for (var i = 0; i < selLoc.length; i++) {
-      var el = card.querySelector(selLoc[i]);
-      if (el) {
-        var t = (el.textContent || '').trim();
-        if (t.length > 2 && t.length < 60) return t;
-      }
-    }
-
-    // 2. Padrão textual: estados e cidades BR comuns
-    var txt = (card.innerText || card.textContent || '').replace(/\s+/g, ' ');
-    var estados = [
-      'Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal',
-      'Espírito Santo','Espirito Santo','Goiás','Goias','Maranhão','Maranhao',
-      'Mato Grosso','Minas Gerais','Pará','Para','Paraíba','Paraiba','Paraná','Parana',
-      'Pernambuco','Piauí','Piaui','Rio de Janeiro','Rio Grande do Norte',
-      'Rio Grande do Sul','Rondônia','Rondonia','Roraima','Santa Catarina',
-      'São Paulo','Sao Paulo','Sergipe','Tocantins',
-      'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG',
-      'PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'
-    ];
-    for (var ei = 0; ei < estados.length; ei++) {
-      // Verifica se aparece isolado como texto (com espaços ou fim de linha)
-      var re = new RegExp('(?:^|\\s)(' + estados[ei] + ')(?:\\s|$)');
-      var m = txt.match(re);
-      if (m) return m[1];
-    }
+  function extrairLocalizacao(card){
+    var selLoc=['[class*="location"]','[class*="Location"]','[class*="shopLoc"]','[class*="shop-loc"]','[class*="address"]','[class*="region"]'];
+    for(var i=0;i<selLoc.length;i++){var el=card.querySelector(selLoc[i]);if(el){var t=(el.textContent||'').trim();if(t.length>2&&t.length<60)return t;}}
+    var txt=(card.innerText||card.textContent||'').replace(/\s+/g,' ');
+    var estados=['Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal','Espírito Santo','Espirito Santo','Goiás','Goias','Maranhão','Maranhao','Mato Grosso','Minas Gerais','Pará','Para','Paraíba','Paraiba','Paraná','Parana','Pernambuco','Piauí','Piaui','Rio de Janeiro','Rio Grande do Norte','Rio Grande do Sul','Rondônia','Rondonia','Roraima','Santa Catarina','São Paulo','Sao Paulo','Sergipe','Tocantins','AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+    for(var ei=0;ei<estados.length;ei++){var re=new RegExp('(?:^|\\s)('+estados[ei]+')(?:\\s|$)'),m=txt.match(re);if(m)return m[1];}
     return '';
   }
 
-  /* ── BUSCA ITEMID DO CARD (para cruzar com JSON) ── */
-  function extrairItemId(card) {
-    // Shopee coloca o itemid no link do produto
-    var link = card.querySelector('a[href]');
-    if (link) {
-      var href = link.href || link.getAttribute('href') || '';
-      // Padrão URL Shopee: /product/SHOPID/ITEMID ou .-i.SHOPID.ITEMID
-      var m = href.match(/[-.]i\.(\d+)\.(\d+)/) || href.match(/\/product\/(\d+)\/(\d+)/);
-      if (m) return m[2];
-      // Outro padrão
-      var m2 = href.match(/itemid=(\d+)/);
-      if (m2) return m2[1];
-    }
-    // Tenta data-* attributes
-    var allEls = card.querySelectorAll('[data-item-id],[data-id],[data-sqe]');
-    for (var i = 0; i < allEls.length; i++) {
-      var did = allEls[i].getAttribute('data-item-id') || allEls[i].getAttribute('data-id');
-      if (did && /^\d+$/.test(did)) return did;
-    }
+  function extrairItemId(card){
+    var link=card.querySelector('a[href]');
+    if(link){var href=link.href||link.getAttribute('href')||'',m=href.match(/[-.]i\.(\d+)\.(\d+)/)||href.match(/\/product\/(\d+)\/(\d+)/);if(m)return m[2];var m2=href.match(/itemid=(\d+)/);if(m2)return m2[1];}
+    var allEls=card.querySelectorAll('[data-item-id],[data-id]');
+    for(var i=0;i<allEls.length;i++){var did=allEls[i].getAttribute('data-item-id')||allEls[i].getAttribute('data-id');if(did&&/^\d+$/.test(did))return did;}
     return '';
   }
 
-  /* ── findCards() ── */
-  function findCards() {
-    var result, i, filt;
-
-    // 1. li col-xs-2-4 (layout padrão Shopee BR)
-    var liCols = toArr(document.querySelectorAll('li[class*="col-xs-2-4"]'));
-    filt = liCols.filter(function(el) {
-      return el.querySelector('img') && /R\$/.test(el.innerText || el.textContent || '');
-    });
-    if (filt.length >= 2) return filt;
-
-    // 2. data-sqe="item"
-    var sqe = document.querySelectorAll('[data-sqe="item"]');
-    if (sqe.length >= 2) {
-      result = toArr(sqe);
-      return result.filter(function(c) { return !result.some(function(o) { return o !== c && c.contains(o); }); });
-    }
-
-    // 3. Classes conhecidas
-    var patterns = [
-      '[class*="shopee-search-item-result__item"]',
-      '[class*="search-item-result__item"]',
-      'li[class*="col-xs-3"]',
-      'li[class*="col-"]'
-    ];
-    for (i = 0; i < patterns.length; i++) {
-      filt = toArr(document.querySelectorAll(patterns[i])).filter(function(el) {
-        return el.querySelector('img') && /R\$/.test(el.innerText || el.textContent || '');
-      });
-      if (filt.length >= 2) {
-        return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
-      }
-    }
-
-    // 4. Detecção por estrutura
-    var seen = [], cards = [];
-    var allEls = document.querySelectorAll('*');
-    for (i = 0; i < allEls.length; i++) {
-      var el = allEls[i];
-      if (el.children.length > 0) continue;
-      if (!/^R\$\s*\d/.test((el.textContent || '').trim())) continue;
-      var cur = el.parentElement;
-      for (var up = 0; up < 14; up++) {
-        if (!cur || cur === document.body) break;
-        var w = cur.offsetWidth, h = cur.offsetHeight;
-        if (cur.querySelector('img') && w >= 100 && w <= 700 && h >= 140) {
-          var par = cur.parentElement;
-          if (par) {
-            var sibs = toArr(par.children).filter(function(s) {
-              return s.querySelector && s.querySelector('img') && /R\$/.test(s.innerText || s.textContent || '');
-            });
-            if (sibs.length >= 1 && seen.indexOf(cur) === -1) { seen.push(cur); cards.push(cur); break; }
-          }
-        }
-        cur = cur.parentElement;
-      }
-    }
-    result = cards.filter(function(c) { return !cards.some(function(o) { return o !== c && c.contains(o); }); });
-    if (result.length >= 2) return result;
-
-    // 5. Fallback
-    filt = toArr(document.querySelectorAll('li,article')).filter(function(li) {
-      return li.offsetWidth >= 100 && li.offsetWidth <= 700 && li.offsetHeight >= 140 &&
-             li.querySelector('img') && /R\$/.test(li.innerText || li.textContent || '');
-    });
-    return filt.filter(function(c) { return !filt.some(function(o) { return o !== c && c.contains(o); }); });
+  function findCards(){
+    var result,i,filt;
+    var liCols=toArr(document.querySelectorAll('li[class*="col-xs-2-4"]'));
+    filt=liCols.filter(function(el){return el.querySelector('img')&&/R\$/.test(el.innerText||el.textContent||'');});
+    if(filt.length>=2)return filt;
+    var sqe=document.querySelectorAll('[data-sqe="item"]');
+    if(sqe.length>=2){result=toArr(sqe);return result.filter(function(c){return!result.some(function(o){return o!==c&&c.contains(o);});});}
+    var patterns=['[class*="shopee-search-item-result__item"]','[class*="search-item-result__item"]','li[class*="col-xs-3"]','li[class*="col-"]'];
+    for(i=0;i<patterns.length;i++){filt=toArr(document.querySelectorAll(patterns[i])).filter(function(el){return el.querySelector('img')&&/R\$/.test(el.innerText||el.textContent||'');});if(filt.length>=2)return filt.filter(function(c){return!filt.some(function(o){return o!==c&&c.contains(o);});});}
+    var seen=[],cards=[];
+    var allEls=document.querySelectorAll('*');
+    for(i=0;i<allEls.length;i++){var el=allEls[i];if(el.children.length>0)continue;if(!/^R\$\s*\d/.test((el.textContent||'').trim()))continue;var cur=el.parentElement;for(var up=0;up<14;up++){if(!cur||cur===document.body)break;var w=cur.offsetWidth,h=cur.offsetHeight;if(cur.querySelector('img')&&w>=100&&w<=700&&h>=140){var par=cur.parentElement;if(par){var sibs=toArr(par.children).filter(function(s){return s.querySelector&&s.querySelector('img')&&/R\$/.test(s.innerText||s.textContent||'');});if(sibs.length>=1&&seen.indexOf(cur)===-1){seen.push(cur);cards.push(cur);break;}}cur=cur.parentElement;}else cur=cur.parentElement;}}
+    result=cards.filter(function(c){return!cards.some(function(o){return o!==c&&c.contains(o);});});
+    if(result.length>=2)return result;
+    filt=toArr(document.querySelectorAll('li,article')).filter(function(li){return li.offsetWidth>=100&&li.offsetWidth<=700&&li.offsetHeight>=140&&li.querySelector('img')&&/R\$/.test(li.innerText||li.textContent||'');});
+    return filt.filter(function(c){return!filt.some(function(o){return o!==c&&c.contains(o);});});
   }
 
-  /* ══════════════════════════════════════════════════════
-     EXTRAIR DADOS DO CARD — v5.2
-     Melhorias:
-     - Localização extraída do texto e do JSON
-     - Vendas com mais padrões e cruzamento com JSON
-     - Data de criação via JSON (ctime) quando disponível
-     ══════════════════════════════════════════════════════ */
-  function extrair(card, jsonData) {
-    var txt = (card.innerText || card.textContent || '').replace(/\s+/g, ' ');
-
-    /* Preços */
-    var reP = /R\$\s*([\d.]+,\d{2})/g, m, precos = [];
-    while ((m = reP.exec(txt)) !== null) {
-      var v = parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
-      if (v > 0 && v < 500000) precos.push(v);
+  function extrair(card,jsonData){
+    var txt=(card.innerText||card.textContent||'').replace(/\s+/g,' ');
+    var reP=/R\$\s*([\d.]+,\d{2})/g,m,precos=[];
+    while((m=reP.exec(txt))!==null){var v=parseFloat(m[1].replace(/\./g,'').replace(',','.'));if(v>0&&v<500000)precos.push(v);}
+    var preco=precos.length?Math.min.apply(null,precos):0,orig=precos.length>1?Math.max.apply(null,precos):0,desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
+    var dm=txt.match(/-(\d{1,2})\s*%/)||txt.match(/(\d{1,2})\s*%\s*(?:off|desconto)/i);
+    if(dm){var dv=parseInt(dm[1]);if(dv>0&&dv<100)desc=dv;}
+    var vendas=0;
+    if(jsonData&&jsonData.v30>0)vendas=jsonData.v30;
+    else if(jsonData&&jsonData.vendas>0)vendas=jsonData.vendas;
+    else{
+      var vpats=[/(\d+(?:[.,]\d+)?)\s*[kK]\+?\s*(?:vendas?|vendidos?|sold)/i,/(\d+(?:[.,]\d+)?)\s*mil\+?\s*(?:vendas?|vendidos?|sold)/i,/(\d{1,7})\+?\s*(?:vendas?|vendidos?|sold)/i,/(?:vendas?|vendidos?|sold)\s*(\d{1,7})/i,/\+(\d{1,7})\s*(?:vendas?|vendidos?)/i];
+      for(var vi=0;vi<vpats.length;vi++){var vm=txt.match(vpats[vi]);if(vm){var vs=vm[1].replace(',','.');var vnum=parseFloat(vs);if(/mil/i.test(vm[0]))vnum*=1000;else if(/[kK]/.test(vm[0]))vnum*=1000;vnum=Math.round(vnum);if(vnum>0&&vnum<99999999){vendas=vnum;break;}}}
+      if(!vendas){var soldEls=card.querySelectorAll('[class*="sold"],[class*="Sold"],[class*="vend"],[class*="sales"]');for(var si=0;si<soldEls.length;si++){var st=(soldEls[si].textContent||'').trim(),sm=st.match(/(\d+(?:[.,]\d+)?)\s*([kKmM]?)/);if(sm){var sv2=parseFloat(sm[1].replace(',','.'));if(sm[2].toLowerCase()==='k')sv2*=1000;if(sm[2].toLowerCase()==='m')sv2*=1000000;if(sv2>0){vendas=Math.round(sv2);break;}}}}
     }
-    var preco = precos.length ? Math.min.apply(null, precos) : 0;
-    var orig = precos.length > 1 ? Math.max.apply(null, precos) : 0;
-    var desc = orig > preco && preco > 0 ? Math.round((1 - preco / orig) * 100) : 0;
-    var dm = txt.match(/-(\d{1,2})\s*%/) || txt.match(/(\d{1,2})\s*%\s*(?:off|desconto)/i);
-    if (dm) { var dv = parseInt(dm[1]); if (dv > 0 && dv < 100) desc = dv; }
-
-    /* ── VENDAS: padrões ampliados ── */
-    var vendas = 0;
-    // Prioridade 1: JSON embutido
-    if (jsonData && jsonData.v30 > 0) {
-      vendas = jsonData.v30;
-    } else if (jsonData && jsonData.vendas > 0) {
-      vendas = jsonData.vendas;
-    } else {
-      // Prioridade 2: texto visível do card
-      var vpats = [
-        // "1.2k+ vendidos", "1,2K vendidos"
-        /(\d+(?:[.,]\d+)?)\s*[kK]\+?\s*(?:vendas?|vendidos?|sold)/i,
-        // "1 mil+ vendidos", "2 mil vendas"
-        /(\d+(?:[.,]\d+)?)\s*mil\+?\s*(?:vendas?|vendidos?|sold)/i,
-        // "843 vendidos", "843+ vendidos", "843 vendas"
-        /(\d{1,7})\+?\s*(?:vendas?|vendidos?|sold)/i,
-        // "vendidos 843"
-        /(?:vendas?|vendidos?|sold)\s*(\d{1,7})/i,
-        // "+500 vendidos" (Shopee às vezes formata assim)
-        /\+(\d{1,7})\s*(?:vendas?|vendidos?)/i
-      ];
-      for (var vi = 0; vi < vpats.length; vi++) {
-        var vm = txt.match(vpats[vi]);
-        if (vm) {
-          var vs = vm[1].replace(',', '.');
-          var vnum = parseFloat(vs);
-          if (/mil/i.test(vm[0])) vnum *= 1000;
-          else if (/[kK]/.test(vm[0])) vnum *= 1000;
-          vnum = Math.round(vnum);
-          if (vnum > 0 && vnum < 99999999) { vendas = vnum; break; }
-        }
-      }
-
-      // Prioridade 3: elemento específico de vendas da Shopee
-      if (!vendas) {
-        var soldEls = card.querySelectorAll('[class*="sold"],[class*="Sold"],[class*="vend"],[class*="sales"]');
-        for (var si = 0; si < soldEls.length; si++) {
-          var st = (soldEls[si].textContent || '').trim();
-          var sm = st.match(/(\d+(?:[.,]\d+)?)\s*([kKmM]?)/);
-          if (sm) {
-            var sv2 = parseFloat(sm[1].replace(',', '.'));
-            if (sm[2].toLowerCase() === 'k') sv2 *= 1000;
-            if (sm[2].toLowerCase() === 'm') sv2 *= 1000000;
-            if (sv2 > 0) { vendas = Math.round(sv2); break; }
-          }
-        }
-      }
-    }
-
-    /* Rating */
-    var rm = txt.match(/[\u2605\u2B50]\s*(\d+[.,]\d)/) || txt.match(/\b([4-5][.,]\d)\b/);
-    var rating = rm ? parseFloat(rm[1].replace(',', '.')) : 0;
-
-    /* Avaliações */
-    var am = txt.match(/\((\d{1,6})\)/) || txt.match(/(\d{1,6})\s*avalia[çc][õo]es?/i);
-    var numAval = am ? parseInt(am[1]) : 0;
-
-    /* Favoritos */
-    var fvm = txt.match(/(\d+(?:[.,]\d+)?)\s*[kK]?\s*favorito/i);
-    var favs = 0;
-    if (fvm) { var fvn = parseFloat(fvm[1].replace(',', '.')); if (/[kK]/i.test(fvm[0])) fvn *= 1000; favs = Math.round(fvn); }
-
-    /* Frete grátis */
-    var frete = /frete\s*gr[aá]ti[sz]|freeship|envio\s*gr[aá]tis/i.test(txt);
-    var imgs = card.querySelectorAll('img');
-    for (var ii = 0; ii < imgs.length; ii++) { if (/freeship|free.ship/i.test(imgs[ii].src || '')) { frete = true; break; } }
-
-    /* Nível / oficial */
-    var nivel = '';
-    if (/shopee\s*mall/i.test(txt)) nivel = 'Mall';
-    else if (/preferido/i.test(txt)) nivel = 'Pref';
-    var isOfic = nivel === 'Mall' || /(loja|vendedor)\s*oficial/i.test(txt);
-    var is5 = rating >= 4.8;
-
-    /* ── DATA DE CRIAÇÃO: JSON > texto ── */
-    var diasCriado = -1, dataTxt = '';
-    if (jsonData && jsonData.diasCriado >= 0) {
-      diasCriado = jsonData.diasCriado;
-    } else {
-      // Tenta extrair de texto (raro na página de busca)
-      var dRe = /(\d{2})\/(\d{2})\/(\d{4})/g, dm3;
-      while ((dm3 = dRe.exec(txt)) !== null) {
-        var dd = parseInt(dm3[1]), mo = parseInt(dm3[2]), yy = parseInt(dm3[3]);
-        if (yy >= 2018 && yy <= 2030 && mo >= 1 && mo <= 12 && dd >= 1 && dd <= 31) {
-          var dt = new Date(yy, mo - 1, dd);
-          var dc = Math.round((Date.now() - dt.getTime()) / 86400000);
-          if (dc >= 0 && dc < 3650) { diasCriado = dc; dataTxt = dm3[1] + '/' + dm3[2] + '/' + dm3[3]; break; }
-        }
-      }
-      if (diasCriado < 0) {
-        var hm = txt.match(/h[aá]\s*(\d+)\s*dias?/i);
-        if (hm) diasCriado = parseInt(hm[1]);
-      }
-    }
-
-    /* ── LOCALIZAÇÃO ── */
-    var locTxt = '';
-    if (jsonData && jsonData.locTxt) {
-      locTxt = jsonData.locTxt;
-    } else {
-      locTxt = extrairLocalizacao(card);
-    }
-
-    /* Título */
-    var titulo = '';
-    for (var ij = 0; ij < imgs.length; ij++) { if (imgs[ij].alt && imgs[ij].alt.length > 8) { titulo = imgs[ij].alt; break; } }
-    if (!titulo) {
-      var atits = card.querySelectorAll('[title],[aria-label]');
-      for (var sk = 0; sk < atits.length; sk++) {
-        var tit = atits[sk].getAttribute('title') || atits[sk].getAttribute('aria-label') || '';
-        if (tit.length > 8) { titulo = tit; break; }
-      }
-    }
-    if (!titulo) {
-      var allE = card.querySelectorAll('*'); var bestL = 0;
-      for (var ek = 0; ek < allE.length; ek++) {
-        if (allE[ek].children.length > 0) continue;
-        var t3 = (allE[ek].textContent || '').trim();
-        if (t3.length > bestL && t3.length < 200 && !/R\$/.test(t3) && !/^\d+%/.test(t3) && t3.length > 10) { bestL = t3.length; titulo = t3; }
-      }
-    }
-
-    return { preco: preco, orig: orig, desc: desc, v30: vendas, vtot: vendas,
-      rating: rating, numAval: numAval, favs: favs, frete: frete, nivel: nivel,
-      isOfic: isOfic, is5: is5, diasCriado: diasCriado, dataTxt: dataTxt,
-      titulo: titulo, locTxt: locTxt };
+    var rm=txt.match(/[\u2605\u2B50]\s*(\d+[.,]\d)/)||txt.match(/\b([4-5][.,]\d)\b/),rating=rm?parseFloat(rm[1].replace(',','.')):0;
+    var am=txt.match(/\((\d{1,6})\)/)||txt.match(/(\d{1,6})\s*avalia[çc][õo]es?/i),numAval=am?parseInt(am[1]):0;
+    var frete=/frete\s*gr[aá]ti[sz]|freeship|envio\s*gr[aá]tis/i.test(txt);
+    var imgs=card.querySelectorAll('img');for(var ii=0;ii<imgs.length;ii++){if(/freeship|free.ship/i.test(imgs[ii].src||'')){frete=true;break;}}
+    var nivel='';
+    if(/shopee\s*mall/i.test(txt))nivel='Mall';else if(/preferido/i.test(txt))nivel='Pref';
+    var isOfic=nivel==='Mall'||/(loja|vendedor)\s*oficial/i.test(txt),is5=rating>=4.8;
+    var diasCriado=-1;
+    if(jsonData&&jsonData.diasCriado>=0)diasCriado=jsonData.diasCriado;
+    var locTxt='';
+    if(jsonData&&jsonData.locTxt)locTxt=jsonData.locTxt;else locTxt=extrairLocalizacao(card);
+    var titulo='';
+    for(var ij=0;ij<imgs.length;ij++){if(imgs[ij].alt&&imgs[ij].alt.length>8){titulo=imgs[ij].alt;break;}}
+    if(!titulo){var atits=card.querySelectorAll('[title],[aria-label]');for(var sk=0;sk<atits.length;sk++){var tit=atits[sk].getAttribute('title')||atits[sk].getAttribute('aria-label')||'';if(tit.length>8){titulo=tit;break;}}}
+    return{preco:preco,orig:orig,desc:desc,v30:vendas,vtot:vendas,rating:rating,numAval:numAval,frete:frete,nivel:nivel,isOfic:isOfic,is5:is5,diasCriado:diasCriado,titulo:titulo,locTxt:locTxt};
   }
 
-  /* ── SCORE ── */
-  function calcScore(d) {
-    var s = 0, v = d.v30, r = d.rating, dc = d.desc;
-    s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
-    s += d.vtot >= 5000 ? 15 : d.vtot >= 2000 ? 12 : d.vtot >= 500 ? 8 : d.vtot >= 100 ? 4 : d.vtot > 0 ? 2 : 0;
-    s += r >= 4.8 ? 20 : r >= 4.5 ? 15 : r >= 4.0 ? 10 : r >= 3.5 ? 5 : r > 0 ? 2 : 0;
-    if (d.frete) s += 15;
-    s += dc >= 60 ? 10 : dc >= 40 ? 8 : dc >= 20 ? 5 : dc >= 10 ? 2 : 0;
-    if (d.nivel === 'Mall') s += 5; else if (d.nivel === 'Pref') s += 3;
-    if (d.diasCriado >= 0 && d.diasCriado <= 90) s += 5; else if (d.diasCriado <= 180) s += 3;
-    return Math.min(100, s);
+  function calcScore(d){
+    var s=0,v=d.v30,r=d.rating,dc=d.desc;
+    s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
+    s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;
+    s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
+    if(d.frete)s+=15;
+    s+=dc>=60?10:dc>=40?8:dc>=20?5:dc>=10?2:0;
+    if(d.nivel==='Mall')s+=5;else if(d.nivel==='Pref')s+=3;
+    if(d.diasCriado>=0&&d.diasCriado<=90)s+=5;else if(d.diasCriado<=180)s+=3;
+    return Math.min(100,s);
   }
 
-  function calcOport(d) {
-    var pts = 0;
-    if (d.v30 >= 50) pts += 2; if (d.v30 >= 200) pts += 2;
-    if (d.numAval < 50) pts += 2; if (d.numAval < 20) pts += 1;
-    if (d.frete) pts += 1; if (d.preco <= 80) pts += 1; if (d.rating >= 4.5) pts += 1;
-    if (d.diasCriado >= 0 && d.diasCriado <= 180) pts += 2;
-    if (pts >= 8) return { nivel: 'ALTA', cls: 'oa' };
-    if (pts >= 5) return { nivel: 'MEDIA', cls: 'om' };
+  function calcOport(d){
+    var pts=0;
+    if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
+    if(d.numAval<50)pts+=2;if(d.numAval<20)pts+=1;
+    if(d.frete)pts+=1;if(d.preco<=80)pts+=1;if(d.rating>=4.5)pts+=1;
+    if(d.diasCriado>=0&&d.diasCriado<=180)pts+=2;
+    if(pts>=8)return{nivel:'ALTA',cls:'oa'};if(pts>=5)return{nivel:'MEDIA',cls:'om'};
     return null;
   }
 
-  /* ── BADGE NOS CARDS (inserido fora do <a>) ── */
-  function injetarBadge(card, d) {
-    var old = card.querySelectorAll('.glm5-badge');
-    for (var oi = 0; oi < old.length; oi++) old[oi].remove();
-    var c = scC(d.score), op = d.oport;
-
-    /* Linha 1: vendas, nota, desconto, preço */
-    var L1 = '';
-    if (d.v30 > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Vendas</span><b class="glm5-iv gn">' + fN(d.v30) + '</b></span>';
-    if (d.rating > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Nota</span><b class="glm5-iv go">' + d.rating.toFixed(1) + '</b></span>';
-    if (d.desc > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Off</span><b class="glm5-iv gr">-' + d.desc + '%</b></span>';
-    if (d.preco > 0) L1 += '<span class="glm5-it"><span class="glm5-il">Pre\u00E7o</span><b class="glm5-iv">' + fR(d.preco) + '</b></span>';
-
-    /* Linha 2: avaliações, local, data */
-    var L2 = '';
-    if (d.numAval > 0) L2 += '<span class="glm5-it"><span class="glm5-il">Aval</span><b class="glm5-iv">' + fN(d.numAval) + '</b></span>';
-    if (d.locTxt) L2 += '<span class="glm5-it"><span class="glm5-il">Local</span><b class="glm5-iv bl">' + d.locTxt.slice(0, 12) + '</b></span>';
-    if (d.diasCriado >= 0) L2 += '<span class="glm5-it"><span class="glm5-il">Criado</span><b class="glm5-iv">' + d.diasCriado + 'd</b></span>';
-
-    /* Tags */
-    var tags = '';
-    if (d.score >= 60) tags += '<span class="glm5-bom">BOM</span>';
-    if (d.frete) tags += '<span class="glm5-fr">Fr.Gr.</span>';
-    if (op) tags += '<span class="glm5-op ' + op.cls + '">' + op.nivel + '</span>';
-    if (d.diasCriado >= 0) {
-      var dcl = d.diasCriado <= 90 ? 'nv' : d.diasCriado >= 365 ? 'old' : '';
-      tags += '<span class="glm5-d ' + dcl + '">' + d.diasCriado + 'd</span>';
-    }
-
-    var div = document.createElement('div');
-    div.className = 'glm5-badge';
-    div.innerHTML =
-      '<div class="glm5-row ' + c + '">' +
-        '<div class="glm5-sc"><b class="' + c + '">' + d.score + '</b><s>' + scT(d.score) + '</s></div>' +
-        '<div class="glm5-inf">' +
-          '<div class="glm5-L">' + L1 + '</div>' +
-          (L2 ? '<div class="glm5-L">' + L2 + '</div>' : '') +
-        '</div>' +
-        '<div class="glm5-tags">' + tags + '</div>' +
-      '</div>';
-
-    /* Inserir FORA do <a> (resolve overflow:hidden) */
-    try {
-      var mainLink = card.querySelector('a');
-      if (mainLink) {
-        var cur = mainLink;
-        while (cur.parentElement && cur.parentElement !== card) cur = cur.parentElement;
-        if (cur.parentElement === card) {
-          if (cur.nextSibling) card.insertBefore(div, cur.nextSibling);
-          else card.appendChild(div);
-        } else {
-          card.appendChild(div);
-        }
-      } else {
-        card.appendChild(div);
-      }
-      card.style.overflow = 'visible';
-      card.style.height = 'auto';
-      card.style.maxHeight = 'none';
-      card.style.display = 'flex';
-      card.style.flexDirection = 'column';
-    } catch(e) {
-      try { card.appendChild(div); } catch(e2) {}
-    }
+  function injetarBadge(card,d){
+    var old=card.querySelectorAll('.glm6-badge');for(var oi=0;oi<old.length;oi++)old[oi].remove();
+    var c=scC(d.score),op=d.oport;
+    var L1='';
+    if(d.v30>0)L1+='<span class="glm6-it"><span class="glm6-il">Vendas</span><b class="glm6-iv gn">'+fN(d.v30)+'</b></span>';
+    if(d.rating>0)L1+='<span class="glm6-it"><span class="glm6-il">Nota</span><b class="glm6-iv go">'+d.rating.toFixed(1)+'</b></span>';
+    if(d.desc>0)L1+='<span class="glm6-it"><span class="glm6-il">Off</span><b class="glm6-iv gr">-'+d.desc+'%</b></span>';
+    if(d.preco>0)L1+='<span class="glm6-it"><span class="glm6-il">Pre\u00E7o</span><b class="glm6-iv">'+fR(d.preco)+'</b></span>';
+    var L2='';
+    if(d.numAval>0)L2+='<span class="glm6-it"><span class="glm6-il">Aval</span><b class="glm6-iv">'+fN(d.numAval)+'</b></span>';
+    if(d.locTxt)L2+='<span class="glm6-it"><span class="glm6-il">Local</span><b class="glm6-iv bl">'+d.locTxt.slice(0,12)+'</b></span>';
+    if(d.diasCriado>=0)L2+='<span class="glm6-it"><span class="glm6-il">Criado</span><b class="glm6-iv">'+d.diasCriado+'d</b></span>';
+    var tags='';
+    if(d.score>=60)tags+='<span class="glm6-bom">BOM</span>';
+    if(d.frete)tags+='<span class="glm6-fr">Fr.Gr.</span>';
+    if(op)tags+='<span class="glm6-op '+op.cls+'">'+op.nivel+'</span>';
+    if(d.diasCriado>=0){var dcl=d.diasCriado<=90?'nv':d.diasCriado>=365?'old':'';tags+='<span class="glm6-d '+dcl+'">'+d.diasCriado+'d</span>';}
+    var div=document.createElement('div');
+    div.className='glm6-badge';
+    div.innerHTML='<div class="glm6-row '+c+'"><div class="glm6-sc"><b class="'+c+'">'+d.score+'</b><s>'+scT(d.score)+'</s></div><div class="glm6-inf"><div class="glm6-L">'+L1+'</div>'+(L2?'<div class="glm6-L">'+L2+'</div>':'')+'</div><div class="glm6-tags">'+tags+'</div></div>';
+    try{
+      var mainLink=card.querySelector('a');
+      if(mainLink){var cur=mainLink;while(cur.parentElement&&cur.parentElement!==card)cur=cur.parentElement;if(cur.parentElement===card){if(cur.nextSibling)card.insertBefore(div,cur.nextSibling);else card.appendChild(div);}else card.appendChild(div);}
+      else card.appendChild(div);
+      card.style.overflow='visible';card.style.height='auto';card.style.maxHeight='none';card.style.display='flex';card.style.flexDirection='column';
+    }catch(e){try{card.appendChild(div);}catch(e2){}}
   }
 
-  /* ── ANALISAR ── */
-  function analisar() {
-    // Extrai dados do JSON da página (feito uma vez por análise)
-    PGDATA = extrairDadosJSON();
+  /* ── NOVO v6: salvar histórico no localStorage ── */
+  function salvarHistoricoBookmarklet(todos) {
+    try {
+      var hist = [];
+      try { hist = JSON.parse(localStorage.getItem('glm_bm_historico') || '[]'); } catch(e) {}
+      var top5 = todos.sort(function(a,b){return b.score-a.score;}).slice(0,5);
+      hist.unshift({
+        data: new Date().toISOString(),
+        url: window.location.href,
+        busca: document.title || window.location.href,
+        total: todos.length,
+        top: top5.map(function(d){return {nome:d.titulo||'Produto',preco:d.preco,v30:d.v30,score:d.score,desc:d.desc,frete:d.frete,rating:d.rating,nivel:d.nivel,dias:d.diasCriado,aval:d.numAval,vtot:d.vtot,locTxt:d.locTxt};})
+      });
+      if(hist.length > 30) hist = hist.slice(0, 30);
+      localStorage.setItem('glm_bm_historico', JSON.stringify(hist));
+    } catch(e) {}
+  }
 
-    var cards = findCards(), novos = 0;
-    for (var i = 0; i < cards.length; i++) {
-      try {
-        var card = cards[i];
-        if (card.querySelector('.glm5-badge')) continue;
-
-        // Tenta cruzar com JSON pelo itemId
-        var itemId = extrairItemId(card);
-        var jsonData = (itemId && PGDATA[itemId]) ? PGDATA[itemId] : null;
-
-        var d = extrair(card, jsonData);
-        if (!d.preco && !d.v30 && !d.rating) continue;
-        d.score = calcScore(d);
-        d.oport = calcOport(d);
-        var uid = 'g' + i + '_' + Date.now();
-        card._glmUid = uid;
-        DB[uid] = d;
-        injetarBadge(card, d);
-        novos++;
-      } catch(e) {}
+  function analisar(){
+    PGDATA=extrairDadosJSON();
+    var cards=findCards(),novos=0;
+    for(var i=0;i<cards.length;i++){
+      try{
+        var card=cards[i];
+        if(card.querySelector('.glm6-badge'))continue;
+        var itemId=extrairItemId(card),jsonData=(itemId&&PGDATA[itemId])?PGDATA[itemId]:null;
+        var d=extrair(card,jsonData);
+        if(!d.preco&&!d.v30&&!d.rating)continue;
+        d.score=calcScore(d);d.oport=calcOport(d);
+        var uid='g'+i+'_'+Date.now();card._glmUid=uid;DB[uid]=d;
+        injetarBadge(card,d);novos++;
+      }catch(e){}
     }
     atualizarPainel();
-    var total = Object.keys(DB).length;
-    sv('glm5-cnt', total); sv('glm5-cnt2', total);
+    var total=Object.keys(DB).length;
+    sv('glm6-cnt',total);sv('glm6-cnt2',total);
+    // Salvar no histórico
+    if(total > 0) {
+      salvarHistoricoBookmarklet(Object.keys(DB).map(function(k){return DB[k];}));
+      var hs = gi(ID+'-hist-saved');
+      if(hs) hs.textContent = '✅ ' + total + ' produtos salvos no histórico GLM';
+    }
     return total;
   }
 
-  /* ── ATUALIZAR PAINEL ── */
-  function atualizarPainel() {
-    var todos = Object.keys(DB).map(function(k) { return DB[k]; });
-    if (!todos.length) return;
-
-    sv('g5-of', todos.filter(function(d) { return d.isOfic; }).length);
-    sv('g5-in', todos.filter(function(d) { return !!d.nivel; }).length);
-    sv('g5-5s', todos.filter(function(d) { return d.is5; }).length);
-    sv('g5-d180', todos.filter(function(d) { return d.diasCriado >= 0 && d.diasCriado <= 180; }).length);
-    sv('g5-d365', todos.filter(function(d) { return d.diasCriado > 180 && d.diasCriado <= 365; }).length);
-    sv('g5-dp', todos.filter(function(d) { return d.diasCriado > 365; }).length);
-    sv('g5-bp', todos.filter(function(d) { return d.score >= 60; }).length);
-    sv('g5-vt', fN(todos.reduce(function(a, d) { return a + (d.vtot || 0); }, 0)));
-    sv('g5-v30', fN(todos.reduce(function(a, d) { return a + (d.v30 || 0); }, 0)));
-    sv('g5-an', todos.length);
-    sv('g5-dc', todos.filter(function(d) { return d.desc > 0; }).length);
-
-    var precos = todos.map(function(d) { return d.preco; }).filter(Boolean);
-    sv('g5-pmin', precos.length ? fR(Math.min.apply(null, precos)) : '\u2014');
-    sv('g5-pmax', precos.length ? fR(Math.max.apply(null, precos)) : '\u2014');
-
-    /* Resumo data de criação */
-    var comData = todos.filter(function(d) { return d.diasCriado >= 0; }).length;
-    var dateNote = gi('g5-date-note');
-    if (dateNote) {
-      dateNote.textContent = comData > 0
-        ? comData + '/' + todos.length + ' c/ data'
-        : 'Via JSON da p\u00E1gina';
-    }
-
-    /* Top por localização */
-    var locMap = {};
-    todos.forEach(function(d) {
-      if (d.locTxt) locMap[d.locTxt] = (locMap[d.locTxt] || 0) + 1;
-    });
-    var locBar = gi('g5-loc-bar');
-    if (locBar) {
-      var locs = Object.keys(locMap).sort(function(a, b) { return locMap[b] - locMap[a]; }).slice(0, 4);
-      locBar.innerHTML = locs.length
-        ? locs.map(function(l) { return '<span class="loc-pill">' + l + '\u00A0' + locMap[l] + '</span>'; }).join('')
-        : '<span style="font-size:9px;color:rgba(255,255,255,.2)">N\u00E3o detectado</span>';
-    }
-
-    /* Top 3 */
-    var top = todos.slice().sort(function(a, b) { return b.score - a.score; }).slice(0, 3);
-    var te = gi('g5-top');
-    if (te) {
-      var medals = ['\uD83E\uDD47', '\uD83E\uDD48', '\uD83E\uDD49'];
-      te.innerHTML = top.map(function(d, i) {
-        return '<div class="trow"><span>' + medals[i] + '</span><div class="ti">' +
-          '<div class="tn">' + (d.titulo || 'Produto').slice(0, 26) + '...</div>' +
-          '<div class="tm">' + fR(d.preco) +
-            (d.v30 > 0 ? ' \u00B7 ' + fN(d.v30) + ' vend' : '') +
-            (d.locTxt ? ' \u00B7 ' + d.locTxt.slice(0, 8) : '') +
-          '</div></div><div class="ci ' + scC(d.score) + '">' + d.score + '</div></div>';
-      }).join('') || '<div class="mt">\u2014</div>';
-    }
+  function atualizarPainel(){
+    var todos=Object.keys(DB).map(function(k){return DB[k];});
+    if(!todos.length)return;
+    sv('g6-of',todos.filter(function(d){return d.isOfic;}).length);
+    sv('g6-in',todos.filter(function(d){return!!d.nivel;}).length);
+    sv('g6-5s',todos.filter(function(d){return d.is5;}).length);
+    sv('g6-d180',todos.filter(function(d){return d.diasCriado>=0&&d.diasCriado<=180;}).length);
+    sv('g6-d365',todos.filter(function(d){return d.diasCriado>180&&d.diasCriado<=365;}).length);
+    sv('g6-dp',todos.filter(function(d){return d.diasCriado>365;}).length);
+    sv('g6-bp',todos.filter(function(d){return d.score>=60;}).length);
+    sv('g6-vt',fN(todos.reduce(function(a,d){return a+(d.vtot||0);},0)));
+    sv('g6-v30',fN(todos.reduce(function(a,d){return a+(d.v30||0);},0)));
+    sv('g6-an',todos.length);sv('g6-dc',todos.filter(function(d){return d.desc>0;}).length);
+    var precos=todos.map(function(d){return d.preco;}).filter(Boolean);
+    sv('g6-pmin',precos.length?fR(Math.min.apply(null,precos)):'\u2014');
+    sv('g6-pmax',precos.length?fR(Math.max.apply(null,precos)):'\u2014');
+    var locMap={};
+    todos.forEach(function(d){if(d.locTxt)locMap[d.locTxt]=(locMap[d.locTxt]||0)+1;});
+    var locBar=gi('g6-loc-bar');
+    if(locBar){var locs=Object.keys(locMap).sort(function(a,b){return locMap[b]-locMap[a];}).slice(0,4);locBar.innerHTML=locs.length?locs.map(function(l){return'<span class="loc-pill">'+l+'\u00A0'+locMap[l]+'</span>';}).join(''):'<span style="font-size:9px;color:rgba(255,255,255,.2)">N\u00E3o detectado</span>';}
+    var top=todos.slice().sort(function(a,b){return b.score-a.score;}).slice(0,3);
+    var te=gi('g6-top');
+    if(te){var medals=['\uD83E\uDD47','\uD83E\uDD48','\uD83E\uDD49'];te.innerHTML=top.map(function(d,i){return'<div class="trow"><span>'+medals[i]+'</span><div class="ti"><div class="tn">'+(d.titulo||'Produto').slice(0,26)+'...</div><div class="tm">'+fR(d.preco)+(d.v30>0?' \u00B7 '+fN(d.v30)+' vend':'')+(d.locTxt?' \u00B7 '+d.locTxt.slice(0,8):'')+' \u00B7 '+d.score+'pts</div></div><div class="ci '+scC(d.score)+'">'+d.score+'</div></div>';}).join('')||'<div class="mt">\u2014</div>';}
   }
 
-  /* ── FILTRAR ── */
-  function filtrar(tipo) {
-    var chips = toArr(document.querySelectorAll('#' + ID + ' .chip'));
-    if (FILT === tipo) {
-      FILT = null;
-      var allCards = findCards();
-      for (var ci = 0; ci < allCards.length; ci++) allCards[ci].style.display = '';
-      for (var chi = 0; chi < chips.length; chi++) chips[chi].classList.remove('on');
-      return;
-    }
-    FILT = tipo;
-    for (var chi2 = 0; chi2 < chips.length; chi2++) chips[chi2].classList.remove('on');
-    var activeChip = document.querySelector('#' + ID + ' [data-f="' + tipo + '"]');
-    if (activeChip) activeChip.classList.add('on');
-    var fc = findCards();
-    for (var fi = 0; fi < fc.length; fi++) {
-      var card = fc[fi];
-      var uid = card._glmUid;
-      if (!uid || !DB[uid]) { card.style.display = 'none'; continue; }
-      var d = DB[uid], show = false;
-      if (tipo === 'of') show = d.isOfic;
-      else if (tipo === 'in') show = !!d.nivel;
-      else if (tipo === '5s') show = d.is5;
-      else if (tipo === 'd180') show = d.diasCriado >= 0 && d.diasCriado <= 180;
-      else if (tipo === 'd365') show = d.diasCriado > 180 && d.diasCriado <= 365;
-      else if (tipo === 'dp') show = d.diasCriado > 365;
-      else if (tipo === 'bom') show = d.score >= 60;
-      card.style.display = show ? '' : 'none';
-    }
+  function filtrar(tipo){
+    var chips=toArr(document.querySelectorAll('#'+ID+' .chip'));
+    if(FILT===tipo){FILT=null;var allCards=findCards();for(var ci=0;ci<allCards.length;ci++)allCards[ci].style.display='';for(var chi=0;chi<chips.length;chi++)chips[chi].classList.remove('on');return;}
+    FILT=tipo;for(var chi2=0;chi2<chips.length;chi2++)chips[chi2].classList.remove('on');
+    var activeChip=document.querySelector('#'+ID+' [data-f="'+tipo+'"]');if(activeChip)activeChip.classList.add('on');
+    var fc=findCards();
+    for(var fi=0;fi<fc.length;fi++){var card=fc[fi],uid=card._glmUid;if(!uid||!DB[uid]){card.style.display='none';continue;}var d=DB[uid],show=false;
+      if(tipo==='of')show=d.isOfic;else if(tipo==='in')show=!!d.nivel;else if(tipo==='5s')show=d.is5;else if(tipo==='d180')show=d.diasCriado>=0&&d.diasCriado<=180;else if(tipo==='d365')show=d.diasCriado>180&&d.diasCriado<=365;else if(tipo==='dp')show=d.diasCriado>365;else if(tipo==='bom')show=d.score>=60;
+      card.style.display=show?'':'none';}
   }
 
   /* ── PAINEL HTML ── */
-  var p = document.createElement('div');
-  p.id = ID;
-  p.innerHTML =
-    '<div class="hd" id="' + ID + '-drag">' +
-      '<div class="hd-l">' +
-        '<div class="hd-logo">\uD83D\uDED2</div>' +
-        '<div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v5.2</div></div>' +
-      '</div>' +
-      '<div class="hd-r">' +
-        '<button class="hb" id="' + ID + '-min">\u2014</button>' +
-        '<button class="hb" id="' + ID + '-cls">\u2715</button>' +
-      '</div>' +
-    '</div>' +
-    '<div class="bd" id="' + ID + '-body">' +
-      '<div class="tip"><span style="font-size:14px">\uD83D\uDCA1</span>' +
-        '<p><b>Dica:</b> Clique nos chips coloridos para filtrar. Clique de novo para desativar.</p>' +
-      '</div>' +
-      '<div class="vbar">v5.2 \u00B7 <b class="gn" id="glm5-cnt">0</b> produtos</div>' +
-      '<div class="sec">' +
-        '<div class="cnt-box"><b id="glm5-cnt2">0</b><span>produtos analisados</span></div>' +
-        '<button class="btn-a" id="' + ID + '-btn">\uD83D\uDD0D Analisar Produtos</button>' +
-        '<button class="btn-r" id="' + ID + '-re">\uD83D\uDD04 Re-analisar (limpar e refazer)</button>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> CONCORR\u00CANCIA</div>' +
-        '<div class="chips">' +
-          '<div class="chip cg" data-f="of"><b id="g5-of">0</b><span>OFICIAIS</span></div>' +
-          '<div class="chip cy" data-f="in"><b id="g5-in">0</b><span>INDICADOS</span></div>' +
-          '<div class="chip cr" data-f="5s"><b id="g5-5s">0</b><span>5 ESTRELAS</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="sec">' +
-        '<div class="sl"><span>\uD83D\uDCC5</span> DATA DE CRIA\u00C7\u00C3O <span id="g5-date-note" style="font-weight:400;opacity:.6;font-size:8px;margin-left:4px;text-transform:none;letter-spacing:0">Via JSON da p\u00E1gina</span></div>' +
-        '<div class="chips">' +
-          '<div class="chip cg" data-f="d180"><b id="g5-d180">0</b><span>AT\u00C9 180d</span></div>' +
-          '<div class="chip cy" data-f="d365"><b id="g5-d365">0</b><span>AT\u00C9 365d</span></div>' +
-          '<div class="chip cr" data-f="dp"><b id="g5-dp">0</b><span>+365d</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\u2B50</span> BONS PRODUTOS</div>' +
-        '<div class="chips one">' +
-          '<div class="chip cg" data-f="bom" style="padding:10px"><b id="g5-bp">0</b><span>BOM PRODUTO</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\uD83D\uDCE6</span> VENDAS</div>' +
-        '<div class="g2">' +
-          '<div class="bst"><b id="g5-vt">\u2014</b><span>TOTAL UNID.</span></div>' +
-          '<div class="bst"><b class="gn" id="g5-v30">\u2014</b><span>\u00DALTlMOS 30D</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="sec">' +
-        '<div class="sl"><span>\uD83D\uDCCD</span> LOCALIZA\u00C7\u00C3O</div>' +
-        '<div class="loc-bar" id="g5-loc-bar"><span style="font-size:9px;color:rgba(255,255,255,.2)">Clique em Analisar</span></div>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\u2139\uFE0F</span> RESUMO</div>' +
-        '<div class="g2">' +
-          '<div class="bst"><b id="g5-an">\u2014</b><span>AN\u00DANCIOS</span></div>' +
-          '<div class="bst"><b id="g5-dc">\u2014</b><span>DESCONTOS</span></div>' +
-          '<div class="bst"><b class="gn" id="g5-pmin">\u2014</b><span>MENOR PRE\u00C7O</span></div>' +
-          '<div class="bst"><b class="go" id="g5-pmax">\u2014</b><span>MAIOR PRE\u00C7O</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\uD83D\uDD3D</span> ORDENAR</div>' +
-        '<select class="sel" id="' + ID + '-ord">' +
-          '<option value="n">Padr\u00E3o (Shopee)</option>' +
-          '<option value="s">\u2B50 Score GLM</option>' +
-          '<option value="v">\uD83D\uDD25 Mais Vendidos</option>' +
-          '<option value="pa">\uD83D\uDCB0 Menor Pre\u00E7o</option>' +
-          '<option value="pd">\uD83D\uDC8E Maior Pre\u00E7o</option>' +
-          '<option value="dc">\uD83C\uDFF7\uFE0F Maior Desconto</option>' +
-        '</select>' +
-      '</div>' +
-      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> TOP DESTA BUSCA</div>' +
-        '<div id="g5-top"><div class="mt">Clique em Analisar</div></div>' +
-      '</div>' +
-      '<div class="sec" style="padding-bottom:14px">' +
-        '<button class="btn-c" id="' + ID + '-calc">Calculadora GLM \u2192</button>' +
-      '</div>' +
+  var p=document.createElement('div');
+  p.id=ID;
+  p.innerHTML=
+    '<div class="hd" id="'+ID+'-drag"><div class="hd-l"><div class="hd-logo">\uD83D\uDED2</div><div><div class="hd-t">Imprimindo Lucre</div><div class="hd-v">GLM v6.0</div></div></div>'+
+    '<div class="hd-r"><button class="hb" id="'+ID+'-min">\u2014</button><button class="hb" id="'+ID+'-cls">\u2715</button></div></div>'+
+    '<div class="bd" id="'+ID+'-body">'+
+      '<div class="tip"><span style="font-size:14px">\uD83D\uDCA1</span><p><b>v6:</b> Histórico automático + Enviar ao Comparador GLM!</p></div>'+
+      '<div class="vbar">v6.0 \u00B7 <b class="gn" id="glm6-cnt">0</b> produtos</div>'+
+      '<div class="sec"><div class="cnt-box"><b id="glm6-cnt2">0</b><span>produtos analisados</span></div>'+
+        '<button class="btn-a" id="'+ID+'-btn">\uD83D\uDD0D Analisar Produtos</button>'+
+        '<button class="btn-r" id="'+ID+'-re">\uD83D\uDD04 Re-analisar</button>'+
+        '<div class="hist-saved" id="'+ID+'-hist-saved" style="display:none"></div>'+
+      '</div>'+
+      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> CONCORR\u00CANCIA</div>'+
+        '<div class="chips"><div class="chip cg" data-f="of"><b id="g6-of">0</b><span>OFICIAIS</span></div><div class="chip cy" data-f="in"><b id="g6-in">0</b><span>INDICADOS</span></div><div class="chip cr" data-f="5s"><b id="g6-5s">0</b><span>5 ESTRELAS</span></div></div></div>'+
+      '<div class="sec"><div class="sl"><span>\uD83D\uDCC5</span> DATA DE CRIA\u00C7\u00C3O</div>'+
+        '<div class="chips"><div class="chip cg" data-f="d180"><b id="g6-d180">0</b><span>AT\u00C9 180d</span></div><div class="chip cy" data-f="d365"><b id="g6-d365">0</b><span>AT\u00C9 365d</span></div><div class="chip cr" data-f="dp"><b id="g6-dp">0</b><span>+365d</span></div></div></div>'+
+      '<div class="sec"><div class="sl"><span>\u2B50</span> BONS PRODUTOS</div><div class="chips one"><div class="chip cg" data-f="bom" style="padding:10px"><b id="g6-bp">0</b><span>BOM PRODUTO</span></div></div></div>'+
+      '<div class="sec"><div class="sl"><span>\uD83D\uDCE6</span> VENDAS</div><div class="g2"><div class="bst"><b id="g6-vt">\u2014</b><span>TOTAL UNID.</span></div><div class="bst"><b class="gn" id="g6-v30">\u2014</b><span>\u00DALTlMOS 30D</span></div></div></div>'+
+      '<div class="sec"><div class="sl"><span>\uD83D\uDCCD</span> LOCALIZA\u00C7\u00C3O</div><div class="loc-bar" id="g6-loc-bar"><span style="font-size:9px;color:rgba(255,255,255,.2)">Clique em Analisar</span></div></div>'+
+      '<div class="sec"><div class="sl"><span>\u2139\uFE0F</span> RESUMO</div><div class="g2"><div class="bst"><b id="g6-an">\u2014</b><span>AN\u00DANCIOS</span></div><div class="bst"><b id="g6-dc">\u2014</b><span>DESCONTOS</span></div><div class="bst"><b class="gn" id="g6-pmin">\u2014</b><span>MENOR PRE\u00C7O</span></div><div class="bst"><b class="go" id="g6-pmax">\u2014</b><span>MAIOR PRE\u00C7O</span></div></div></div>'+
+      '<div class="sec"><div class="sl"><span>\uD83D\uDD3D</span> ORDENAR</div>'+
+        '<select class="sel" id="'+ID+'-ord"><option value="n">Padr\u00E3o (Shopee)</option><option value="s">\u2B50 Score GLM</option><option value="v">\uD83D\uDD25 Mais Vendidos</option><option value="pa">\uD83D\uDCB0 Menor Pre\u00E7o</option><option value="pd">\uD83D\uDC8E Maior Pre\u00E7o</option><option value="dc">\uD83C\uDFF7\uFE0F Maior Desconto</option></select></div>'+
+      '<div class="sec"><div class="sl"><span>\uD83C\uDFC6</span> TOP DESTA BUSCA</div><div id="g6-top"><div class="mt">Clique em Analisar</div></div></div>'+
+      '<div class="sec" style="padding-bottom:14px">'+
+        '<button class="btn-c" id="'+ID+'-calc">Calculadora GLM \u2192</button>'+
+        '<button class="btn-glm" id="'+ID+'-glm">\uD83D\uDCE4 Enviar Top 5 ao Comparador GLM</button>'+
+      '</div>'+
     '</div>';
-
   document.body.appendChild(p);
 
   /* ── EVENTOS ── */
-  gi(ID + '-cls').onclick = function() {
-    p.remove();
-    var c = gi(ID + '-css'); if (c) c.remove();
-    var bs = document.querySelectorAll('.glm5-badge');
-    for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
+  gi(ID+'-cls').onclick=function(){p.remove();var c=gi(ID+'-css');if(c)c.remove();var bs=document.querySelectorAll('.glm6-badge');for(var bi=0;bi<bs.length;bi++)bs[bi].remove();};
+  gi(ID+'-min').onclick=function(){var b=gi(ID+'-body');b.style.display=b.style.display==='none'?'':'none';};
+  gi(ID+'-btn').onclick=function(){
+    var total=analisar();
+    var hs=gi(ID+'-hist-saved');
+    if(hs){hs.style.display=total>0?'block':'none';}
   };
-  gi(ID + '-min').onclick = function() {
-    var b = gi(ID + '-body');
-    b.style.display = b.style.display === 'none' ? '' : 'none';
+  gi(ID+'-re').onclick=function(){DB={};FILT=null;PGDATA={};var bs=document.querySelectorAll('.glm6-badge');for(var bi=0;bi<bs.length;bi++)bs[bi].remove();var fc=findCards();for(var ci=0;ci<fc.length;ci++)fc[ci].style.display='';var chips=document.querySelectorAll('#'+ID+' .chip');for(var chi=0;chi<chips.length;chi++)chips[chi].classList.remove('on');setTimeout(analisar,200);};
+  gi(ID+'-calc').onclick=function(){window.open('https://gui-89.github.io/calculadoraglm/','_blank');};
+
+  /* ── NOVO v6: Enviar ao Comparador GLM ── */
+  gi(ID+'-glm').onclick=function(){
+    var todos=Object.keys(DB).map(function(k){return DB[k];});
+    if(!todos.length){alert('Analise os produtos primeiro!');return;}
+    var top=todos.sort(function(a,b){return b.score-a.score;}).slice(0,5);
+    var exportData=top.map(function(d){return{nome:(d.titulo||'Produto').slice(0,60),preco:d.preco,orig:d.orig,v30:d.v30,vtot:d.vtot,nota:d.rating,aval:d.numAval,frete:d.frete?1:0,dias:d.diasCriado>=0?d.diasCriado:-1,nivel:d.nivel||'',desc:d.desc};});
+    var hash='#bm='+encodeURIComponent(JSON.stringify(exportData));
+    window.open(GLM_URL+hash,'_blank');
   };
-  gi(ID + '-btn').onclick = analisar;
-  gi(ID + '-re').onclick = function() {
-    DB = {}; FILT = null; PGDATA = {};
-    var bs = document.querySelectorAll('.glm5-badge'); for (var bi = 0; bi < bs.length; bi++) bs[bi].remove();
-    var fc = findCards(); for (var ci = 0; ci < fc.length; ci++) fc[ci].style.display = '';
-    var chips = document.querySelectorAll('#' + ID + ' .chip'); for (var chi = 0; chi < chips.length; chi++) chips[chi].classList.remove('on');
-    setTimeout(analisar, 200);
-  };
-  gi(ID + '-calc').onclick = function() { window.open('https://gui-89.github.io/calculadoraglm/', '_blank'); };
 
   /* Chips */
-  var chips = toArr(p.querySelectorAll('[data-f]'));
-  for (var ci = 0; ci < chips.length; ci++) {
-    chips[ci].onclick = (function(ch) {
-      return function() { filtrar(ch.getAttribute('data-f')); };
-    })(chips[ci]);
-  }
+  var chips=toArr(p.querySelectorAll('[data-f]'));
+  for(var ci=0;ci<chips.length;ci++){chips[ci].onclick=(function(ch){return function(){filtrar(ch.getAttribute('data-f'));};})(chips[ci]);}
 
   /* Ordenar */
-  gi(ID + '-ord').onchange = function() {
-    var t = this.value, cards = findCards();
-    if (!cards.length) return;
-    var par = cards[0].parentElement; if (!par) return;
-    cards.sort(function(a, b) {
-      var da = (a._glmUid && DB[a._glmUid]) || {};
-      var db = (b._glmUid && DB[b._glmUid]) || {};
-      if (t === 's') return (db.score || 0) - (da.score || 0);
-      if (t === 'v') return (db.v30 || 0) - (da.v30 || 0);
-      if (t === 'pa') return (da.preco || 9999) - (db.preco || 9999);
-      if (t === 'pd') return (db.preco || 0) - (da.preco || 0);
-      if (t === 'dc') return (db.desc || 0) - (da.desc || 0);
-      return 0;
-    });
-    for (var si = 0; si < cards.length; si++) par.appendChild(cards[si]);
-  };
+  gi(ID+'-ord').onchange=function(){var t=this.value,cards=findCards();if(!cards.length)return;var par=cards[0].parentElement;if(!par)return;cards.sort(function(a,b){var da=(a._glmUid&&DB[a._glmUid])||{},db=(b._glmUid&&DB[b._glmUid])||{};if(t==='s')return(db.score||0)-(da.score||0);if(t==='v')return(db.v30||0)-(da.v30||0);if(t==='pa')return(da.preco||9999)-(db.preco||9999);if(t==='pd')return(db.preco||0)-(da.preco||0);if(t==='dc')return(db.desc||0)-(da.desc||0);return 0;});for(var si=0;si<cards.length;si++)par.appendChild(cards[si]);};
 
   /* Drag */
-  var dh = gi(ID + '-drag'), sx, sy, sl, st;
-  dh.addEventListener('mousedown', function(ev) {
-    sx = ev.clientX; sy = ev.clientY; sl = p.offsetLeft; st = p.offsetTop;
-    function mv(e2) { p.style.left = (sl + e2.clientX - sx) + 'px'; p.style.top = (st + e2.clientY - sy) + 'px'; p.style.right = 'auto'; }
-    function up() { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); }
-    document.addEventListener('mousemove', mv);
-    document.addEventListener('mouseup', up);
-  });
+  var dh=gi(ID+'-drag'),sx,sy,sl,st;
+  dh.addEventListener('mousedown',function(ev){sx=ev.clientX;sy=ev.clientY;sl=p.offsetLeft;st=p.offsetTop;function mv(e2){p.style.left=(sl+e2.clientX-sx)+'px';p.style.top=(st+e2.clientY-sy)+'px';p.style.right='auto';}function up(){document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);}document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);});
 
-  /* Auto-analisar */
-  setTimeout(analisar, 800);
-  setTimeout(analisar, 2800);
+  setTimeout(analisar,800);setTimeout(analisar,2800);
 }
 
-/* ══════════════════════════════════════════════════════
-   GERA O BOOKMARKLET via .toString()
-   ══════════════════════════════════════════════════════ */
-(function() {
-  var lnk = document.getElementById('bm-link');
-  if (!lnk) return;
-  var code = '(' + glmBookmarklet.toString() + ')()';
-  lnk.href = 'javascript:' + encodeURIComponent(code);
+/* ── GERA BOOKMARKLET (injeta URL da página) ── */
+(function(){
+  var lnk=document.getElementById('bm-link');if(!lnk)return;
+  var pageUrl=window.location.href.split('#')[0];
+  var code='(function(){window.GLM_ANALISADOR_URL="'+pageUrl+'";('+glmBookmarklet.toString()+')();})()';
+  lnk.href='javascript:'+encodeURIComponent(code);
 })();
 
-/* ═══ COMPARADOR ═══ */
-var produtos = [], cardCount = 0;
+/* ═══════════════════════════════════════════════════════
+   COMPARADOR — funções base
+   ═══════════════════════════════════════════════════════ */
+var produtos=[], cardCount=0;
 
-function adicionarCard() {
-  if (cardCount >= 5) { alert('Máximo 5 produtos!'); return; }
+function adicionarCard(dados) {
+  if(cardCount>=5){alert('Máximo 5 produtos!');return;}
   cardCount++;
-  var id = 'p' + Date.now();
-  var div = document.createElement('div');
-  div.className = 'prod-card'; div.id = id;
-  div.innerHTML =
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
-      '<div style="font-size:11px;font-weight:600;opacity:.45;">Produto ' + cardCount + '</div>' +
-      '<button onclick="removerCard(\'' + id + '\')" style="background:none;border:none;color:#ff5252;cursor:pointer;font-size:14px;">✕</button>' +
-    '</div>' +
-    '<div class="prod-form">' +
-      '<div><label>Nome *</label><input type="text" placeholder="Ex: Luminária 3D LED..." id="' + id + '-nome"></div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
-        '<div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="' + id + '-preco"></div>' +
-        '<div><label>Preço original</label><input type="number" placeholder="69.90" id="' + id + '-orig"></div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
-        '<div><label>Vendas/30d</label><input type="number" placeholder="843" id="' + id + '-v30"></div>' +
-        '<div><label>Vendas total</label><input type="number" placeholder="12000" id="' + id + '-vtot"></div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
-        '<div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="' + id + '-nota"></div>' +
-        '<div><label>Avaliações</label><input type="number" placeholder="234" id="' + id + '-aval"></div>' +
-      '</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">' +
-        '<div><label>Frete</label><select id="' + id + '-frete"><option value="1">✅ Grátis</option><option value="0">❌ Pago</option></select></div>' +
-        '<div><label>Idade (dias)</label><input type="number" placeholder="90" id="' + id + '-dias"></div>' +
-      '</div>' +
-      '<div><label>Nível</label><select id="' + id + '-nivel"><option value="">Normal</option><option value="Mall">Shopee Mall</option><option value="Pref">Preferido</option></select></div>' +
+  var id='p'+Date.now()+'_'+cardCount;
+  var div=document.createElement('div');
+  div.className='prod-card';div.id=id;
+  div.innerHTML=
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'+
+      '<div style="font-size:11px;font-weight:600;opacity:.45;">Produto '+cardCount+'</div>'+
+      '<button onclick="removerCard(\''+id+'\')" style="background:none;border:none;color:#ff5252;cursor:pointer;font-size:14px;">✕</button>'+
+    '</div>'+
+    '<div class="prod-form">'+
+      '<div><label>Nome *</label><input type="text" placeholder="Ex: Luminária 3D LED..." id="'+id+'-nome" value="'+(dados&&dados.nome?dados.nome.replace(/"/g,'&quot;'):'')+'"></div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
+        '<div><label>Preço (R$)</label><input type="number" placeholder="39.90" id="'+id+'-preco" value="'+(dados&&dados.preco?dados.preco:'')+'"></div>'+
+        '<div><label>Preço original</label><input type="number" placeholder="69.90" id="'+id+'-orig" value="'+(dados&&dados.orig?dados.orig:'')+'"></div>'+
+      '</div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
+        '<div><label>Vendas/30d</label><input type="number" placeholder="843" id="'+id+'-v30" value="'+(dados&&dados.v30?dados.v30:'')+'"></div>'+
+        '<div><label>Vendas total</label><input type="number" placeholder="12000" id="'+id+'-vtot" value="'+(dados&&dados.vtot?dados.vtot:'')+'"></div>'+
+      '</div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
+        '<div><label>Nota (1–5)</label><input type="number" step="0.1" min="1" max="5" placeholder="4.8" id="'+id+'-nota" value="'+(dados&&dados.nota?dados.nota:'')+'"></div>'+
+        '<div><label>Avaliações</label><input type="number" placeholder="234" id="'+id+'-aval" value="'+(dados&&dados.aval?dados.aval:'')+'"></div>'+
+      '</div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'+
+        '<div><label>Frete</label><select id="'+id+'-frete"><option value="1"'+(dados&&dados.frete?' selected':'')+'>✅ Grátis</option><option value="0"'+(dados&&!dados.frete?' selected':'')+'>❌ Pago</option></select></div>'+
+        '<div><label>Idade (dias)</label><input type="number" placeholder="90" id="'+id+'-dias" value="'+(dados&&dados.dias&&dados.dias>=0?dados.dias:'')+'"></div>'+
+      '</div>'+
+      '<div><label>Nível</label><select id="'+id+'-nivel"><option value="">Normal</option><option value="Mall"'+(dados&&dados.nivel==='Mall'?' selected':'')+'>Shopee Mall</option><option value="Pref"'+(dados&&dados.nivel==='Pref'?' selected':'')+'>Preferido</option></select></div>'+
     '</div>';
-  document.getElementById('prodGrid').insertBefore(div, document.getElementById('btnAdd'));
+  document.getElementById('prodGrid').insertBefore(div,document.getElementById('btnAdd'));
 }
 
-function removerCard(id) { var el = document.getElementById(id); if (el) el.remove(); cardCount--; }
-function limparTudo() { document.querySelectorAll('.prod-card').forEach(function(c) { c.remove(); }); cardCount = 0; produtos = []; document.getElementById('resultados').style.display = 'none'; }
-function gv(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
-function gn(id) { return parseFloat(gv(id)) || 0; }
+function removerCard(id){var el=document.getElementById(id);if(el)el.remove();cardCount--;}
 
-function calcScoreComp(d) {
-  var s = 0, v = d.v30, r = d.nota;
-  s += v >= 500 ? 30 : v >= 200 ? 24 : v >= 100 ? 18 : v >= 50 ? 12 : v >= 10 ? 6 : v > 0 ? 3 : 0;
-  s += d.vtot >= 5000 ? 15 : d.vtot >= 2000 ? 12 : d.vtot >= 500 ? 8 : d.vtot >= 100 ? 4 : d.vtot > 0 ? 2 : 0;
-  s += r >= 4.8 ? 20 : r >= 4.5 ? 15 : r >= 4.0 ? 10 : r >= 3.5 ? 5 : r > 0 ? 2 : 0;
-  if (d.frete) s += 15;
-  s += d.desc >= 60 ? 10 : d.desc >= 40 ? 8 : d.desc >= 20 ? 5 : d.desc >= 10 ? 2 : 0;
-  if (d.dias >= 0 && d.dias <= 90) s += 5; else if (d.dias <= 180) s += 3;
-  if (d.nivel === 'Mall') s += 5; else if (d.nivel.indexOf('Pref') >= 0) s += 3;
-  return Math.min(100, s);
+function limparTudo(){
+  document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});
+  cardCount=0;produtos=[];
+  document.getElementById('resultados').style.display='none';
+  document.getElementById('ia-panel').style.display='none';
+  document.getElementById('btn-ia-analise').style.display='none';
+  document.getElementById('btn-export').style.display='none';
 }
-function calcOportComp(d) {
-  var pts = 0;
-  if (d.v30 >= 50) pts += 2; if (d.v30 >= 200) pts += 2;
-  if (d.aval < 50) pts += 2; if (d.aval < 20) pts += 1;
-  if (d.dias >= 0 && d.dias <= 180) pts += 2;
-  if (d.nota >= 4.5) pts += 1; if (d.preco <= 80) pts += 1; if (d.frete) pts += 1;
-  if (pts >= 8) return { nivel: 'ALTA', emoji: '🚀', cls: 'tag-green' };
-  if (pts >= 5) return { nivel: 'MÉDIA', emoji: '📈', cls: 'tag-gold' };
+
+function calcScoreComp(d){
+  var s=0,v=d.v30,r=d.nota;
+  s+=v>=500?30:v>=200?24:v>=100?18:v>=50?12:v>=10?6:v>0?3:0;
+  s+=d.vtot>=5000?15:d.vtot>=2000?12:d.vtot>=500?8:d.vtot>=100?4:d.vtot>0?2:0;
+  s+=r>=4.8?20:r>=4.5?15:r>=4.0?10:r>=3.5?5:r>0?2:0;
+  if(d.frete)s+=15;
+  s+=d.desc>=60?10:d.desc>=40?8:d.desc>=20?5:d.desc>=10?2:0;
+  if(d.dias>=0&&d.dias<=90)s+=5;else if(d.dias<=180)s+=3;
+  if(d.nivel==='Mall')s+=5;else if(d.nivel.indexOf('Pref')>=0)s+=3;
+  return Math.min(100,s);
+}
+
+function calcOportComp(d){
+  var pts=0;
+  if(d.v30>=50)pts+=2;if(d.v30>=200)pts+=2;
+  if(d.aval<50)pts+=2;if(d.aval<20)pts+=1;
+  if(d.dias>=0&&d.dias<=180)pts+=2;if(d.nota>=4.5)pts+=1;if(d.preco<=80)pts+=1;if(d.frete)pts+=1;
+  if(pts>=8)return{nivel:'ALTA',emoji:'🚀',cls:'tag-green'};
+  if(pts>=5)return{nivel:'MÉDIA',emoji:'📈',cls:'tag-gold'};
   return null;
 }
-function scClsC(s) { return s >= 70 ? 'ex' : s >= 50 ? 'gd' : s >= 30 ? 'md' : 'lw'; }
-function scTxtC(s) { return s >= 70 ? '🔥 Excelente' : s >= 50 ? '👍 Bom' : s >= 30 ? '⚠️ Médio' : '📉 Fraco'; }
-function fNc(n) { return n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1).replace('.0', '') + 'k' : String(n || 0); }
-function fRc(n) { return 'R$\u00A0' + n.toLocaleString('pt-BR', { minimumFractionDigits: 2 }); }
 
-function analisarTodos() {
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.prod-card'));
-  if (!cards.length) { alert('Adicione pelo menos 1 produto!'); return; }
-  produtos = cards.map(function(card) {
-    var id = card.id, preco = gn(id + '-preco'), orig = gn(id + '-orig');
-    var desc = orig > preco && preco > 0 ? Math.round((1 - preco / orig) * 100) : 0;
-    var d = { nome: gv(id + '-nome') || 'Produto', preco: preco, orig: orig, desc: desc,
-      v30: gn(id + '-v30'), vtot: gn(id + '-vtot'), nota: gn(id + '-nota'),
-      aval: gn(id + '-aval'), frete: gv(id + '-frete') === '1',
-      dias: gn(id + '-dias') || -1, nivel: gv(id + '-nivel') };
-    d.score = calcScoreComp(d); d.oport = calcOportComp(d); return d;
-  }).filter(function(d) { return d.nome || d.preco; });
-  if (!produtos.length) { alert('Preencha ao menos nome e preço.'); return; }
+function analisarTodos(){
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.prod-card'));
+  if(!cards.length){alert('Adicione pelo menos 1 produto!');return;}
+  produtos=cards.map(function(card){
+    var id=card.id,preco=gn(id+'-preco'),orig=gn(id+'-orig');
+    var desc=orig>preco&&preco>0?Math.round((1-preco/orig)*100):0;
+    var d={nome:gv(id+'-nome')||'Produto',preco:preco,orig:orig,desc:desc,
+      v30:gn(id+'-v30'),vtot:gn(id+'-vtot'),nota:gn(id+'-nota'),
+      aval:gn(id+'-aval'),frete:gv(id+'-frete')==='1',
+      dias:gn(id+'-dias')||-1,nivel:gv(id+'-nivel')};
+    d.score=calcScoreComp(d);d.oport=calcOportComp(d);return d;
+  }).filter(function(d){return d.nome||d.preco;});
+  if(!produtos.length){alert('Preencha ao menos nome e preço.');return;}
   renderResultados();
-  document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+  /* Salvar no histórico localStorage */
+  salvarNoHistorico(produtos);
+  /* Mostrar botões extras */
+  document.getElementById('btn-ia-analise').style.display='flex';
+  document.getElementById('btn-export').style.display='block';
+  document.getElementById('resultados').scrollIntoView({behavior:'smooth'});
+  toast('✅ Comparação salva no histórico!');
 }
 
-function renderResultados() {
-  var todos = produtos.slice().sort(function(a, b) { return b.score - a.score; });
-  var maxScore = todos[0] ? todos[0].score : 0;
-  document.getElementById('resultados').style.display = 'block';
-  document.getElementById('resultGrid').innerHTML = todos.map(function(d, i) {
-    var c = scClsC(d.score), isBest = d.score === maxScore && todos.length > 1;
-    var tags = '';
-    if (d.frete) tags += '<span class="rc-tag tag-blue">✅ Frete Grátis</span>';
-    if (d.nivel) tags += '<span class="rc-tag tag-gold">' + d.nivel + '</span>';
-    if (d.oport) tags += '<span class="rc-tag ' + d.oport.cls + '">' + d.oport.emoji + ' ' + d.oport.nivel + '</span>';
-    return '<div class="rc ' + (isBest ? 'best' : '') + ' ' + c + '">' +
-      '<div style="font-size:20px;margin-bottom:6px;">' + (['🥇', '🥈', '🥉', '4️⃣', '5️⃣'][i] || '') + '</div>' +
-      '<div class="rc-top"><div><div class="rc-score ' + c + '">' + d.score + '</div><div class="rc-lbl">' + scTxtC(d.score) + '</div></div>' + (d.score >= 60 ? '<span class="bom-chip">BOM</span>' : '') + '</div>' +
-      '<div class="rc-name">' + d.nome + '</div>' +
-      '<div class="rc-grid">' +
-        '<div class="rc-m"><span>Preço</span><b>' + (d.preco > 0 ? fRc(d.preco) : 'N/D') + '</b></div>' +
-        '<div class="rc-m"><span>Desconto</span><b class="gr">' + (d.desc > 0 ? '-' + d.desc + '%' : '—') + '</b></div>' +
-        '<div class="rc-m"><span>Vendas/30d</span><b class="gn">' + (d.v30 > 0 ? fNc(d.v30) : 'N/D') + '</b></div>' +
-        '<div class="rc-m"><span>Total</span><b class="gn">' + (d.vtot > 0 ? fNc(d.vtot) : 'N/D') + '</b></div>' +
-        '<div class="rc-m"><span>Nota</span><b class="go">' + (d.nota > 0 ? d.nota.toFixed(1) + ' ⭐' : 'N/D') + '</b></div>' +
-        '<div class="rc-m"><span>Avaliações</span><b>' + (d.aval > 0 ? fNc(d.aval) : 'N/D') + '</b></div>' +
-      '</div>' +
-      (tags ? '<div class="rc-tags">' + tags + '</div>' : '') +
-      '<div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:3px;margin-top:6px;">Potencial · ' + d.score + '/100</div>' +
-      '<div class="rc-bar-track"><div class="rc-bar-fill" style="width:' + d.score + '%"></div></div>' +
+function renderResultados(){
+  var todos=produtos.slice().sort(function(a,b){return b.score-a.score;});
+  var maxScore=todos[0]?todos[0].score:0;
+  document.getElementById('resultados').style.display='block';
+  document.getElementById('resultGrid').innerHTML=todos.map(function(d,i){
+    var c=scClsC(d.score),isBest=d.score===maxScore&&todos.length>1;
+    var tags='';
+    if(d.frete)tags+='<span class="rc-tag tag-blue">✅ Frete Grátis</span>';
+    if(d.nivel)tags+='<span class="rc-tag tag-gold">'+d.nivel+'</span>';
+    if(d.oport)tags+='<span class="rc-tag '+d.oport.cls+'">'+d.oport.emoji+' '+d.oport.nivel+'</span>';
+    /* URL calculadora com params */
+    var calcUrl='https://gui-89.github.io/calculadoraglm/?preco='+d.preco+'&v30='+d.v30+(d.vtot?'&vtot='+d.vtot:'');
+    return '<div class="rc '+(isBest?'best':'')+' '+c+'">'+
+      '<div style="font-size:20px;margin-bottom:6px;">'+(['🥇','🥈','🥉','4️⃣','5️⃣'][i]||'')+'</div>'+
+      '<div class="rc-top"><div><div class="rc-score '+c+'">'+d.score+'</div><div class="rc-lbl">'+scTxtC(d.score)+'</div></div>'+(d.score>=60?'<span class="bom-chip">BOM</span>':'')+'</div>'+
+      '<div class="rc-name">'+d.nome+'</div>'+
+      '<div class="rc-grid">'+
+        '<div class="rc-m"><span>Preço</span><b>'+(d.preco>0?fRc(d.preco):'N/D')+'</b></div>'+
+        '<div class="rc-m"><span>Desconto</span><b class="gr">'+(d.desc>0?'-'+d.desc+'%':'—')+'</b></div>'+
+        '<div class="rc-m"><span>Vendas/30d</span><b class="gn">'+(d.v30>0?fNc(d.v30):'N/D')+'</b></div>'+
+        '<div class="rc-m"><span>Total</span><b class="gn">'+(d.vtot>0?fNc(d.vtot):'N/D')+'</b></div>'+
+        '<div class="rc-m"><span>Nota</span><b class="go">'+(d.nota>0?d.nota.toFixed(1)+' ⭐':'N/D')+'</b></div>'+
+        '<div class="rc-m"><span>Avaliações</span><b>'+(d.aval>0?fNc(d.aval):'N/D')+'</b></div>'+
+      '</div>'+
+      (tags?'<div class="rc-tags">'+tags+'</div>':'')+
+      '<div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:3px;margin-top:6px;">Score GLM · '+d.score+'/100</div>'+
+      '<div class="rc-bar-track"><div class="rc-bar-fill" style="width:'+d.score+'%"></div></div>'+
+      /* BOTÃO CALCULADORA GLM */
+      '<button class="rc-calc-btn" onclick="window.open(\''+calcUrl+'\',\'_blank\')">🔗 Abrir na Calculadora GLM</button>'+
     '</div>';
   }).join('');
 
-  var rows = [
-    { l: 'Score', k: 'score', fmt: function(v) { return v + '/100'; }, dir: 'max' },
-    { l: 'Preço', k: 'preco', fmt: function(v) { return v > 0 ? fRc(v) : 'N/D'; }, dir: 'min' },
-    { l: 'Desconto', k: 'desc', fmt: function(v) { return v + '%'; }, dir: 'max' },
-    { l: 'Vendas 30d', k: 'v30', fmt: function(v) { return v > 0 ? fNc(v) : 'N/D'; }, dir: 'max' },
-    { l: 'Total', k: 'vtot', fmt: function(v) { return v > 0 ? fNc(v) : 'N/D'; }, dir: 'max' },
-    { l: 'Nota', k: 'nota', fmt: function(v) { return v > 0 ? v.toFixed(1) + ' ⭐' : 'N/D'; }, dir: 'max' },
-    { l: 'Frete', k: 'frete', fmt: function(v) { return v ? '✅' : '❌'; }, dir: 'none' }
+  var rows=[
+    {l:'Score',k:'score',fmt:function(v){return v+'/100';},dir:'max'},
+    {l:'Preço',k:'preco',fmt:function(v){return v>0?fRc(v):'N/D';},dir:'min'},
+    {l:'Desconto',k:'desc',fmt:function(v){return v+'%';},dir:'max'},
+    {l:'Vendas 30d',k:'v30',fmt:function(v){return v>0?fNc(v):'N/D';},dir:'max'},
+    {l:'Total',k:'vtot',fmt:function(v){return v>0?fNc(v):'N/D';},dir:'max'},
+    {l:'Nota',k:'nota',fmt:function(v){return v>0?v.toFixed(1)+' ⭐':'N/D';},dir:'max'},
+    {l:'Frete',k:'frete',fmt:function(v){return v?'✅':'❌';},dir:'none'}
   ];
-  var h = '<thead><tr><th>Métrica</th>';
-  todos.forEach(function(_, i) { h += '<th>Prod ' + (i + 1) + '</th>'; });
-  h += '</tr></thead>';
-  var b = '<tbody>';
-  rows.forEach(function(row) {
-    var vals = todos.map(function(p) { return typeof p[row.k] === 'number' ? p[row.k] : null; }).filter(function(v) { return v !== null; });
-    var best = row.dir === 'max' ? Math.max.apply(null, vals) : row.dir === 'min' ? Math.min.apply(null, vals) : null;
-    var worst = row.dir === 'max' ? Math.min.apply(null, vals) : row.dir === 'min' ? Math.max.apply(null, vals) : null;
-    b += '<tr><td>' + row.l + '</td>';
-    todos.forEach(function(p) {
-      var val = p[row.k], nv = typeof val === 'number' ? val : null;
-      var cl = nv !== null && best !== null && nv === best ? 'best-cell' : nv !== null && worst !== null && nv === worst && best !== worst ? 'worst-cell' : '';
-      b += '<td class="' + cl + '">' + row.fmt(val) + '</td>';
+  var h='<thead><tr><th>Métrica</th>';
+  todos.forEach(function(_,i){h+='<th>Prod '+(i+1)+'</th>';});
+  h+='</tr></thead>';
+  var b='<tbody>';
+  rows.forEach(function(row){
+    var vals=todos.map(function(p){return typeof p[row.k]==='number'?p[row.k]:null;}).filter(function(v){return v!==null;});
+    var best=row.dir==='max'?Math.max.apply(null,vals):row.dir==='min'?Math.min.apply(null,vals):null;
+    var worst=row.dir==='max'?Math.min.apply(null,vals):row.dir==='min'?Math.max.apply(null,vals):null;
+    b+='<tr><td>'+row.l+'</td>';
+    todos.forEach(function(p){var val=p[row.k],nv=typeof val==='number'?val:null;var cl=nv!==null&&best!==null&&nv===best?'best-cell':nv!==null&&worst!==null&&nv===worst&&best!==worst?'worst-cell':'';b+='<td class="'+cl+'">'+row.fmt(val)+'</td>';});
+    b+='</tr>';
+  });
+  b+='</tbody>';
+  document.getElementById('resultTable').innerHTML=h+b;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MELHORIA 1: SCORE COM IA (Claude API)
+   ═══════════════════════════════════════════════════════ */
+async function analisarComIA() {
+  if(!produtos.length){alert('Compare os produtos primeiro!');return;}
+  var panel=document.getElementById('ia-panel');
+  var content=document.getElementById('ia-content');
+  panel.style.display='block';
+  panel.scrollIntoView({behavior:'smooth'});
+  content.innerHTML='<div class="ia-loading"><span class="ia-spin">⚙️</span><br>Claude está analisando seus produtos...<br><span style="font-size:11px;opacity:.6;margin-top:8px;display:block;">Gerando insights, nichos e sugestões de título</span></div>';
+
+  var prompt='Você é um especialista em e-commerce e marketplace brasileiro, especializado na Shopee.\n\nAnalise os seguintes produtos e forneça insights estratégicos para um vendedor.\n\nProdutos:\n'+
+    produtos.map(function(p,i){return 'Produto '+(i+1)+': '+p.nome+'\n- Preço: R$ '+p.preco+(p.orig?' (original: R$ '+p.orig+')':'')+'\n- Desconto: '+p.desc+'%\n- Vendas últimos 30d: '+p.v30+'\n- Total de vendas: '+p.vtot+'\n- Nota: '+p.nota+'/5\n- Avaliações: '+p.aval+'\n- Frete grátis: '+(p.frete?'Sim':'Não')+'\n- Nível loja: '+(p.nivel||'Normal')+'\n- Dias no mercado: '+(p.dias>=0?p.dias:'desconhecido')+'\n- Score GLM: '+p.score+'/100';}).join('\n\n')+
+    '\n\nResponda APENAS com JSON válido, sem markdown, nenhum texto extra:\n{"resumo":"análise geral de 2 frases sobre o conjunto","melhor_produto":"nome do produto com maior potencial de venda","oportunidade_geral":"ALTA|MÉDIA|BAIXA","nichos":["nicho1","nicho2","nicho3"],"insights":[{"titulo":"título curto","descricao":"explicação em 1 frase","tipo":"positivo|negativo|neutro"},{"titulo":"...","descricao":"...","tipo":"..."},{"titulo":"...","descricao":"...","tipo":"..."}],"titulo_sugerido":"título SEO otimizado para o melhor produto (máx 100 chars)","recomendacao":"ação prioritária recomendada para o vendedor em 1 frase"}';
+
+  try {
+    var response=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
     });
-    b += '</tr>';
-  });
-  b += '</tbody>';
-  document.getElementById('resultTable').innerHTML = h + b;
+    var data=await response.json();
+    var text=data.content.map(function(i){return i.text||'';}).filter(Boolean).join('');
+    var clean=text.replace(/```json|```/g,'').trim();
+    var result=JSON.parse(clean);
+    renderIAResult(result);
+    toast('🤖 Análise de IA concluída!');
+  } catch(e) {
+    content.innerHTML='<div class="ia-error">❌ Erro na análise de IA. Tente novamente em instantes.<br><span style="font-size:11px;opacity:.6">'+e.message+'</span></div>';
+  }
 }
 
-function exportarCSV() {
-  if (!produtos.length) { alert('Analise os produtos primeiro!'); return; }
-  var lines = ['Nome,Preco,Desconto%,Vendas30d,VendasTotal,Nota,Avaliacoes,FreteGratis,Idade,Nivel,Score'];
-  produtos.forEach(function(p) {
-    lines.push('"' + p.nome + '",' + p.preco + ',' + p.desc + ',' + p.v30 + ',' + p.vtot + ',' + p.nota + ',' + p.aval + ',' + (p.frete ? 'Sim' : 'Nao') + ',' + p.dias + ',' + p.nivel + ',' + p.score);
-  });
-  var blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-  var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'comparativo_shopee.csv'; a.click();
+function renderIAResult(r) {
+  var opCls={'ALTA':'alta','MÉDIA':'media','BAIXA':'baixa'};
+  var opEmoji={'ALTA':'🚀','MÉDIA':'📈','BAIXA':'📉'};
+  var cls=opCls[r.oportunidade_geral]||'media';
+  var em=opEmoji[r.oportunidade_geral]||'📊';
+
+  document.getElementById('ia-content').innerHTML=
+    '<div class="ia-result">'+
+      '<div class="ia-header-row">'+
+        '<div class="ia-stat"><span>Oportunidade</span><b class="'+cls+'">'+em+' '+r.oportunidade_geral+'</b></div>'+
+        '<div class="ia-stat"><span>Melhor Produto</span><b style="font-size:11px;color:#fff">'+r.melhor_produto+'</b></div>'+
+        '<div class="ia-stat"><span>Produtos Analisados</span><b style="color:#82b1ff">'+produtos.length+'</b></div>'+
+      '</div>'+
+      '<div class="ia-resumo">'+r.resumo+'</div>'+
+      '<div><div class="sec-lbl" style="margin-bottom:8px;">🎯 Nichos Identificados</div>'+
+        '<div class="ia-nichos">'+r.nichos.map(function(n){return'<span class="ia-nicho">'+n+'</span>';}).join('')+'</div>'+
+      '</div>'+
+      '<div><div class="sec-lbl" style="margin-bottom:8px;">💡 Insights</div>'+
+        '<div class="ia-insights">'+r.insights.map(function(ins){return'<div class="ia-insight '+ins.tipo+'"><b>'+ins.titulo+'</b><p>'+ins.descricao+'</p></div>';}).join('')+'</div>'+
+      '</div>'+
+      (r.titulo_sugerido?
+        '<div class="ia-titulo-box"><span>💡 Título SEO Sugerido para "'+r.melhor_produto+'"</span><b>'+r.titulo_sugerido+'</b></div>':'')+
+      '<div class="ia-rec-box"><strong>🎯 Recomendação:</strong> '+r.recomendacao+'</div>'+
+    '</div>';
 }
 
-adicionarCard(); adicionarCard();
+/* ═══════════════════════════════════════════════════════
+   MELHORIA 2: HISTÓRICO PERSISTENTE (localStorage)
+   ═══════════════════════════════════════════════════════ */
+var HIST_KEY='glm_historico';
+
+function salvarNoHistorico(prods) {
+  try {
+    var hist=[];
+    try{hist=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch(e){}
+    hist.unshift({
+      id:'h'+Date.now(),
+      data:new Date().toISOString(),
+      total:prods.length,
+      produtos:prods.map(function(p){return{nome:p.nome,preco:p.preco,v30:p.v30,vtot:p.vtot,nota:p.nota,aval:p.aval,frete:p.frete,dias:p.dias,nivel:p.nivel,desc:p.desc,score:p.score};})
+    });
+    if(hist.length>20)hist=hist.slice(0,20);
+    localStorage.setItem(HIST_KEY,JSON.stringify(hist));
+  }catch(e){console.warn('Histórico não pôde ser salvo:',e);}
+}
+
+function carregarHistorico() {
+  try{return JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch(e){return[];}
+}
+
+function renderHistorico() {
+  var hist=carregarHistorico();
+  var el=document.getElementById('hist-list');
+  if(!el)return;
+  if(!hist.length){
+    el.innerHTML='<div class="hist-empty"><span class="hist-icon">📭</span>Nenhuma comparação salva ainda.<br>Compare produtos na aba Comparador para criar histórico.</div>';
+    return;
+  }
+  /* Também renderiza sessões salvas pelo bookmarklet */
+  var bmHist=[];
+  try{bmHist=JSON.parse(localStorage.getItem('glm_bm_historico')||'[]');}catch(e){}
+
+  el.innerHTML=hist.map(function(h){
+    var dt=new Date(h.data);
+    var dtStr=dt.toLocaleDateString('pt-BR')+' '+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    var topScore=h.produtos.length?Math.max.apply(null,h.produtos.map(function(p){return p.score;})):0;
+    return '<div class="hist-item">'+
+      '<div class="hist-item-hd">'+
+        '<div class="hist-date">📅 '+dtStr+' · '+h.total+' produtos · Top score: <b>'+topScore+'</b></div>'+
+      '</div>'+
+      '<div class="hist-prods">'+h.produtos.map(function(p){return'<span class="hist-prod">'+p.nome.slice(0,18)+'... <span class="sc '+scClsC(p.score)+'">'+p.score+'</span></span>';}).join('')+'</div>'+
+      '<div class="hist-stats">'+
+        '<span class="hist-stat">💰 <b>'+fRc(Math.min.apply(null,h.produtos.map(function(p){return p.preco||9999;})))+'</b> min</span>'+
+        '<span class="hist-stat">🔥 <b>'+fNc(h.produtos.reduce(function(a,p){return a+(p.v30||0);},0))+'</b> vendas/30d</span>'+
+      '</div>'+
+      '<div class="hist-actions" style="margin-top:10px;">'+
+        '<button class="btn-sm btn-sm-green" onclick="recarregarComparacao(\''+h.id+'\')">📂 Recarregar</button>'+
+        '<button class="btn-sm btn-sm-red" onclick="excluirHistorico(\''+h.id+'\')">🗑️ Excluir</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+
+  /* Sessões do bookmarklet */
+  if(bmHist.length){
+    el.innerHTML+='<div style="margin-top:16px;"><div class="sec-lbl">📱 Sessões do Bookmarklet Shopee</div>'+
+      bmHist.slice(0,5).map(function(s){
+        var dt=new Date(s.data);
+        var dtStr=dt.toLocaleDateString('pt-BR')+' '+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+        return '<div class="hist-item">'+
+          '<div class="hist-item-hd"><div class="hist-date">🛍️ '+dtStr+' · '+s.total+' produtos analisados</div></div>'+
+          '<div class="hist-prods">'+s.top.map(function(p){return'<span class="hist-prod">'+p.nome.slice(0,16)+'... <span class="sc '+scClsC(p.score)+'">'+p.score+'</span></span>';}).join('')+'</div>'+
+          '<div class="hist-stats"><span class="hist-stat">🔗 <b>'+s.busca.slice(0,40)+'</b></span></div>'+
+          '<div class="hist-actions" style="margin-top:10px;">'+
+            '<button class="btn-sm btn-sm-green" onclick="importarDoBookmarklet('+JSON.stringify(s.top).replace(/'/g,'&apos;')+')">📂 Importar para Comparador</button>'+
+          '</div>'+
+        '</div>';
+      }).join('')+
+    '</div>';
+  }
+}
+
+function recarregarComparacao(hid) {
+  var hist=carregarHistorico();
+  var h=hist.find(function(x){return x.id===hid;});
+  if(!h)return;
+  /* Limpar e recarregar comparador */
+  document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});
+  cardCount=0;
+  h.produtos.forEach(function(p){adicionarCard(p);});
+  document.getElementById('resultados').style.display='none';
+  document.getElementById('ia-panel').style.display='none';
+  document.getElementById('btn-ia-analise').style.display='none';
+  document.getElementById('btn-export').style.display='none';
+  setTab('comparador',document.querySelectorAll('.tab')[1]);
+  toast('📂 Comparação recarregada!','info');
+  setTimeout(function(){document.getElementById('prodGrid').scrollIntoView({behavior:'smooth'});},200);
+}
+
+function importarDoBookmarklet(top) {
+  document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});
+  cardCount=0;
+  top.forEach(function(p){adicionarCard({nome:p.nome,preco:p.preco,orig:p.orig||0,v30:p.v30,vtot:p.vtot,nota:p.nota||p.rating||0,aval:p.aval||p.numAval||0,frete:p.frete,dias:p.dias>=0?p.dias:-1,nivel:p.nivel||''});});
+  setTab('comparador',document.querySelectorAll('.tab')[1]);
+  toast('🛍️ Produtos importados do Bookmarklet!','info');
+}
+
+function excluirHistorico(hid) {
+  var hist=carregarHistorico();
+  var novo=hist.filter(function(x){return x.id!==hid;});
+  localStorage.setItem(HIST_KEY,JSON.stringify(novo));
+  renderHistorico();
+  toast('🗑️ Removido do histórico');
+}
+
+function limparHistorico() {
+  if(!confirm('Limpar todo o histórico de comparações?'))return;
+  localStorage.removeItem(HIST_KEY);
+  renderHistorico();
+  toast('🗑️ Histórico limpo');
+}
+
+/* ═══════════════════════════════════════════════════════
+   MELHORIA 4: EXPORTAR RELATÓRIO VISUAL HTML
+   ═══════════════════════════════════════════════════════ */
+function exportarRelatorio() {
+  if(!produtos.length){alert('Compare produtos primeiro!');return;}
+  var todos=produtos.slice().sort(function(a,b){return b.score-a.score;});
+  var now=new Date();
+  var dateStr=now.toLocaleDateString('pt-BR')+' às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  var iaContent='';
+  try{var iaEl=document.getElementById('ia-content');if(iaEl&&iaEl.innerHTML.indexOf('ia-result')>-1)iaContent=iaEl.innerHTML;}catch(e){}
+
+  var html='<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relatório GLM Shopee – '+dateStr+'</title><style>'+
+    '@import url(\'https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap\');'+
+    '*{margin:0;padding:0;box-sizing:border-box;}body{font-family:\'DM Sans\',sans-serif;background:#f8f9fa;color:#1a1a2e;padding:32px 24px;}'+
+    '.rpt-header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}'+
+    '.rpt-brand{font-family:\'Syne\',sans-serif;font-size:22px;font-weight:800;}'+
+    '.rpt-brand span{color:#ee4d2d;}'+
+    '.rpt-meta{text-align:right;font-size:12px;opacity:.6;}'+
+    '.rpt-meta b{display:block;font-size:18px;color:#00e676;opacity:1;}'+
+    '.rpt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px;}'+
+    '.rpt-card{background:#fff;border-radius:14px;padding:20px;border:1px solid #e8ecf0;box-shadow:0 2px 12px rgba(0,0,0,.06);}'+
+    '.rpt-card.best{border-color:#00e676;box-shadow:0 4px 20px rgba(0,230,118,.15);}'+
+    '.rpt-rank{font-size:22px;margin-bottom:8px;}'+
+    '.rpt-score{font-family:\'Syne\',sans-serif;font-size:32px;font-weight:800;margin-bottom:2px;}'+
+    '.rpt-score.ex{color:#00c853;}.rpt-score.gd{color:#2962ff;}.rpt-score.md{color:#f9a825;}.rpt-score.lw{color:#d32f2f;}'+
+    '.rpt-label{font-size:11px;color:#999;margin-bottom:10px;}'+
+    '.rpt-name{font-size:13px;font-weight:600;margin-bottom:12px;color:#1a1a2e;}'+
+    '.rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}'+
+    '.rpt-m{background:#f4f6f8;border-radius:7px;padding:7px 9px;}'+
+    '.rpt-m span{font-size:9px;color:#999;display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:.3px;}'+
+    '.rpt-m b{font-size:13px;font-weight:700;}'+
+    '.rpt-bar{height:5px;background:#e8ecf0;border-radius:3px;overflow:hidden;margin-top:8px;}'+
+    '.rpt-bar-fill{height:100%;border-radius:3px;}'+
+    '.ex-fill{background:linear-gradient(90deg,#00c853,#1de9b6);}.gd-fill{background:#2962ff;}.md-fill{background:#f9a825;}.lw-fill{background:#d32f2f;}'+
+    '.rpt-bom{background:#00c853;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:4px;display:inline-block;margin-top:6px;}'+
+    '.rpt-table{width:100%;background:#fff;border-radius:14px;border-collapse:collapse;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:24px;}'+
+    '.rpt-table th{background:#1a1a2e;color:#fff;padding:10px 14px;text-align:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}'+
+    '.rpt-table th:first-child{text-align:left;}'+
+    '.rpt-table td{padding:10px 14px;border-top:1px solid #f0f2f5;text-align:center;font-size:12px;}'+
+    '.rpt-table td:first-child{text-align:left;color:#666;}'+
+    '.cell-best{color:#00c853;font-weight:700;}.cell-worst{color:#d32f2f;}'+
+    '.rpt-footer{text-align:center;font-size:11px;color:#aaa;padding:20px;border-top:1px solid #e8ecf0;}'+
+    '.rpt-ia{background:#fff;border-radius:14px;padding:24px;border:1px solid #e8ecf0;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:24px;}'+
+    '.rpt-ia h3{font-family:\'Syne\',sans-serif;font-size:16px;margin-bottom:14px;color:#1a1a2e;}'+
+    '.ia-resumo-rpt{background:#f8f9fa;border-left:4px solid #7c4dff;border-radius:0 8px 8px 0;padding:12px;font-size:13px;color:#333;line-height:1.7;margin-bottom:12px;}'+
+    '@media print{body{padding:16px;background:#fff;}.rpt-header{break-inside:avoid;}.rpt-card{break-inside:avoid;}@page{margin:1cm;}}'+
+  '</style></head><body>'+
+  '<div class="rpt-header">'+
+    '<div><div class="rpt-brand">GLM <span>Studio</span> · Analisador Shopee</div><div style="font-size:12px;opacity:.5;margin-top:4px;">Relatório Comparativo de Produtos</div></div>'+
+    '<div class="rpt-meta"><div>Gerado em '+dateStr+'</div><b>'+todos.length+' produtos</b></div>'+
+  '</div>'+
+  '<div class="rpt-cards">'+
+  todos.map(function(d,i){
+    var c=scClsC(d.score),isBest=i===0&&todos.length>1;
+    return '<div class="rpt-card'+(isBest?' best':'')+'">'+
+      '<div class="rpt-rank">'+(['🥇','🥈','🥉','4️⃣','5️⃣'][i]||'')+'</div>'+
+      '<div class="rpt-score '+c+'">'+d.score+'</div>'+
+      '<div class="rpt-label">'+scTxtC(d.score)+' · Score GLM</div>'+
+      '<div class="rpt-name">'+d.nome+'</div>'+
+      '<div class="rpt-grid">'+
+        '<div class="rpt-m"><span>Preço</span><b>'+(d.preco>0?fRc(d.preco):'—')+'</b></div>'+
+        '<div class="rpt-m"><span>Desconto</span><b>'+(d.desc>0?'-'+d.desc+'%':'—')+'</b></div>'+
+        '<div class="rpt-m"><span>Vendas/30d</span><b>'+(d.v30>0?fNc(d.v30):'—')+'</b></div>'+
+        '<div class="rpt-m"><span>Nota</span><b>'+(d.nota>0?d.nota.toFixed(1)+' ⭐':'—')+'</b></div>'+
+      '</div>'+
+      '<div class="rpt-bar"><div class="rpt-bar-fill '+c+'-fill" style="width:'+d.score+'%"></div></div>'+
+      (d.score>=60?'<span class="rpt-bom">BOM PRODUTO</span>':'')+
+    '</div>';
+  }).join('')+
+  '</div>'+
+  /* TABELA */
+  '<table class="rpt-table"><thead><tr><th>Métrica</th>'+todos.map(function(_,i){return'<th>Prod '+(i+1)+'</th>';}).join('')+'</tr></thead><tbody>'+
+  [
+    {l:'Score GLM',k:'score',fmt:function(v){return v+'/100';}},
+    {l:'Preço',k:'preco',fmt:function(v){return v>0?fRc(v):'—';}},
+    {l:'Desconto',k:'desc',fmt:function(v){return v?'-'+v+'%':'—';}},
+    {l:'Vendas/30d',k:'v30',fmt:function(v){return v>0?fNc(v):'—';}},
+    {l:'Nota',k:'nota',fmt:function(v){return v>0?v.toFixed(1)+' ⭐':'—';}},
+    {l:'Frete Grátis',k:'frete',fmt:function(v){return v?'✅ Sim':'❌ Não';}}
+  ].map(function(row){
+    var vals=todos.map(function(p){return typeof p[row.k]==='number'?p[row.k]:null;}).filter(function(v){return v!==null;});
+    var best=vals.length?Math.max.apply(null,vals):null;
+    return '<tr><td>'+row.l+'</td>'+todos.map(function(p){var val=p[row.k],nv=typeof val==='number'?val:null;var cl=nv!==null&&best!==null&&nv===best?'cell-best':'';return'<td class="'+cl+'">'+row.fmt(val)+'</td>';}).join('')+'</tr>';
+  }).join('')+
+  '</tbody></table>'+
+  /* IA se disponível */
+  (iaContent?'<div class="rpt-ia"><h3>🤖 Análise de IA (Claude)</h3><div>'+iaContent+'</div></div>':'')+
+  '<div class="rpt-footer">Relatório gerado por GLM Analisador Shopee v6.0 · GLM Studio<br>Imprima com Ctrl+P ou salve como PDF pelo navegador.</div>'+
+  '</body></html>';
+
+  var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var w=window.open(url,'_blank');
+  if(w){setTimeout(function(){URL.revokeObjectURL(url);},5000);}
+  toast('📊 Relatório gerado! Ctrl+P para imprimir como PDF.');
+}
+
+/* ═══════════════════════════════════════════════════════
+   IMPORTAÇÃO DO BOOKMARKLET (URL hash)
+   ═══════════════════════════════════════════════════════ */
+(function detectBookmarkletData() {
+  var hash=window.location.hash;
+  if(!hash||!hash.startsWith('#bm='))return;
+  try{
+    var raw=hash.slice(4);
+    var data=JSON.parse(decodeURIComponent(raw));
+    if(!Array.isArray(data)||!data.length)return;
+    /* Limpar e carregar */
+    document.querySelectorAll('.prod-card').forEach(function(c){c.remove();});
+    cardCount=0;
+    data.forEach(function(p){adicionarCard(p);});
+    /* Mostrar banners */
+    var banner=document.getElementById('bm-data-banner');
+    if(banner){banner.style.display='flex';document.getElementById('bm-data-info').textContent=data.length+' produtos carregados do Bookmarklet. Acesse a aba Comparador para analisar.';}
+    var importBanner=document.getElementById('bm-import-banner');
+    if(importBanner){importBanner.style.display='flex';document.getElementById('bm-import-msg').innerHTML='<b>'+data.length+' produtos importados do Bookmarklet Shopee!</b><br>Dados carregados automaticamente. Clique em "Comparar Produtos".';}
+    /* Ir para aba comparador */
+    var tabs=document.querySelectorAll('.tab');
+    setTab('comparador',tabs[1]);
+    /* Limpar hash da URL sem recarregar */
+    history.replaceState(null,'',window.location.pathname+window.location.search);
+    toast('🛍️ '+data.length+' produtos importados do Bookmarklet!','info',4000);
+  }catch(e){console.warn('Erro ao importar dados do bookmarklet:',e);}
+})();
+
+/* ═══════════════════════════════════════════════════════
+   CSV EXPORT
+   ═══════════════════════════════════════════════════════ */
+function exportarCSV(){
+  if(!produtos.length){alert('Analise os produtos primeiro!');return;}
+  var lines=['\uFEFFNome,Preco,Desconto%,Vendas30d,VendasTotal,Nota,Avaliacoes,FreteGratis,Idade,Nivel,Score'];
+  produtos.forEach(function(p){lines.push('"'+p.nome+'",'+p.preco+','+p.desc+','+p.v30+','+p.vtot+','+p.nota+','+p.aval+','+(p.frete?'Sim':'Nao')+','+p.dias+','+p.nivel+','+p.score);});
+  var blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='comparativo_shopee_glm.csv';a.click();
+  toast('📁 CSV exportado!');
+}
+
+/* ─── Init: 2 cards padrão (somente se não vier do bookmarklet) ─── */
+if(!window.location.hash.startsWith('#bm=')){adicionarCard();adicionarCard();}
 </script>
 </body>
 </html>
